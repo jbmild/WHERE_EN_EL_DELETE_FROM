@@ -1,5 +1,4 @@
 
-
 ---- E J E C U T A  E L  B A T  Q U E  G E N E R A  L A  TABLA  MAESTRA
 -- EXEC master..xp_CMDShell 'D:\Mis Documentos\_UTN\Base de Datos\EjecutarScriptTablaMaestra.bat'
 
@@ -72,5 +71,53 @@ inner join
 inner join
 	gd_esquema.Hotel on gd_esquema.Hotel.nombre = 'Hotel ' + gd_esquema.Maestra.Hotel_calle + ' ' + convert(varchar(255), gd_esquema.Maestra.Hotel_Nro_Calle)
 
+
+
+DROP TABLE gd_esquema.Tipos_Habitaciones
+CREATE TABLE gd_esquema.Tipos_Habitaciones (	id int IDENTITY(1,1) PRIMARY KEY,
+										Codigo int,
+										Descripcion nvarchar(255) NOT NULL,
+										Porcentual numeric(18, 2),
+										Max_Huespedes smallint
+								)
+INSERT INTO gd_esquema.Tipos_Habitaciones (Codigo, Descripcion, Porcentual, Max_Huespedes)
+SELECT distinct Habitacion_Tipo_Codigo,  Habitacion_Tipo_Descripcion, Habitacion_Tipo_Porcentual, null 
+FROM
+	gd_esquema.Maestra
+		
+
+
+
+DROP TABLE gd_esquema.Habitaciones
+CREATE TABLE gd_esquema.Habitaciones (	id int IDENTITY(1,1) PRIMARY KEY,
+										Hoteles_id int NOT NULL,
+										Numero numeric(18,0) NOT NULL,
+										Piso smallint,
+										Frente bit,
+										Descripcion nvarchar(255),
+										Habilitado bit,
+										Tipos_id int NOT NULL,
+									   CONSTRAINT FK_Habitaciones_Hotel FOREIGN KEY (Hoteles_id) 
+									   REFERENCES gd_esquema.Hotel (id),
+									   CONSTRAINT FK_Habitaciones_Tipos FOREIGN KEY (Tipos_id)
+									   REFERENCES gd_esquema.Tipos_Habitaciones (id))
+
+INSERT INTO gd_esquema.Habitaciones (Hoteles_id, Numero, Piso, Frente, Descripcion, Habilitado, Tipos_id)
+SELECT distinct
+	gd_esquema.Hotel.id,
+	gd_esquema.Maestra.Habitacion_Numero,
+	gd_esquema.Maestra.Habitacion_Piso,
+	CASE WHEN gd_esquema.Maestra.Habitacion_Frente = 'N' THEN 0 ELSE 1 END,
+	'',
+	1,
+	gd_esquema.Tipos_Habitaciones.id
+FROM
+	gd_esquema.Maestra
+INNER JOIN
+	gd_esquema.Hotel ON
+	gd_esquema.Hotel.Nombre =  'Hotel ' + gd_esquema.Maestra.Hotel_calle + ' ' + convert(varchar(255), gd_esquema.Maestra.Hotel_Nro_Calle)
+INNER JOIN
+	gd_esquema.Tipos_Habitaciones ON
+	gd_esquema.Tipos_Habitaciones.Codigo = gd_esquema.Maestra.Habitacion_Tipo_Codigo
 
 	
