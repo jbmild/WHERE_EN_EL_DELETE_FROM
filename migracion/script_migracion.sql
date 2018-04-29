@@ -1,20 +1,27 @@
-
 ---- E J E C U T A  E L  B A T  Q U E  G E N E R A  L A  TABLA  MAESTRA
 -- EXEC master..xp_CMDShell 'D:\Mis Documentos\_UTN\Base de Datos\EjecutarScriptTablaMaestra.bat'
+--- inserta 528444 registros en tabla gd_esquema.Maestra
+--DROP SCHEMA [WHERE_EN_EL_DELETE_FROM]
 
---- inserta 528444 registros
+CREATE SCHEMA [WHERE_EN_EL_DELETE_FROM]
 
 /**** C R E A C I O N  T A B L A S  D E S T I N O  ****/
-DROP TABLE gd_esquema.Hotel
-CREATE TABLE gd_esquema.Hotel (id int IDENTITY(1,1) PRIMARY KEY, nombre nvarchar(255) not null,
-				 mail varchar(255), telefono varchar(255), direccion nvarchar(255), ciudad nvarchar(255),
-				 Pais nvarchar(255), 
-				estrellas_cant smallint, estrellas_recargo smallint, fecha_creacion datetime)
+--DROP TABLE [WHERE_EN_EL_DELETE_FROM].hoteles
+CREATE TABLE hoteles (
+	id int IDENTITY(1,1) PRIMARY KEY, 
+	nombre nvarchar(255) not null,
+	mail varchar(255), 
+	telefono varchar(255), 
+	direccion nvarchar(255), 
+	ciudad nvarchar(255),
+	pais nvarchar(255), 
+	estrellas_cant smallint, 
+	estrellas_recargo smallint, 
+	fecha_creacion datetime
+)
 
 
-INSERT INTO		
-		gd_esquema.Hotel (nombre, mail, telefono
-		, direccion , ciudad, Pais , 
+INSERT INTO [WHERE_EN_EL_DELETE_FROM].hoteles (nombre, mail, telefono, direccion , ciudad, pais, 
 		estrellas_cant, estrellas_recargo, fecha_creacion)
 SELECT distinct
 	'Hotel ' + Hotel_calle + ' ' + convert(varchar(255) ,Hotel_Nro_Calle) ,
@@ -27,13 +34,19 @@ SELECT distinct
 		Hotel_Recarga_Estrella,
 		getdate()
  from gd_esquema.Maestra
+ 
+ 
 
- --select distinct Regimen_Descripcion from gd_esquema.Maestra
+DROP TABLE [WHERE_EN_EL_DELETE_FROM].regimenes
+CREATE TABLE [WHERE_EN_EL_DELETE_FROM].regimenes (
+	id int IDENTITY(1,1) PRIMARY KEY, 
+	codigo nvarchar(255), 
+	descripcion nvarchar(255),
+	precio numeric(18,2), 
+	habilitado bit DEFAULT 1
+)
 
-DROP TABLE gd_esquema.Regimen
-CREATE TABLE gd_esquema.Regimen (id int IDENTITY(1,1) PRIMARY KEY, Codigo nvarchar(255), Descripcion nvarchar(255),
-			Precio numeric(18,2), Habilitado bit DEFAULT 1)
-INSERT INTO gd_esquema.Regimen (codigo, descripcion, precio, habilitado)
+INSERT INTO [WHERE_EN_EL_DELETE_FROM].regimenes (codigo, descripcion, precio, habilitado)
 SELECT distinct
 	--'REGIMEN_' + convert(varchar(255), ROW_NUMBER() OVER (ORDER BY (select Regimen_Descripcion))), -- Podemos pensar en hacer codigos tipo RMP: Regimen media pension, RAI: Regimen all inclusive. 
 	'REGIMEN_' +  convert(varchar(255), RANK() OVER(order by (Select Regimen_Descripcion))), -- Ver esto para que tire un row_number sin repetir
@@ -44,7 +57,6 @@ FROM
 	gd_esquema.Maestra
 	
 	
-	--select * from gd_Esquema.Regimen
 
 -- Chequeo si hay reservas sin hotel asociado -> NO HAY
 /* select * FROM gd_esquema.Maestra where isnull(gd_esquema.Maestra.Hotel_Nro_Calle, 0) = 0
@@ -52,72 +64,176 @@ FROM
  select * FROM gd_esquema.Maestra where isnull(gd_esquema.Maestra.Regimen_Descripcion, '') = ''
 	*/
 
-DROP TABLE gd_esquema.Regimen_Hotel
-CREATE TABLE gd_esquema.Regimen_Hotel (Hotel_id int NOT NULL,
-										Regimen_id int NOT NULL,
-									   CONSTRAINT FK_Hotel FOREIGN KEY (Hotel_id) 
-									   REFERENCES gd_esquema.Hotel (id),
-									   CONSTRAINT FK_Regimen FOREIGN KEY (Regimen_id)
-									   REFERENCES gd_esquema.Regimen (id))
+DROP TABLE [WHERE_EN_EL_DELETE_FROM].regimenes_hoteles
+CREATE TABLE [WHERE_EN_EL_DELETE_FROM].regimenes_hoteles (
+	hotel_id int NOT NULL,
+	regimen_id int NOT NULL,
+	CONSTRAINT FK_Hotel FOREIGN KEY (hotel_id) 
+	REFERENCES [WHERE_EN_EL_DELETE_FROM].hoteles(id),
+	CONSTRAINT FK_Regimen FOREIGN KEY (regimen_id)
+	REFERENCES [WHERE_EN_EL_DELETE_FROM].regimenes (id)
+)
 
-INSERT INTO gd_esquema.Regimen_Hotel (Hotel_id, Regimen_id)
+INSERT INTO [WHERE_EN_EL_DELETE_FROM].regimenes_hoteles (hotel_id, regimen_id)
 SELECT distinct
-	gd_esquema.Hotel.id,
-	gd_esquema.Regimen.id
+	hot.id,
+	reg.id
 FROM
-	gd_esquema.Maestra
+	gd_esquema.Maestra m
 inner join
-	gd_esquema.Regimen on gd_esquema.Regimen.Descripcion = gd_esquema.Maestra.Regimen_Descripcion
+	[WHERE_EN_EL_DELETE_FROM].regimenes reg on reg.descripcion = m.Regimen_Descripcion
 inner join
-	gd_esquema.Hotel on gd_esquema.Hotel.nombre = 'Hotel ' + gd_esquema.Maestra.Hotel_calle + ' ' + convert(varchar(255), gd_esquema.Maestra.Hotel_Nro_Calle)
+	[WHERE_EN_EL_DELETE_FROM].hoteles hot on hot.nombre = 'Hotel ' + m.Hotel_calle + ' ' + convert(varchar(255), m.Hotel_Nro_Calle)
 
 
 
-DROP TABLE gd_esquema.Tipos_Habitaciones
-CREATE TABLE gd_esquema.Tipos_Habitaciones (	id int IDENTITY(1,1) PRIMARY KEY,
-										Codigo int,
-										Descripcion nvarchar(255) NOT NULL,
-										Porcentual numeric(18, 2),
-										Max_Huespedes smallint
-								)
-INSERT INTO gd_esquema.Tipos_Habitaciones (Codigo, Descripcion, Porcentual, Max_Huespedes)
-SELECT distinct Habitacion_Tipo_Codigo,  Habitacion_Tipo_Descripcion, Habitacion_Tipo_Porcentual, null 
+DROP TABLE [WHERE_EN_EL_DELETE_FROM].tipos_habitaciones
+CREATE TABLE [WHERE_EN_EL_DELETE_FROM].tipos_habitaciones (	
+	id int IDENTITY(1,1) PRIMARY KEY,
+	codigo int,
+	descripcion nvarchar(255) NOT NULL,
+	porcentual numeric(18, 2),
+	max_huespedes smallint
+)
+
+INSERT INTO [WHERE_EN_EL_DELETE_FROM].tipos_habitaciones (codigo, descripcion, porcentual, max_huespedes)
+SELECT distinct 
+	Habitacion_Tipo_Codigo, 
+	Habitacion_Tipo_Descripcion, 
+	Habitacion_Tipo_Porcentual, 
+	NULL
 FROM
 	gd_esquema.Maestra
 		
 
 
 
-DROP TABLE gd_esquema.Habitaciones
-CREATE TABLE gd_esquema.Habitaciones (	id int IDENTITY(1,1) PRIMARY KEY,
-										Hoteles_id int NOT NULL,
-										Numero numeric(18,0) NOT NULL,
-										Piso smallint,
-										Frente bit,
-										Descripcion nvarchar(255),
-										Habilitado bit,
-										Tipos_id int NOT NULL,
-									   CONSTRAINT FK_Habitaciones_Hotel FOREIGN KEY (Hoteles_id) 
-									   REFERENCES gd_esquema.Hotel (id),
-									   CONSTRAINT FK_Habitaciones_Tipos FOREIGN KEY (Tipos_id)
-									   REFERENCES gd_esquema.Tipos_Habitaciones (id))
+DROP TABLE [WHERE_EN_EL_DELETE_FROM].habitaciones
+CREATE TABLE [WHERE_EN_EL_DELETE_FROM].habitaciones (	
+	id int IDENTITY(1,1) PRIMARY KEY,
+	hoteles_id int NOT NULL,
+	numero numeric(18,0) NOT NULL,
+	piso smallint,
+    frente bit,
+	descripcion nvarchar(255),
+	habilitado bit,
+	tipos_id int NOT NULL,
+	CONSTRAINT FK_Habitaciones_Hotel FOREIGN KEY (hoteles_id) 
+	REFERENCES gd_esquema.Hotel (id),
+	CONSTRAINT FK_Habitaciones_Tipos FOREIGN KEY (tipos_id)
+	REFERENCES gd_esquema.Tipos_Habitaciones (id))
 
-INSERT INTO gd_esquema.Habitaciones (Hoteles_id, Numero, Piso, Frente, Descripcion, Habilitado, Tipos_id)
+INSERT INTO [WHERE_EN_EL_DELETE_FROM].habitaciones (
+	Hoteles_id, 
+	Numero, 
+	Piso, 
+	Frente, 
+	Descripcion, 
+	Habilitado, 
+	Tipos_id
+)
 SELECT distinct
-	gd_esquema.Hotel.id,
-	gd_esquema.Maestra.Habitacion_Numero,
-	gd_esquema.Maestra.Habitacion_Piso,
-	CASE WHEN gd_esquema.Maestra.Habitacion_Frente = 'N' THEN 0 ELSE 1 END,
+	hot.id,
+	m.Habitacion_Numero,
+	m.Habitacion_Piso,
+	CASE WHEN m.Habitacion_Frente = 'N' THEN 0 ELSE 1 END,
 	'',
 	1,
-	gd_esquema.Tipos_Habitaciones.id
+	t.id
 FROM
-	gd_esquema.Maestra
+	gd_esquema.Maestra m
 INNER JOIN
-	gd_esquema.Hotel ON
-	gd_esquema.Hotel.Nombre =  'Hotel ' + gd_esquema.Maestra.Hotel_calle + ' ' + convert(varchar(255), gd_esquema.Maestra.Hotel_Nro_Calle)
+	[WHERE_EN_EL_DELETE_FROM].hoteles hot ON
+	hot.nombre =  'Hotel ' + m.Hotel_calle + ' ' + convert(varchar(255), m.Hotel_Nro_Calle)
 INNER JOIN
-	gd_esquema.Tipos_Habitaciones ON
-	gd_esquema.Tipos_Habitaciones.Codigo = gd_esquema.Maestra.Habitacion_Tipo_Codigo
+	[WHERE_EN_EL_DELETE_FROM].tipos_habitaciones t ON
+	t.codigo = m.Habitacion_Tipo_Codigo
 
-	
+
+/******* T A B L A  U S U A R I O S ********/
+drop table [WHERE_EN_EL_DELETE_FROM].usuarios
+CREATE table [WHERE_EN_EL_DELETE_FROM].usuarios (
+	id int identity(1,1) PRIMARY KEY, 
+	usuario varchar(255), 
+	contrasena varbinary(32),
+	habilitado bit DEFAULT 1, 
+	cant_intentos char DEFAULT 0
+)
+
+
+
+
+--- I N S E R T O  E N  U S U A R I O S a los C L I E N T E S
+INSERT INTO [WHERE_EN_EL_DELETE_FROM].usuarios (usuario, contrasena)
+VALUES(NULL, NULL)
+
+
+
+/******* T A B L A  de C L I E N T E S ******/
+DROP TABLE [WHERE_EN_EL_DELETE_FROM].clientes
+CREATE TABLE [WHERE_EN_EL_DELETE_FROM].clientes (
+	id int identity(1,1) PRIMARY KEY, 
+	usuarios_id int , 
+	habilitado bit default 1,
+	mail varchar(255),
+	nombre nvarchar(255),
+	apellido nvarchar(255),
+	telefono varchar(30),
+	pasaporte varchar(255),
+	direccion_calle nvarchar (255),
+	direccion_nro nvarchar (255),
+	direccion_piso nvarchar (255),
+	direccion_depto nvarchar (255),
+	direccion_localidad nvarchar (255),
+	direccion_pais nvarchar (255),
+	nacionalidad nvarchar (255),
+	consistente bit default 0
+)
+
+INSERT INTO [WHERE_EN_EL_DELETE_FROM].clientes (
+	usuarios_id, 
+	habilitado,
+	mail,
+	nombre,
+	apellido,
+	telefono,
+	pasaporte,
+	direccion_calle,
+	direccion_nro,
+	direccion_piso,
+	direccion_depto,
+	direccion_localidad,
+	direccion_pais, 
+	nacionalidad
+)
+SELECT DISTINCT
+	1, -- ID USUARIO DE GUEST
+	1,
+	m.Cliente_Mail,
+	m.Cliente_Nombre,
+	m.Cliente_Apellido,
+	NULL,
+	m.Cliente_Pasaporte_Nro,
+	m.Cliente_Dom_Calle,
+	m.Cliente_Nro_Calle,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	m.Cliente_Nacionalidad
+FROM
+	gd_esquema.Maestra m 
+
+
+
+CREATE TABLE [WHERE_EN_EL_DELETE_FROM].cese_actividades(
+	cese_id int identity(1,1) PRIMARY KEY,
+	hotel_id int NOT NULL,
+	CONSTRAINT FK_cese_actividades_hotel FOREIGN KEY (hotel_id) 
+	REFERENCES [WHERE_EN_EL_DELETE_FROM].hoteles (id),
+	fecha_inicio datetime,
+	fecha_fin datetime,
+	titulo nvarchar(100),
+	descripcion nvarchar(255),
+)
+
