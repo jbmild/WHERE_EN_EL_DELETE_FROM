@@ -1,0 +1,4 @@
+- En Usuario, el nombre de usuario y pwd vacias para que los usuarios los completen
+- En Hotel, dejamos el nombre hotel vacio, pero en los listados se muestra nombre "hotel [direccion]" 
+- a los usuarios se los separó en empleados y clientes para que los empleados puedan hospedarse en los hoteles. Ambos pueden tener direccion fiscal (AFIP) y dirección residencial distinta.
+- A los clientes, se les asociará a todos el mismo idusuario = 1, para poder utilizar el esquema de funciones en función del rol.
