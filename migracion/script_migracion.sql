@@ -249,3 +249,12 @@ CREATE TABLE [WHERE_EN_EL_DELETE_FROM].estadias(
 	CONSTRAINT FK_egreso_empleado_id FOREIGN KEY (empleado_id)
 		REFERENCES [WHERE_EN_EL_DELETE_FROM].empleados (id),
 	)
+DROP TABLE [WHERE_EN_EL_DELETE_FROM].huespedes
+CREATE TABLE [WHERE_EN_EL_DELETE_FROM].huespedes(
+	estadia_id int identity(1,1) PRIMARY KEY,
+	CONSTRAINT FK_estadia_id FOREIGN KEY (estadia_id)
+		REFERENCES [WHERE_EN_EL_DELETE_FROM].estadias (id),
+	cliente_id int identity(1,1) PRIMARY KEY,
+	CONSTRAINT FK_cliente_id FOREIGN KEY (cliente_id)
+			REFERENCES [WHERE_EN_EL_DELETE_FROM].clientes (id),
+			)
