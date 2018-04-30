@@ -1,4 +1,4 @@
-<<<<<<< HEAD:migracion/script_migracion.sql
+
 ---- E J E C U T A  E L  B A T  Q U E  G E N E R A  L A  TABLA  MAESTRA
 -- EXEC master..xp_CMDShell 'D:\Mis Documentos\_UTN\Base de Datos\EjecutarScriptTablaMaestra.bat'
 --- inserta 528444 registros en tabla gd_esquema.Maestra
@@ -259,7 +259,7 @@ CREATE TABLE [WHERE_EN_EL_DELETE_FROM].huespedes(
 	CONSTRAINT FK_cliente_id FOREIGN KEY (cliente_id)
 			REFERENCES [WHERE_EN_EL_DELETE_FROM].clientes (id),
 			)
-=======
+
 ---- E J E C U T A  E L  B A T  Q U E  G E N E R A  L A  TABLA  MAESTRA
 -- EXEC master..xp_CMDShell 'D:\Mis Documentos\_UTN\Base de Datos\EjecutarScriptTablaMaestra.bat'
 --- inserta 528444 registros en tabla gd_esquema.Maestra
@@ -527,4 +527,4 @@ CREATE TABLE [WHERE_EN_EL_DELETE_FROM].facturas(
 	nombre nvarchar(15) not null,
 	appelido nvarchar(15) not null,
 )
-
+DROP TABLE [WHERE_EN_EL_DELETE_FROM].
