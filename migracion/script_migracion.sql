@@ -237,3 +237,15 @@ CREATE TABLE [WHERE_EN_EL_DELETE_FROM].cese_actividades(
 	descripcion nvarchar(255),
 )
 
+DROP TABLE [WHERE_EN_EL_DELETE_FROM].estadias
+CREATE TABLE [WHERE_EN_EL_DELETE_FROM].estadias(
+	estadia_id int identity(1,1) PRIMARY KEY,
+	CONSTRAINT FK_reserva_id FOREIGN KEY (reserva_id)
+		REFERENCES [WHERE_EN_EL_DELETE_FROM].reservas (id),
+	ingreso_fecha datetime NOT NULL,
+	CONSTRAINT FK_ingreso_empleado_id FOREIGN KEY (empleado_id)
+		REFERENCES [WHERE_EN_EL_DELETE_FROM].empleados (id),
+	egreso_fecha datetime NOT  NULL,
+	CONSTRAINT FK_egreso_empleado_id FOREIGN KEY (empleado_id)
+		REFERENCES [WHERE_EN_EL_DELETE_FROM].empleados (id),
+	)
