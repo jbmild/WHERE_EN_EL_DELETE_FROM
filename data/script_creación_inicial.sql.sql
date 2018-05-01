@@ -466,6 +466,7 @@ GO
 		CONSTRAINT FK_facturas_clientes FOREIGN KEY (cliente_id) REFERENCES WHERE_EN_EL_DELETE_FROM.clientes (cliente_id)
 	)
 /* +++ END+++ Facturas */
+
 /* +++ BEGIN +++ Consumibles  */
 IF OBJECT_ID('WHERE_EN_EL_DELETE_TROM.consumibles','U') IS NOT NULL
 	DROP TABLE WHERE_EN_EL_DELETE_FROM.consumibles;
@@ -479,6 +480,15 @@ CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumibles(
 	orden int NOT NULL,
 
 )
+INSERT INTO WHERE_EN_EL_DELETE_FROM.consumibles (
+	consumible_id,
+	codigo,
+	descripcion,
+	precio,
+	orden
+) select m.Consumible_Descripcion, m.Consumible_Codigo, m.Consumible_Precio  from GD1C2018.gd_esquema.Maestra  m
+where  m.Consumible_Codigo is not null
+group by m.Consumible_Codigo, m.Consumible_Descripcion, m.Consumible_Precio
 
 /* +++ END +++ Consumibles */
 
