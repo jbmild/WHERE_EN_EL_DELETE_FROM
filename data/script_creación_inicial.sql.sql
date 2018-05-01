@@ -188,6 +188,7 @@ GO
 		habilitado bit DEFAULT 1, 
 		cant_intentos char DEFAULT 0
 	)
+
 /* +++ END +++ Usuarios */ 
 
 /* +++ BEGIN +++ Permisos */
@@ -465,3 +466,24 @@ GO
 		CONSTRAINT FK_facturas_clientes FOREIGN KEY (cliente_id) REFERENCES WHERE_EN_EL_DELETE_FROM.clientes (cliente_id)
 	)
 /* +++ END+++ Facturas */
+
+/* +++  BEGIN +++ Consumos   */
+
+IF OBJECT_ID('WHERE_EN_EL_DELETE_TROM.consumos','U') IS NOT NULL
+	DROP TABLE WHERE_EN_EL_DELETE_FROM.consumos;
+GO
+
+CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumos(
+	consumo_id int identity(1,1) PRIMARY KEY,
+	habitacion_id int,
+	consumible_id int,
+	estadia_id int,
+	cantidad int NOT NULL,
+	precio_unitario real NOT NULL,
+
+	CONSTRAINT FK_consumos_consumibles FOREIGN KEY (consumible_id) REFERENCES WHERE_EN_EL_DELETE_FROM.consumibles (consumible_id),
+	CONSTRAINT FK_consumos_estadias FOREIGN KEY (estadia_id) REFERENCES WHERE_EN_EL_DELETE_FROM.estadias (estadia_id),
+	CONSTRAINT FK_consumos_habitaciones FOREIGN KEY (habitacion_id) REFERENCES WHERE_EN_EL_DELETE_FROM.habitaciones (habitacion_id)
+	)
+
+/* +++ END +++ Consumos */
