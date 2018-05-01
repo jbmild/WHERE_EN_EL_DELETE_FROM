@@ -466,6 +466,21 @@ GO
 		CONSTRAINT FK_facturas_clientes FOREIGN KEY (cliente_id) REFERENCES WHERE_EN_EL_DELETE_FROM.clientes (cliente_id)
 	)
 /* +++ END+++ Facturas */
+/* +++ BEGIN +++ Consumibles  */
+IF OBJECT_ID('WHERE_EN_EL_DELETE_TROM.consumibles','U') IS NOT NULL
+	DROP TABLE WHERE_EN_EL_DELETE_FROM.consumibles;
+GO
+
+CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumibles(
+	consumible_id int identity(1,1) PRIMARY KEY,
+	codigo int NOT NULL,
+	descripcion nvarchar(50) NOT NULL,
+	precio real NOT NULL,
+	orden int NOT NULL,
+
+)
+
+/* +++ END +++ Consumibles */
 
 /* +++  BEGIN +++ Consumos   */
 
@@ -487,3 +502,5 @@ CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumos(
 	)
 
 /* +++ END +++ Consumos */
+
+
