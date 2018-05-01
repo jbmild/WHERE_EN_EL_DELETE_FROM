@@ -138,7 +138,7 @@ GO
 	GO
 
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.habitaciones (	
-		id int IDENTITY(1,1) PRIMARY KEY,
+		habitacion_id int IDENTITY(1,1) PRIMARY KEY,
 		hoteles_id int NOT NULL,
 		numero numeric(18,0) NOT NULL,
 		piso smallint,
@@ -183,12 +183,66 @@ GO
 
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.usuarios (
 		usuario_id int identity(1,1) PRIMARY KEY, 
-		usuario varchar(255), 
+		usuario nvarchar(255), 
 		contrasena varbinary(32),
 		habilitado bit DEFAULT 1, 
 		cant_intentos char DEFAULT 0
 	)
 /* +++ END +++ Usuarios */ 
+
+/* +++ BEGIN +++ Permisos */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.permisos', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.permisos;
+	GO
+
+	CREATE TABLE WHERE_EN_EL_DELETE_FROM.permisos (
+		permiso_id int identity(1,1) PRIMARY KEY, 
+		nombre nvarchar(255), 
+	)
+/* +++ END +++ Permisos */ 
+
+/* +++ BEGIN +++ Roles */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.roles', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.permisos;
+	GO
+
+	CREATE TABLE WHERE_EN_EL_DELETE_FROM.roles (
+		rol_id int identity(1,1) PRIMARY KEY, 
+		nombre nvarchar(255), 
+		habilitado bit DEFAULT 1, 
+		default bit DEFAULT 0, 
+	)
+/* +++ END +++ Roles */
+
+/* +++ BEGIN +++ Roles Permisos */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.roles_permisos', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.roles_permisos;
+	GO
+
+	CREATE TABLE WHERE_EN_EL_DELETE_FROM.roles_permisos (
+		rol_id int, 
+		permiso_id int, 
+
+		PRIMARY KEY (rol_id, permiso_id),
+		CONSTRAINT FK_roles_permisos_roles FOREIGN KEY (rol_id) REFERENCES WHERE_EN_EL_DELETE_FROM.roles (rol_id),
+		CONSTRAINT FK_roles_permisos_permisos FOREIGN KEY (permiso_id) REFERENCES WHERE_EN_EL_DELETE_FROM.permisos (permiso_id),
+	)
+/* +++ END +++ Roles Permisos */
+
+/* +++ BEGIN +++ Usuarios Roles */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.usuarios_roles', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.usuarios_roles;
+	GO
+
+	CREATE TABLE WHERE_EN_EL_DELETE_FROM.usuarios_roles (
+		rol_id int, 
+		usuario_id int, 
+
+		PRIMARY KEY (rol_id, usuario_id),
+		CONSTRAINT FK_usuarios_roles_roles FOREIGN KEY (rol_id) REFERENCES WHERE_EN_EL_DELETE_FROM.roles (rol_id),
+		CONSTRAINT FK_usuarios_roles_usuarios FOREIGN KEY (usuario_id) REFERENCES WHERE_EN_EL_DELETE_FROM.usuarios (usuario_id),
+	)
+/* +++ END +++ Usuarios Roles */
 
 /* +++ BEGIN +++ Clientes */
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.clientes', 'U') IS NOT NULL
@@ -295,6 +349,24 @@ GO
 	--TODO: completar datos de migracion
 /* +++ END +++ Reservas */ 
 
+/* +++ BEGIN +++ Reservas Habitaciones */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.reservas_habitaciones', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.reservas_habitaciones;
+	GO
+
+	CREATE TABLE WHERE_EN_EL_DELETE_FROM.reservas_habitaciones(
+		habitacion_id INT,
+		reserva_id INT,
+		precio_diario NUMERIC(10,2) DEFAULT 0,
+
+		PRIMARY KEY (habitacion_id, reserva_id),
+		CONSTRAINT FK_reservas_habitaciones_habitaciones FOREIGN KEY (habitacion_id) REFERENCES WHERE_EN_EL_DELETE_FROM.habitaciones (habitacion_id),
+		CONSTRAINT FK_reservas_habitaciones_reservas FOREIGN KEY (reserva_id) REFERENCES WHERE_EN_EL_DELETE_FROM.reservas (reserva_id)
+	)
+
+	--TODO: completar datos de migracion
+/* +++ END +++ Reservas Habitaciones */ 
+
 /* +++ BEGIN +++ Empleados */
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.empleados', 'U') IS NOT NULL
 		DROP TABLE WHERE_EN_EL_DELETE_FROM.empleados;
@@ -317,6 +389,21 @@ GO
 		direccion_pais NVARCHAR (255),
 
 		CONSTRAINT FK_empleados_usuarios FOREIGN KEY (usuario_id) REFERENCES WHERE_EN_EL_DELETE_FROM.usuarios (usuario_id)
+	)
+/* +++ END +++ Empleados */ 
+
+/* +++ BEGIN +++ Empleados Hoteles */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.empleados_hoteles', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.empleados_hoteles;
+	GO
+
+	CREATE TABLE WHERE_EN_EL_DELETE_FROM.empleados_hoteles (
+		empleado_id int NOT NULL,
+		hotel_id int NOT NULL
+
+		PRIMARY KEY(empleado_id, hotel_id),
+		CONSTRAINT FK_empleados_hoteles_empleados FOREIGN KEY (empleado_id) REFERENCES WHERE_EN_EL_DELETE_FROM.empleados (empleado_id),
+		CONSTRAINT FK_empleados_hoteles_hoteles FOREIGN KEY (hotel_id) REFERENCES WHERE_EN_EL_DELETE_FROM.hoteles (hotel_id),
 	)
 /* +++ END +++ Empleados */ 
 
