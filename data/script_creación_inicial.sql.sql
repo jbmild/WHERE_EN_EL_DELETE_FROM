@@ -9,9 +9,9 @@ GO
 		DROP TABLE WHERE_EN_EL_DELETE_FROM.hoteles;
 	GO
 
-	CREATE TABLE hoteles (
+	CREATE TABLE WHERE_EN_EL_DELETE_FROM.hoteles (
 		id int IDENTITY(1,1) PRIMARY KEY, 
-		nombre nvarchar(255) not null,
+		nombre nvarchar(255),
 		mail varchar(255), 
 		telefono varchar(255), 
 		direccion nvarchar(255), 
@@ -147,8 +147,8 @@ GO
 		habilitado bit,
 		tipos_id int NOT NULL,
 
-		CONSTRAINT FK_Habitaciones_Hotel FOREIGN KEY (hoteles_id) REFERENCES gd_esquema.Hotel (id),
-		CONSTRAINT FK_Habitaciones_Tipos FOREIGN KEY (tipos_id) REFERENCES gd_esquema.Tipos_Habitaciones (id)
+		CONSTRAINT FK_Habitaciones_Hotel FOREIGN KEY (hoteles_id) REFERENCES WHERE_EN_EL_DELETE_FROM.hoteles (id),
+		CONSTRAINT FK_Habitaciones_Tipos FOREIGN KEY (tipos_id) REFERENCES WHERE_EN_EL_DELETE_FROM.habitaciones_tipos (id)
 	)
 
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.habitaciones (
@@ -172,7 +172,7 @@ GO
 		gd_esquema.Maestra m
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles hot ON
 			hot.nombre =  'Hotel ' + m.Hotel_calle + ' ' + convert(varchar(255), m.Hotel_Nro_Calle)
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.tipos_habitaciones t ON
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones_tipos t ON
 			t.codigo = m.Habitacion_Tipo_Codigo
 /* +++ END +++ Habitaciones */ 
 
@@ -266,7 +266,7 @@ GO
 	)
 /* +++ END +++ Cese Actividades */ 
 
-/* +++ BEGIN +++ Estadias */
+/* +++ BEGIN +++ Estadias */ --TODO: no esta funcionando
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.estadias', 'U') IS NOT NULL
 		DROP TABLE WHERE_EN_EL_DELETE_FROM.estadias;
 	GO
@@ -284,7 +284,7 @@ GO
 	)
 /* +++ END +++ Estadias */
 
-/* +++ BEGIN +++ Huespedes */
+/* +++ BEGIN +++ Huespedes */ -- TODO: no esta funcionando
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.huespedes', 'U') IS NOT NULL
 		DROP TABLE WHERE_EN_EL_DELETE_FROM.huespedes;
 	GO
@@ -301,7 +301,7 @@ GO
 /* +++ END +++ Huespedes */
 
 
-/* +++ BEGIN +++ Facturas */
+/* +++ BEGIN +++ Facturas */ --TODO: No esta funcionando
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.facturas', 'U') IS NOT NULL
 		DROP TABLE WHERE_EN_EL_DELETE_FROM.facturas;
 	GO
