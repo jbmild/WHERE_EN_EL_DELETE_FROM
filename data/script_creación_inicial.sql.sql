@@ -532,4 +532,23 @@ CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumos(
 		CONSTRAINT FK_consumos FOREIGN KEY (consumo_id) REFERENCES WHERE_EN_EL_DELETE_FROM.consumos (consumo_id)
 
 	)
+
+/* COMIENZA EL INSERT A TABLA ITEMS */
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.items(
+		factura_id,
+		consumo_id,
+		codigo,
+		descripcion,
+		cantidad,
+		precio_unitario
+	)
+	SELECT DISTINCT
+		m.Factura_Nro,
+		m.Consumo_id, /* se tendría que comentar JMCARUCCI, pero serian para los consumos */
+		m.Consumible_Codigo,
+		NULL,
+		NULL,
+	FROM
+		gd_esquema.Maestra m 
+
 /* +++ END +++ Items */ 
