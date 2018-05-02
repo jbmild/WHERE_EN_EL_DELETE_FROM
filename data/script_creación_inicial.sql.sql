@@ -514,3 +514,22 @@ CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumos(
 /* +++ END +++ Consumos */
 
 
+/* +++ BEGIN +++ Items */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.items', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.items;
+	GO
+
+	CREATE TABLE WHERE_EN_EL_DELETE_FROM.items(
+		item_id int identity(1,1) PRIMARY KEY,
+		factura_id int NOT NULL,
+		consumo_id int,
+		codigo nvarchar(100),
+		descripcion nvarchar(100),
+		cantidad int,
+		precio_unitario nvarchar(20),
+
+		CONSTRAINT FK_facturas FOREIGN KEY (factura_id) REFERENCES WHERE_EN_EL_DELETE_FROM.facturas (factura_id)
+		CONSTRAINT FK_consumos FOREIGN KEY (consumo_id) REFERENCES WHERE_EN_EL_DELETE_FROM.consumos (consumo_id)
+
+	)
+/* +++ END +++ Items */ 
