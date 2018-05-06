@@ -371,7 +371,7 @@ GO
 	where m1.Reserva_Fecha_Inicio is not null and m1.Estadia_Fecha_Inicio is  null
 	group by m1.Reserva_Fecha_Inicio, m1.Cliente_Pasaporte_Nro, m1.Estadia_Fecha_Inicio, m1.Reserva_Cant_Noches,
 	(select r.regimen_id from  WHERE_EN_EL_DELETE_FROM.regimenes r where m1.Regimen_Descripcion = r.descripcion),
-	(select h.hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles h where h.direccion = m1.Hotel_Calle and h.ciudad = m1.Hotel_Ciudad),
+	(select h.hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles h where h.direccion = m1.Hotel_Calle and h.ciudad = m1.Hotel_Ciudad)
 	
 
 	--TODO: completar datos de migracion
@@ -452,6 +452,7 @@ GO
 		CONSTRAINT FK_ingreso_empleado_id FOREIGN KEY (ingreso_empleado_id) REFERENCES WHERE_EN_EL_DELETE_FROM.empleados (empleado_id),
 		CONSTRAINT FK_egreso_empleado_id FOREIGN KEY (egreso_empleado_id) REFERENCES WHERE_EN_EL_DELETE_FROM.empleados (empleado_id)
 	)
+	
 /* +++ END +++ Estadias */
 
 /* +++ BEGIN +++ Huespedes */ -- TODO: no esta funcionando
