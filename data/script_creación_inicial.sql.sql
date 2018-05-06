@@ -211,7 +211,7 @@ GO
 		rol_id int identity(1,1) PRIMARY KEY, 
 		nombre nvarchar(255), 
 		habilitado bit DEFAULT 1, 
-		default bit DEFAULT 0, 
+		esDefault bit DEFAULT 0, 
 	)
 /* +++ END +++ Roles */
 
@@ -355,7 +355,7 @@ GO
 		estado,
 		usuario_id,
 		cancelacion_fecha,
-		cancelacion_usuario,
+		cancelacion_usuario_id,
 		total,
 		regimen_id,
 		hotel_id
@@ -452,6 +452,31 @@ GO
 		CONSTRAINT FK_ingreso_empleado_id FOREIGN KEY (ingreso_empleado_id) REFERENCES WHERE_EN_EL_DELETE_FROM.empleados (empleado_id),
 		CONSTRAINT FK_egreso_empleado_id FOREIGN KEY (egreso_empleado_id) REFERENCES WHERE_EN_EL_DELETE_FROM.empleados (empleado_id)
 	)
+
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.estadias
+	SELECT distinct
+		res.reserva_id,
+		NULL,
+		mae.Estadia_Fecha_Inicio,
+		NULL,
+		dateadd(day,mae.Estadia_Cant_Noches,mae.Estadia_Fecha_Inicio)
+	FROM
+		WHERE_EN_EL_DELETE_FROM.reservas res
+	INNER JOIN
+		WHERE_EN_EL_DELETE_FROM.clientes cli on
+		cli.cliente_id = res.cliente_id
+	INNER JOIN
+		gd_esquema.Maestra mae on 
+		mae.Cliente_Pasaporte_Nro = cli.pasaporte
+	WHERE
+		Estadia_Fecha_Inicio is not null
+
+
+		
+
+
+
+
 	
 /* +++ END +++ Estadias */
 
@@ -572,11 +597,14 @@ CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumos(
 	)
 	SELECT DISTINCT
 		m.Factura_Nro,
-		m.Consumo_id, /* se tendría que comentar JMCARUCCI, pero serian para los consumos */
+		m.Consumo_id, /* se tendrÃ­a que comentar JMCARUCCI, pero serian para los consumos */
 		m.Consumible_Codigo,
 		NULL,
 		NULL,
 	FROM
 		gd_esquema.Maestra m 
+	WHERE
+		m.Item_Factura_Cantidad is not null
+		AND m.Item_Factura_Monto is not null
 
 /* +++ END +++ Items */ 
