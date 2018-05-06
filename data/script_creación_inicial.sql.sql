@@ -346,6 +346,33 @@ GO
 		CONSTRAINT FK_reservas_usuarios_cancelacion FOREIGN KEY (cancelacion_usuario_id) REFERENCES WHERE_EN_EL_DELETE_FROM.usuarios (usuario_id),
 		CONSTRAINT FK_reservas_regimenes FOREIGN KEY (regimen_id) REFERENCES WHERE_EN_EL_DELETE_FROM.regimenes (regimen_id),
 	)
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.reservas(
+		fecha_desde,
+		fecha_hasta,
+		fecha_creacion,
+		cliente_id,
+		codigo,
+		estado,
+		usuario_id,
+		cancelacion_fecha,
+		cancelacion_usuario,
+		total,
+		regimen_id,
+		hotel_id
+	) select 
+	m1.Reserva_Fecha_Inicio, 
+	dateadd(day,m1.Reserva_Cant_Noches,m1.Reserva_Fecha_Inicio),
+	m1.Reserva_Fecha_Inicio,
+	(select c.cliente_id from WHERE_EN_EL_DELETE_FROM.clientes c where c.pasaporte = m1.Cliente_Pasaporte_Nro) , 
+	NULL,
+	NULL,
+	NULL
+	from gd_esquema.Maestra m1
+	where m1.Reserva_Fecha_Inicio is not null and m1.Estadia_Fecha_Inicio is  null
+	group by m1.Reserva_Fecha_Inicio, m1.Cliente_Pasaporte_Nro, m1.Estadia_Fecha_Inicio, m1.Reserva_Cant_Noches,
+	(select r.regimen_id from  WHERE_EN_EL_DELETE_FROM.regimenes r where m1.Regimen_Descripcion = r.descripcion),
+	(select h.hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles h where h.direccion = m1.Hotel_Calle and h.ciudad = m1.Hotel_Ciudad),
+	
 
 	--TODO: completar datos de migracion
 /* +++ END +++ Reservas */ 
