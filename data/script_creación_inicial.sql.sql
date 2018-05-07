@@ -37,7 +37,7 @@ GO
 		NULL,
 		NULL,
 		NULL,
-		Hotel_calle + ' ' + convert(varchar(255) ,Hotel_Nro_Calle),
+		Hotel_calle + ' ' + convert(varchar(255), Hotel_Nro_Calle),
 		Hotel_Ciudad,
 		'Argentina', -- Las ciudades en la tabla maestra son todas de Argentina
 		Hotel_CantEstrella,
@@ -51,7 +51,7 @@ GO
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.regimenes', 'U') IS NOT NULL
 		DROP TABLE WHERE_EN_EL_DELETE_FROM.regimenes;
 	GO
-
+	
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.regimenes (
 		regimen_id int IDENTITY(1,1) PRIMARY KEY, 
 		codigo nvarchar(255), 
@@ -101,7 +101,9 @@ GO
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.regimenes reg ON 
 			reg.descripcion = m.Regimen_Descripcion
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles hot ON 
-			hot.nombre = 'Hotel ' + m.Hotel_calle + ' ' + convert(varchar(255), m.Hotel_Nro_Calle)
+			hot.direccion = m.Hotel_calle + ' ' + convert(varchar(255), m.Hotel_Nro_Calle)
+		
+
 /* +++ END +++ Regimenes Hoteles */ 
 
 /* +++ BEGIN +++ Habitaciones Tipos */
@@ -188,6 +190,11 @@ GO
 		habilitado bit DEFAULT 1, 
 		cant_intentos char DEFAULT 0
 	)
+
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios (usuario, contrasena, habilitado) 
+	VALUES ('guest', convert(varbinary, ''), 1)
+	
+	
 
 /* +++ END +++ Usuarios */ 
 
@@ -354,24 +361,35 @@ GO
 		codigo,
 		estado,
 		usuario_id,
-		cancelacion_fecha,
-		cancelacion_usuario_id,
-		total,
 		regimen_id,
 		hotel_id
-	) select 
+	) 
+	SELECT distinct
 	m1.Reserva_Fecha_Inicio, 
 	dateadd(day,m1.Reserva_Cant_Noches,m1.Reserva_Fecha_Inicio),
 	m1.Reserva_Fecha_Inicio,
-	(select c.cliente_id from WHERE_EN_EL_DELETE_FROM.clientes c where c.pasaporte = m1.Cliente_Pasaporte_Nro) , 
+	cli.cliente_id, 
 	NULL,
-	NULL,
-	NULL
-	from gd_esquema.Maestra m1
-	where m1.Reserva_Fecha_Inicio is not null and m1.Estadia_Fecha_Inicio is  null
-	group by m1.Reserva_Fecha_Inicio, m1.Cliente_Pasaporte_Nro, m1.Estadia_Fecha_Inicio, m1.Reserva_Cant_Noches,
-	(select r.regimen_id from  WHERE_EN_EL_DELETE_FROM.regimenes r where m1.Regimen_Descripcion = r.descripcion),
-	(select h.hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles h where h.direccion = m1.Hotel_Calle and h.ciudad = m1.Hotel_Ciudad)
+	null,
+	(select usuario_id from WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario = 'guest'),
+	reg.regimen_id,
+	hot.hotel_id
+	from 
+		gd_esquema.Maestra m1
+	inner join
+		WHERE_EN_EL_DELETE_FROM.clientes cli on
+		cli.pasaporte = m1.Cliente_Pasaporte_Nro
+	inner join
+		WHERE_EN_EL_DELETE_FROM.hoteles hot on
+		hot.direccion = m1.Hotel_calle + ' ' + convert(varchar(255), m1.Hotel_Nro_Calle)
+	inner join
+		WHERE_EN_EL_DELETE_FROM.regimenes_hoteles reghot on
+		reghot.hotel_id = hot.hotel_id
+	inner join
+		WHERE_EN_EL_DELETE_FROM.regimenes reg on
+		reg.regimen_id = reghot.regimen_id
+		and reg.descripcion = m1.Regimen_Descripcion
+	where m1.Reserva_Fecha_Inicio is not null
 	
 
 	--TODO: completar datos de migracion
