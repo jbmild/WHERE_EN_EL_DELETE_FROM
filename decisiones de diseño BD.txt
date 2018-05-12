@@ -1,15 +1,15 @@
 GRUPO: [WHERE_EN_EL_DELETE_FROM], 2018.
-INTEGRANTES: FRANCISCO PATALALGOITY, JUAN MANUEL, JONATHAN MILD, BRENDA STOLARZ.
+INTEGRANTES: FRANCISCO PATALALGOITY, JUAN MANUEL, JONATAN MILD, BRENDA STOLARZ.
 
 
-A CONTINUACION, DETALLAMOS ALGUNAS DECISIONES DE DISE—O DE LA BD PARA ACOMPA—AR EL DIAGRAMA.
+A CONTINUACION, DETALLAMOS ALGUNAS DECISIONES DE DISE√ëO DE LA BD PARA ACOMPA√ëAR EL DIAGRAMA.
 
 
-- Dado que la consigna indica que no debe haber perdida de datos y observamos que hay datos de los clientes repetidos, procederemos a migrar a todos los clientes que estÈn en la tabla maestra con el bit Consistente = 0. Luego marcaremos los que tienen datos correctos con Consistente = 1. Los que queden como Consistente en FALSE, les pediremos que reconfirmen sus datos a la hora de hacer una reserva asi quedan en un estado consistente.
+- Dado que la consigna indica que no debe haber perdida de datos y observamos que hay datos de los clientes repetidos, procederemos a migrar a todos los clientes que est√©n en la tabla maestra con el bit Consistente = 0. Luego marcaremos los que tienen datos correctos con Consistente = 1. Los que queden como Consistente en FALSE, les pediremos que reconfirmen sus datos a la hora de hacer una reserva asi quedan en un estado consistente.
 - En Usuario, el nombre de usuario y pwd vacias para que los usuarios los completen
 - En Hotel, dejamos el nombre hotel vacio, pero en los listados se muestra nombre "hotel [direccion]" 
-- a los usuarios se los separÛ en empleados y clientes para que los empleados puedan hospedarse en los hoteles. Ambos pueden tener direccion fiscal (AFIP) y direcciÛn residencial distinta.
-- A los clientes, se les asociar· a todos el mismo idusuario = 1, para poder utilizar el esquema de funciones en funciÛn del rol.
+- a los usuarios se los separ√≥ en empleados y clientes para que los empleados puedan hospedarse en los hoteles. Ambos pueden tener direccion fiscal (AFIP) y direcci√≥n residencial distinta.
+- A los clientes, se les asociar√° a todos el mismo idusuario = 1, para poder utilizar el esquema de funciones en funci√≥n del rol.
 
-- Respecto a las reservas, determinamos que cada tipo de habitaciÛn puede tener una m·xima cantidad de huespedes y para ello agregamos el campo correspondiente.
-- Asumimos que una reserva puede tener m·s de una habitaciÛn. 
+- Respecto a las reservas, determinamos que cada tipo de habitaci√≥n puede tener una m√°xima cantidad de huespedes y para ello agregamos el campo correspondiente.
+- Asumimos que una reserva puede tener m√°s de una habitaci√≥n. 
