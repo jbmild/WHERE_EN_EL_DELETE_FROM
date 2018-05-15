@@ -536,6 +536,56 @@ GO
 		CONSTRAINT FK_facturas_estadias FOREIGN KEY (estadia_id) REFERENCES WHERE_EN_EL_DELETE_FROM.estadias (estadia_id),
 		CONSTRAINT FK_facturas_clientes FOREIGN KEY (cliente_id) REFERENCES WHERE_EN_EL_DELETE_FROM.clientes (cliente_id)
 	)
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.facturas(
+		estadia_id,
+		cliente_id,
+		numero,
+		fecha,
+		total,
+		pasaporte,
+		nacionalidad,
+		direccion,
+		nombre,
+		apellido
+		)
+	select m.Factura_Fecha, 
+	(select e.estadia_id 
+	from 
+	WHERE_EN_EL_DELETE_FROM.estadias e 
+	join WHERE_EN_EL_DELETE_FROM.reservas r on r.fecha_desde=e.ingreso_fecha and r.fecha_hasta=e.egreso_fecha
+	join WHERE_EN_EL_DELETE_FROM.clientes c on c.pasaporte=m.Cliente_Pasaporte_Nro and c.mail=m.Cliente_Mail
+	where 
+	e.ingreso_fecha=m.Estadia_Fecha_Inicio and e.egreso_fecha=DATEADD(DAY, e.ingreso_fecha, m.Estadia_Cant_Noches) 
+	),
+	(select c.cliente_id
+	from WHERE_EN_EL_DELETE_FROM.clientes c
+	where c.mail=m.Cliente_Mail and c.pasaporte=m.Cliente_Pasaporte_Nro),
+	m.Factura_Nro, 
+	m.Factura_Fecha, 
+	sum(m.Item_Factura_Cantidad),
+	m.Cliente_Pasaporte_Nro, 
+	m.Cliente_Nacionalidad, 
+	m.Cliente_Dom_Calle + m.Cliente_Nro_Calle + m.Cliente_Depto + m.Cliente_Piso,
+	m.Cliente_Nombre,
+	m.Cliente_Apellido	
+	from 
+	gd_esquema.Maestra m 
+	where 
+	m.Factura_Nro is not null
+	group by 
+	m.Factura_Fecha, 
+	m.Factura_Nro, 
+	m.Cliente_Apellido, 
+	m.Cliente_Pasaporte_Nro, 
+	m.Cliente_Nombre, 
+	m.Cliente_Nacionalidad, 
+	m.Cliente_Dom_Calle, 
+	m.Cliente_Nro_Calle, 
+	m.Cliente_Depto, 
+	m.Cliente_Piso
+	order by 
+	m.Factura_Nro
+
 /* +++ END+++ Facturas */
 
 /* +++ BEGIN +++ Consumibles  */
