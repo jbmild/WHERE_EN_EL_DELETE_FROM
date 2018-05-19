@@ -10,6 +10,9 @@
 -- TABLA USUARIOS-ROLES OK
 --TABLA CLIENTES OK
 --TABLA CESE ACTIVIDADES OK
+-- TABLA RESERVAS-HABITACIONES FALTA COMPLETAR
+--TABLA EMPLEADOS OK
+--TABLA EMPLEADOS-HOTELES OK
 USE GD1C2018
 GO
 
@@ -424,6 +427,35 @@ GO
 		CONSTRAINT FK_reservas_habitaciones_habitaciones FOREIGN KEY (habitacion_id) REFERENCES WHERE_EN_EL_DELETE_FROM.habitaciones (habitacion_id),
 		CONSTRAINT FK_reservas_habitaciones_reservas FOREIGN KEY (reserva_id) REFERENCES WHERE_EN_EL_DELETE_FROM.reservas (reserva_id)
 	)
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.reservas_habitaciones(
+		habitacion_id,
+		reserva_id,
+		precio_diario
+	)
+	select ha.habitacion_id, r.reserva_id, 9999 --TODO: Ver como cargar el precio_diario
+	from GD1C2018.gd_esquema.Maestra m 
+	inner join WHERE_EN_EL_DELETE_FROM.hoteles h on
+	h.nombre=concat('Hotel ',Hotel_calle,' ',convert(nvarchar(255), Hotel_Nro_Calle))
+	and h.direccion=concat(Hotel_calle,' ',convert(nvarchar(255), Hotel_Nro_Calle))
+	and h.ciudad = m.Hotel_Ciudad
+	and h.estrellas_cant=m.Hotel_CantEstrella
+	and h.estrellas_recargo= m.Hotel_Recarga_Estrella
+	
+	inner join WHERE_EN_EL_DELETE_FROM.habitaciones_tipos habtipos on
+	habtipos.codigo=m.Habitacion_Tipo_Codigo
+	and habtipos.descripcion=m.Habitacion_Tipo_Descripcion
+	and habtipos.porcentual=m.Habitacion_Tipo_Porcentual
+
+	inner join WHERE_EN_EL_DELETE_FROM.habitaciones ha on
+	h.hotel_id=ha.hoteles_id
+	and ha.numero=m.Habitacion_Numero
+	and ha.piso = m.Habitacion_Piso
+	and ha.frente= CASE WHEN m.Habitacion_Frente = 'N' THEN 0 ELSE 1 END
+	and ha.tipos_id= m.Habitacion_Tipo_Codigo
+
+	inner join WHERE_EN_EL_DELETE_FROM.reservas r on
+	m.Reserva_Codigo=r.codigo
+
 
 	--TODO: completar datos de migracion
 /* +++ END +++ Reservas Habitaciones */ 
@@ -498,6 +530,10 @@ GO
 	INNER JOIN
 		WHERE_EN_EL_DELETE_FROM.clientes cli on
 		cli.cliente_id = res.cliente_id
+	INNER JOIN
+		WHERE_EN_EL_DELETE_FROM.hoteles h on
+		h.hotel_id=res.hotel_id
+
 	INNER JOIN
 		gd_esquema.Maestra mae on 
 		mae.Cliente_Pasaporte_Nro = cli.pasaporte
