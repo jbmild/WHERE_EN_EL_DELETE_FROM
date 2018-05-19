@@ -1,3 +1,8 @@
+--TABLA HOTELES OK
+--TABLA REGIMENES OK
+-- TABLA REGIMENES-HOTELES OK
+--TABLA HABITACIONES-TIPOS OK
+
 USE GD1C2018
 GO
 
@@ -12,8 +17,8 @@ GO
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.hoteles (
 		hotel_id int IDENTITY(1,1) PRIMARY KEY, 
 		nombre nvarchar(255),
-		mail varchar(255), 
-		telefono varchar(255), 
+		mail nvarchar(255), 
+		telefono nvarchar(255), 
 		direccion nvarchar(255), 
 		ciudad nvarchar(255),
 		pais nvarchar(255), 
@@ -40,8 +45,8 @@ GO
 		Hotel_calle + ' ' + convert(nvarchar(255), Hotel_Nro_Calle),
 		Hotel_Ciudad,
 		'Argentina', -- Las ciudades en la tabla maestra son todas de Argentina
-		convert(smalldatetime,Hotel_CantEstrella),
-		convert(smalldatetime,Hotel_Recarga_Estrella),
+		convert(smallint,Hotel_CantEstrella),
+		convert(smallint,Hotel_Recarga_Estrella),
 		getdate()
 	 FROM 
 	 	gd_esquema.Maestra
@@ -173,9 +178,10 @@ GO
 	FROM
 		gd_esquema.Maestra m
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles hot ON
-			hot.nombre =  'Hotel ' + m.Hotel_calle + ' ' + convert(varchar(255), m.Hotel_Nro_Calle)
+			hot.nombre =  'Hotel ' + m.Hotel_calle + ' ' + convert(nvarchar(255), m.Hotel_Nro_Calle)
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones_tipos t ON
 			t.codigo = m.Habitacion_Tipo_Codigo
+
 /* +++ END +++ Habitaciones */ 
 
 /* +++ BEGIN +++ Usuarios */
@@ -549,17 +555,17 @@ GO
 		apellido
 		)
 	select
-	(select e.estadia_id 
-	from 
-	WHERE_EN_EL_DELETE_FROM.estadias e 
-	join WHERE_EN_EL_DELETE_FROM.reservas r on r.fecha_desde=e.ingreso_fecha and r.fecha_hasta=e.egreso_fecha
-	join WHERE_EN_EL_DELETE_FROM.clientes c on c.pasaporte=m.Cliente_Pasaporte_Nro and c.mail=m.Cliente_Mail
-	where 
-	e.ingreso_fecha=m.Estadia_Fecha_Inicio and e.egreso_fecha=DATEADD(DAY, e.ingreso_fecha, m.Estadia_Cant_Noches) 
-	),
-	(select c.cliente_id
-	from WHERE_EN_EL_DELETE_FROM.clientes c
-	where c.mail=m.Cliente_Mail and c.pasaporte=m.Cliente_Pasaporte_Nro),
+			(select e.estadia_id 
+			from 
+			WHERE_EN_EL_DELETE_FROM.estadias e 
+			join WHERE_EN_EL_DELETE_FROM.reservas r on r.fecha_desde=e.ingreso_fecha and r.fecha_hasta=e.egreso_fecha
+			join WHERE_EN_EL_DELETE_FROM.clientes c on c.pasaporte=m.Cliente_Pasaporte_Nro and c.mail=m.Cliente_Mail
+			where 
+			e.ingreso_fecha=m.Estadia_Fecha_Inicio and e.egreso_fecha=DATEADD(DAY, e.ingreso_fecha, m.Estadia_Cant_Noches) 
+			),
+			(select c.cliente_id
+			from WHERE_EN_EL_DELETE_FROM.clientes c
+			where c.mail=m.Cliente_Mail and c.pasaporte=m.Cliente_Pasaporte_Nro),
 	m.Factura_Nro, 
 	m.Factura_Fecha, 
 	m.Factura_Fecha, 
