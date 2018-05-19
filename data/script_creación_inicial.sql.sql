@@ -1,8 +1,8 @@
 USE GD1C2018
 GO
 
-CREATE SCHEMA WHERE_EN_EL_DELETE_FROM
-GO
+--CREATE SCHEMA WHERE_EN_EL_DELETE_FROM
+--GO
 
 /* +++ BEGIN +++ Hoteles */
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.hoteles', 'U') IS NOT NULL
@@ -37,11 +37,11 @@ GO
 		NULL,
 		NULL,
 		NULL,
-		Hotel_calle + ' ' + convert(varchar(255), Hotel_Nro_Calle),
+		Hotel_calle + ' ' + convert(nvarchar(255), Hotel_Nro_Calle),
 		Hotel_Ciudad,
 		'Argentina', -- Las ciudades en la tabla maestra son todas de Argentina
-		Hotel_CantEstrella,
-		Hotel_Recarga_Estrella,
+		convert(smalldatetime,Hotel_CantEstrella),
+		convert(smalldatetime,Hotel_Recarga_Estrella),
 		getdate()
 	 FROM 
 	 	gd_esquema.Maestra
@@ -548,7 +548,7 @@ GO
 		nombre,
 		apellido
 		)
-	select m.Factura_Fecha, 
+	select
 	(select e.estadia_id 
 	from 
 	WHERE_EN_EL_DELETE_FROM.estadias e 
@@ -561,6 +561,7 @@ GO
 	from WHERE_EN_EL_DELETE_FROM.clientes c
 	where c.mail=m.Cliente_Mail and c.pasaporte=m.Cliente_Pasaporte_Nro),
 	m.Factura_Nro, 
+	m.Factura_Fecha, 
 	m.Factura_Fecha, 
 	sum(m.Item_Factura_Cantidad),
 	m.Cliente_Pasaporte_Nro, 
@@ -598,8 +599,7 @@ CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumibles(
 	codigo int NOT NULL,
 	descripcion nvarchar(50) NOT NULL,
 	precio real NOT NULL,
-	orden int NOT NULL,
-
+	orden int NOT NULL
 )
 INSERT INTO WHERE_EN_EL_DELETE_FROM.consumibles (
 	consumible_id,
@@ -649,7 +649,7 @@ CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumos(
 		cantidad int,
 		precio_unitario nvarchar(20),
 
-		CONSTRAINT FK_facturas FOREIGN KEY (factura_id) REFERENCES WHERE_EN_EL_DELETE_FROM.facturas (factura_id)
+		CONSTRAINT FK_facturas FOREIGN KEY (factura_id) REFERENCES WHERE_EN_EL_DELETE_FROM.facturas (factura_id),
 		CONSTRAINT FK_consumos FOREIGN KEY (consumo_id) REFERENCES WHERE_EN_EL_DELETE_FROM.consumos (consumo_id)
 
 	)
@@ -665,12 +665,15 @@ CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumos(
 	)
 	SELECT DISTINCT
 		m.Factura_Nro,
-		m.Consumo_id, /* se tendría que comentar JMCARUCCI, pero serian para los consumos */
+		con.consumo_id, /* se tendría que comentar JMCARUCCI, pero serian para los consumos */
 		m.Consumible_Codigo,
 		NULL,
-		NULL,
-	FROM
-		gd_esquema.Maestra m 
+		NULL
+	FROM gd_esquema.Maestra m 
+	LEFT OUTTER JOIN WHERE_EN_EL_DELETE_FROM.consumibles c ON
+			c.codigo=m.Consumible_Codigo
+	LEFT OUTTER JOIN WHERE_EN_EL_DELETE_FROM.consumos con ON
+			con.consumible_id=c.consumible_id
 	WHERE
 		m.Item_Factura_Cantidad is not null
 		AND m.Item_Factura_Monto is not null
