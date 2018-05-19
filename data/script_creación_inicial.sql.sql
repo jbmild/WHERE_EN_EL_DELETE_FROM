@@ -42,7 +42,7 @@ GO
 		NULL,
 		NULL,
 		NULL,
-		Hotel_calle + ' ' + convert(nvarchar(255), Hotel_Nro_Calle),
+		concat(Hotel_calle,' ',convert(nvarchar(255), Hotel_Nro_Calle)),
 		Hotel_Ciudad,
 		'Argentina', -- Las ciudades en la tabla maestra son todas de Argentina
 		convert(smallint,Hotel_CantEstrella),
@@ -178,7 +178,7 @@ GO
 	FROM
 		gd_esquema.Maestra m
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles hot ON
-			hot.nombre =  'Hotel ' + m.Hotel_calle + ' ' + convert(nvarchar(255), m.Hotel_Nro_Calle)
+			hot.nombre = CONCAT(m.Hotel_calle,' ',convert(nvarchar(255), m.Hotel_Nro_Calle))
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones_tipos t ON
 			t.codigo = m.Habitacion_Tipo_Codigo
 
