@@ -2,7 +2,14 @@
 --TABLA REGIMENES OK
 -- TABLA REGIMENES-HOTELES OK
 --TABLA HABITACIONES-TIPOS OK
-
+--TABLA HABITACIONES OK
+--TABLA USUARIOS OK
+-- TABLA PERMISOS OK
+-- TABLA ROLES OK
+-- TABLA ROLES-PERMISOS OK
+-- TABLA USUARIOS-ROLES OK
+--TABLA CLIENTES OK
+--TABLA CESE ACTIVIDADES OK
 USE GD1C2018
 GO
 
@@ -217,7 +224,7 @@ GO
 
 /* +++ BEGIN +++ Roles */
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.roles', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.permisos;
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.roles;
 	GO
 
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.roles (
@@ -376,25 +383,27 @@ GO
 	m1.Reserva_Fecha_Inicio,
 	cli.cliente_id, 
 	NULL,
-	null,
+	null, --TODO: COMPLETAR ESTE DATO
 	(select usuario_id from WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario = 'guest'),
 	reg.regimen_id,
 	hot.hotel_id
 	from 
 		gd_esquema.Maestra m1
-	inner join
+	LEFT  join
 		WHERE_EN_EL_DELETE_FROM.clientes cli on
-		cli.pasaporte = m1.Cliente_Pasaporte_Nro
-	inner join
+		cli.pasaporte = m1.Cliente_Pasaporte_Nro 
+		and  cli.apellido=m1.Cliente_Apellido 
+		and cli.nombre = m1.Cliente_Nombre
+		and cli.direccion_calle = m1.Cliente_Dom_Calle
+		and cli.direccion_nro = m1.Cliente_Nro_Calle
+		and cli.mail = m1.Cliente_Mail
+		and cli.nacionalidad = m1.Cliente_Nacionalidad
+	LEFT  join
 		WHERE_EN_EL_DELETE_FROM.hoteles hot on
-		hot.direccion = m1.Hotel_calle + ' ' + convert(varchar(255), m1.Hotel_Nro_Calle)
-	inner join
-		WHERE_EN_EL_DELETE_FROM.regimenes_hoteles reghot on
-		reghot.hotel_id = hot.hotel_id
-	inner join
+		hot.nombre = concat('Hotel ',m1.Hotel_calle,' ',convert(nvarchar(255), m1.Hotel_Nro_Calle))
+	LEFT  join
 		WHERE_EN_EL_DELETE_FROM.regimenes reg on
-		reg.regimen_id = reghot.regimen_id
-		and reg.descripcion = m1.Regimen_Descripcion
+		reg.descripcion = m1.Regimen_Descripcion
 	where m1.Reserva_Fecha_Inicio is not null
 	
 
