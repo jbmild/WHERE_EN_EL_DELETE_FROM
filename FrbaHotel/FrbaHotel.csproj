@@ -56,11 +56,18 @@
     <Compile Include="AbmHabitacion\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmRegimen\Form1.cs">
+    <Compile Include="AbmRegimen\ABM_regimen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRegimen\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="AbmRegimen\.Designer.cs">
+      <DependentUpon>ABM_regimen.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRegimen\altaRegimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmRegimen\altaRegimen.Designer.cs">
+      <DependentUpon>altaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRol\Form1.cs">
       <SubType>Form</SubType>
@@ -74,6 +81,7 @@
     <Compile Include="CancelarReserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConexionSQL.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +132,12 @@
     <Compile Include="RegistrarEstadia\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AbmRegimen\.Designer.resx">
+      <DependentUpon>.Designer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

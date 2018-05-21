@@ -16,5 +16,11 @@ namespace FrbaHotel
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AbmRegimen.ABM_regimen regimen = new AbmRegimen.ABM_regimen();
+            regimen.Show();
+        }
     }
 }
