@@ -10,7 +10,10 @@
 -- TABLA USUARIOS-ROLES OK
 --TABLA CLIENTES OK
 --TABLA CESE ACTIVIDADES OK
--- TABLA RESERVAS-HABITACIONES FALTA COMPLETAR
+--TABLA RESERVAS: 
+		-- 1) PONDRIA TODOS INNER JOINS
+		-- 2) Que habiamos dicho de como tomar las reservas con fecha de estadia futura?
+-- TABLA RESERVAS-Ok
 --TABLA EMPLEADOS OK
 --TABLA EMPLEADOS-HOTELES OK
 USE GD1C2018
@@ -380,13 +383,27 @@ GO
 		regimen_id,
 		hotel_id
 	) 
-	SELECT distinct
+	SELECT  distinct --top 20
 	m1.Reserva_Fecha_Inicio, 
 	dateadd(day,m1.Reserva_Cant_Noches,m1.Reserva_Fecha_Inicio),
 	m1.Reserva_Fecha_Inicio,
 	cli.cliente_id, 
 	NULL,
 	null, --TODO: COMPLETAR ESTE DATO
+	CASE WHEN EXISTS(select top 1 1 FROM gd_esquema.Maestra m2 
+			WHERE m2.Cliente_Pasaporte_Nro = m1.Cliente_Pasaporte_Nro
+			AND m2.Cliente_Mail = m1.Cliente_Mail
+			AND m2.Reserva_Fecha_Inicio = m1.Reserva_Fecha_Inicio
+			AND m2.Estadia_Fecha_Inicio = m1.Estadia_Fecha_Inicio
+			AND m2.Estadia_Fecha_Inicio IS NOT NULL) -- **VER SI SE PUEDE HACER CON UN PARTITION BY + HAVING 
+		 THEN 'efectivizada'
+		 ELSE 'correcta'
+	END,
+
+	/*1) RESERVA EFECTIVIZADA: AQUELLA QUE TIENE AL MENOS 1 REGISTRO CON ESTADIA_FECHA_INICIO != NULL
+	2) RESERVA CORRECTA: tiene reserva_FECHA_INICIO Y RESERVA_CANT_NOCHES, PERO NO TIENE NINGUN REGISTRO
+	CON ESTADIA_FECHA_INICIO != NULL */
+	
 	(select usuario_id from WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario = 'guest'),
 	reg.regimen_id,
 	hot.hotel_id
@@ -432,7 +449,7 @@ GO
 		reserva_id,
 		precio_diario
 	)
-	select ha.habitacion_id, r.reserva_id, 9999 --TODO: Ver como cargar el precio_diario
+	select ha.habitacion_id, r.reserva_id, Regimen_Precio * Habitacion_Tipo_Porcentual
 	from GD1C2018.gd_esquema.Maestra m 
 	inner join WHERE_EN_EL_DELETE_FROM.hoteles h on
 	h.nombre=concat('Hotel ',Hotel_calle,' ',convert(nvarchar(255), Hotel_Nro_Calle))
