@@ -8,6 +8,7 @@
         private System.Windows.Forms.Label label1;
 
         AbmRegimen.altaRegimen altaRegimen;
+        AbmRegimen.bajaRegimen bajaRegimen;
 
         /// <summary>
         /// Required designer variable.
@@ -122,7 +123,9 @@
 
         private void button2_Click(object sender, System.EventArgs e)
         {
-
+            bajaRegimen = new bajaRegimen();
+            bajaRegimen.ShowDialog();
+            this.Hide();
         }
 
         private void button1_Click(object sender, System.EventArgs e)
