@@ -22,5 +22,11 @@ namespace FrbaHotel
             AbmRegimen.ABM_regimen regimen = new AbmRegimen.ABM_regimen();
             regimen.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GenerarModificacionReserva.FormGenerarModificarReserva formReserva = new GenerarModificacionReserva.FormGenerarModificarReserva();
+            formReserva.Show();
+        }
     }
 }

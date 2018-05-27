@@ -88,11 +88,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.cs">
+    <Compile Include="GenerarModificacionReserva\FormGenerarModificarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GenerarModificacionReserva\FormGenerarModificarReserva.Designer.cs">
+      <DependentUpon>FormGenerarModificarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="ListadoEstadistico\Form1.cs">
       <SubType>Form</SubType>
@@ -137,6 +137,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\FormGenerarModificarReserva.resx">
+      <DependentUpon>FormGenerarModificarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
