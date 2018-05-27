@@ -11,7 +11,7 @@ using System.Data;
 
 namespace FrbaHotel
 {
-    class ConexionSQL
+    public class ConexionSQL
     {
 
         private SqlConnection miConexionSQL;
@@ -55,6 +55,40 @@ namespace FrbaHotel
             miConexionSQL = new SqlConnection();
             miConnectionStringSQL = _connectionString;
             miConexionSQL.ConnectionString = miConnectionStringSQL;
+        }
+
+        public static SqlConnection obtenerConexion()
+        {
+            SqlConnection conexion = new SqlConnection("Data Source=SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gd2018;Password=gd2018");
+            conexion.Open();
+            return conexion;
+
+        }
+
+        public DataTable cargarTablaSQL(string miCommand)
+        {
+            SqlCommand coman2 = new SqlCommand(string.Format(miCommand), miConexionSQL);
+
+            DataTable ds = this.cargarTabla(coman2);
+            return ds;
+        }
+
+        public DataTable cargarTabla(SqlCommand miCommand)
+        {
+            DataTable ds = new DataTable();
+            // REM CONFIGURO EL OBJETO COMMAND
+            this.conectar();
+            // REM INDICO LA CONEXION ACTIVA
+            miCommand.Connection = miConexionSQL;
+            // REM INDICO EL TIPO QUE SE PASARA EN COMMANDTEXT
+            miCommand.CommandType = CommandType.Text;
+
+            // REM CREO UN DATAREADER
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(miCommand);
+            // REM CARGO EL DATATABLE PRODUCTOS A TRAVEZ DEL DATAREADER
+            dataAdapter.Fill(ds);
+            this.desconectar();
+            return ds;
         }
 
         #endregion
