@@ -462,7 +462,14 @@ GO
 		Habitacion_Tipo_Codigo, 
 		Habitacion_Tipo_Descripcion, 
 		Habitacion_Tipo_Porcentual, 
-		NULL --TODO esto deberiamos cargarlo de alguna forma
+		CASE 
+			WHEN Habitacion_Tipo_Descripcion LIKE '%simple%' THEN 1
+			WHEN Habitacion_Tipo_Descripcion LIKE '%doble%' THEN 2
+			WHEN Habitacion_Tipo_Descripcion LIKE '%triple%' THEN 3
+			WHEN Habitacion_Tipo_Descripcion LIKE '%cuadruple%' THEN 4
+			WHEN Habitacion_Tipo_Descripcion LIKE '%king%' THEN 5
+			ELSE NULL
+		END
 	FROM
 		gd_esquema.Maestra
 
@@ -528,7 +535,7 @@ GO
 		nacionalidad
 	)
 	SELECT DISTINCT
-		1, -- TODO: completar con el usuario guest
+		(SELECT usuario_id FROM WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario = 'guest'),
 		1,
 		m.Cliente_Mail,
 		m.Cliente_Nombre,
@@ -565,7 +572,6 @@ GO
 		m1.Reserva_Fecha_Inicio,
 		cli.cliente_id, 
 		NULL,
-		NULL, --TODO: COMPLETAR ESTE DATO
 		CASE WHEN EXISTS(
 			SELECT TOP 1 
 				1 
@@ -754,3 +760,5 @@ GO
 	WHERE
 		m.Item_Factura_Cantidad is not null
 		AND m.Item_Factura_Monto is not null
+
+/* +++ END +++ Fill data */
