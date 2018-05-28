@@ -1,32 +1,105 @@
---TABLA HOTELES OK
---TABLA REGIMENES OK
--- TABLA REGIMENES-HOTELES OK
---TABLA HABITACIONES-TIPOS OK
---TABLA HABITACIONES OK
---TABLA USUARIOS OK
--- TABLA PERMISOS OK
--- TABLA ROLES OK
--- TABLA ROLES-PERMISOS OK
--- TABLA USUARIOS-ROLES OK
---TABLA CLIENTES OK
---TABLA CESE ACTIVIDADES OK
---TABLA RESERVAS: 
-		-- 1) PONDRIA TODOS INNER JOINS
-		-- 2) Que habiamos dicho de como tomar las reservas con fecha de estadia futura?
--- TABLA RESERVAS-Ok
---TABLA EMPLEADOS OK
---TABLA EMPLEADOS-HOTELES OK
+
 USE GD1C2018
 GO
 
---CREATE SCHEMA WHERE_EN_EL_DELETE_FROM
---GO
+/* +++ BEGIN +++ Drops */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.items', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.items;
+	GO
 
-/* +++ BEGIN +++ Hoteles */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_TROM.consumos','U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.consumos;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_TROM.consumibles','U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.consumibles;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.facturas', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.facturas;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.huespedes', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.huespedes;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.estadias', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.estadias;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.empleados_hoteles', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.empleados_hoteles;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.empleados', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.empleados;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.reservas_habitaciones', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.reservas_habitaciones;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.reservas', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.reservas;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.cese_actividades', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.cese_actividades;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.clientes', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.clientes;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.usuarios_roles', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.usuarios_roles;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.roles_permisos', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.roles_permisos;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.roles', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.roles;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.permisos', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.permisos;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.usuarios', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.usuarios;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.habitaciones', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.habitaciones;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.habitaciones_tipos', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.habitaciones_tipos;
+	GO
+
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.regimenes_hoteles', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.regimenes_hoteles;
+	GO
+		
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.regimenes', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.regimenes;
+	GO
+
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.hoteles', 'U') IS NOT NULL
 		DROP TABLE WHERE_EN_EL_DELETE_FROM.hoteles;
 	GO
 
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM', 'U') IS NOT NULL
+		DROP SCHEMA WHERE_EN_EL_DELETE_FROM;
+	GO
+/* +++ END +++ Drops */
+
+	CREATE SCHEMA WHERE_EN_EL_DELETE_FROM
+	GO
+
+/* +++ BEGIN +++ Hoteles */
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.hoteles (
 		hotel_id int IDENTITY(1,1) PRIMARY KEY, 
 		nombre nvarchar(255),
@@ -66,10 +139,6 @@ GO
 /* +++ END +++ Hoteles */	
 
 /* +++ BEGIN +++ Regimenes */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.regimenes', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.regimenes;
-	GO
-	
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.regimenes (
 		regimen_id int IDENTITY(1,1) PRIMARY KEY, 
 		codigo nvarchar(255), 
@@ -94,9 +163,7 @@ GO
 /* +++ END +++ Regimenes */
 
 /* +++ BEGIN +++ Regimenes Hoteles */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.regimenes_hoteles', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.regimenes_hoteles;
-	GO
+	
 
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.regimenes_hoteles (
 		hotel_id int NOT NULL,
@@ -125,9 +192,7 @@ GO
 /* +++ END +++ Regimenes Hoteles */ 
 
 /* +++ BEGIN +++ Habitaciones Tipos */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.habitaciones_tipos', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.habitaciones_tipos;
-	GO
+	
 
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.habitaciones_tipos (	
 		tipo_id int IDENTITY(1,1) PRIMARY KEY,
@@ -153,10 +218,6 @@ GO
 /* +++ END +++ Habitaciones Tipos */ 
 	
 /* +++ BEGIN +++ Habitaciones */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.habitaciones', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.habitaciones;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.habitaciones (	
 		habitacion_id int IDENTITY(1,1) PRIMARY KEY,
 		hoteles_id int NOT NULL,
@@ -198,10 +259,6 @@ GO
 /* +++ END +++ Habitaciones */ 
 
 /* +++ BEGIN +++ Usuarios */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.usuarios', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.usuarios;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.usuarios (
 		usuario_id int identity(1,1) PRIMARY KEY, 
 		usuario nvarchar(255), 
@@ -212,16 +269,9 @@ GO
 
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios (usuario, contrasena, habilitado) 
 	VALUES ('guest', convert(varbinary, ''), 1)
-	
-	
-
 /* +++ END +++ Usuarios */ 
 
 /* +++ BEGIN +++ Permisos */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.permisos', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.permisos;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.permisos (
 		permiso_id int identity(1,1) PRIMARY KEY, 
 		nombre nvarchar(255), 
@@ -229,10 +279,6 @@ GO
 /* +++ END +++ Permisos */ 
 
 /* +++ BEGIN +++ Roles */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.roles', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.roles;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.roles (
 		rol_id int identity(1,1) PRIMARY KEY, 
 		nombre nvarchar(255), 
@@ -242,10 +288,6 @@ GO
 /* +++ END +++ Roles */
 
 /* +++ BEGIN +++ Roles Permisos */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.roles_permisos', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.roles_permisos;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.roles_permisos (
 		rol_id int, 
 		permiso_id int, 
@@ -257,10 +299,6 @@ GO
 /* +++ END +++ Roles Permisos */
 
 /* +++ BEGIN +++ Usuarios Roles */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.usuarios_roles', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.usuarios_roles;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.usuarios_roles (
 		rol_id int, 
 		usuario_id int, 
@@ -272,10 +310,6 @@ GO
 /* +++ END +++ Usuarios Roles */
 
 /* +++ BEGIN +++ Clientes */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.clientes', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.clientes;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.clientes (
 		cliente_id int identity(1,1) PRIMARY KEY, 
 		usuarios_id int, 
@@ -331,10 +365,6 @@ GO
 /* +++ END +++ Clientes */ 
 
 /* +++ BEGIN +++ Cese Actividades */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.cese_actividades', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.cese_actividades;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.cese_actividades(
 		cese_id int identity(1,1) PRIMARY KEY,
 		hotel_id int NOT NULL,
@@ -348,10 +378,6 @@ GO
 /* +++ END +++ Cese Actividades */ 
 
 /* +++ BEGIN +++ Reservas */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.reservas', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.reservas;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.reservas(
 		reserva_id INT identity(1,1) PRIMARY KEY,
 		fecha_desde DATE NOT NULL,
@@ -372,6 +398,7 @@ GO
 		CONSTRAINT FK_reservas_usuarios_cancelacion FOREIGN KEY (cancelacion_usuario_id) REFERENCES WHERE_EN_EL_DELETE_FROM.usuarios (usuario_id),
 		CONSTRAINT FK_reservas_regimenes FOREIGN KEY (regimen_id) REFERENCES WHERE_EN_EL_DELETE_FROM.regimenes (regimen_id),
 	)
+
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.reservas(
 		fecha_desde,
 		fecha_hasta,
@@ -431,10 +458,6 @@ GO
 /* +++ END +++ Reservas */ 
 
 /* +++ BEGIN +++ Reservas Habitaciones */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.reservas_habitaciones', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.reservas_habitaciones;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.reservas_habitaciones(
 		habitacion_id INT,
 		reserva_id INT,
@@ -444,6 +467,7 @@ GO
 		CONSTRAINT FK_reservas_habitaciones_habitaciones FOREIGN KEY (habitacion_id) REFERENCES WHERE_EN_EL_DELETE_FROM.habitaciones (habitacion_id),
 		CONSTRAINT FK_reservas_habitaciones_reservas FOREIGN KEY (reserva_id) REFERENCES WHERE_EN_EL_DELETE_FROM.reservas (reserva_id)
 	)
+
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.reservas_habitaciones(
 		habitacion_id,
 		reserva_id,
@@ -478,10 +502,6 @@ GO
 /* +++ END +++ Reservas Habitaciones */ 
 
 /* +++ BEGIN +++ Empleados */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.empleados', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.empleados;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.empleados (
 		empleado_id int identity(1,1) PRIMARY KEY, 
 		usuario_id int NOT NULL, 
@@ -503,10 +523,6 @@ GO
 /* +++ END +++ Empleados */ 
 
 /* +++ BEGIN +++ Empleados Hoteles */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.empleados_hoteles', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.empleados_hoteles;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.empleados_hoteles (
 		empleado_id int NOT NULL,
 		hotel_id int NOT NULL
@@ -518,10 +534,6 @@ GO
 /* +++ END +++ Empleados */ 
 
 /* +++ BEGIN +++ Estadias */ --TODO: no esta funcionando
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.estadias', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.estadias;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.estadias(
 		estadia_id int identity(1,1) PRIMARY KEY,
 		reserva_id int,
@@ -556,21 +568,9 @@ GO
 		mae.Cliente_Pasaporte_Nro = cli.pasaporte
 	WHERE
 		Estadia_Fecha_Inicio is not null
-
-
-		
-
-
-
-
-	
 /* +++ END +++ Estadias */
 
 /* +++ BEGIN +++ Huespedes */ -- TODO: no esta funcionando
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.huespedes', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.huespedes;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.huespedes(
 		estadia_id int NOT NULL,
 		cliente_id int NOT NULL,
@@ -584,9 +584,7 @@ GO
 
 
 /* +++ BEGIN +++ Facturas */ --TODO: No esta funcionando
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.facturas', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.facturas;
-	GO
+	
 
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.facturas(
 		factura_id int identity(1,1) PRIMARY KEY,
@@ -658,9 +656,6 @@ GO
 /* +++ END+++ Facturas */
 
 /* +++ BEGIN +++ Consumibles  */
-IF OBJECT_ID('WHERE_EN_EL_DELETE_TROM.consumibles','U') IS NOT NULL
-	DROP TABLE WHERE_EN_EL_DELETE_FROM.consumibles;
-GO
 
 CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumibles(
 	consumible_id int identity(1,1) PRIMARY KEY,
@@ -683,10 +678,6 @@ group by m.Consumible_Codigo, m.Consumible_Descripcion, m.Consumible_Precio
 
 /* +++  BEGIN +++ Consumos   */
 
-IF OBJECT_ID('WHERE_EN_EL_DELETE_TROM.consumos','U') IS NOT NULL
-	DROP TABLE WHERE_EN_EL_DELETE_FROM.consumos;
-GO
-
 CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumos(
 	consumo_id int identity(1,1) PRIMARY KEY,
 	habitacion_id int,
@@ -704,10 +695,6 @@ CREATE TABLE WHERE_EN_EL_DELETE_FROM.consumos(
 
 
 /* +++ BEGIN +++ Items */
-	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.items', 'U') IS NOT NULL
-		DROP TABLE WHERE_EN_EL_DELETE_FROM.items;
-	GO
-
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.items(
 		item_id int identity(1,1) PRIMARY KEY,
 		factura_id int NOT NULL,
