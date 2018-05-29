@@ -409,7 +409,7 @@ GO
 		fecha_creacion
 	)
 	SELECT DISTINCT
-		concat('Hotel ',Hotel_calle,' ',convert(NVARCHAR(255), Hotel_Nro_Calle)),
+		NULL,
 		NULL,
 		NULL,
 		concat(Hotel_calle,' ',convert(NVARCHAR(255), Hotel_Nro_Calle)),
@@ -598,7 +598,7 @@ GO
 			and cli.mail = m1.Cliente_Mail
 			and cli.nacionalidad = m1.Cliente_Nacionalidad
 		LEFT join WHERE_EN_EL_DELETE_FROM.hoteles hot on
-			hot.nombre = concat('Hotel ',m1.Hotel_calle,' ',convert(NVARCHAR(255), m1.Hotel_Nro_Calle))
+			hot.direccion = concat(m1.Hotel_calle,' ',convert(NVARCHAR(255), m1.Hotel_Nro_Calle))
 		LEFT join WHERE_EN_EL_DELETE_FROM.regimenes reg on
 			reg.descripcion = m1.Regimen_Descripcion
 	WHERE 
