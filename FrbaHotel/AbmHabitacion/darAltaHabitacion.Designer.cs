@@ -39,6 +39,7 @@
             this.comboBoxTipoHabitacion = new System.Windows.Forms.ComboBox();
             this.textBoxDescripcionHabitacion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnCrearHabitacion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -122,8 +123,9 @@
             // textBoxDescripcionHabitacion
             // 
             this.textBoxDescripcionHabitacion.Location = new System.Drawing.Point(90, 271);
+            this.textBoxDescripcionHabitacion.Multiline = true;
             this.textBoxDescripcionHabitacion.Name = "textBoxDescripcionHabitacion";
-            this.textBoxDescripcionHabitacion.Size = new System.Drawing.Size(374, 22);
+            this.textBoxDescripcionHabitacion.Size = new System.Drawing.Size(378, 22);
             this.textBoxDescripcionHabitacion.TabIndex = 9;
             // 
             // label5
@@ -135,11 +137,21 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "Descripción";
             // 
+            // btnCrearHabitacion
+            // 
+            this.btnCrearHabitacion.Location = new System.Drawing.Point(425, 356);
+            this.btnCrearHabitacion.Name = "btnCrearHabitacion";
+            this.btnCrearHabitacion.Size = new System.Drawing.Size(75, 23);
+            this.btnCrearHabitacion.TabIndex = 11;
+            this.btnCrearHabitacion.Text = "Crear";
+            this.btnCrearHabitacion.UseVisualStyleBackColor = true;
+            // 
             // darAltaHabitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 434);
+            this.Controls.Add(this.btnCrearHabitacion);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxDescripcionHabitacion);
             this.Controls.Add(this.comboBoxTipoHabitacion);
@@ -172,5 +184,6 @@
         private System.Windows.Forms.ComboBox comboBoxTipoHabitacion;
         private System.Windows.Forms.TextBox textBoxDescripcionHabitacion;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnCrearHabitacion;
     }
 }

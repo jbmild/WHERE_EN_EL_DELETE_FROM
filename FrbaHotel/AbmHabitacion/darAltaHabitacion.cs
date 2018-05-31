@@ -16,5 +16,10 @@ namespace FrbaHotel.AbmHabitacion
         {
             InitializeComponent();
         }
+
+        private void darAltaHabitacion_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
