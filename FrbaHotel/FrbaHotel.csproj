@@ -76,6 +76,26 @@
     <Compile Include="AbmRol\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHabitacion\abmHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\abmHabitacion.Designer.cs" />
+    <Compile Include="AbmHabitacion\darAltaHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\darAltaHabitacion.Designer.cs" />
+    <Compile Include="AbmHabitacion\darBajaHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\darBajaHabitacion.Designer.cs" />
+    <Compile Include="AbmHabitacion\modificarHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\modificarHabitacion.Designer.cs" />
+    <Compile Include="AbmHabitacion\modificarHabitacionElegida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\modificarHabitacionElegida.Designer.cs" />
     <Compile Include="CancelarReserva\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +159,11 @@
     <EmbeddedResource Include="AbmRegimen\bajaRegimen.resx">
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\abmHabitacion.resx" />
+    <EmbeddedResource Include="AbmHabitacion\darAltaHabitacion.resx" />
+    <EmbeddedResource Include="AbmHabitacion\darBajaHabitacion.resx" />
+    <EmbeddedResource Include="AbmHabitacion\modificarHabitacion.resx" />
+    <EmbeddedResource Include="AbmHabitacion\modificarHabitacionElegida.resx" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
