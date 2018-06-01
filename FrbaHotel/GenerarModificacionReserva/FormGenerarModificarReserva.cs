@@ -20,9 +20,9 @@ namespace FrbaHotel.GenerarModificacionReserva
        
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            btnBuscar.Text = "Buscando...";
             ConexionSQL conexion = new ConexionSQL();
             Form form1 = new Form();
+            this.Cursor = Cursors.WaitCursor;
 
             try
             {
@@ -31,8 +31,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                 //Se muestra por pantalla la tabla con los resultados del SELECT
                 dataGridView1.DataSource = dt;
-                
-                btnBuscar.Text = "Buscar";
+                this.Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
