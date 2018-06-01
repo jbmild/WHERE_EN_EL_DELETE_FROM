@@ -674,7 +674,7 @@ GO
 	)
 	SELECT
 		(
-			SELECT 
+			SELECT distinct
 				e.estadia_id 
 			FROM 
 				WHERE_EN_EL_DELETE_FROM.estadias e 
@@ -686,10 +686,10 @@ GO
 					and c.mail = m.Cliente_Mail
 			WHERE 
 				e.ingreso_fecha = m.Estadia_Fecha_Inicio 
-				AND e.egreso_fecha = DATEADD(DAY, e.ingreso_fecha, m.Estadia_Cant_Noches) 
+				AND e.egreso_fecha = DATEADD(DAY, m.Estadia_Cant_Noches, e.ingreso_fecha) 
 		),
 		(
-			SELECT
+			SELECT distinct
 				c.cliente_id
 			FROM 
 				WHERE_EN_EL_DELETE_FROM.clientes c
@@ -711,8 +711,9 @@ GO
 	WHERE 
 		m.Factura_Nro is not null
 	GROUP BY 
-		m.Factura_Fecha, m.Factura_Nro, m.Cliente_Apellido, m.Cliente_Pasaporte_Nro, m.Cliente_Nombre, m.Cliente_Nacionalidad, m.Cliente_Dom_Calle, m.Cliente_Nro_Calle, m.Cliente_Depto, m.Cliente_Piso
-	ORDER BY m.Factura_Nro
+		m.Factura_Fecha, m.Factura_Nro, m.Cliente_Apellido, m.Cliente_Pasaporte_Nro, m.Cliente_Nombre, m.Cliente_Nacionalidad, m.Cliente_Dom_Calle, m.Cliente_Nro_Calle, m.Cliente_Depto, m.Cliente_Piso, m.Cliente_Mail, m.Estadia_Fecha_Inicio, m.Estadia_Cant_Noches
+	ORDER BY 
+		m.Factura_Nro
 
 	/* Consumibles */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.consumibles (
@@ -723,8 +724,8 @@ GO
 		
 	) 
 	SELECT 
-		m.Consumible_Descripcion, 
 		m.Consumible_Codigo, 
+		m.Consumible_Descripcion, 
 		m.Consumible_Precio  
 	FROM
 		GD1C2018.gd_esquema.Maestra  m
