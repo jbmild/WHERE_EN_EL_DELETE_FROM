@@ -26,8 +26,9 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             try
             {
-            
-                DataTable dt = conexion.cargarTablaSQL("select * from WHERE_EN_EL_DELETE_FROM.Reservas");
+
+
+                DataTable dt = conexion.cargarTablaSQL("select * from WHERE_EN_EL_DELETE_FROM.Reservas WHERE hotel_id=" + cmbHotel.SelectedValue);
 
                 //Se muestra por pantalla la tabla con los resultados del SELECT
                 dataGridView1.DataSource = dt;
@@ -47,6 +48,23 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void FormGenerarModificarReserva_Load(object sender, EventArgs e)
         {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt;
+            dt = conexion.cargarTablaSQL("select tipo_id, descripcion from WHERE_EN_EL_DELETE_FROM.habitaciones_tipos");
+            cmbTipoHab.DataSource = dt;
+
+            cmbTipoHab.DisplayMember = "descripcion";
+            cmbTipoHab.ValueMember = "tipo_id";
+
+            dt = conexion.cargarTablaSQL("select regimen_id, descripcion FROM WHERE_EN_EL_DELETE_FROM.regimenes WHERE habilitado = 1");
+            cmbTipoRegimen.DataSource = dt;
+            cmbTipoRegimen.DisplayMember = "descripcion";
+            cmbTipoRegimen.ValueMember = "regimen_id";
+
+            dt = conexion.cargarTablaSQL("select hotel_id, 'Hotel ' + direccion AS nombre FROM WHERE_EN_EL_DELETE_FROM.hoteles");
+            cmbHotel.DataSource = dt;
+            cmbHotel.DisplayMember = "nombre";
+            cmbHotel.ValueMember = "hotel_id";
 
         }
     }

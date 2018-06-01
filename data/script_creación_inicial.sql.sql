@@ -658,7 +658,8 @@ GO
 		Estadia_Fecha_Inicio is not null
 
 	/* Huespedes */
-
+	--select top 100 Factura_Nro, Cliente_Mail, Cliente_Pasaporte_Nro, Item_Factura_Cantidad, Consumible_Codigo, Consumible_Descripcion FROM gd_esquema.Maestra order by Cliente_Mail, Cliente_Pasaporte_Nro having count(distinct Factura_Nro) > 1
+	--select top 100 Cliente_Mail, Cliente_Pasaporte_Nro, count(distinct Factura_Nro) FROM gd_esquema.Maestra group by Cliente_Mail, Cliente_Pasaporte_Nro having count(distinct Factura_Nro) > 1
 	/* Facturas */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.facturas(
 		estadia_id,
@@ -746,7 +747,7 @@ GO
 		precio_unitario
 	)
 	SELECT DISTINCT
-		m.Factura_Nro,
+		f.factura_id,
 		con.consumo_id, /* se tendría que comentar JMCARUCCI, pero serian para los consumos */
 		m.Consumible_Codigo,
 		NULL,
@@ -754,9 +755,11 @@ GO
 		0
 	FROM 
 		gd_esquema.Maestra m 
-		LEFT JOIN WHERE_EN_EL_DELETE_FROM.consumibles c ON
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.facturas f ON
+			f.numero = m.Factura_Nro
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumibles c ON
 			c.codigo = m.Consumible_Codigo
-		LEFT JOIN WHERE_EN_EL_DELETE_FROM.consumos con ON
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumos con ON
 			con.consumible_id = c.consumible_id
 	WHERE
 		m.Item_Factura_Cantidad is not null

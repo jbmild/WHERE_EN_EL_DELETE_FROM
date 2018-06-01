@@ -185,16 +185,18 @@
             // 
             // dtpFechaCheckin
             // 
+            this.dtpFechaCheckin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaCheckin.Location = new System.Drawing.Point(110, 118);
             this.dtpFechaCheckin.Name = "dtpFechaCheckin";
-            this.dtpFechaCheckin.Size = new System.Drawing.Size(107, 20);
+            this.dtpFechaCheckin.Size = new System.Drawing.Size(124, 20);
             this.dtpFechaCheckin.TabIndex = 16;
             // 
             // dtpFechaCheckout
             // 
+            this.dtpFechaCheckout.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaCheckout.Location = new System.Drawing.Point(357, 117);
             this.dtpFechaCheckout.Name = "dtpFechaCheckout";
-            this.dtpFechaCheckout.Size = new System.Drawing.Size(107, 20);
+            this.dtpFechaCheckout.Size = new System.Drawing.Size(155, 20);
             this.dtpFechaCheckout.TabIndex = 17;
             // 
             // cmbTipoHab
@@ -202,7 +204,7 @@
             this.cmbTipoHab.FormattingEnabled = true;
             this.cmbTipoHab.Location = new System.Drawing.Point(111, 153);
             this.cmbTipoHab.Name = "cmbTipoHab";
-            this.cmbTipoHab.Size = new System.Drawing.Size(105, 21);
+            this.cmbTipoHab.Size = new System.Drawing.Size(123, 21);
             this.cmbTipoHab.TabIndex = 18;
             // 
             // cmbTipoRegimen
@@ -210,7 +212,7 @@
             this.cmbTipoRegimen.FormattingEnabled = true;
             this.cmbTipoRegimen.Location = new System.Drawing.Point(111, 182);
             this.cmbTipoRegimen.Name = "cmbTipoRegimen";
-            this.cmbTipoRegimen.Size = new System.Drawing.Size(105, 21);
+            this.cmbTipoRegimen.Size = new System.Drawing.Size(123, 21);
             this.cmbTipoRegimen.TabIndex = 19;
             // 
             // cmbHotel
@@ -218,7 +220,8 @@
             this.cmbHotel.FormattingEnabled = true;
             this.cmbHotel.Location = new System.Drawing.Point(359, 152);
             this.cmbHotel.Name = "cmbHotel";
-            this.cmbHotel.Size = new System.Drawing.Size(105, 21);
+            this.cmbHotel.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cmbHotel.Size = new System.Drawing.Size(153, 21);
             this.cmbHotel.TabIndex = 20;
             // 
             // dataGridView1
