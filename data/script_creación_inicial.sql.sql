@@ -1,9 +1,8 @@
-
 USE GD1C2018
 GO
 
-CREATE SCHEMA WHERE_EN_EL_DELETE_FROM
-GO
+--CREATE SCHEMA WHERE_EN_EL_DELETE_FROM
+--GO
 
 /* +++ BEGIN +++ Drops */
 	/* Items */
@@ -361,8 +360,8 @@ GO
 		consumible_id int identity(1,1) PRIMARY KEY,
 		codigo int NOT NULL,
 		descripcion NVARCHAR(50) NOT NULL,
-		precio real NOT NULL,
-		orden int NOT NULL
+		precio real NOT NULL
+		--orden int NOT NULL
 	)
 
 	/* Consumos */
@@ -700,7 +699,7 @@ GO
 		),
 		m.Factura_Nro, 
 		m.Factura_Fecha, 
-		m.Factura_Fecha, 
+		--m.Factura_Fecha, 
 		sum(m.Item_Factura_Cantidad),
 		m.Cliente_Pasaporte_Nro, 
 		m.Cliente_Nacionalidad, 
@@ -717,11 +716,11 @@ GO
 
 	/* Consumibles */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.consumibles (
-		consumible_id,
+	
 		codigo,
 		descripcion,
-		precio,
-		orden
+		precio
+		
 	) 
 	SELECT 
 		m.Consumible_Descripcion, 
@@ -750,7 +749,8 @@ GO
 		con.consumo_id, /* se tendría que comentar JMCARUCCI, pero serian para los consumos */
 		m.Consumible_Codigo,
 		NULL,
-		NULL
+		NULL,
+		0
 	FROM 
 		gd_esquema.Maestra m 
 		LEFT JOIN WHERE_EN_EL_DELETE_FROM.consumibles c ON

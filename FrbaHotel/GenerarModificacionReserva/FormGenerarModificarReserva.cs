@@ -17,50 +17,22 @@ namespace FrbaHotel.GenerarModificacionReserva
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
+       
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            btnBuscar.Text = "Buscando...";
             ConexionSQL conexion = new ConexionSQL();
             Form form1 = new Form();
 
             try
             {
+            
                 DataTable dt = conexion.cargarTablaSQL("select * from WHERE_EN_EL_DELETE_FROM.Reservas");
 
-                form1.Text = dt.Rows[0].ItemArray[0].ToString() + dt.Rows[0].ItemArray[4].ToString();
-                form1.ShowDialog(this);
+                //Se muestra por pantalla la tabla con los resultados del SELECT
+                dataGridView1.DataSource = dt;
                 
-                
-                
+                btnBuscar.Text = "Buscar";
             }
             catch (Exception ex)
             {
@@ -72,6 +44,11 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormGenerarModificarReserva_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
