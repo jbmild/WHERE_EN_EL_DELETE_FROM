@@ -50,8 +50,22 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             ConexionSQL conexion = new ConexionSQL();
+            Form form1 = new Form();
 
-            conexion.conectar();
+            try
+            {
+                DataTable dt = conexion.cargarTablaSQL("select * from WHERE_EN_EL_DELETE_FROM.Reservas");
+
+                form1.Text = dt.Rows[0].ItemArray[0].ToString() + dt.Rows[0].ItemArray[4].ToString();
+                form1.ShowDialog(this);
+                
+                
+                
+            }
+            catch (Exception ex)
+            {
+                form1.Text = ex.Message;
+            }
             
         }
 
