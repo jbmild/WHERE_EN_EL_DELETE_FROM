@@ -60,6 +60,7 @@
             this.btnModificacionHabitacion.TabIndex = 2;
             this.btnModificacionHabitacion.Text = "Modificación Habitación";
             this.btnModificacionHabitacion.UseVisualStyleBackColor = true;
+            this.btnModificacionHabitacion.Click += new System.EventHandler(this.btnModificacionHabitacion_Click);
             // 
             // abmHabitacion
             // 
@@ -80,5 +81,6 @@
         private System.Windows.Forms.Button btnAltaHabitacion;
         private System.Windows.Forms.Button btnBajaHabitacion;
         private System.Windows.Forms.Button btnModificacionHabitacion;
+
     }
 }

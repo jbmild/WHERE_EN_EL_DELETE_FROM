@@ -16,5 +16,18 @@ namespace FrbaHotel.AbmHabitacion
         {
             InitializeComponent();
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // modificarHabitacionElegida
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "modificarHabitacionElegida";
+            this.ResumeLayout(false);
+
+        }
     }
 }
