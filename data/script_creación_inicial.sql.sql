@@ -479,7 +479,7 @@ GO
 		Piso, 
 		Frente, 
 		Descripcion, 
-		Habilitado, 
+		Habilitado,  
 		Tipos_id
 	)
 	SELECT DISTINCT
@@ -493,7 +493,7 @@ GO
 	FROM
 		gd_esquema.Maestra m
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles hot ON
-			hot.nombre = CONCAT('Hotel ',m.Hotel_calle,' ',convert(NVARCHAR(255), m.Hotel_Nro_Calle))
+			hot.direccion = CONCAT(m.Hotel_calle,' ',convert(NVARCHAR(255), m.Hotel_Nro_Calle))
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones_tipos t ON
 			t.codigo = m.Habitacion_Tipo_Codigo
 
@@ -552,7 +552,7 @@ GO
 		gd_esquema.Maestra m 
 	
 	/* Cese Actividades*/ 
-
+	
 	/* Reservas */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.reservas(
 		fecha_desde,
@@ -570,7 +570,7 @@ GO
 		dateadd(day, m1.Reserva_Cant_Noches, m1.Reserva_Fecha_Inicio),
 		m1.Reserva_Fecha_Inicio,
 		cli.cliente_id, 
-		NULL,
+		m1.Reserva_Codigo,
 		CASE WHEN EXISTS(
 			SELECT TOP 1 
 				1 
@@ -603,6 +603,7 @@ GO
 	WHERE 
 		m1.Reserva_Fecha_Inicio is not null
 	
+	
 	/* Reservas Habitaciones */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.reservas_habitaciones(
 		habitacion_id,
@@ -613,11 +614,11 @@ GO
 		ha.habitacion_id, 
 		r.reserva_id, 
 		Regimen_Precio * Habitacion_Tipo_Porcentual
+		
 	FROM 
 		GD1C2018.gd_esquema.Maestra m 
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles h on
-			h.nombre = concat('Hotel ',Hotel_calle,' ',convert(NVARCHAR(255), Hotel_Nro_Calle))
-			AND h.direccion = concat(Hotel_calle,' ',convert(NVARCHAR(255), Hotel_Nro_Calle))
+			h.direccion = concat(Hotel_calle,' ',convert(NVARCHAR(255), Hotel_Nro_Calle))
 			AND h.ciudad = m.Hotel_Ciudad
 			AND h.estrellas_cant = m.Hotel_CantEstrella
 			AND h.estrellas_recargo = m.Hotel_Recarga_Estrella
@@ -630,9 +631,10 @@ GO
 			AND ha.numero = m.Habitacion_Numero
 			AND ha.piso = m.Habitacion_Piso
 			AND ha.frente = CASE WHEN m.Habitacion_Frente = 'N' THEN 0 ELSE 1 END
-			AND ha.tipos_id = m.Habitacion_Tipo_Codigo
+			AND ha.tipos_id = habtipos.tipo_id
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas r on
 			m.Reserva_Codigo = r.codigo
+		
 
 	/* Empleados */
 
