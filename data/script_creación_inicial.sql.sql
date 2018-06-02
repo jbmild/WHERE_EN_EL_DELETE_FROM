@@ -610,11 +610,11 @@ GO
 		reserva_id,
 		precio_diario
 	)
-	SELECT
+	SELECT distinct
+	
 		ha.habitacion_id, 
 		r.reserva_id, 
 		Regimen_Precio * Habitacion_Tipo_Porcentual
-		
 	FROM 
 		GD1C2018.gd_esquema.Maestra m 
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles h on
@@ -634,7 +634,6 @@ GO
 			AND ha.tipos_id = habtipos.tipo_id
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas r on
 			m.Reserva_Codigo = r.codigo
-		
 
 	/* Empleados */
 
