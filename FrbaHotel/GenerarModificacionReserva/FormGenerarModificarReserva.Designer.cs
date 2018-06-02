@@ -157,7 +157,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(377, 382);
+            this.button2.Location = new System.Drawing.Point(377, 477);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(97, 31);
             this.button2.TabIndex = 13;
@@ -166,7 +166,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(487, 382);
+            this.button3.Location = new System.Drawing.Point(487, 477);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(97, 31);
             this.button3.TabIndex = 14;
@@ -226,12 +226,14 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clnSeleccion});
-            this.dataGridView1.Location = new System.Drawing.Point(15, 271);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 265);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1348, 111);
+            this.dataGridView1.Size = new System.Drawing.Size(850, 192);
             this.dataGridView1.TabIndex = 11;
             // 
             // clnSeleccion
@@ -240,12 +242,13 @@
             this.clnSeleccion.Name = "clnSeleccion";
             this.clnSeleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clnSeleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.clnSeleccion.Width = 88;
             // 
             // FormGenerarModificarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1028, 425);
+            this.ClientSize = new System.Drawing.Size(945, 537);
             this.Controls.Add(this.cmbHotel);
             this.Controls.Add(this.cmbTipoRegimen);
             this.Controls.Add(this.cmbTipoHab);

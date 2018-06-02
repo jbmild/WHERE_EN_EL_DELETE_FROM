@@ -8,12 +8,13 @@ GO
 -- Description:	Obtiene las habitaciones disponibles en cierta fecha
 -- =============================================
 
--- WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles '28/07/2016 00:00', '29/07/2016 23:59', 1, null, null
+-- WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles '02/06/2018 03:27', '29/07/2016 02:59', 1, null, null
 --select * from WHERE_EN_EL_DELETE_FROM.reservas_habitaciones where habitacion_id=255 and reserva_id = 2
 --select * from WHERE_EN_EL_DELETE_FROM.reservas where reserva_id = 2
 
+-- WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles @fdesde='02/06/2018 03:31:02 p.m.',@fhasta='02/06/2018 03:31:02 p.m.',@hotel_id=1,@regimen_id=1,@tipoHabitacion_id=1
 
-CREATE PROCEDURE WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles
+ALTER PROCEDURE WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles
 	@fdesde varchar(30),
 	@fhasta varchar(30),
 	@hotel_id int,
@@ -30,26 +31,26 @@ BEGIN
 	@tipoHabitacion_id int
 
 
-	SELECT @fdesde = '28/07/2016 00:00',
-	@fhasta = '29/07/2016 23:59',
+	SELECT @fdesde = '02/06/2018 03:31:02 p.m.',
+	@fhasta = '02/06/2018 03:31:02 p.m.',
 	@hotel_id = 1,
 	@regimen_id = NULL,
 	@tipoHabitacion_id = NULL
-	*/
 	
+	*/
 	
 	DECLARE @FechaDesde datetime
 	DECLARE @FechaHasta datetime
-
-	SELECT @FechaDesde = convert(datetime, @fdesde, 103)
-	SELECT @FechaHasta = convert(datetime, @fhasta, 103)
+	
+	SELECT @FechaDesde = convert(datetime, SUBSTRING(@fdesde, 0, 11), 103)
+	SELECT @FechaHasta = convert(datetime, SUBSTRING(@fhasta, 0, 11) + ' 23:59:59', 103)
 
 	SET NOCOUNT ON;
 
 	SELECT distinct
-		hab.habitacion_id,
-		hab.hoteles_id,
-		habTipos.max_huespedes,
+		hab.habitacion_id AS [Nro Habitacion],
+		hot.direccion AS Hotel,
+		habTipos.max_huespedes AS [Cant Huespedes],
 		reg.precio AS PrecioBase,
 		reg.descripcion AS TipoRegimen,
 		reg.codigo AS CodigoRegimen
@@ -80,7 +81,7 @@ BEGIN
 		INNER JOIN
 			WHERE_EN_EL_DELETE_FROM.reservas res on
 			res.reserva_id = resHab.reserva_id
-			and res.estado not in ('cancelada_recepcion', 'cancelada_cliente', 'cancelada_noshow')
+			and res.estado not in ('cancelada_recepcion', 'cancelada_cliente', 'cancelada_noshow', 'efectivizada')
 			and (
 					@FechaDesde is null 
 					OR 
