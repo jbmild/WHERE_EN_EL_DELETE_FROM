@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.AbmHabitacion
 {
-    partial class abmHabitacion
+    partial class abmHabitacionBotones
     {
         /// <summary>
         /// Required designer variable.
@@ -30,48 +30,47 @@
         {
             this.btnAltaHabitacion = new System.Windows.Forms.Button();
             this.btnBajaHabitacion = new System.Windows.Forms.Button();
-            this.btnModificacionHabitacion = new System.Windows.Forms.Button();
+            this.btnEditarHabitacion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAltaHabitacion
             // 
-            this.btnAltaHabitacion.Location = new System.Drawing.Point(61, 197);
+            this.btnAltaHabitacion.Location = new System.Drawing.Point(47, 154);
             this.btnAltaHabitacion.Name = "btnAltaHabitacion";
-            this.btnAltaHabitacion.Size = new System.Drawing.Size(131, 63);
+            this.btnAltaHabitacion.Size = new System.Drawing.Size(115, 53);
             this.btnAltaHabitacion.TabIndex = 0;
-            this.btnAltaHabitacion.Text = "Alta Habitación";
+            this.btnAltaHabitacion.Text = "Dar alta habitación";
             this.btnAltaHabitacion.UseVisualStyleBackColor = true;
             this.btnAltaHabitacion.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnBajaHabitacion
             // 
-            this.btnBajaHabitacion.Location = new System.Drawing.Point(232, 197);
+            this.btnBajaHabitacion.Location = new System.Drawing.Point(181, 154);
             this.btnBajaHabitacion.Name = "btnBajaHabitacion";
-            this.btnBajaHabitacion.Size = new System.Drawing.Size(127, 63);
+            this.btnBajaHabitacion.Size = new System.Drawing.Size(115, 53);
             this.btnBajaHabitacion.TabIndex = 1;
-            this.btnBajaHabitacion.Text = "Baja Habitación";
+            this.btnBajaHabitacion.Text = "Dar baja habitación";
             this.btnBajaHabitacion.UseVisualStyleBackColor = true;
             // 
-            // btnModificacionHabitacion
+            // btnEditarHabitacion
             // 
-            this.btnModificacionHabitacion.Location = new System.Drawing.Point(410, 197);
-            this.btnModificacionHabitacion.Name = "btnModificacionHabitacion";
-            this.btnModificacionHabitacion.Size = new System.Drawing.Size(133, 63);
-            this.btnModificacionHabitacion.TabIndex = 2;
-            this.btnModificacionHabitacion.Text = "Modificación Habitación";
-            this.btnModificacionHabitacion.UseVisualStyleBackColor = true;
-            this.btnModificacionHabitacion.Click += new System.EventHandler(this.btnModificacionHabitacion_Click);
+            this.btnEditarHabitacion.Location = new System.Drawing.Point(317, 154);
+            this.btnEditarHabitacion.Name = "btnEditarHabitacion";
+            this.btnEditarHabitacion.Size = new System.Drawing.Size(115, 53);
+            this.btnEditarHabitacion.TabIndex = 2;
+            this.btnEditarHabitacion.Text = "Editar habitación";
+            this.btnEditarHabitacion.UseVisualStyleBackColor = true;
             // 
-            // abmHabitacion
+            // abmHabitacionBotones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(698, 339);
-            this.Controls.Add(this.btnModificacionHabitacion);
+            this.ClientSize = new System.Drawing.Size(497, 253);
+            this.Controls.Add(this.btnEditarHabitacion);
             this.Controls.Add(this.btnBajaHabitacion);
             this.Controls.Add(this.btnAltaHabitacion);
-            this.Name = "abmHabitacion";
-            this.Text = "ABM Habitacion";
+            this.Name = "abmHabitacionBotones";
+            this.Text = "Selección acción Habitación";
             this.ResumeLayout(false);
 
         }
@@ -80,7 +79,6 @@
 
         private System.Windows.Forms.Button btnAltaHabitacion;
         private System.Windows.Forms.Button btnBajaHabitacion;
-        private System.Windows.Forms.Button btnModificacionHabitacion;
-
+        private System.Windows.Forms.Button btnEditarHabitacion;
     }
 }

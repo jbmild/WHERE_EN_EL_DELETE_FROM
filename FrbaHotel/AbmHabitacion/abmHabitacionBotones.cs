@@ -10,11 +10,17 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.AbmHabitacion
 {
-    public partial class modificarHabitacion : Form
+    public partial class abmHabitacionBotones : Form
     {
-        public modificarHabitacion()
+        public abmHabitacionBotones()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            altaHabitacion aHab = new altaHabitacion();
+            aHab.Show();
         }
     }
 }
