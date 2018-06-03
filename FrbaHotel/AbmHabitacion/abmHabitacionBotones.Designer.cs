@@ -51,6 +51,7 @@
             this.btnBajaHabitacion.TabIndex = 1;
             this.btnBajaHabitacion.Text = "Dar baja habitación";
             this.btnBajaHabitacion.UseVisualStyleBackColor = true;
+            this.btnBajaHabitacion.Click += new System.EventHandler(this.btnBajaHabitacion_Click);
             // 
             // btnEditarHabitacion
             // 

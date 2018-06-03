@@ -22,5 +22,11 @@ namespace FrbaHotel.AbmHabitacion
             altaHabitacion aHab = new altaHabitacion();
             aHab.Show();
         }
+
+        private void btnBajaHabitacion_Click(object sender, EventArgs e)
+        {
+            darBajaHabitacion bHab = new darBajaHabitacion();
+            bHab.Show();
+        }
     }
 }
