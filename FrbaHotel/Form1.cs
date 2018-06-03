@@ -31,7 +31,7 @@ namespace FrbaHotel
 
         private void button3_Click(object sender, EventArgs e)
         {
-            AbmHabitacion.abmHabitacion formHabitacion = new AbmHabitacion.abmHabitacion();
+            AbmHabitacion.abmHabitacionBotones formHabitacion = new AbmHabitacion.abmHabitacionBotones();
             formHabitacion.Show();
         }
     }
