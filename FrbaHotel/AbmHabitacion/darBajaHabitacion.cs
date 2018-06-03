@@ -37,6 +37,7 @@ namespace FrbaHotel.AbmHabitacion
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
             con1.Open();
             string up = "UPDATE WHERE_EN_EL_DELETE_FROM.habitaciones set habilitado=@value where numero= @habitacion and hoteles_id=@hotel";
