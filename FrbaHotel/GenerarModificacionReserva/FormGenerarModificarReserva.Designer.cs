@@ -39,7 +39,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dtpFechaCheckin = new System.Windows.Forms.DateTimePicker();
@@ -155,14 +155,15 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // button2
+            // btnSeleccionar
             // 
-            this.button2.Location = new System.Drawing.Point(377, 477);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(97, 31);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Seleccionar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Location = new System.Drawing.Point(377, 477);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(97, 31);
+            this.btnSeleccionar.TabIndex = 13;
+            this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
             // button3
             // 
@@ -256,7 +257,7 @@
             this.Controls.Add(this.dtpFechaCheckin);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label9);
@@ -291,7 +292,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DateTimePicker dtpFechaCheckin;

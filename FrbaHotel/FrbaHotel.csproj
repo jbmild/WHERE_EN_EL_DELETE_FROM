@@ -107,6 +107,24 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="GenerarModificacionReserva\IdentificarUsuarioExtendido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\IdentificarUsuarioExtendido.Designer.cs">
+      <DependentUpon>IdentificarUsuarioExtendido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\ConfirmarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\ConfirmarReserva.Designer.cs">
+      <DependentUpon>ConfirmarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\IdentificarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\IdentificarUsuario.Designer.cs">
+      <DependentUpon>IdentificarUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerarModificacionReserva\FormGenerarModificarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,8 +187,17 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\IdentificarUsuarioExtendido.resx">
+      <DependentUpon>IdentificarUsuarioExtendido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\ConfirmarReserva.resx">
+      <DependentUpon>ConfirmarReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\FormGenerarModificarReserva.resx">
       <DependentUpon>FormGenerarModificarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\IdentificarUsuario.resx">
+      <DependentUpon>IdentificarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

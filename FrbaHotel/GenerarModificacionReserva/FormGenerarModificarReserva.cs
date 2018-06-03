@@ -75,5 +75,19 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmbHotel.ValueMember = "hotel_id";
 
         }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    //Mandar datos reserva a pantalla Ingreso datos cliente
+                }
+
+            }
+            IdentificarUsuario identificarUsuario = new IdentificarUsuario();
+            identificarUsuario.Show();
+        }
     }
 }

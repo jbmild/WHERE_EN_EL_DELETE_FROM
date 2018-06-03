@@ -23,25 +23,26 @@ ALTER PROCEDURE WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles
 
 AS
 BEGIN
-	/*
+	
 	DECLARE @fdesde varchar(30),
 	@fhasta varchar(30),
 	@hotel_id int,
 	@regimen_id int,
 	@tipoHabitacion_id int
 
+	--WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles @fdesde='02/06/2016 04:06:27 p.m.',@fhasta='04/06/2016 04:06:27 p.m.',@hotel_id=2,@regimen_id=1,@tipoHabitacion_id=1
+	SELECT @fdesde = '02/06/2016',
+	@fhasta = '05/06/2016 03:31:02 p.m.',
+	@hotel_id = 2,
+	@regimen_id = 1,
+	@tipoHabitacion_id = 1
 
-	SELECT @fdesde = '02/06/2018 03:31:02 p.m.',
-	@fhasta = '02/06/2018 03:31:02 p.m.',
-	@hotel_id = 1,
-	@regimen_id = NULL,
-	@tipoHabitacion_id = NULL
 	
-	*/
+	
 	
 	DECLARE @FechaDesde datetime
 	DECLARE @FechaHasta datetime
-	
+	--select * from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id = 2
 	SELECT @FechaDesde = convert(datetime, SUBSTRING(@fdesde, 0, 11), 103)
 	SELECT @FechaHasta = convert(datetime, SUBSTRING(@fhasta, 0, 11) + ' 23:59:59', 103)
 
@@ -50,11 +51,11 @@ BEGIN
 	SELECT distinct
 		hab.habitacion_id AS [Nro Habitacion],
 		hot.direccion AS Hotel,
-		habTipos.max_huespedes AS [Cant Huespedes],
-		reg.precio AS PrecioBase,
-		reg.descripcion AS TipoRegimen,
-		reg.codigo AS CodigoRegimen
-
+		--habTipos.max_huespedes AS [Cant Huespedes],
+		--reg.precio AS PrecioBase,
+		--reg.descripcion AS TipoRegimen,
+		--reg.codigo AS CodigoRegimen
+		1
 	FROM
 		WHERE_EN_EL_DELETE_FROM.habitaciones hab
 	INNER JOIN
