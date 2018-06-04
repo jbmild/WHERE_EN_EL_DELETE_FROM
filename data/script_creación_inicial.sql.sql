@@ -116,6 +116,8 @@ GO
 	GO
 
 /* +++ END +++ Drops */
+DECLARE @FechaActual datetime;
+SET @FechaActual = GETDATE();
 
 /* +++ BEGIN +++ Creates */
 	/* Hoteles */
@@ -416,7 +418,7 @@ GO
 		'Argentina', -- Las ciudades en la tabla maestra son todas de Argentina
 		convert(smallint,Hotel_CantEstrella),
 		convert(smallint,Hotel_Recarga_Estrella),
-		getdate()
+		@FechaActual
 	FROM 
 	 	gd_esquema.Maestra
 
@@ -566,42 +568,50 @@ GO
 		hotel_id
 	) 
 	SELECT DISTINCT
-		m1.Reserva_Fecha_Inicio, 
-		dateadd(day, m1.Reserva_Cant_Noches, m1.Reserva_Fecha_Inicio),
-		m1.Reserva_Fecha_Inicio,
+		m.Reserva_Fecha_Inicio, 
+		dateadd(day, m.Reserva_Cant_Noches, m.Reserva_Fecha_Inicio),
+		m.Reserva_Fecha_Inicio,
 		cli.cliente_id, 
-		m1.Reserva_Codigo,
-		CASE WHEN EXISTS(
-			SELECT TOP 1 
-				1 
-			FROM 
-				gd_esquema.Maestra m2 
-			WHERE 
-				m2.Cliente_Pasaporte_Nro = m1.Cliente_Pasaporte_Nro
-				AND m2.Cliente_Mail = m1.Cliente_Mail
-				AND m2.Reserva_Fecha_Inicio = m1.Reserva_Fecha_Inicio
-				AND m2.Estadia_Fecha_Inicio = m1.Estadia_Fecha_Inicio
-				AND m2.Estadia_Fecha_Inicio IS NOT NULL
-		) THEN 'efectivizada' ELSE 'correcta' END,
+		m.Reserva_Codigo,
+		(
+			CASE
+				WHEN (Estadia_Fecha_Inicio = '1970-01-01 00:00:00' AND m.Reserva_Fecha_Inicio>@FechaActual) THEN 'correcta' 
+				WHEN (Estadia_Fecha_Inicio = '1970-01-01 00:00:00' AND m.Reserva_Fecha_Inicio<@FechaActual) THEN 'cancelada_noshow'
+				WHEN Estadia_Fecha_Inicio <> '1970-01-01 00:00:00' THEN 'efectivizada' 
+				ELSE NULL
+			END
+		),
 		(SELECT usuario_id FROM WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario = 'guest'),
 		reg.regimen_id,
 		hot.hotel_id
 	FROM 
-		gd_esquema.Maestra m1
-		LEFT JOIN WHERE_EN_EL_DELETE_FROM.clientes cli on
-			cli.pasaporte = m1.Cliente_Pasaporte_Nro 
-			and  cli.apellido=m1.Cliente_Apellido 
-			and cli.nombre = m1.Cliente_Nombre
-			and cli.direccion_calle = m1.Cliente_Dom_Calle
-			and cli.direccion_nro = m1.Cliente_Nro_Calle
-			and cli.mail = m1.Cliente_Mail
-			and cli.nacionalidad = m1.Cliente_Nacionalidad
-		LEFT join WHERE_EN_EL_DELETE_FROM.hoteles hot on
-			hot.direccion = concat(m1.Hotel_calle,' ',convert(NVARCHAR(255), m1.Hotel_Nro_Calle))
-		LEFT join WHERE_EN_EL_DELETE_FROM.regimenes reg on
-			reg.descripcion = m1.Regimen_Descripcion
+		(
+			SELECT 
+				Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, 
+				Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, Habitacion_Tipo_Codigo, Habitacion_Tipo_Descripcion, Habitacion_Tipo_Porcentual, 
+				Regimen_Descripcion, Regimen_Precio, 
+				Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches,
+				MAX(ISNULL(Estadia_Fecha_Inicio, '1970-01-01 00:00:00')) as Estadia_Fecha_Inicio,
+				Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad 
+			FROM 
+				gd_esquema.Maestra
+			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, Habitacion_Tipo_Codigo, Habitacion_Tipo_Descripcion, Habitacion_Tipo_Porcentual, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad
+		) m
+		LEFT JOIN WHERE_EN_EL_DELETE_FROM.clientes cli ON
+			cli.pasaporte = m.Cliente_Pasaporte_Nro 
+			AND  cli.apellido = m.Cliente_Apellido 
+			AND cli.nombre = m.Cliente_Nombre
+			AND cli.direccion_calle = m.Cliente_Dom_Calle
+			AND cli.direccion_nro = m.Cliente_Nro_Calle
+			AND cli.mail = m.Cliente_Mail
+			AND cli.nacionalidad = m.Cliente_Nacionalidad
+		LEFT join WHERE_EN_EL_DELETE_FROM.regimenes reg ON
+			reg.descripcion = m.Regimen_Descripcion
+			AND reg.precio = m.Regimen_Precio
+		LEFT join WHERE_EN_EL_DELETE_FROM.hoteles hot ON
+			hot.direccion = concat(m.Hotel_calle,' ',convert(NVARCHAR(255), m.Hotel_Nro_Calle))
 	WHERE 
-		m1.Reserva_Fecha_Inicio is not null
+		m.Reserva_Fecha_Inicio is not null
 	
 	
 	/* Reservas Habitaciones */
