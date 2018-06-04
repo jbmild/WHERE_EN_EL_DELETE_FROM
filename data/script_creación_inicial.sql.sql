@@ -596,7 +596,7 @@ SET @FechaActual = GETDATE();
 				gd_esquema.Maestra
 			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad
 		) m
-		LEFT JOIN WHERE_EN_EL_DELETE_FROM.clientes cli ON
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.clientes cli ON
 			cli.pasaporte = m.Cliente_Pasaporte_Nro 
 			AND  cli.apellido = m.Cliente_Apellido 
 			AND cli.nombre = m.Cliente_Nombre
@@ -604,10 +604,10 @@ SET @FechaActual = GETDATE();
 			AND cli.direccion_nro = m.Cliente_Nro_Calle
 			AND cli.mail = m.Cliente_Mail
 			AND cli.nacionalidad = m.Cliente_Nacionalidad
-		LEFT join WHERE_EN_EL_DELETE_FROM.regimenes reg ON
+		INNER join WHERE_EN_EL_DELETE_FROM.regimenes reg ON
 			reg.descripcion = m.Regimen_Descripcion
 			AND reg.precio = m.Regimen_Precio
-		LEFT join WHERE_EN_EL_DELETE_FROM.hoteles hot ON
+		INNER join WHERE_EN_EL_DELETE_FROM.hoteles hot ON
 			hot.direccion = concat(m.Hotel_calle,' ',convert(NVARCHAR(255), m.Hotel_Nro_Calle))
 	WHERE 
 		m.Reserva_Fecha_Inicio is not null
@@ -620,27 +620,23 @@ SET @FechaActual = GETDATE();
 		precio_diario
 	)
 	SELECT distinct
-	
 		ha.habitacion_id, 
 		r.reserva_id, 
 		Regimen_Precio * Habitacion_Tipo_Porcentual
 	FROM 
-		GD1C2018.gd_esquema.Maestra m 
+		gd_esquema.Maestra m 
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles h on
 			h.direccion = concat(Hotel_calle,' ',convert(NVARCHAR(255), Hotel_Nro_Calle))
-			AND h.ciudad = m.Hotel_Ciudad
-			AND h.estrellas_cant = m.Hotel_CantEstrella
-			AND h.estrellas_recargo = m.Hotel_Recarga_Estrella
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones_tipos habtipos on
-			habtipos.codigo = m.Habitacion_Tipo_Codigo
-			AND habtipos.descripcion = m.Habitacion_Tipo_Descripcion
-			AND habtipos.porcentual = m.Habitacion_Tipo_Porcentual
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones_tipos ht on
+			ht.codigo = m.Habitacion_Tipo_Codigo
+			AND ht.descripcion = m.Habitacion_Tipo_Descripcion
+			AND ht.porcentual = m.Habitacion_Tipo_Porcentual
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones ha on
 			h.hotel_id = ha.hoteles_id
 			AND ha.numero = m.Habitacion_Numero
 			AND ha.piso = m.Habitacion_Piso
 			AND ha.frente = CASE WHEN m.Habitacion_Frente = 'N' THEN 0 ELSE 1 END
-			AND ha.tipos_id = habtipos.tipo_id
+			AND ha.tipos_id = ht.tipo_id
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas r on
 			m.Reserva_Codigo = r.codigo
 
@@ -649,27 +645,57 @@ SET @FechaActual = GETDATE();
 	/* Empleados Hoteles */
 
 	/* Estadias */
-	INSERT INTO WHERE_EN_EL_DELETE_FROM.estadias
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.estadias (
+		reserva_id,
+		ingreso_empleado_id,
+		ingreso_fecha,
+		egreso_empleado_id,
+		egreso_fecha
+	)
 	SELECT DISTINCT
-		res.reserva_id,
+		r.reserva_id,
 		NULL,
-		mae.Estadia_Fecha_Inicio,
+		m.Estadia_Fecha_Inicio,
 		NULL,
-		dateadd(day,mae.Estadia_Cant_Noches,mae.Estadia_Fecha_Inicio)
-	FROM
-		WHERE_EN_EL_DELETE_FROM.reservas res
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.clientes cli on
-			cli.cliente_id = res.cliente_id
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles h on
-			h.hotel_id = res.hotel_id
-		INNER JOIN gd_esquema.Maestra mae on 
-			mae.Cliente_Pasaporte_Nro = cli.pasaporte
-	WHERE
-		Estadia_Fecha_Inicio is not null
+		dateadd(day,m.Estadia_Cant_Noches,m.Estadia_Fecha_Inicio)
+	FROM 
+		(
+			SELECT 
+				Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, 
+				Regimen_Descripcion, Regimen_Precio, 
+				Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches,
+				Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad,
+				Estadia_Fecha_Inicio, Estadia_Cant_Noches
+			FROM 
+				gd_esquema.Maestra
+			WHERE
+				Estadia_Fecha_Inicio IS NOT NULL
+			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad, Estadia_Fecha_Inicio, Estadia_Cant_Noches
+		) m
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.clientes cli ON
+			cli.pasaporte = m.Cliente_Pasaporte_Nro 
+			AND  cli.apellido = m.Cliente_Apellido 
+			AND cli.nombre = m.Cliente_Nombre
+			AND cli.direccion_calle = m.Cliente_Dom_Calle
+			AND cli.direccion_nro = m.Cliente_Nro_Calle
+			AND cli.mail = m.Cliente_Mail
+			AND cli.nacionalidad = m.Cliente_Nacionalidad
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.regimenes reg ON
+			reg.descripcion = m.Regimen_Descripcion
+			AND reg.precio = m.Regimen_Precio
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles hot ON
+			hot.direccion = concat(m.Hotel_calle,' ',convert(NVARCHAR(255), m.Hotel_Nro_Calle))
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Reservas r ON
+			r.fecha_desde = m.Reserva_Fecha_Inicio
+			AND r.fecha_hasta = dateadd(day, m.Reserva_Cant_Noches, m.Reserva_Fecha_Inicio)
+			AND r.codigo = m.Reserva_Codigo
+			AND r.cliente_id = cli.cliente_id
+			AND r.regimen_id = reg.regimen_id
+			AND r.hotel_id = hot.hotel_id
+			AND r.estado='efectivizada'
 
 	/* Huespedes */
-	--select top 100 Factura_Nro, Cliente_Mail, Cliente_Pasaporte_Nro, Item_Factura_Cantidad, Consumible_Codigo, Consumible_Descripcion FROM gd_esquema.Maestra order by Cliente_Mail, Cliente_Pasaporte_Nro having count(distinct Factura_Nro) > 1
-	--select top 100 Cliente_Mail, Cliente_Pasaporte_Nro, count(distinct Factura_Nro) FROM gd_esquema.Maestra group by Cliente_Mail, Cliente_Pasaporte_Nro having count(distinct Factura_Nro) > 1
+
 	/* Facturas */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.facturas(
 		estadia_id,
