@@ -68,6 +68,12 @@
     <Compile Include="AbmHabitacion\darBajaHabitacion.Designer.cs">
       <DependentUpon>darBajaHabitacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHabitacion\modificarHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHabitacion\modificarHabitacion.Designer.cs">
+      <DependentUpon>modificarHabitacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmRegimen\ABM_regimen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\darBajaHabitacion.resx">
       <DependentUpon>darBajaHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHabitacion\modificarHabitacion.resx">
+      <DependentUpon>modificarHabitacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRegimen\.Designer.resx">
       <DependentUpon>.Designer.cs</DependentUpon>

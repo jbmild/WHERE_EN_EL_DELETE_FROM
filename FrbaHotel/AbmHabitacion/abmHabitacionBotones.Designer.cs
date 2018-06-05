@@ -61,6 +61,7 @@
             this.btnEditarHabitacion.TabIndex = 2;
             this.btnEditarHabitacion.Text = "Editar habitación";
             this.btnEditarHabitacion.UseVisualStyleBackColor = true;
+            this.btnEditarHabitacion.Click += new System.EventHandler(this.btnEditarHabitacion_Click);
             // 
             // abmHabitacionBotones
             // 
