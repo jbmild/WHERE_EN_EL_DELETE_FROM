@@ -47,38 +47,36 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(94, 16);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(125, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.Size = new System.Drawing.Size(41, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Hotel";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(94, 48);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(125, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(111, 13);
+            this.label2.Size = new System.Drawing.Size(147, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "Número de habitación";
             // 
             // comboBoxNumeroHabitacion
             // 
             this.comboBoxNumeroHabitacion.FormattingEnabled = true;
-            this.comboBoxNumeroHabitacion.Location = new System.Drawing.Point(307, 48);
-            this.comboBoxNumeroHabitacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxNumeroHabitacion.Location = new System.Drawing.Point(409, 59);
+            this.comboBoxNumeroHabitacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxNumeroHabitacion.Name = "comboBoxNumeroHabitacion";
-            this.comboBoxNumeroHabitacion.Size = new System.Drawing.Size(92, 21);
+            this.comboBoxNumeroHabitacion.Size = new System.Drawing.Size(121, 24);
             this.comboBoxNumeroHabitacion.TabIndex = 3;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(389, 88);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Location = new System.Drawing.Point(519, 108);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 19);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 4;
             this.button1.Text = "Buscar ";
             this.button1.UseVisualStyleBackColor = true;
@@ -87,77 +85,74 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 130);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(81, 160);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.Size = new System.Drawing.Size(41, 17);
             this.label3.TabIndex = 5;
             this.label3.Text = "Hotel";
             // 
             // comboBoxNuevoHotel
             // 
             this.comboBoxNuevoHotel.FormattingEnabled = true;
-            this.comboBoxNuevoHotel.Location = new System.Drawing.Point(122, 128);
-            this.comboBoxNuevoHotel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxNuevoHotel.Location = new System.Drawing.Point(163, 158);
+            this.comboBoxNuevoHotel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxNuevoHotel.Name = "comboBoxNuevoHotel";
-            this.comboBoxNuevoHotel.Size = new System.Drawing.Size(175, 21);
+            this.comboBoxNuevoHotel.Size = new System.Drawing.Size(232, 24);
             this.comboBoxNuevoHotel.TabIndex = 6;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(61, 167);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(81, 206);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.Size = new System.Drawing.Size(105, 17);
             this.label4.TabIndex = 7;
             this.label4.Text = "Piso en el hotel";
             // 
             // comboBoxNuevoPiso
             // 
             this.comboBoxNuevoPiso.FormattingEnabled = true;
-            this.comboBoxNuevoPiso.Location = new System.Drawing.Point(206, 167);
-            this.comboBoxNuevoPiso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxNuevoPiso.Location = new System.Drawing.Point(275, 206);
+            this.comboBoxNuevoPiso.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxNuevoPiso.Name = "comboBoxNuevoPiso";
-            this.comboBoxNuevoPiso.Size = new System.Drawing.Size(92, 21);
+            this.comboBoxNuevoPiso.Size = new System.Drawing.Size(121, 24);
             this.comboBoxNuevoPiso.TabIndex = 8;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(62, 212);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(83, 261);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 13);
+            this.label5.Size = new System.Drawing.Size(82, 17);
             this.label5.TabIndex = 9;
             this.label5.Text = "Descripcion";
             // 
             // textBoxNuevaDescripcion
             // 
-            this.textBoxNuevaDescripcion.Location = new System.Drawing.Point(147, 212);
-            this.textBoxNuevaDescripcion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxNuevaDescripcion.Location = new System.Drawing.Point(196, 261);
+            this.textBoxNuevaDescripcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxNuevaDescripcion.Multiline = true;
             this.textBoxNuevaDescripcion.Name = "textBoxNuevaDescripcion";
-            this.textBoxNuevaDescripcion.Size = new System.Drawing.Size(150, 74);
+            this.textBoxNuevaDescripcion.Size = new System.Drawing.Size(199, 90);
             this.textBoxNuevaDescripcion.TabIndex = 10;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(357, 128);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(476, 158);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(310, 158);
+            this.dataGridView1.Size = new System.Drawing.Size(413, 194);
             this.dataGridView1.TabIndex = 11;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(319, 297);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Location = new System.Drawing.Point(425, 366);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(127, 29);
+            this.button2.Size = new System.Drawing.Size(169, 36);
             this.button2.TabIndex = 12;
             this.button2.Text = "Guardar cambios";
             this.button2.UseVisualStyleBackColor = true;
@@ -165,16 +160,18 @@
             // comboBoxHoteles
             // 
             this.comboBoxHoteles.FormattingEnabled = true;
-            this.comboBoxHoteles.Location = new System.Drawing.Point(171, 18);
+            this.comboBoxHoteles.Location = new System.Drawing.Point(228, 22);
+            this.comboBoxHoteles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxHoteles.Name = "comboBoxHoteles";
-            this.comboBoxHoteles.Size = new System.Drawing.Size(172, 21);
+            this.comboBoxHoteles.Size = new System.Drawing.Size(228, 24);
             this.comboBoxHoteles.TabIndex = 13;
+            this.comboBoxHoteles.SelectedIndexChanged += new System.EventHandler(this.comboBoxHoteles_SelectedIndexChanged);
             // 
             // modificarHabitacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 336);
+            this.ClientSize = new System.Drawing.Size(1061, 414);
             this.Controls.Add(this.comboBoxHoteles);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
@@ -188,7 +185,7 @@
             this.Controls.Add(this.comboBoxNumeroHabitacion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "modificarHabitacion";
             this.Text = "Modificar habitación";
             this.Load += new System.EventHandler(this.modificarHabitacion_Load);

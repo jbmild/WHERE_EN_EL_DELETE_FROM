@@ -40,10 +40,15 @@ namespace FrbaHotel.AbmHabitacion
             ConexionSQL con=new ConexionSQL();
             DataTable dtHabitacion = con.cargarTablaSQL("select numero, piso, convert(bit, frente) as Vista_Exterior, descripcion, convert(bit,habilitado) as Habilitado, tipos_id from WHERE_EN_EL_DELETE_FROM.habitaciones where numero=" + comboBoxNumeroHabitacion.SelectedValue + " and hoteles_id=" + comboBoxHoteles.SelectedValue);
             dataGridView1.DataSource = dtHabitacion;
-            
+        }
 
-            
-
+        private void comboBoxHoteles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ConexionSQL c = new ConexionSQL();
+            DataTable dtpisos = c.cargarTablaSQL("select numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id=" + comboBoxHoteles.SelectedValue);
+            comboBoxNumeroHabitacion.DataSource = dtpisos;
+            comboBoxNumeroHabitacion.DisplayMember = "numero";
+            comboBoxNumeroHabitacion.ValueMember = "numero";
         }
     }
 }

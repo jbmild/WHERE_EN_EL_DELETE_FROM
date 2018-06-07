@@ -27,7 +27,8 @@ namespace FrbaHotel.AbmHabitacion
             comboBoxHotel.ValueMember = "hotel_id";
 
             /*Buscar pisos dentro del hotel elegido*/
-            DataTable dtPisos = c.cargarTablaSQL("select hoteles_id, piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id='" + this.comboBoxHotel.SelectedValue + "'" + " " + "group by hoteles_id, piso order by hoteles_id desc, piso desc");
+            DataTable dtPisos = c.cargarTablaSQL("select hoteles_id, piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id='" 
+                + this.comboBoxHotel.SelectedValue + "'" + " " + "group by hoteles_id, piso order by hoteles_id desc, piso desc");
             comboBoxPisoEnHotel.DataSource=dtPisos;
             comboBoxPisoEnHotel.DisplayMember="piso";
             comboBoxPisoEnHotel.ValueMember="piso";
@@ -116,9 +117,6 @@ namespace FrbaHotel.AbmHabitacion
             }
         }
 
-        private void comboBoxHotel_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }  
+  
     }
 }
