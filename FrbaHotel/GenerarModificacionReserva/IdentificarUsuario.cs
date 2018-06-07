@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Modelo; 
 
 namespace FrbaHotel.GenerarModificacionReserva
 {
     public partial class IdentificarUsuario : Form
     {
+
+        private Reserva res;
+
         public IdentificarUsuario()
         {
             InitializeComponent();
@@ -24,7 +28,8 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void IdentificarUsuario_Load(object sender, EventArgs e)
         {
-
+            //Recibo ID de otro form.
+            //Reserva res = new Reserva();
         }
 
         private void button1_Click(object sender, EventArgs e)

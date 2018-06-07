@@ -165,7 +165,7 @@
             this.comboBoxHoteles.Name = "comboBoxHoteles";
             this.comboBoxHoteles.Size = new System.Drawing.Size(228, 24);
             this.comboBoxHoteles.TabIndex = 13;
-            this.comboBoxHoteles.SelectedIndexChanged += new System.EventHandler(this.comboBoxHoteles_SelectedIndexChanged);
+            this.comboBoxHoteles.SelectionChangeCommitted += new System.EventHandler(this.comboBoxHoteles_SelectedIndexChanged);
             // 
             // modificarHabitacion
             // 
