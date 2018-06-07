@@ -41,7 +41,7 @@ namespace FrbaHotel
             miConexionSQL = new SqlConnection();
 
             /*se usa para las conexiones tcp/ip*/
-            string gd20 = "Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018";
+            string gd20 = "Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018";
 
             /*se usa para las conexiones locales*/
             //string gd20 = "Data source=.\\SQLSERVER2012; Initial Catalog=GD1C2018;User Id=gd2018; Password=gd2018";

@@ -63,6 +63,7 @@
             this.comboBoxHotel.Name = "comboBoxHotel";
             this.comboBoxHotel.Size = new System.Drawing.Size(288, 24);
             this.comboBoxHotel.TabIndex = 1;
+            this.comboBoxHotel.SelectedIndexChanged += new System.EventHandler(this.comboBoxHotel_SelectedIndexChanged_1);
             this.comboBoxHotel.SelectionChangeCommitted += new System.EventHandler(this.comboBoxHotel_SelectedIndexChanged);
             // 
             // label2

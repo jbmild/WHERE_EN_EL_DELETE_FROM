@@ -58,8 +58,10 @@
             this.comboBoxHoteles.FormattingEnabled = true;
             this.comboBoxHoteles.Location = new System.Drawing.Point(268, 20);
             this.comboBoxHoteles.Name = "comboBoxHoteles";
-            this.comboBoxHoteles.Size = new System.Drawing.Size(262, 24);
+            this.comboBoxHoteles.Size = new System.Drawing.Size(371, 24);
             this.comboBoxHoteles.TabIndex = 1;
+            this.comboBoxHoteles.SelectedIndexChanged += new System.EventHandler(this.modificarHabitacion_Load);
+            this.comboBoxHoteles.SelectionChangeCommitted += new System.EventHandler(this.modificarHabitacion_Load);
             // 
             // label2
             // 
@@ -144,6 +146,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(476, 157);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(414, 194);
             this.dataGridView1.TabIndex = 11;
@@ -177,6 +180,7 @@
             this.Controls.Add(this.label1);
             this.Name = "modificarHabitacion";
             this.Text = "Modificar habitación";
+            this.Load += new System.EventHandler(this.modificarHabitacion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -114,6 +114,11 @@ namespace FrbaHotel.AbmHabitacion
                 }
 
             }
+        }
+
+        private void comboBoxHotel_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
         }  
     }
 }
