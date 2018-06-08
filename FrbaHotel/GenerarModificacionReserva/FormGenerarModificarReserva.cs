@@ -91,15 +91,15 @@ namespace FrbaHotel.GenerarModificacionReserva
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
                     habs.Add(new Habitacion(Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[3].Value)));
-                    //Mandar datos reserva a pantalla Ingreso datos cliente
+                    //Mandar datos res{erva a pantalla Ingreso datos cliente
                 }
 
             }
             IdentificarUsuario identificarUsuario = new IdentificarUsuario(new Reserva(dtpFechaCheckin.Value,
                                                                                         dtpFechaCheckout.Value,
                                                                                         0, // Completar total de todas las habs
-                                                                                        cmbTipoRegimen.SelectedValue,
-                                                                                        cmbHotel.SelectedValue,
+                                                                                        Convert.ToInt32(cmbTipoRegimen.SelectedValue),
+                                                                                        Convert.ToInt32(cmbHotel.SelectedValue),
                                                                                         habs));
 
             identificarUsuario.Show();

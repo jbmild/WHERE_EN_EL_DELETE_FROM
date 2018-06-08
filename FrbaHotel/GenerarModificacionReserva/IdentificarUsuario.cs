@@ -33,27 +33,18 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void IdentificarUsuario_Load(object sender, EventArgs e)
         {
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable dt;
-            dt = conexion.cargarTablaSQL("select id, descripcion from WHERE_EN_EL_DELETE_FROM.TiposDocumentos");
-            //dt.Rows.InsertAt(dt.NewRow(), 0); DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
-            cmbTiposDocumentos.DataSource = dt;
-            //cmbTipoHab.SelectedIndex = 0; DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
-
-            cmbTiposDocumentos.DisplayMember = "descripcion";
-            cmbTiposDocumentos.ValueMember = "id";
+            cmbTiposDocumentos.Items.Add("DNI");
+            cmbTiposDocumentos.Items.Add("Pasaporte");
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Cliente cli = new Cliente();
-
-            cli.getClienteByTipoNroDocEmail(Convert.ToInt32(cmbTiposDocumentos.SelectedValue),
-                                            txtNroDocumento.Text,
-                                            txtMail.Text);
-
-
-            IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(reserva);
+            
+            IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(reserva, Convert.ToInt32(cmbTiposDocumentos.SelectedValue),
+                                                                            txtNroDocumento.Text,
+                                                                            txtMail.Text);
             frmUsuExtendido.Show();
         }
 

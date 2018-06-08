@@ -162,6 +162,7 @@
     <Compile Include="Login\View\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\Cliente.cs" />
     <Compile Include="Modelo\Habitacion.cs" />
     <Compile Include="Modelo\Reserva.cs" />
     <Compile Include="Modelo\TipoHabitacion.cs" />
@@ -199,6 +200,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\IdentificarUsuario.resx">
+      <DependentUpon>IdentificarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\IdentificarUsuarioExtendido.resx">
+      <DependentUpon>IdentificarUsuarioExtendido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
