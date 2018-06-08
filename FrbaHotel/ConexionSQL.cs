@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
+using System.Configuration;
 
 
 namespace FrbaHotel
@@ -38,16 +39,19 @@ namespace FrbaHotel
         /// <remarks></remarks>
         public ConexionSQL()
         {
-            miConexionSQL = new SqlConnection();
+            miConexionSQL = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
 
             /*se usa para las conexiones tcp/ip*/
-            string gd20 = "Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018";
+            //comento el string porque ahora lo saco del app.config
+            //string gd20 = "Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018";
 
             /*se usa para las conexiones locales*/
             //string gd20 = "Data source=.\\SQLSERVER2012; Initial Catalog=GD1C2018;User Id=gd2018; Password=gd2018";
 
-            miConnectionStringSQL = gd20;
-            miConexionSQL.ConnectionString = miConnectionStringSQL;
+            //miConnectionStringSQL = gd20;
+            //miConnectionStringSQL = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+            
+            //miConexionSQL.ConnectionString = miConnectionStringSQL;
         }
 
         public ConexionSQL(String _connectionString)
@@ -59,7 +63,9 @@ namespace FrbaHotel
 
         public static SqlConnection obtenerConexion()
         {
-            SqlConnection conexion = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018");
+            SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+         
+            
             conexion.Open();
             return conexion;
 

@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -161,6 +162,7 @@
     <Compile Include="Login\View\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\Habitacion.cs" />
     <Compile Include="Modelo\Reserva.cs" />
     <Compile Include="Modelo\TipoHabitacion.cs" />
     <Compile Include="Program.cs" />
@@ -171,10 +173,10 @@
     <Compile Include="RegistrarConsumible\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarEstadia\Form1.cs">
+    <Compile Include="RegistrarConsumible\RegistrarEstadia\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrarEstadia\Form1.Designer.cs">
+    <Compile Include="RegistrarConsumible\RegistrarEstadia\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AbmHabitacion\abmHabitacionBotones.resx">

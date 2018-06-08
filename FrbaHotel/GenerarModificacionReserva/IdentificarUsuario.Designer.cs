@@ -33,9 +33,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.cmbTiposDocumentos = new System.Windows.Forms.ComboBox();
+            this.txtNroDocumento = new System.Windows.Forms.TextBox();
+            this.txtMail = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -88,27 +88,27 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Mail";
             // 
-            // comboBox1
+            // cmbTiposDocumentos
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(145, 110);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(93, 21);
-            this.comboBox1.TabIndex = 8;
+            this.cmbTiposDocumentos.FormattingEnabled = true;
+            this.cmbTiposDocumentos.Location = new System.Drawing.Point(145, 110);
+            this.cmbTiposDocumentos.Name = "cmbTiposDocumentos";
+            this.cmbTiposDocumentos.Size = new System.Drawing.Size(93, 21);
+            this.cmbTiposDocumentos.TabIndex = 8;
             // 
-            // textBox1
+            // txtNroDocumento
             // 
-            this.textBox1.Location = new System.Drawing.Point(145, 150);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(112, 20);
-            this.textBox1.TabIndex = 9;
+            this.txtNroDocumento.Location = new System.Drawing.Point(145, 150);
+            this.txtNroDocumento.Name = "txtNroDocumento";
+            this.txtNroDocumento.Size = new System.Drawing.Size(112, 20);
+            this.txtNroDocumento.TabIndex = 9;
             // 
-            // textBox2
+            // txtMail
             // 
-            this.textBox2.Location = new System.Drawing.Point(145, 195);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(112, 20);
-            this.textBox2.TabIndex = 10;
+            this.txtMail.Location = new System.Drawing.Point(145, 195);
+            this.txtMail.Name = "txtMail";
+            this.txtMail.Size = new System.Drawing.Size(112, 20);
+            this.txtMail.TabIndex = 10;
             // 
             // button1
             // 
@@ -126,9 +126,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 345);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.txtMail);
+            this.Controls.Add(this.txtNroDocumento);
+            this.Controls.Add(this.cmbTiposDocumentos);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -149,9 +149,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.ComboBox cmbTiposDocumentos;
+        private System.Windows.Forms.TextBox txtNroDocumento;
+        private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Button button1;
     }
 }

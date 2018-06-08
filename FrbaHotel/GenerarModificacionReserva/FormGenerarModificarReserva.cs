@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Modelo; 
 
 namespace FrbaHotel.GenerarModificacionReserva
 {
@@ -36,6 +37,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                 //Se muestra por pantalla la tabla con los resultados del SELECT
                 dataGridView1.DataSource = dt;
+                dataGridView1.Columns[3].Visible = dataGridView1.Columns[4].Visible = false;
                 this.Cursor = Cursors.Default;
             }
             catch (Exception ex)
@@ -55,9 +57,9 @@ namespace FrbaHotel.GenerarModificacionReserva
             ConexionSQL conexion = new ConexionSQL();
             DataTable dt;
             dt = conexion.cargarTablaSQL("select tipo_id, descripcion from WHERE_EN_EL_DELETE_FROM.habitaciones_tipos");
-            //dt.Rows.InsertAt(dt.NewRow(), 0);
+            //dt.Rows.InsertAt(dt.NewRow(), 0); DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
             cmbTipoHab.DataSource = dt;
-            //cmbTipoHab.SelectedIndex = 0;
+            //cmbTipoHab.SelectedIndex = 0; DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
 
             cmbTipoHab.DisplayMember = "descripcion";
             cmbTipoHab.ValueMember = "tipo_id";
@@ -74,20 +76,34 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmbHotel.DisplayMember = "nombre";
             cmbHotel.ValueMember = "hotel_id";
 
+
+            //Ocultar combo hotel si el usuario es recepcionista. 
+            //Si es admin o guest, mostrar combo hotel.
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
+            
+            List <Habitacion> habs = new List<Habitacion>();
+
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
+                    habs.Add(new Habitacion(Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[3].Value)));
                     //Mandar datos reserva a pantalla Ingreso datos cliente
                 }
 
             }
-            IdentificarUsuario identificarUsuario = new IdentificarUsuario();
+            IdentificarUsuario identificarUsuario = new IdentificarUsuario(new Reserva(dtpFechaCheckin.Value,
+                                                                                        dtpFechaCheckout.Value,
+                                                                                        0, // Completar total de todas las habs
+                                                                                        cmbTipoRegimen.SelectedValue,
+                                                                                        cmbHotel.SelectedValue,
+                                                                                        habs));
+
             identificarUsuario.Show();
+            
         }
     }
 }

@@ -14,11 +14,16 @@ namespace FrbaHotel.GenerarModificacionReserva
     public partial class IdentificarUsuario : Form
     {
 
-        private Reserva res;
+        private Reserva reserva;
 
-        public IdentificarUsuario()
+        public IdentificarUsuario() {
+            InitializeComponent();
+        }
+
+        public IdentificarUsuario(Reserva res)
         {
             InitializeComponent();
+            this.reserva = res;
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -28,14 +33,27 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void IdentificarUsuario_Load(object sender, EventArgs e)
         {
-            //Recibo ID de otro form.
-            //Reserva res = new Reserva();
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt;
+            dt = conexion.cargarTablaSQL("select id, descripcion from WHERE_EN_EL_DELETE_FROM.TiposDocumentos");
+            //dt.Rows.InsertAt(dt.NewRow(), 0); DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
+            cmbTiposDocumentos.DataSource = dt;
+            //cmbTipoHab.SelectedIndex = 0; DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
+
+            cmbTiposDocumentos.DisplayMember = "descripcion";
+            cmbTiposDocumentos.ValueMember = "id";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido();
+            Cliente cli = new Cliente();
 
+            cli.getClienteByTipoNroDocEmail(Convert.ToInt32(cmbTiposDocumentos.SelectedValue),
+                                            txtNroDocumento.Text,
+                                            txtMail.Text);
+
+
+            IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(reserva);
             frmUsuExtendido.Show();
         }
 
