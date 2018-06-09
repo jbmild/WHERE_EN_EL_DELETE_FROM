@@ -80,7 +80,8 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void btnReservar_Click(object sender, EventArgs e)
         {
 
-         
+            
+
             //TODO: agregar tipo documento cuando se agregue en la tabla
             _cli.nrodocumento = TxtNroDocumento.Text;
             _cli.nombre = txtNombre.Text;
@@ -95,10 +96,19 @@ namespace FrbaHotel.GenerarModificacionReserva
             _cli.direccion_localidad = txtLocalidad.Text;
             _cli.direccion_pais = txtPaisVivienda.Text;
 
-            _cli.guardarCliente(_cli);
+            if (_cli.guardarCliente(_cli) > 0)
+            {
+                frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva(_cli, _res);
+                frmConfirmarReserva.Show();
+            }
+            else {
+                //no se pudo grabar
+                this.UseWaitCursor = false;
+                System.Windows.Forms.MessageBox.Show("ERROR al intentar guardar datos. Reintente por favor.");
+                this.Hide();
+            }
 
-            frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva();
-            frmConfirmarReserva.Show();
+            
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -119,6 +129,11 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void txtDireccion_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -40,6 +40,8 @@ namespace FrbaHotel
         public ConexionSQL()
         {
             miConexionSQL = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
+            this.conectar();
+
 
             /*se usa para las conexiones tcp/ip*/
             //comento el string porque ahora lo saco del app.config
@@ -96,6 +98,31 @@ namespace FrbaHotel
             dataAdapter.Fill(ds);
             this.desconectar();
             return ds;
+        }
+
+        public int actualizarDatos(string query) {
+
+            SqlCommand miCommand = new SqlCommand(string.Format(query), miConexionSQL);
+
+
+
+            DataTable ds = new DataTable();
+            // REM CONFIGURO EL OBJETO COMMAND
+            this.conectar();
+            // REM INDICO LA CONEXION ACTIVA
+            miCommand.Connection = miConexionSQL;
+            // REM INDICO EL TIPO QUE SE PASARA EN COMMANDTEXT
+            miCommand.CommandType = CommandType.Text;
+
+
+            // REM CREO UN DATAREADER
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(miCommand);
+            
+            // REM CARGO EL DATATABLE PRODUCTOS A TRAVEZ DEL DATAREADER
+            int rowsAffected = dataAdapter.Fill(ds);
+            this.desconectar();
+
+            return rowsAffected;
         }
 
         #endregion

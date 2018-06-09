@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDatosCliente = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.lblDatosReserva = new System.Windows.Forms.Label();
+            this.btnConfirmar = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // lblDatosCliente
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(101, 73);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(247, 18);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "CONFIRME SU RESERVA, {cliente}";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.lblDatosCliente.AutoSize = true;
+            this.lblDatosCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDatosCliente.Location = new System.Drawing.Point(101, 73);
+            this.lblDatosCliente.Name = "lblDatosCliente";
+            this.lblDatosCliente.Size = new System.Drawing.Size(247, 18);
+            this.lblDatosCliente.TabIndex = 6;
+            this.lblDatosCliente.Text = "CONFIRME SU RESERVA, {cliente}";
+            this.lblDatosCliente.Click += new System.EventHandler(this.label1_Click);
             // 
             // linkLabel1
             // 
@@ -59,23 +59,24 @@
             this.linkLabel1.Text = "Sistema de Gestión Hotelera";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
-            // label2
+            // lblDatosReserva
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(92, 129);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(211, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Reserva dias: 1/1 all 10/1. Hotel: Sheraton";
+            this.lblDatosReserva.AutoSize = true;
+            this.lblDatosReserva.Location = new System.Drawing.Point(92, 129);
+            this.lblDatosReserva.Name = "lblDatosReserva";
+            this.lblDatosReserva.Size = new System.Drawing.Size(355, 13);
+            this.lblDatosReserva.TabIndex = 7;
+            this.lblDatosReserva.Text = "Reserva dias: {checkin} al {checkout}. Hotel: {hotel}. Regimen: {regimen}";
             // 
-            // button1
+            // btnConfirmar
             // 
-            this.button1.Location = new System.Drawing.Point(120, 209);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 28);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Confirmar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Location = new System.Drawing.Point(120, 209);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.Size = new System.Drawing.Size(108, 28);
+            this.btnConfirmar.TabIndex = 8;
+            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.UseVisualStyleBackColor = true;
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // button2
             // 
@@ -101,12 +102,13 @@
             this.ClientSize = new System.Drawing.Size(516, 346);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnConfirmar);
+            this.Controls.Add(this.lblDatosReserva);
+            this.Controls.Add(this.lblDatosCliente);
             this.Controls.Add(this.linkLabel1);
             this.Name = "frmConfirmarReserva";
             this.Text = "Confirmar Reserva";
+            this.Load += new System.EventHandler(this.frmConfirmarReserva_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,10 +116,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDatosCliente;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblDatosReserva;
+        private System.Windows.Forms.Button btnConfirmar;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label3;
     }

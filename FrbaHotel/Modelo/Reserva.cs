@@ -38,6 +38,8 @@ namespace FrbaHotel.Modelo
             set { _id = value;  }
         }
 
+     
+
 
         
     }
