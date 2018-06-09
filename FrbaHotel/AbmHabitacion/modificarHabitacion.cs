@@ -62,7 +62,7 @@ namespace FrbaHotel.AbmHabitacion
             DataTable habitacionElegida = con2.cargarTablaSQL("select ha.numero as 'Numero_Habitacion', ha.piso as 'Piso', ha.descripcion as 'Descripcion'," +
             "t.descripcion 'Tipo_Habitacion', convert(bit,ha.frente) as 'Tiene_vista_al_exterior', convert(bit,habilitado) as 'Esta_habilitada' from" +
                 " WHERE_EN_EL_DELETE_FROM.habitaciones ha join WHERE_EN_EL_DELETE_FROM.habitaciones_tipos t on ha.tipos_id=t.tipo_id  where habitacion_id=" + 
-                comboBoxNumeroHabitacion.SelectedValue);
+                comboBoxNumeroHabitacion.SelectedValue + " and hoteles_id=" + comboBoxHoteles.SelectedValue);
             
             dataGridView1.DataSource = habitacionElegida;
             dataGridView1.Columns[0].Width = 120;
@@ -81,6 +81,8 @@ namespace FrbaHotel.AbmHabitacion
 
         private void VisibilizarComponentes()
         {
+            groupBoxModificarHabitacion.Visible = true;
+            buttonGuardarCambios.Visible = true;
             labelNuevosCambios.Visible = true;
             labelDescripcionNueva.Visible = true;
             labelHotelNuevo.Visible = true;
@@ -103,10 +105,62 @@ namespace FrbaHotel.AbmHabitacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ConexionSQL c = new ConexionSQL();
-            c.cargarTablaSQL("update WHERE_EN_EL_DELETE_FROM.habitaciones set hoteles_id="+comboBoxNuevoHotel.SelectedValue+" descripcion="+textBoxNuevaDescripcion.Text+
-                " frente="+checkBoxTieneVistaExterior.Checked+" habilitado=" + checkBoxEstaHabilitado.Checked + " where habitacion_id=" + comboBoxNumeroHabitacion.SelectedValue);
+            this.UseWaitCursor=true;
+
+            ConexionSQL conBusqueda = new ConexionSQL();
+            DataTable busquedaHab = conBusqueda.cargarTablaSQL("select numero from WHERE_EN_EL_DELETE_FROM.habitaciones where numero=" + comboBoxNumeroHabitacion.SelectedValue
+                + " and hoteles_id=" + comboBoxNuevoHotel.SelectedValue);
+            if (busquedaHab.Rows.Count.Equals(0))
+            {
+                this.ModificarHabitacion();
+            }
+            else 
+            {
+                this.NotificarHabitacionExistente();
+            }
         }
+
+        private void NotificarHabitacionExistente()
+        {
+            labelNotificarError.Visible = true;
+            this.UseWaitCursor = false;
+        }
+
+        private void ModificarHabitacion()
+        {
+            SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+            con1.Open();
+            string select = String.Concat("update WHERE_EN_EL_DELETE_FROM.habitaciones set hoteles_id=@hotel, descripcion=@descripcion, frente=@frente, habilitado=@habilitado where habitacion_id=@id");
+            SqlCommand sqlQuery = new SqlCommand(select);
+            sqlQuery.Connection = con1;
+            sqlQuery.Parameters.Add("@hotel", SqlDbType.Int).Value = comboBoxNuevoHotel.SelectedValue;
+            sqlQuery.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = textBoxNuevaDescripcion.Text;
+            sqlQuery.Parameters.Add("@frente", SqlDbType.Bit).Value = checkBoxTieneVistaExterior.Checked;
+            sqlQuery.Parameters.Add("@habilitado", SqlDbType.Bit).Value = checkBoxEstaHabilitado.Checked;
+            sqlQuery.Parameters.Add("@id", SqlDbType.Int).Value = comboBoxNumeroHabitacion.SelectedValue;
+            int busqueda = sqlQuery.ExecuteNonQuery();
+
+            if (busqueda.Equals(1))
+            {
+                this.UseWaitCursor = false;
+                System.Windows.Forms.MessageBox.Show("¡La modificación se ha efectuado correctamente! La ventana se cerrará al presionar Aceptar");
+                this.Hide();
+            }
+        }
+
+        private void BorrarCamposModificados()
+        {
+            textBoxNuevaDescripcion.Text = "";
+            checkBoxEstaHabilitado.Checked = false;
+            checkBoxTieneVistaExterior.Checked = false;
+        }
+
+        private void labelDescripcionNueva_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
 
     
     }
