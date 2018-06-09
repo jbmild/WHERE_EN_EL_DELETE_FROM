@@ -254,7 +254,7 @@
             this.groupBoxModificarHabitacion.Controls.Add(this.textBoxNuevaDescripcion);
             this.groupBoxModificarHabitacion.Location = new System.Drawing.Point(251, 189);
             this.groupBoxModificarHabitacion.Name = "groupBoxModificarHabitacion";
-            this.groupBoxModificarHabitacion.Size = new System.Drawing.Size(988, 297);
+            this.groupBoxModificarHabitacion.Size = new System.Drawing.Size(1175, 297);
             this.groupBoxModificarHabitacion.TabIndex = 19;
             this.groupBoxModificarHabitacion.TabStop = false;
             this.groupBoxModificarHabitacion.Visible = false;

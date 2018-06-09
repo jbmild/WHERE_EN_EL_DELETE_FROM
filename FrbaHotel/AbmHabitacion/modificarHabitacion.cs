@@ -14,7 +14,8 @@ namespace FrbaHotel.AbmHabitacion
     public partial class modificarHabitacion : Form
     {
         string habitacion_numero;
-
+        MostrarHoteles mHoteles=new MostrarHoteles();
+        MostrarHabitaciones mHabitaciones = new MostrarHabitaciones();
         public modificarHabitacion()
         {
             InitializeComponent();
@@ -22,6 +23,12 @@ namespace FrbaHotel.AbmHabitacion
 
 
         private void comboBoxNuevoHotel_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            this.BuscarPisoParaHotelSeleccionado();
+            
+        }
+
+        private void BuscarPisoParaHotelSeleccionado()
         {
             ConexionSQL c = new ConexionSQL();
             DataTable dtpisosNuevos = c.cargarTablaSQL("select distinct piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id=" +
@@ -32,19 +39,24 @@ namespace FrbaHotel.AbmHabitacion
         }
         private void modificarHabitacion_Load(object sender, EventArgs e)
         {
+            mHoteles.CargarHoteles(this.comboBoxHoteles);
+            //this.CargarHoteles();
+            mHabitaciones.CargarHabitacionesParaHotelElegido(this.comboBoxNumeroHabitacion, this.comboBoxHoteles);
+          //  this.CargarHabitacionesParaHotelElegido();
+         }
+
+        private void CargarHabitacionesParaHotelElegido()
+        {
+            
+        }
+
+        private void CargarHoteles()
+        {
             ConexionSQL c = new ConexionSQL();
             DataTable dt = c.cargarTablaSQL("select direccion, hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles ");
             comboBoxHoteles.DataSource = dt;
             comboBoxHoteles.DisplayMember = "direccion";
             comboBoxHoteles.ValueMember = "hotel_id";
-
-            DataTable dtpisos = c.cargarTablaSQL("select habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id=" + 
-                this.comboBoxHoteles.SelectedValue + " order by numero asc");
-            comboBoxNumeroHabitacion.DataSource = dtpisos;
-            comboBoxNumeroHabitacion.DisplayMember = "numero";
-            comboBoxNumeroHabitacion.ValueMember = "habitacion_id";
-
-
         }
 
         
@@ -97,10 +109,10 @@ namespace FrbaHotel.AbmHabitacion
         private void comboBoxHoteles_SelectedIndexChanged(object sender, EventArgs e)
         {
             ConexionSQL c = new ConexionSQL();
-            DataTable dtpisos = c.cargarTablaSQL("select numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id=" + comboBoxHoteles.SelectedValue);
+            DataTable dtpisos = c.cargarTablaSQL("select numero, habitacion_id from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id=" + comboBoxHoteles.SelectedValue + " order by numero");
             comboBoxNumeroHabitacion.DataSource = dtpisos;
             comboBoxNumeroHabitacion.DisplayMember = "numero";
-            comboBoxNumeroHabitacion.ValueMember = "numero";
+            comboBoxNumeroHabitacion.ValueMember = "habitacion_id";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -112,6 +124,7 @@ namespace FrbaHotel.AbmHabitacion
                 + " and hoteles_id=" + comboBoxNuevoHotel.SelectedValue);
             if (busquedaHab.Rows.Count.Equals(0))
             {
+                labelNotificarError.Visible = false;
                 this.ModificarHabitacion();
             }
             else 
@@ -144,6 +157,12 @@ namespace FrbaHotel.AbmHabitacion
             {
                 this.UseWaitCursor = false;
                 System.Windows.Forms.MessageBox.Show("¡La modificación se ha efectuado correctamente! La ventana se cerrará al presionar Aceptar");
+                this.Hide();
+            }
+            else 
+            {
+                this.UseWaitCursor = false;
+                System.Windows.Forms.MessageBox.Show("ERROR al intentar modificar");
                 this.Hide();
             }
         }
