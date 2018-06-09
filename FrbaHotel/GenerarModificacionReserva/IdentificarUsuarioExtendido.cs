@@ -80,29 +80,23 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void btnReservar_Click(object sender, EventArgs e)
         {
 
-            if (_cli.idCliente == 0)
-            {
-                //Registro nuevo cliente
-            }
-            else { 
-                //UPDATE cliente existente
+         
+            //TODO: agregar tipo documento cuando se agregue en la tabla
+            _cli.nrodocumento = TxtNroDocumento.Text;
+            _cli.nombre = txtNombre.Text;
+            _cli.apellido = txtApellido.Text;
+            _cli.nacionalidad = txtNacionalidad.Text;
+            _cli.email = txtMail.Text;
+            _cli.direccion_calle = txtDireccionCalle.Text;
+            _cli.direccion_numero = txtDireccionNro.Text;
+            _cli.direccion_piso = txtDireccionPiso.Text;
+            _cli.direccion_depto = txtDireccionDepto.Text;
+            _cli.telefono = txtTelefono.Text;
+            _cli.direccion_localidad = txtLocalidad.Text;
+            _cli.direccion_pais = txtPaisVivienda.Text;
 
-                //TODO: agregar tipo documento cuando se agregue en la tabla
-                TxtNroDocumento.Text = _cli.nrodocumento;
-                txtNombre.Text = _cli.nombre;
-                txtApellido.Text = _cli.apellido;
-                txtNacionalidad.Text = _cli.nacionalidad;
-                txtMail.Text = _cli.email;
-                txtDireccionCalle.Text = _cli.direccion_calle;
-                txtDireccionNro.Text = _cli.direccion_numero;
-                txtDireccionPiso.Text = _cli.direccion_piso;
-                txtDireccionDepto.Text = _cli.direccion_depto;
-                txtTelefono.Text = _cli.telefono;
-                txtLocalidad.Text = _cli.direccion_localidad;
-                txtPaisVivienda.Text = _cli.direccion_pais;
+            _cli.guardarCliente(_cli);
 
-            }
-            
             frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva();
             frmConfirmarReserva.Show();
         }

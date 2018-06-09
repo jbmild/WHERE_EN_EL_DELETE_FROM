@@ -164,30 +164,42 @@ namespace FrbaHotel.Modelo
             
         }
 
-        public int modificarCliente(Cliente cli) {
+        public int guardarCliente(Cliente cli) {
 
 
             ConexionSQL conex = new ConexionSQL();
 
-            DataTable dt = conex.cargarTablaSQL(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
+            if (cli.idCliente != 0)
+            {
+                DataTable dt = conex.cargarTablaSQL(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
                                                     mail='" + cli.email + "'," +
-                                                    "nombre='" + cli.nombre + "'," +
-                                                    "apellido='" + cli.apellido + "'," +
-                                                    "telefono='" + cli.telefono + "'," +
-                                                    "pasaporte='" + cli.nrodocumento + "'," +
-                                                    "direccion_calle='" + cli.direccion_calle + "'," +
-                                                    "direccion_nro='" + cli.direccion_numero + "'," +
-                                                    "direccion_piso='" + cli.direccion_piso + "'," +
-                                                    "direccion_depto='" + cli.direccion_depto + "'," +
-                                                    "direccion_localidad='" + cli.direccion_localidad + "'," +
-                                                    "direccion_pais='" + cli.direccion_pais + "'," +
-                                                    "nacionalidad='" + cli.nacionalidad + "'," +
-                                                    "consistente=1 WHERE cliente_id=" + cli.idCliente);
+                                                        "nombre='" + cli.nombre + "'," +
+                                                        "apellido='" + cli.apellido + "'," +
+                                                        "telefono='" + cli.telefono + "'," +
+                                                        "pasaporte='" + cli.nrodocumento + "'," +
+                                                        "direccion_calle='" + cli.direccion_calle + "'," +
+                                                        "direccion_nro='" + cli.direccion_numero + "'," +
+                                                        "direccion_piso='" + cli.direccion_piso + "'," +
+                                                        "direccion_depto='" + cli.direccion_depto + "'," +
+                                                        "direccion_localidad='" + cli.direccion_localidad + "'," +
+                                                        "direccion_pais='" + cli.direccion_pais + "'," +
+                                                        "nacionalidad='" + cli.nacionalidad + "'," +
+                                                        "consistente=1 WHERE cliente_id=" + cli.idCliente);
 
 
-
+            }
+            else {
+                DataTable dt = conex.cargarTablaSQL(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Clientes 
+                                                      (usuarios_id, mail, nombre, apellido, telefono, pasaporte, direccion_calle, direccion_nro, direccion_piso, direccion_depto, direccion_localidad, direccion_pais, nacionalidad, consistente)
+                                                    VALUES(1, '"+
+                                                      cli.email + "', '"+cli.nombre+"','"+cli.apellido+"','"+cli.telefono
+                                                      +"','"+cli.nrodocumento+"','"+cli.direccion_calle+"','"+
+                                                      cli.direccion_nro + "'"
+                                                    )");
+            }
 
             return dt.Rows.Count; //devuelvo cant rows afectadas
         }
+
     }
 }
