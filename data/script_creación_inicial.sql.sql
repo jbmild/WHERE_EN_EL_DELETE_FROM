@@ -165,7 +165,7 @@ SET @FechaActual = GETDATE();
 	/* Habitaciones */
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.habitaciones (	
 		habitacion_id int IDENTITY(1,1) PRIMARY KEY,
-		hoteles_id int NOT NULL,
+		hotel_id int NOT NULL,
 		numero numeric(18,0) NOT NULL,
 		piso smallint,
 	    frente bit,
@@ -173,7 +173,7 @@ SET @FechaActual = GETDATE();
 		habilitado bit,
 		tipos_id int NOT NULL,
 
-		CONSTRAINT FK_Habitaciones_Hotel FOREIGN KEY (hoteles_id) REFERENCES WHERE_EN_EL_DELETE_FROM.hoteles (hotel_id),
+		CONSTRAINT FK_Habitaciones_Hotel FOREIGN KEY (hotel_id) REFERENCES WHERE_EN_EL_DELETE_FROM.hoteles (hotel_id),
 		CONSTRAINT FK_Habitaciones_Tipos FOREIGN KEY (tipos_id) REFERENCES WHERE_EN_EL_DELETE_FROM.habitaciones_tipos (tipo_id)
 	)
 
@@ -476,7 +476,7 @@ SET @FechaActual = GETDATE();
 
 	/* Habitaciones */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.habitaciones (
-		Hoteles_id, 
+		hotel_id, 
 		Numero, 
 		Piso, 
 		Frente, 
@@ -632,7 +632,7 @@ SET @FechaActual = GETDATE();
 			AND ht.descripcion = m.Habitacion_Tipo_Descripcion
 			AND ht.porcentual = m.Habitacion_Tipo_Porcentual
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones ha on
-			h.hotel_id = ha.hoteles_id
+			h.hotel_id = ha.hotel_id
 			AND ha.numero = m.Habitacion_Numero
 			AND ha.piso = m.Habitacion_Piso
 			AND ha.frente = CASE WHEN m.Habitacion_Frente = 'N' THEN 0 ELSE 1 END
