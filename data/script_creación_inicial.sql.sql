@@ -718,31 +718,19 @@ SET @FechaActual = GETDATE();
 		m.Consumible_Codigo, m.Consumible_Descripcion
 
 	/* Consumos */
-	INSERT INTO WHERE_EN_EL_DELETE_FROM.facturas(
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.consumos(
+		habitacion_id,
+		consumible_id,
 		estadia_id,
-		cliente_id,
-		numero,
-		fecha,
-		total,
-		documento_tipo,
-		documento_nro,
-		nacionalidad,
-		direccion,
-		nombre,
-		apellido
+		cantidad,
+		precio_unitario
 	)
 	SELECT
+		h.habitacion_id,
+		con.consumible_id,
 		e.estadia_id,
-		c.cliente_id,
-		m.Factura_Nro,
-		m.Factura_Fecha,
-		m.Factura_Total,
-		c.documento_tipo,
-		c.documento_nro
-		c.nacionalidad,
-		CONCAT(c.direccion_calle, ' ', c.direccion_nro, ' ', c.direccion_piso, c.direccion_depto, ', ', c.direccion_localidad, ', ', c.direccion_pais),
-		c.nombre,
-		c.apellido
+		m.Consumible_Cantidad,
+		con.precio
 	FROM 
 		(
 			SELECT 
@@ -751,22 +739,30 @@ SET @FechaActual = GETDATE();
 				Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches,
 				Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad,
 				Estadia_Fecha_Inicio, Estadia_Cant_Noches,
-				Factura_Nro, Factura_Fecha, Factura_Total
+				Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, 
+				Consumible_Codigo, Consumible_Descripcion, Consumible_Precio, count(1) as Consumible_Cantidad
 			FROM 
 				gd_esquema.Maestra
 			WHERE
-				Factura_Nro IS NOT NULL
-				AND Factura_Fecha IS NOT NULL
-			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad, Estadia_Fecha_Inicio, Estadia_Cant_Noches, Factura_Nro, Factura_Fecha, Factura_Total
+				Consumible_Codigo IS NOT NULL
+			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad, Estadia_Fecha_Inicio, Estadia_Cant_Noches, Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, Consumible_Codigo, Consumible_Descripcion, Consumible_Precio
 		) m
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.Reservas r ON
 			r.codigo = m.Reserva_Codigo
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh ON
+			rh.reserva_id = r.reserva_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones h ON
+			h.habitacion_id = rh.habitacion_id
+			AND h.numero = m.Habitacion_Numero
+			AND h.piso = m.Habitacion_Piso
+			AND h.frente = CASE WHEN m.Habitacion_Frente = 'N' THEN 0 ELSE 1 END
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumibles con ON
+			con.codigo = m.Consumible_Codigo
+			AND con.precio = m.Consumible_Precio
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.Estadias e ON
 			e.reserva_id = r.reserva_id
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.Clientes c ON
 			c.cliente_id = r.cliente_id
-	ORDER BY 
-		m.Factura_Nro
 
 	/* Facturas */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.facturas(
