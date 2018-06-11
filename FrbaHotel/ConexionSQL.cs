@@ -124,6 +124,24 @@ namespace FrbaHotel
             return rowsAffected;
         }
 
+        public void ejecutarComandoSQL(string miCommand)
+        {
+            SqlCommand coman2 = new SqlCommand(string.Format(miCommand), miConexionSQL);
+            this.ejecutarComando(coman2);
+        }
+        public void ejecutarComando(SqlCommand miCommand)
+        {
+            DataTable ds = new DataTable();
+            // REM CONFIGURO EL OBJETO COMMAND
+            this.conectar();
+            // REM INDICO LA CONEXION ACTIVA
+            miCommand.Connection = miConexionSQL;
+            // REM INDICO EL TIPO QUE SE PASARA EN COMMANDTEXT
+            miCommand.CommandType = CommandType.Text;
+
+            miCommand.ExecuteNonQuery();
+            this.desconectar();
+        }
         #endregion
 
         #region "Metodos"

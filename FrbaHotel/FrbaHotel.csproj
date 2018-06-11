@@ -146,11 +146,11 @@
     <Compile Include="ListadoEstadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\View\Form1.cs">
+    <Compile Include="Login\View\Access_user.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Login\View\Access_user.Designer.cs">
+      <DependentUpon>Access_user.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\View\Form2.cs">
       <SubType>Form</SubType>
@@ -215,8 +215,8 @@
     <EmbeddedResource Include="GenerarModificacionReserva\IdentificarUsuarioExtendido.resx">
       <DependentUpon>IdentificarUsuarioExtendido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Login\View\Access_user.resx">
+      <DependentUpon>Access_user.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\View\Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>

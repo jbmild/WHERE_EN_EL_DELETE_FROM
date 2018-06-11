@@ -19,12 +19,13 @@ namespace FrbaHotel.Login
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            Login.View.AccesoUsuarioHotel accesoUsuarioHotel = new Login.View.AccesoUsuarioHotel();
+            accesoUsuarioHotel.Show();
         }
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -34,5 +34,11 @@ namespace FrbaHotel
             AbmHabitacion.abmHabitacionBotones formHabitacion = new AbmHabitacion.abmHabitacionBotones();
            formHabitacion.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Login.SeleccionUsuario seleccionUsuario = new Login.SeleccionUsuario();
+            seleccionUsuario.Show();
+        }
     }
 }
