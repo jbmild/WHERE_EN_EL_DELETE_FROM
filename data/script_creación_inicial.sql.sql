@@ -229,8 +229,8 @@ SET @FechaActual = GETDATE();
 		nombre NVARCHAR(255),
 		apellido NVARCHAR(255),
 		telefono NVARCHAR(255),
-		document_tipo NVARCHAR(255),
-		document_nro NVARCHAR(255),
+		documento_tipo NVARCHAR(255),
+		documento_nro NVARCHAR(255),
 		direccion_calle NVARCHAR(255),
 		direccion_nro NVARCHAR(255),
 		direccion_piso NVARCHAR(255),
@@ -718,6 +718,55 @@ SET @FechaActual = GETDATE();
 		m.Consumible_Codigo, m.Consumible_Descripcion
 
 	/* Consumos */
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.facturas(
+		estadia_id,
+		cliente_id,
+		numero,
+		fecha,
+		total,
+		documento_tipo,
+		documento_nro,
+		nacionalidad,
+		direccion,
+		nombre,
+		apellido
+	)
+	SELECT
+		e.estadia_id,
+		c.cliente_id,
+		m.Factura_Nro,
+		m.Factura_Fecha,
+		m.Factura_Total,
+		c.documento_tipo,
+		c.documento_nro
+		c.nacionalidad,
+		CONCAT(c.direccion_calle, ' ', c.direccion_nro, ' ', c.direccion_piso, c.direccion_depto, ', ', c.direccion_localidad, ', ', c.direccion_pais),
+		c.nombre,
+		c.apellido
+	FROM 
+		(
+			SELECT 
+				Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, 
+				Regimen_Descripcion, Regimen_Precio, 
+				Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches,
+				Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad,
+				Estadia_Fecha_Inicio, Estadia_Cant_Noches,
+				Factura_Nro, Factura_Fecha, Factura_Total
+			FROM 
+				gd_esquema.Maestra
+			WHERE
+				Factura_Nro IS NOT NULL
+				AND Factura_Fecha IS NOT NULL
+			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad, Estadia_Fecha_Inicio, Estadia_Cant_Noches, Factura_Nro, Factura_Fecha, Factura_Total
+		) m
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Reservas r ON
+			r.codigo = m.Reserva_Codigo
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Estadias e ON
+			e.reserva_id = r.reserva_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Clientes c ON
+			c.cliente_id = r.cliente_id
+	ORDER BY 
+		m.Factura_Nro
 
 	/* Facturas */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.facturas(
@@ -740,7 +789,7 @@ SET @FechaActual = GETDATE();
 		m.Factura_Fecha,
 		m.Factura_Total,
 		c.documento_tipo,
-		c.documento_nro
+		c.documento_nro,
 		c.nacionalidad,
 		CONCAT(c.direccion_calle, ' ', c.direccion_nro, ' ', c.direccion_piso, c.direccion_depto, ', ', c.direccion_localidad, ', ', c.direccion_pais),
 		c.nombre,
