@@ -34,7 +34,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -44,11 +43,12 @@
             this.button4 = new System.Windows.Forms.Button();
             this.dtpFechaCheckin = new System.Windows.Forms.DateTimePicker();
             this.dtpFechaCheckout = new System.Windows.Forms.DateTimePicker();
-            this.cmbTipoHab = new System.Windows.Forms.ComboBox();
             this.cmbTipoRegimen = new System.Windows.Forms.ComboBox();
             this.cmbHotel = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.clnSeleccion = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbTipoHab = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +76,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 67);
+            this.label2.Location = new System.Drawing.Point(16, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(174, 13);
             this.label2.TabIndex = 3;
@@ -108,15 +108,6 @@
             this.label5.Size = new System.Drawing.Size(95, 13);
             this.label5.TabIndex = 6;
             this.label5.Text = "* Fecha checkout:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 155);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Tipo Habitacion:";
             // 
             // label7
             // 
@@ -200,14 +191,6 @@
             this.dtpFechaCheckout.Size = new System.Drawing.Size(155, 20);
             this.dtpFechaCheckout.TabIndex = 17;
             // 
-            // cmbTipoHab
-            // 
-            this.cmbTipoHab.FormattingEnabled = true;
-            this.cmbTipoHab.Location = new System.Drawing.Point(111, 153);
-            this.cmbTipoHab.Name = "cmbTipoHab";
-            this.cmbTipoHab.Size = new System.Drawing.Size(123, 21);
-            this.cmbTipoHab.TabIndex = 18;
-            // 
             // cmbTipoRegimen
             // 
             this.cmbTipoRegimen.FormattingEnabled = true;
@@ -244,6 +227,23 @@
             this.clnSeleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clnSeleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clnSeleccion.Width = 88;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(16, 155);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(85, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Tipo Habitacion:";
+            // 
+            // cmbTipoHab
+            // 
+            this.cmbTipoHab.FormattingEnabled = true;
+            this.cmbTipoHab.Location = new System.Drawing.Point(111, 153);
+            this.cmbTipoHab.Name = "cmbTipoHab";
+            this.cmbTipoHab.Size = new System.Drawing.Size(123, 21);
+            this.cmbTipoHab.TabIndex = 18;
             // 
             // FormGenerarModificarReserva
             // 
@@ -287,7 +287,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -297,10 +296,11 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DateTimePicker dtpFechaCheckin;
         private System.Windows.Forms.DateTimePicker dtpFechaCheckout;
-        private System.Windows.Forms.ComboBox cmbTipoHab;
         private System.Windows.Forms.ComboBox cmbTipoRegimen;
         private System.Windows.Forms.ComboBox cmbHotel;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewCheckBoxColumn clnSeleccion;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbTipoHab;
     }
 }

@@ -28,12 +28,11 @@ namespace FrbaHotel.GenerarModificacionReserva
             try
             {
 
-
                 DataTable dt = conexion.cargarTablaSQL("WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles @fdesde='" + dtpFechaCheckin.Value + "'" + 
                                                         ",@fhasta='" + dtpFechaCheckout.Value + "'" +
-                                                        ",@hotel_id=" + cmbHotel.SelectedValue +
-                                                        ",@regimen_id=" + cmbTipoRegimen.SelectedValue +
-                                                        ",@tipoHabitacion_id=" + cmbTipoHab.SelectedValue);
+                                                        ",@hotel_id=" + (cmbHotel.SelectedText.Length == 0 ? "null": cmbHotel.SelectedValue) +
+                                                        ",@regimen_id=" + (cmbTipoRegimen.SelectedText.Length == 0? "null": cmbTipoRegimen.SelectedValue) +
+                                                        ",@tipoHabitacion_id=" + (cmbTipoHab.SelectedText.Length == 0 ? "null" : cmbTipoHab.SelectedValue));
 
                 //Se muestra por pantalla la tabla con los resultados del SELECT
                 dataGridView1.DataSource = dt;
@@ -54,12 +53,14 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void FormGenerarModificarReserva_Load(object sender, EventArgs e)
         {
+            
             ConexionSQL conexion = new ConexionSQL();
+            
             DataTable dt;
             dt = conexion.cargarTablaSQL("select tipo_id, descripcion from WHERE_EN_EL_DELETE_FROM.habitaciones_tipos");
-            //dt.Rows.InsertAt(dt.NewRow(), 0); DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
+            dt.Rows.InsertAt(dt.NewRow(), 0); //DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
             cmbTipoHab.DataSource = dt;
-            //cmbTipoHab.SelectedIndex = 0; DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
+            //cmbTipoHab.SelectedIndex = 0; //DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
 
             cmbTipoHab.DisplayMember = "descripcion";
             cmbTipoHab.ValueMember = "tipo_id";
@@ -67,11 +68,13 @@ namespace FrbaHotel.GenerarModificacionReserva
 
 
             dt = conexion.cargarTablaSQL("select regimen_id, descripcion FROM WHERE_EN_EL_DELETE_FROM.regimenes WHERE habilitado = 1");
+            dt.Rows.InsertAt(dt.NewRow(), 0);
             cmbTipoRegimen.DataSource = dt;
             cmbTipoRegimen.DisplayMember = "descripcion";
             cmbTipoRegimen.ValueMember = "regimen_id";
 
             dt = conexion.cargarTablaSQL("select hotel_id, 'Hotel ' + direccion AS nombre FROM WHERE_EN_EL_DELETE_FROM.hoteles");
+            dt.Rows.InsertAt(dt.NewRow(), 0);
             cmbHotel.DataSource = dt;
             cmbHotel.DisplayMember = "nombre";
             cmbHotel.ValueMember = "hotel_id";
@@ -103,7 +106,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                                                                                         habs));
 
             identificarUsuario.Show();
-            
+
         }
     }
 }

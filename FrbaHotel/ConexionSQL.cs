@@ -40,7 +40,6 @@ namespace FrbaHotel
         public ConexionSQL()
         {
             miConexionSQL = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
-            this.conectar();
 
 
             /*se usa para las conexiones tcp/ip*/
@@ -80,7 +79,7 @@ namespace FrbaHotel
 
             DataTable ds = this.cargarTabla(coman2);
             return ds;
-        }
+        }   
 
         public DataTable cargarTabla(SqlCommand miCommand)
         {

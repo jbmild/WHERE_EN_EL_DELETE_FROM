@@ -167,16 +167,48 @@ namespace FrbaHotel.Modelo
 
         public int guardarCliente(Cliente cli) {
 
-
-            ConexionSQL conex = new ConexionSQL();
             int exito;
-            SqlCommand command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
-                                                mail=@mail,nombre=nombre,apellido=@apellido,telefono=@telefono,
+            SqlCommand command;
+            
+            int usuario_id = 1; //TODO: Leerlo del usuario logueado.
+
+
+
+            if (cli.idCliente != 0)
+            {
+                command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
+                                                mail=@mail,nombre=@nombre,apellido=@apellido,telefono=@telefono,
                                                 pasaporte=@nrodocumento,direccion_calle=@direccion_calle,
                                                 direccion_nro=@direccion_nro,direccion_piso=@direccion_piso,
-                                                
-                                                ");
+                                                direccion_depto=@direccion_depto,direccion_localidad=@direccion_localidad,
+                                                direccion_pais=@direccion_pais,nacionalidad=@nacionalidad,consistente=1
+                                                WHERE cliente_id=@cliente_id");
+            }
+            else
+            {
+                command = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Clientes 
+                                        (usuario_id, mail, nombre, apellido, telefono, pasaporte, direccion_calle, direccion_nro, direccion_piso, direccion_depto, direccion_localidad, direccion_pais, nacionalidad, consistente)
+                                        VALUES(@usuario_id, @mail, @nombre, @apellido, @telefono, @nrodocumento, @direccion_calle, @direccion_nro, @direccion_piso, @direccion_depto, @direccion_localidad, @direccion_pais, @nacionalidad, 1))");
+            }
 
+            command.Connection = ConexionSQL.obtenerConexion();
+            command.Parameters.Add("@usuario_id", SqlDbType.Int).Value = usuario_id;
+            command.Parameters.Add("@mail", SqlDbType.NVarChar).Value = cli.email;
+            command.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = cli.nombre;
+            command.Parameters.Add("@apellido", SqlDbType.NVarChar).Value = cli.apellido;
+            command.Parameters.Add("@telefono", SqlDbType.NVarChar).Value = cli.telefono;
+            command.Parameters.Add("@nrodocumento", SqlDbType.NVarChar).Value = cli.nrodocumento;
+            command.Parameters.Add("@direccion_calle", SqlDbType.NVarChar).Value = cli.direccion_calle;
+            command.Parameters.Add("@direccion_nro", SqlDbType.NVarChar).Value = cli.direccion_numero;
+            command.Parameters.Add("@direccion_piso", SqlDbType.NVarChar).Value = cli.direccion_piso;
+            command.Parameters.Add("@direccion_depto", SqlDbType.NVarChar).Value = cli.direccion_depto;
+            command.Parameters.Add("@direccion_localidad", SqlDbType.NVarChar).Value = cli.direccion_localidad;
+            command.Parameters.Add("@direccion_pais", SqlDbType.NVarChar).Value = cli.direccion_pais;
+            command.Parameters.Add("@nacionalidad", SqlDbType.NVarChar).Value = cli.nacionalidad;
+            command.Parameters.Add("@cliente_id", SqlDbType.NVarChar).Value = cli.idCliente;
+            exito = command.ExecuteNonQuery();
+
+            /*
             if (cli.idCliente != 0)
             {
                 exito = conex.actualizarDatos(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
@@ -206,6 +238,7 @@ namespace FrbaHotel.Modelo
                                                       cli.direccion_numero + "','" + cli._direccion_piso+"',"
                                                     );
             }
+             * */
 
             return exito; //devuelvo cant rows afectadas
         }
