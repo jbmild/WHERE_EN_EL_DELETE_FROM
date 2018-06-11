@@ -824,23 +824,47 @@ SET @FechaActual = GETDATE();
 		cantidad,
 		precio_unitario
 	)
-	SELECT DISTINCT
+	SELECT
 		f.factura_id,
-		con.consumo_id, /* se tendría que comentar JMCARUCCI, pero serian para los consumos */
-		m.Consumible_Codigo,
-		NULL,
-		NULL,
-		0
+		co.consumo_id,
+		con.codigo,
+		con.descripcion,
+		co.cantidad,
+		co.precio_unitario
 	FROM 
-		gd_esquema.Maestra m 
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.facturas f ON
-			f.numero = m.Factura_Nro
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumibles c ON
-			c.codigo = m.Consumible_Codigo
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumos con ON
-			con.consumible_id = c.consumible_id
-	WHERE
-		m.Item_Factura_Cantidad is not null
-		AND m.Item_Factura_Monto is not null
+		(
+			SELECT 
+				Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, 
+				Regimen_Descripcion, Regimen_Precio, 
+				Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches,
+				Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad,
+				Estadia_Fecha_Inicio, Estadia_Cant_Noches,
+				Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, 
+				Consumible_Codigo, Consumible_Descripcion, Consumible_Precio, count(1) as Consumible_Cantidad,
+				Factura_Nro, Factura_Fecha, Factura_Total
+			FROM 
+				gd_esquema.Maestra
+			WHERE
+				Consumible_Codigo IS NOT NULL
+				AND Factura_Nro IS NOT NULL
+				AND Factura_Fecha IS NOT NULL
+			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad, Estadia_Fecha_Inicio, Estadia_Cant_Noches, Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, Consumible_Codigo, Consumible_Descripcion, Consumible_Precio, Factura_Nro, Factura_Fecha, Factura_Total
+		) m
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Reservas r ON
+			r.codigo = m.Reserva_Codigo
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Estadias e ON
+			e.reserva_id = r.reserva_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Facturas f ON
+			f.estadia_id = e.estadia_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Clientes c ON
+			c.cliente_id = r.cliente_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Consumos co ON
+			co.estadia_id = e.estadia_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumibles con ON
+			co.consumible_id = con.consumible_id
+			AND con.codigo = m.Consumible_Codigo
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones h ON
+			h.habitacion_id = co.habitacion_id
+			AND h.numero = m.Habitacion_Numero
 
 /* +++ END +++ Fill data */
