@@ -75,6 +75,8 @@
     <Compile Include="AbmHabitacion\modificarHabitacion.Designer.cs">
       <DependentUpon>modificarHabitacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHabitacion\MostrarHabitaciones.cs" />
+    <Compile Include="AbmHabitacion\MostrarHoteles.cs" />
     <Compile Include="AbmRegimen\ABM_regimen.cs">
       <SubType>Form</SubType>
     </Compile>

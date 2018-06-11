@@ -165,7 +165,7 @@ SET @FechaActual = GETDATE();
 	/* Habitaciones */
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.habitaciones (	
 		habitacion_id int IDENTITY(1,1) PRIMARY KEY,
-		hoteles_id int NOT NULL,
+		hotel_id int NOT NULL,
 		numero numeric(18,0) NOT NULL,
 		piso smallint,
 	    frente bit,
@@ -173,7 +173,7 @@ SET @FechaActual = GETDATE();
 		habilitado bit,
 		tipos_id int NOT NULL,
 
-		CONSTRAINT FK_Habitaciones_Hotel FOREIGN KEY (hoteles_id) REFERENCES WHERE_EN_EL_DELETE_FROM.hoteles (hotel_id),
+		CONSTRAINT FK_Habitaciones_Hotel FOREIGN KEY (hotel_id) REFERENCES WHERE_EN_EL_DELETE_FROM.hoteles (hotel_id),
 		CONSTRAINT FK_Habitaciones_Tipos FOREIGN KEY (tipos_id) REFERENCES WHERE_EN_EL_DELETE_FROM.habitaciones_tipos (tipo_id)
 	)
 
@@ -229,7 +229,8 @@ SET @FechaActual = GETDATE();
 		nombre NVARCHAR(255),
 		apellido NVARCHAR(255),
 		telefono NVARCHAR(255),
-		pasaporte NVARCHAR(255),
+		documento_tipo NVARCHAR(255),
+		documento_nro NVARCHAR(255),
 		direccion_calle NVARCHAR(255),
 		direccion_nro NVARCHAR(255),
 		direccion_piso NVARCHAR(255),
@@ -370,7 +371,8 @@ SET @FechaActual = GETDATE();
 		numero int NOT NULL,
 		fecha datetime NOT NULL,
 		total real NOT NULL,
-		pasaporte NVARCHAR(255) NOT NULL,
+		documento_tipo NVARCHAR(255) NOT NULL,
+		documento_nro NVARCHAR(255) NOT NULL,
 		nacionalidad varchar(255) NOT NULL,
 		direccion NVARCHAR(255) NOT NULL,
 		nombre NVARCHAR(255) NOT NULL,
@@ -476,7 +478,7 @@ SET @FechaActual = GETDATE();
 
 	/* Habitaciones */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.habitaciones (
-		Hoteles_id, 
+		hotel_id, 
 		Numero, 
 		Piso, 
 		Frente, 
@@ -526,7 +528,8 @@ SET @FechaActual = GETDATE();
 		nombre,
 		apellido,
 		telefono,
-		pasaporte,
+		documento_tipo,
+		documento_nro,
 		direccion_calle,
 		direccion_nro,
 		direccion_piso,
@@ -542,6 +545,7 @@ SET @FechaActual = GETDATE();
 		m.Cliente_Nombre,
 		m.Cliente_Apellido,
 		NULL,
+		'pasaporte',
 		m.Cliente_Pasaporte_Nro,
 		m.Cliente_Dom_Calle,
 		m.Cliente_Nro_Calle,
@@ -597,7 +601,7 @@ SET @FechaActual = GETDATE();
 			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad
 		) m
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.clientes cli ON
-			cli.pasaporte = m.Cliente_Pasaporte_Nro 
+			cli.documento_nro = m.Cliente_Pasaporte_Nro 
 			AND  cli.apellido = m.Cliente_Apellido 
 			AND cli.nombre = m.Cliente_Nombre
 			AND cli.direccion_calle = m.Cliente_Dom_Calle
@@ -632,7 +636,7 @@ SET @FechaActual = GETDATE();
 			AND ht.descripcion = m.Habitacion_Tipo_Descripcion
 			AND ht.porcentual = m.Habitacion_Tipo_Porcentual
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones ha on
-			h.hotel_id = ha.hoteles_id
+			h.hotel_id = ha.hotel_id
 			AND ha.numero = m.Habitacion_Numero
 			AND ha.piso = m.Habitacion_Piso
 			AND ha.frente = CASE WHEN m.Habitacion_Frente = 'N' THEN 0 ELSE 1 END
@@ -673,7 +677,7 @@ SET @FechaActual = GETDATE();
 			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad, Estadia_Fecha_Inicio, Estadia_Cant_Noches
 		) m
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.clientes cli ON
-			cli.pasaporte = m.Cliente_Pasaporte_Nro 
+			cli.documento_nro = m.Cliente_Pasaporte_Nro 
 			AND  cli.apellido = m.Cliente_Apellido 
 			AND cli.nombre = m.Cliente_Nombre
 			AND cli.direccion_calle = m.Cliente_Dom_Calle
@@ -714,6 +718,51 @@ SET @FechaActual = GETDATE();
 		m.Consumible_Codigo, m.Consumible_Descripcion
 
 	/* Consumos */
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.consumos(
+		habitacion_id,
+		consumible_id,
+		estadia_id,
+		cantidad,
+		precio_unitario
+	)
+	SELECT
+		h.habitacion_id,
+		con.consumible_id,
+		e.estadia_id,
+		m.Consumible_Cantidad,
+		con.precio
+	FROM 
+		(
+			SELECT 
+				Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, 
+				Regimen_Descripcion, Regimen_Precio, 
+				Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches,
+				Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad,
+				Estadia_Fecha_Inicio, Estadia_Cant_Noches,
+				Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, 
+				Consumible_Codigo, Consumible_Descripcion, Consumible_Precio, count(1) as Consumible_Cantidad
+			FROM 
+				gd_esquema.Maestra
+			WHERE
+				Consumible_Codigo IS NOT NULL
+			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad, Estadia_Fecha_Inicio, Estadia_Cant_Noches, Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, Consumible_Codigo, Consumible_Descripcion, Consumible_Precio
+		) m
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Reservas r ON
+			r.codigo = m.Reserva_Codigo
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh ON
+			rh.reserva_id = r.reserva_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones h ON
+			h.habitacion_id = rh.habitacion_id
+			AND h.numero = m.Habitacion_Numero
+			AND h.piso = m.Habitacion_Piso
+			AND h.frente = CASE WHEN m.Habitacion_Frente = 'N' THEN 0 ELSE 1 END
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumibles con ON
+			con.codigo = m.Consumible_Codigo
+			AND con.precio = m.Consumible_Precio
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Estadias e ON
+			e.reserva_id = r.reserva_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Clientes c ON
+			c.cliente_id = r.cliente_id
 
 	/* Facturas */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.facturas(
@@ -722,7 +771,8 @@ SET @FechaActual = GETDATE();
 		numero,
 		fecha,
 		total,
-		pasaporte,
+		documento_tipo,
+		documento_nro,
 		nacionalidad,
 		direccion,
 		nombre,
@@ -734,7 +784,8 @@ SET @FechaActual = GETDATE();
 		m.Factura_Nro,
 		m.Factura_Fecha,
 		m.Factura_Total,
-		c.pasaporte,
+		c.documento_tipo,
+		c.documento_nro,
 		c.nacionalidad,
 		CONCAT(c.direccion_calle, ' ', c.direccion_nro, ' ', c.direccion_piso, c.direccion_depto, ', ', c.direccion_localidad, ', ', c.direccion_pais),
 		c.nombre,
@@ -773,23 +824,47 @@ SET @FechaActual = GETDATE();
 		cantidad,
 		precio_unitario
 	)
-	SELECT DISTINCT
+	SELECT
 		f.factura_id,
-		con.consumo_id, /* se tendría que comentar JMCARUCCI, pero serian para los consumos */
-		m.Consumible_Codigo,
-		NULL,
-		NULL,
-		0
+		co.consumo_id,
+		con.codigo,
+		con.descripcion,
+		co.cantidad,
+		co.precio_unitario
 	FROM 
-		gd_esquema.Maestra m 
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.facturas f ON
-			f.numero = m.Factura_Nro
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumibles c ON
-			c.codigo = m.Consumible_Codigo
-		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumos con ON
-			con.consumible_id = c.consumible_id
-	WHERE
-		m.Item_Factura_Cantidad is not null
-		AND m.Item_Factura_Monto is not null
+		(
+			SELECT 
+				Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, 
+				Regimen_Descripcion, Regimen_Precio, 
+				Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches,
+				Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad,
+				Estadia_Fecha_Inicio, Estadia_Cant_Noches,
+				Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, 
+				Consumible_Codigo, Consumible_Descripcion, Consumible_Precio, count(1) as Consumible_Cantidad,
+				Factura_Nro, Factura_Fecha, Factura_Total
+			FROM 
+				gd_esquema.Maestra
+			WHERE
+				Consumible_Codigo IS NOT NULL
+				AND Factura_Nro IS NOT NULL
+				AND Factura_Fecha IS NOT NULL
+			GROUP BY Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Hotel_CantEstrella, Hotel_Recarga_Estrella, Regimen_Descripcion, Regimen_Precio, Reserva_Fecha_Inicio, Reserva_Codigo, Reserva_Cant_Noches, Cliente_Pasaporte_Nro, Cliente_Apellido, Cliente_Nombre, Cliente_Fecha_Nac, Cliente_Mail, Cliente_Dom_Calle, Cliente_Nro_Calle, Cliente_Piso, Cliente_Depto, Cliente_Nacionalidad, Estadia_Fecha_Inicio, Estadia_Cant_Noches, Habitacion_Numero, Habitacion_Piso, Habitacion_Frente, Consumible_Codigo, Consumible_Descripcion, Consumible_Precio, Factura_Nro, Factura_Fecha, Factura_Total
+		) m
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Reservas r ON
+			r.codigo = m.Reserva_Codigo
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Estadias e ON
+			e.reserva_id = r.reserva_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Facturas f ON
+			f.estadia_id = e.estadia_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Clientes c ON
+			c.cliente_id = r.cliente_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.Consumos co ON
+			co.estadia_id = e.estadia_id
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.consumibles con ON
+			co.consumible_id = con.consumible_id
+			AND con.codigo = m.Consumible_Codigo
+		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones h ON
+			h.habitacion_id = co.habitacion_id
+			AND h.numero = m.Habitacion_Numero
 
 /* +++ END +++ Fill data */
