@@ -40,5 +40,11 @@ namespace FrbaHotel
             Login.SeleccionUsuario seleccionUsuario = new Login.SeleccionUsuario();
             seleccionUsuario.Show();
         }
+
+        private void registrarEstadiaBtn_Click(object sender, EventArgs e)
+        {
+            RegistrarEstadia.RegistrarEstadia registrarEstadia = new RegistrarEstadia.RegistrarEstadia();
+            registrarEstadia.Show();
+        }
     }
 }

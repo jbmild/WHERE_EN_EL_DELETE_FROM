@@ -176,11 +176,23 @@
     <Compile Include="RegistrarConsumible\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarConsumible\RegistrarEstadia\Form1.cs">
+    <Compile Include="RegistrarEstadia\CheckIn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrarConsumible\RegistrarEstadia\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistrarEstadia\CheckIn.Designer.cs">
+      <DependentUpon>CheckIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEstadia\CheckOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\CheckOut.Designer.cs">
+      <DependentUpon>CheckOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEstadia\RegistrarEstadia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\RegistrarEstadia.Designer.cs">
+      <DependentUpon>RegistrarEstadia.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AbmHabitacion\abmHabitacionBotones.resx">
       <DependentUpon>abmHabitacionBotones.cs</DependentUpon>
@@ -233,6 +245,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistrarEstadia\CheckIn.resx">
+      <DependentUpon>CheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\RegistrarEstadia.resx">
+      <DependentUpon>RegistrarEstadia.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

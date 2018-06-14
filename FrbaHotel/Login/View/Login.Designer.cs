@@ -35,9 +35,10 @@
             // 
             // btnPersonalHotelLogin
             // 
-            this.btnPersonalHotelLogin.Location = new System.Drawing.Point(148, 106);
+            this.btnPersonalHotelLogin.Location = new System.Drawing.Point(111, 86);
+            this.btnPersonalHotelLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPersonalHotelLogin.Name = "btnPersonalHotelLogin";
-            this.btnPersonalHotelLogin.Size = new System.Drawing.Size(164, 46);
+            this.btnPersonalHotelLogin.Size = new System.Drawing.Size(123, 37);
             this.btnPersonalHotelLogin.TabIndex = 0;
             this.btnPersonalHotelLogin.Text = "Personal del hotel";
             this.btnPersonalHotelLogin.UseVisualStyleBackColor = true;
@@ -45,32 +46,36 @@
             // 
             // btnClienteLogin
             // 
-            this.btnClienteLogin.Location = new System.Drawing.Point(148, 174);
+            this.btnClienteLogin.Location = new System.Drawing.Point(111, 141);
+            this.btnClienteLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClienteLogin.Name = "btnClienteLogin";
-            this.btnClienteLogin.Size = new System.Drawing.Size(164, 47);
+            this.btnClienteLogin.Size = new System.Drawing.Size(123, 38);
             this.btnClienteLogin.TabIndex = 1;
             this.btnClienteLogin.Text = "Cliente";
             this.btnClienteLogin.UseVisualStyleBackColor = true;
+            this.btnClienteLogin.Click += new System.EventHandler(this.btnClienteLogin_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(61, 42);
+            this.label1.Location = new System.Drawing.Point(46, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(340, 25);
+            this.label1.Size = new System.Drawing.Size(276, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Para continuar, elija su tipo de usuario";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // SeleccionUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 266);
+            this.ClientSize = new System.Drawing.Size(337, 216);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClienteLogin);
             this.Controls.Add(this.btnPersonalHotelLogin);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SeleccionUsuario";
             this.Text = "Selección de usuario";
             this.Load += new System.EventHandler(this.Login_Load);
