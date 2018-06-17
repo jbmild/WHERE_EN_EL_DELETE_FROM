@@ -25,7 +25,7 @@ namespace FrbaHotel
 
         private void button2_Click(object sender, EventArgs e)
         {
-            GenerarModificacionReserva.FormGenerarModificarReserva formReserva = new GenerarModificacionReserva.FormGenerarModificarReserva();
+            GenerarModificacionReserva.GenerarReservaPrincipal formReserva = new GenerarModificacionReserva.GenerarReservaPrincipal();
             formReserva.Show();
         }
 
