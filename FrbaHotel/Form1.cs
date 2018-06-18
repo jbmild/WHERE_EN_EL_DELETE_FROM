@@ -41,7 +41,7 @@ namespace FrbaHotel
             seleccionUsuario.Show();
         }
 
-        private void registrarEstadiaBtn_Click(object sender, EventArgs e)
+        private void btnRegistrarEstadia_Click(object sender, EventArgs e)
         {
             RegistrarEstadia.RegistrarEstadia registrarEstadia = new RegistrarEstadia.RegistrarEstadia();
             registrarEstadia.Show();
