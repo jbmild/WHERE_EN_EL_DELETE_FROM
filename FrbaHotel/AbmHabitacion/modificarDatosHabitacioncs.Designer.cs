@@ -237,6 +237,7 @@
             this.Controls.Add(this.label3);
             this.Name = "modificarDatosHabitacioncs";
             this.Text = "Modificar datos de habitación";
+            this.Load += new System.EventHandler(this.modificarDatosHabitacioncs_Load);
             this.groupBoxModificarHabitacion.ResumeLayout(false);
             this.groupBoxModificarHabitacion.PerformLayout();
             this.ResumeLayout(false);

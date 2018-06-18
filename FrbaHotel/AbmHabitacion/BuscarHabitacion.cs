@@ -11,7 +11,7 @@ namespace FrbaHotel.AbmHabitacion
         {
             if (p != "")
             {
-                if (b.GetHotel().Equals(false) || b.GetPiso().Equals(false))
+                if (b.GetHotel().Equals(false) && b.GetPiso().Equals(false))
                 {
                     consulta.ConcatToQuery(" where numero=" + Int32.Parse(p.ToString()));
                 }

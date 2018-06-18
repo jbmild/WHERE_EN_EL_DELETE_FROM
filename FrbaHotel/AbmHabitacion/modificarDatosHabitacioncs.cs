@@ -16,5 +16,10 @@ namespace FrbaHotel.AbmHabitacion
         {
             InitializeComponent();
         }
+
+        private void modificarDatosHabitacioncs_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
