@@ -27,8 +27,8 @@ namespace FrbaHotel.AbmHabitacion
             comboBoxHotel.ValueMember = "hotel_id";
 
             /*Buscar pisos dentro del hotel elegido*/
-            DataTable dtPisos = c.cargarTablaSQL("select hoteles_id, piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id='" 
-                + this.comboBoxHotel.SelectedValue + "'" + " " + "group by hoteles_id, piso order by hoteles_id desc, piso desc");
+            DataTable dtPisos = c.cargarTablaSQL("select hotel_id, piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id='" 
+                + this.comboBoxHotel.SelectedValue + "'" + " " + "group by hotel_id, piso order by hotel_id desc, piso desc");
             comboBoxPisoEnHotel.DataSource=dtPisos;
             comboBoxPisoEnHotel.DisplayMember="piso";
             comboBoxPisoEnHotel.ValueMember="piso";
@@ -40,7 +40,7 @@ namespace FrbaHotel.AbmHabitacion
         {
 
             ConexionSQL c = new ConexionSQL();
-            DataTable dtPisos = c.cargarTablaSQL("select hoteles_id, piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id='" +comboBoxHotel.SelectedValue + "'" + " group by hoteles_id, piso order by hoteles_id desc, piso desc");
+            DataTable dtPisos = c.cargarTablaSQL("select hotel_id, piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id='" +comboBoxHotel.SelectedValue + "'" + " group by hotel_id, piso order by hotel_id desc, piso desc");
             comboBoxPisoEnHotel.DataSource = dtPisos;
             comboBoxPisoEnHotel.DisplayMember = "piso";
             comboBoxPisoEnHotel.ValueMember = "piso";
@@ -80,7 +80,7 @@ namespace FrbaHotel.AbmHabitacion
             {
                 SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
                 con1.Open();
-                string select = String.Concat("SELECT ha.numero FROM WHERE_EN_EL_DELETE_FROM.habitaciones ha JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hoteles_id=ho.hotel_id where ",
+                string select = String.Concat("SELECT ha.numero FROM WHERE_EN_EL_DELETE_FROM.habitaciones ha JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id where ",
                     "ho.hotel_id=@hotelBusqueda and ha.numero=@numeroBusqueda");
                 SqlCommand sqlQuery = new SqlCommand(select);
                 sqlQuery.Connection = con1;
@@ -91,7 +91,7 @@ namespace FrbaHotel.AbmHabitacion
                 {
                     SqlConnection con = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
                     con.Open();
-                    string query = String.Concat("INSERT INTO WHERE_EN_EL_DELETE_FROM.habitaciones (hoteles_id, numero, piso, frente, descripcion, habilitado, tipos_id)", " VALUES ( " + "@hotel" + ", " + "@numeroHabitacion" + ", " + "@piso" + ", " + "@vista" + ", " + "@descripcion" + ", " + 1 + ", " + 1 + ")");
+                    string query = String.Concat("INSERT INTO WHERE_EN_EL_DELETE_FROM.habitaciones (hotel_id, numero, piso, frente, descripcion, habilitado, tipos_id)", " VALUES ( " + "@hotel" + ", " + "@numeroHabitacion" + ", " + "@piso" + ", " + "@vista" + ", " + "@descripcion" + ", " + 1 + ", " + 1 + ")");
                     SqlCommand sql = new SqlCommand(query);
                     sql.Connection = con;
                     sql.Parameters.Add("@hotel", SqlDbType.Int).Value = comboBoxHotel.SelectedValue;

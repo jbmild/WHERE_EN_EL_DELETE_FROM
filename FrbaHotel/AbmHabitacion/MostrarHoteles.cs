@@ -17,7 +17,9 @@ namespace FrbaHotel.AbmHabitacion
         {
             ConexionSQL c = new ConexionSQL();
             DataTable dt = c.cargarTablaSQL("select direccion, hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles ");
+            dt.Rows.InsertAt(dt.NewRow(), 0);
             comboBoxHoteles.DataSource = dt;
+            comboBoxHoteles.SelectedIndex = 0;
             comboBoxHoteles.DisplayMember = "direccion";
             comboBoxHoteles.ValueMember = "hotel_id";
         }

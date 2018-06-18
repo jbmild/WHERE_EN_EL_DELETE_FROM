@@ -11,7 +11,7 @@ namespace FrbaHotel.AbmHabitacion
         internal void CargarHabitacionesParaHotelElegido(System.Windows.Forms.ComboBox comboBoxNumeroHabitacion, System.Windows.Forms.ComboBox comboBoxHoteles)
         {
             ConexionSQL c = new ConexionSQL();
-            DataTable dtpisos = c.cargarTablaSQL("select habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hoteles_id=" +
+            DataTable dtpisos = c.cargarTablaSQL("select habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" +
                comboBoxHoteles.SelectedValue + " order by numero asc");
             comboBoxNumeroHabitacion.DataSource = dtpisos;
             comboBoxNumeroHabitacion.DisplayMember = "numero";

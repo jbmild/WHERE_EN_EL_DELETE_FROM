@@ -28,7 +28,7 @@ namespace FrbaHotel.AbmHabitacion
 
             
             DataTable dtHabitaciones = c.cargarTablaSQL("select numero from WHERE_EN_EL_DELETE_FROM.habitaciones ha" +
-                " JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hoteles_id=ho.hotel_id and ho.hotel_id='" + comboBoxHoteles.SelectedValue + "'" +
+                " JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id and ho.hotel_id='" + comboBoxHoteles.SelectedValue + "'" +
                 " order by 1 asc");
             comboBoxNumeroHabitacion.DataSource = dtHabitaciones;
             comboBoxNumeroHabitacion.DisplayMember = "numero";
@@ -40,7 +40,7 @@ namespace FrbaHotel.AbmHabitacion
 
             SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
             con1.Open();
-            string up = "UPDATE WHERE_EN_EL_DELETE_FROM.habitaciones set habilitado=@value where numero= @habitacion and hoteles_id=@hotel";
+            string up = "UPDATE WHERE_EN_EL_DELETE_FROM.habitaciones set habilitado=@value where numero= @habitacion and hotel_id=@hotel";
             SqlCommand sqlQuery = new SqlCommand(up);
             sqlQuery.Connection = con1;
             sqlQuery.Parameters.Add("@habitacion", SqlDbType.Int).Value = comboBoxNumeroHabitacion.SelectedValue;
