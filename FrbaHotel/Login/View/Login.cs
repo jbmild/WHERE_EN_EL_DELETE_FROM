@@ -32,5 +32,10 @@ namespace FrbaHotel.Login
         {
 
         }
+
+        private void btnClienteLogin_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

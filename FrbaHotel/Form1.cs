@@ -25,7 +25,7 @@ namespace FrbaHotel
 
         private void button2_Click(object sender, EventArgs e)
         {
-            GenerarModificacionReserva.FormGenerarModificarReserva formReserva = new GenerarModificacionReserva.FormGenerarModificarReserva();
+            GenerarModificacionReserva.GenerarReservaPrincipal formReserva = new GenerarModificacionReserva.GenerarReservaPrincipal();
             formReserva.Show();
         }
 
@@ -39,6 +39,18 @@ namespace FrbaHotel
         {
             Login.SeleccionUsuario seleccionUsuario = new Login.SeleccionUsuario();
             seleccionUsuario.Show();
+        }
+
+        private void btnRegistrarEstadia_Click(object sender, EventArgs e)
+        {
+            RegistrarEstadia.RegistrarEstadia registrarEstadia = new RegistrarEstadia.RegistrarEstadia();
+            registrarEstadia.Show();
+        }
+
+        private void btnRoles_Click(object sender, EventArgs e)
+        {
+            Roles.frmRolesListado frmListado = new Roles.frmRolesListado();
+            frmListado.Show();
         }
     }
 }

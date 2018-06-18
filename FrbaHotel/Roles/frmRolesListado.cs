@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.AbmHabitacion
+namespace FrbaHotel.Roles
 {
-    public partial class modificarHabitacion : Form
+    public partial class frmRolesListado : Form
     {
-        public modificarHabitacion()
+        public frmRolesListado()
         {
             InitializeComponent();
+        }
+
+        private void frmRolesGrid_Load(object sender, EventArgs e)
+        {
+            this.dgwRoles.DataSource = Roles.Modelo.Roles.obtener();
         }
     }
 }

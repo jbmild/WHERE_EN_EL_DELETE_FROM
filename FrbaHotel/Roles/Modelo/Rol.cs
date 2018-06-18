@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrbaHotel.Modelo
+namespace FrbaHotel.Roles.Modelo
 {
-    public class TipoHabitacion
+    class Rol
     {
-        
     }
 }

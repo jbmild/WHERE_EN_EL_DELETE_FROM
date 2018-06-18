@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.AbmHabitacion
+namespace FrbaHotel.RegistrarEstadia
 {
-    public partial class modificarHabitacionElegida : Form
+    public partial class CheckOut : Form
     {
-        public modificarHabitacionElegida()
+        public CheckOut()
         {
             InitializeComponent();
         }

@@ -110,11 +110,11 @@
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Regimenes.cs" />
-    <Compile Include="AbmRol\Form1.cs">
+    <Compile Include="Roles\frmRolesListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Roles\frmRolesListado.Designer.cs">
+      <DependentUpon>frmRolesListado.cs</DependentUpon>
     </Compile>
     <Compile Include="CancelarReserva\Form1.cs">
       <SubType>Form</SubType>
@@ -128,6 +128,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\GenerarReservaPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\GenerarReservaPrincipal.Designer.cs">
+      <DependentUpon>GenerarReservaPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="GenerarModificacionReserva\IdentificarUsuarioExtendido.cs">
       <SubType>Form</SubType>
@@ -177,6 +183,8 @@
     <Compile Include="Login\View\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modelo\TipoRegimen.cs" />
+    <Compile Include="Modelo\Hotel.cs" />
     <Compile Include="Modelo\Cliente.cs" />
     <Compile Include="Modelo\Habitacion.cs" />
     <Compile Include="Modelo\Reserva.cs" />
@@ -189,12 +197,26 @@
     <Compile Include="RegistrarConsumible\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrarConsumible\RegistrarEstadia\Form1.cs">
+    <Compile Include="RegistrarEstadia\CheckIn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrarConsumible\RegistrarEstadia\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistrarEstadia\CheckIn.Designer.cs">
+      <DependentUpon>CheckIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="RegistrarEstadia\CheckOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\CheckOut.Designer.cs">
+      <DependentUpon>CheckOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEstadia\RegistrarEstadia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\RegistrarEstadia.Designer.cs">
+      <DependentUpon>RegistrarEstadia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Roles\Modelo\Rol.cs" />
+    <Compile Include="Roles\Modelo\Roles.cs" />
     <EmbeddedResource Include="AbmHabitacion\abmHabitacionBotones.resx">
       <DependentUpon>abmHabitacionBotones.cs</DependentUpon>
     </EmbeddedResource>
@@ -221,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\ConfirmarReserva.resx">
       <DependentUpon>ConfirmarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\GenerarReservaPrincipal.resx">
+      <DependentUpon>GenerarReservaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\FormGenerarModificarReserva.resx">
       <DependentUpon>FormGenerarModificarReserva.cs</DependentUpon>
@@ -249,6 +274,15 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistrarEstadia\CheckIn.resx">
+      <DependentUpon>CheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\RegistrarEstadia.resx">
+      <DependentUpon>RegistrarEstadia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles\frmRolesListado.resx">
+      <DependentUpon>frmRolesListado.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -260,7 +294,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

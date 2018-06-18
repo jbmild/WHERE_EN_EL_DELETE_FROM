@@ -86,26 +86,54 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            
             List <Habitacion> habs = new List<Habitacion>();
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
-                    habs.Add(new Habitacion(Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[3].Value)));
-                    //Mandar datos res{erva a pantalla Ingreso datos cliente
+                    habs.Add(new Habitacion(Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[3].Value),
+                                                Convert.ToInt32(row.Cells[0].Value)));
+                    //Mandar datos reserva a pantalla Ingreso datos cliente
                 }
 
             }
+
+
+            GenerarReservaPrincipal f2 = null;
+            for (int i = 0; i < Application.OpenForms.Count; i++)
+            {
+                if (Application.OpenForms[i] is GenerarReservaPrincipal)
+                {
+                    f2 = (GenerarReservaPrincipal) Application.OpenForms[i];
+                    break;
+                }
+            }
+
+            if (f2 == null)
+                f2 = new GenerarReservaPrincipal();
+
+            f2.pasarReserva(new Reserva(dtpFechaCheckin.Value, dtpFechaCheckout.Value,
+                                                                0,
+                                                                0, // Completar total de todas las habs
+                                                                Convert.ToInt32(cmbTipoRegimen.SelectedValue),
+                                                                Convert.ToInt32(cmbHotel.SelectedValue),
+                                                                habs));
+
+            ((GenerarReservaPrincipal)this.Owner).GenerarReservaPrincipal_Load(sender, e);
+            this.Close();
+            f2.Show();
+
+            /*
             IdentificarUsuario identificarUsuario = new IdentificarUsuario(new Reserva(dtpFechaCheckin.Value,
                                                                                         dtpFechaCheckout.Value,
                                                                                         0, // Completar total de todas las habs
                                                                                         Convert.ToInt32(cmbTipoRegimen.SelectedValue),
                                                                                         Convert.ToInt32(cmbHotel.SelectedValue),
                                                                                         habs));
+            */
+            
 
-            identificarUsuario.Show();
 
         }
     }

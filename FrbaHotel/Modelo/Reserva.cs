@@ -23,9 +23,10 @@ namespace FrbaHotel.Modelo
         //completar atributos
 
         //nueva reserva
-        public Reserva(DateTime fd, DateTime fh, decimal total, int regimen_id, int hotel_id, List<Habitacion> habitaciones) {
+        public Reserva(DateTime fd, DateTime fh, int cliente_id, decimal total, int regimen_id, int hotel_id, List<Habitacion> habitaciones) {
             _fecha_desde = fd;
             _fecha_hasta = fh;
+            _cliente_id = cliente_id;
             _total = total;
             _regimen_id = regimen_id;
             _hotel_id = hotel_id;
@@ -38,9 +39,41 @@ namespace FrbaHotel.Modelo
             set { _id = value;  }
         }
 
-     
+        public DateTime fecha_desde {
+            get { return _fecha_desde; }
+            set { _fecha_desde = value; }
+        }
 
+        public DateTime fecha_hasta
+        {
+            get { return _fecha_hasta; }
+            set { _fecha_hasta = value; }
+        }
 
-        
+        public int cliente_id {
+            get { return _cliente_id; }
+            set { _cliente_id = value; }
+        }
+
+        public decimal total {
+            get { return _total; }
+            set { _total = value; }
+        }
+
+        public int regimen_id {
+            get { return _regimen_id; }
+            set { _regimen_id = value; }
+        }
+
+        public int hotel_id
+        {
+            get { return _hotel_id; }
+            set { _hotel_id = value; }
+        }
+
+        public List<Habitacion> habitaciones {
+            get { return _habitaciones; }
+            set { _habitaciones = value; }
+        }
     }
 }
