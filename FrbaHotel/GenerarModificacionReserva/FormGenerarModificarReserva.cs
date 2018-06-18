@@ -92,13 +92,13 @@ namespace FrbaHotel.GenerarModificacionReserva
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
-                    habs.Add(new Habitacion(Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[3].Value)));
+                    habs.Add(new Habitacion(Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[3].Value),
+                                                Convert.ToInt32(row.Cells[0].Value)));
                     //Mandar datos reserva a pantalla Ingreso datos cliente
                 }
 
             }
 
-            this.Close();
 
             GenerarReservaPrincipal f2 = null;
             for (int i = 0; i < Application.OpenForms.Count; i++)
@@ -114,10 +114,14 @@ namespace FrbaHotel.GenerarModificacionReserva
                 f2 = new GenerarReservaPrincipal();
 
             f2.pasarReserva(new Reserva(dtpFechaCheckin.Value, dtpFechaCheckout.Value,
+                                                                0,
                                                                 0, // Completar total de todas las habs
                                                                 Convert.ToInt32(cmbTipoRegimen.SelectedValue),
                                                                 Convert.ToInt32(cmbHotel.SelectedValue),
                                                                 habs));
+
+            ((GenerarReservaPrincipal)this.Owner).GenerarReservaPrincipal_Load(sender, e);
+            this.Close();
             f2.Show();
 
             /*

@@ -25,16 +25,28 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        public void GenerarReservaPrincipal_Load(object sender, EventArgs e)
         {
-            /*
-            ConexionSQL sql = new ConexionSQL();  
-            this.lblHotel.Text = this.reserva.hotel_id
-             */
+            if (reserva != null) {
+                this.lblHotel.Text = this.lblHotel.Text.Replace("{hotel}", (new Hotel()).getNombreById(reserva.hotel_id));
+                this.lblFechaDesde.Text = this.lblFechaDesde.Text.Replace("{checkin}", reserva.fecha_desde.ToShortDateString());
+                this.lblFechaHasta.Text = this.lblFechaHasta.Text.Replace("{checkout}", reserva.fecha_hasta.ToShortDateString());
+                this.lblTipoRegimen.Text = this.lblTipoRegimen.Text.Replace("{regimen}", (new TipoRegimen()).getDescripcionById(reserva.regimen_id));
+                
+                String strHabitaciones = String.Empty;
+                foreach (Habitacion hab in reserva.habitaciones) {
+                    strHabitaciones += hab.numero.ToString() + ", ";
+                }
+                txtNrosHabitaciones.Text = strHabitaciones.Substring(0, strHabitaciones.Length - 2);
+                
+            }
+            
+            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
+
 
         }
 
@@ -62,7 +74,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             if (f2 == null)
                 f2 = new FormGenerarModificarReserva();
-
+            f2.Owner = this;
             f2.Show();
         }
 

@@ -71,7 +71,7 @@ namespace FrbaHotel.Modelo
             set { _hotel_id = value; }
         }
 
-        private List<Habitacion> habitaciones {
+        public List<Habitacion> habitaciones {
             get { return _habitaciones; }
             set { _habitaciones = value; }
         }

@@ -36,10 +36,10 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.lblTipoRegimen = new System.Windows.Forms.Label();
-            this.lblFechHasta = new System.Windows.Forms.Label();
+            this.lblFechaHasta = new System.Windows.Forms.Label();
             this.lblFechaDesde = new System.Windows.Forms.Label();
             this.btnBuscarHabitaciones = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtNrosHabitaciones = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtMail = new System.Windows.Forms.TextBox();
@@ -90,10 +90,10 @@
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.lblTipoRegimen);
-            this.groupBox1.Controls.Add(this.lblFechHasta);
+            this.groupBox1.Controls.Add(this.lblFechaHasta);
             this.groupBox1.Controls.Add(this.lblFechaDesde);
             this.groupBox1.Controls.Add(this.btnBuscarHabitaciones);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.txtNrosHabitaciones);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(11, 114);
             this.groupBox1.Name = "groupBox1";
@@ -130,21 +130,21 @@
             // lblTipoRegimen
             // 
             this.lblTipoRegimen.AutoSize = true;
-            this.lblTipoRegimen.Location = new System.Drawing.Point(185, 97);
+            this.lblTipoRegimen.Location = new System.Drawing.Point(263, 102);
             this.lblTipoRegimen.Name = "lblTipoRegimen";
             this.lblTipoRegimen.Size = new System.Drawing.Size(137, 13);
             this.lblTipoRegimen.TabIndex = 7;
             this.lblTipoRegimen.Text = "Tipo de regimen: {regimen} ";
             // 
-            // lblFechHasta
+            // lblFechaHasta
             // 
-            this.lblFechHasta.AutoSize = true;
-            this.lblFechHasta.Location = new System.Drawing.Point(185, 70);
-            this.lblFechHasta.Name = "lblFechHasta";
-            this.lblFechHasta.Size = new System.Drawing.Size(127, 13);
-            this.lblFechHasta.TabIndex = 5;
-            this.lblFechHasta.Text = "Fecha Hasta: {checkout}";
-            this.lblFechHasta.Click += new System.EventHandler(this.label6_Click);
+            this.lblFechaHasta.AutoSize = true;
+            this.lblFechaHasta.Location = new System.Drawing.Point(263, 70);
+            this.lblFechaHasta.Name = "lblFechaHasta";
+            this.lblFechaHasta.Size = new System.Drawing.Size(127, 13);
+            this.lblFechaHasta.TabIndex = 5;
+            this.lblFechaHasta.Text = "Fecha Hasta: {checkout}";
+            this.lblFechaHasta.Click += new System.EventHandler(this.label6_Click);
             // 
             // lblFechaDesde
             // 
@@ -165,13 +165,13 @@
             this.btnBuscarHabitaciones.UseVisualStyleBackColor = true;
             this.btnBuscarHabitaciones.Click += new System.EventHandler(this.btnBuscarHabitaciones_Click);
             // 
-            // textBox1
+            // txtNrosHabitaciones
             // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(266, 27);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(105, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtNrosHabitaciones.Enabled = false;
+            this.txtNrosHabitaciones.Location = new System.Drawing.Point(266, 27);
+            this.txtNrosHabitaciones.Name = "txtNrosHabitaciones";
+            this.txtNrosHabitaciones.Size = new System.Drawing.Size(105, 20);
+            this.txtNrosHabitaciones.TabIndex = 1;
             // 
             // label3
             // 
@@ -280,7 +280,7 @@
             this.Controls.Add(this.label1);
             this.Name = "GenerarReservaPrincipal";
             this.Text = "Generar Reserva";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            this.Load += new System.EventHandler(this.GenerarReservaPrincipal_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -297,10 +297,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblTipoRegimen;
-        private System.Windows.Forms.Label lblFechHasta;
+        private System.Windows.Forms.Label lblFechaHasta;
         private System.Windows.Forms.Label lblFechaDesde;
         private System.Windows.Forms.Button btnBuscarHabitaciones;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtNrosHabitaciones;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label lbEmail;

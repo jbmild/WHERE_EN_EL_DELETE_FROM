@@ -17,15 +17,21 @@ namespace FrbaHotel.Modelo
         private bool _habilitado;
         private int _tipo;
 
-        public Habitacion(int id, int hotel_id){
+        public Habitacion(int id, int hotel_id, int numero){
             _id = id;
             _hotel_id = hotel_id;
+            _numero = numero;
 
         }
 
         public int id {
             get { return _id; }
             set { _id = value; }
+        }
+
+        public int numero {
+            get { return _numero; }
+            set { _numero = value; }
         }
     }
 
