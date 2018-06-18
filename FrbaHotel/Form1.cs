@@ -46,5 +46,11 @@ namespace FrbaHotel
             RegistrarEstadia.RegistrarEstadia registrarEstadia = new RegistrarEstadia.RegistrarEstadia();
             registrarEstadia.Show();
         }
+
+        private void btnRoles_Click(object sender, EventArgs e)
+        {
+            Roles.frmRolesListado frmListado = new Roles.frmRolesListado();
+            frmListado.Show();
+        }
     }
 }

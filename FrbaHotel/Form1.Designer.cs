@@ -33,6 +33,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnRegistrarEstadia = new System.Windows.Forms.Button();
+            this.btnRoles = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -90,11 +91,22 @@
             this.btnRegistrarEstadia.UseVisualStyleBackColor = true;
             this.btnRegistrarEstadia.Click += new System.EventHandler(this.btnRegistrarEstadia_Click);
             // 
+            // btnRoles
+            // 
+            this.btnRoles.Location = new System.Drawing.Point(509, 109);
+            this.btnRoles.Name = "btnRoles";
+            this.btnRoles.Size = new System.Drawing.Size(240, 85);
+            this.btnRoles.TabIndex = 5;
+            this.btnRoles.Text = "Roles";
+            this.btnRoles.UseVisualStyleBackColor = true;
+            this.btnRoles.Click += new System.EventHandler(this.btnRoles_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 392);
+            this.Controls.Add(this.btnRoles);
             this.Controls.Add(this.btnRegistrarEstadia);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -115,6 +127,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnRegistrarEstadia;
+        private System.Windows.Forms.Button btnRoles;
     }
 }
 

@@ -97,11 +97,11 @@
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Regimenes.cs" />
-    <Compile Include="AbmRol\Form1.cs">
+    <Compile Include="Roles\frmRolesListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmRol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Roles\frmRolesListado.Designer.cs">
+      <DependentUpon>frmRolesListado.cs</DependentUpon>
     </Compile>
     <Compile Include="CancelarReserva\Form1.cs">
       <SubType>Form</SubType>
@@ -202,6 +202,8 @@
     <Compile Include="RegistrarEstadia\RegistrarEstadia.Designer.cs">
       <DependentUpon>RegistrarEstadia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Roles\Modelo\Rol.cs" />
+    <Compile Include="Roles\Modelo\Roles.cs" />
     <EmbeddedResource Include="AbmHabitacion\abmHabitacionBotones.resx">
       <DependentUpon>abmHabitacionBotones.cs</DependentUpon>
     </EmbeddedResource>
@@ -261,6 +263,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\RegistrarEstadia.resx">
       <DependentUpon>RegistrarEstadia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles\frmRolesListado.resx">
+      <DependentUpon>frmRolesListado.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
