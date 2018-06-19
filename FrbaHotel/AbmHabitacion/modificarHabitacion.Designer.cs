@@ -99,12 +99,12 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
-            this.dataGridView1.Location = new System.Drawing.Point(561, 38);
+            this.dataGridView1.Location = new System.Drawing.Point(501, 38);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1153, 338);
+            this.dataGridView1.Size = new System.Drawing.Size(1312, 338);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -243,11 +243,11 @@
             // labelExteriorError
             // 
             this.labelExteriorError.AutoSize = true;
-            this.labelExteriorError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelExteriorError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelExteriorError.ForeColor = System.Drawing.Color.Red;
             this.labelExteriorError.Location = new System.Drawing.Point(327, 174);
             this.labelExteriorError.Name = "labelExteriorError";
-            this.labelExteriorError.Size = new System.Drawing.Size(210, 25);
+            this.labelExteriorError.Size = new System.Drawing.Size(158, 18);
             this.labelExteriorError.TabIndex = 36;
             this.labelExteriorError.Text = "Seleccione una opción";
             this.labelExteriorError.Visible = false;
@@ -255,11 +255,11 @@
             // labelHabilitadoError
             // 
             this.labelHabilitadoError.AutoSize = true;
-            this.labelHabilitadoError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHabilitadoError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHabilitadoError.ForeColor = System.Drawing.Color.Red;
             this.labelHabilitadoError.Location = new System.Drawing.Point(327, 218);
             this.labelHabilitadoError.Name = "labelHabilitadoError";
-            this.labelHabilitadoError.Size = new System.Drawing.Size(210, 25);
+            this.labelHabilitadoError.Size = new System.Drawing.Size(158, 18);
             this.labelHabilitadoError.TabIndex = 37;
             this.labelHabilitadoError.Text = "Seleccione una opción";
             this.labelHabilitadoError.Visible = false;
@@ -293,7 +293,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1745, 514);
+            this.ClientSize = new System.Drawing.Size(1876, 514);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelHabilitadoError);

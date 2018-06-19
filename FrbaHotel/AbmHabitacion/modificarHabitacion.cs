@@ -77,8 +77,9 @@ namespace FrbaHotel.AbmHabitacion
                 ConexionSQL con2 = new ConexionSQL();
                 Consulta consulta = new Consulta();
                 consulta.ConcatToQuery("select ha.numero as 'Numero_Habitacion', ha.piso as 'Piso', ha.descripcion as 'Descripcion'," +
-              "t.descripcion 'Tipo_Habitacion', convert(bit,ha.frente) as 'Tiene_vista_al_exterior', convert(bit,habilitado) as 'Esta_habilitada' from" +
-                  " WHERE_EN_EL_DELETE_FROM.habitaciones ha join WHERE_EN_EL_DELETE_FROM.habitaciones_tipos t on ha.tipos_id=t.tipo_id");
+              "t.descripcion 'Tipo_Habitacion', convert(bit,ha.frente) as 'Tiene_vista_al_exterior', convert(bit,habilitado) as 'Esta_habilitada', ho.direccion as 'Direccion' from" +
+                  " WHERE_EN_EL_DELETE_FROM.habitaciones ha join WHERE_EN_EL_DELETE_FROM.habitaciones_tipos t on ha.tipos_id=t.tipo_id join WHERE_EN_EL_DELETE_FROM.hoteles ho" +
+                  " on ho.hotel_id=ha.hotel_id ");
 
                 BuscarHotel bHotel = new BuscarHotel();
                 BuscarPiso bPiso = new BuscarPiso();
@@ -105,6 +106,7 @@ namespace FrbaHotel.AbmHabitacion
                 dataGridView1.Columns[0].Width = 120;
                 dataGridView1.Columns[1].Width = 30;
                 dataGridView1.Columns[4].Width = 130;
+                dataGridView1.AllowUserToAddRows = false;
 
             }
             else 
@@ -286,7 +288,8 @@ namespace FrbaHotel.AbmHabitacion
                 habitacion.SetPiso(Int32.Parse(selectedRow.Cells[2].Value.ToString()));
                 habitacion.SetDescripcion(selectedRow.Cells[3].Value.ToString());
                 habitacion.SetTipo(selectedRow.Cells[4].Value.ToString());
-                habitacion.SetDireccion(this.comboBoxHoteles.Text);
+                habitacion.SetDireccion(selectedRow.Cells[7].Value.ToString());
+                
                 if (selectedRow.Cells[5].Value.Equals(true))
                 {
                     tieneVista = 1;

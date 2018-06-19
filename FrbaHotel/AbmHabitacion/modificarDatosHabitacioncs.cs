@@ -23,29 +23,33 @@ namespace FrbaHotel.AbmHabitacion
         }
         public void  RecibirHabitacion(HabitacionElegida habitacion) 
         {
-            this.textBoxActualHotel.Text = habitacion.GetDireccion().ToString();
-            this.textBoxActualPiso.Text = habitacion.GetPiso().ToString();
-            this.textBoxActualDescripcion.Text = habitacion.GetDescripcion().ToString();
-            if (habitacion.GetHabilitado().Equals(1))
+            this.labelHotelActual.Text = habitacion.GetDireccion().ToString();
+            this.labelPisoEnHotel.Text = habitacion.GetPiso().ToString();
+            if (habitacion.GetDescripcion().ToString().Equals(""))
             {
-                this.checkBoxEstaHabilitadoActualmente.Checked = true;
+                this.labelDescripcionActual.Text = "(vacio)";
             }
             else 
             {
-                this.checkBoxNoEstaHabilitadoActualmente.Checked = true;
+                this.labelDescripcionActual.Text = habitacion.GetDescripcion().ToString();
+            }
+            
+            if (habitacion.GetHabilitado().Equals(1))
+            {
+                this.labelHabilitadoActualmente.Text="Sí";
+            }
+            else 
+            {
+                this.labelHabilitadoActualmente.Text="No";
             }
             if (habitacion.GetVista().Equals(1))
             {
-                this.checkBoxTieneVistaExteriorActualmente.Checked = true;
+                this.labelTieneVistaExterior.Text="Sí";
             }
             else 
             {
-                this.checkBoxNoTieneVistaExteriorActualmente.Checked = true;
+                this.labelTieneVistaExterior.Text = "No";
             }
-            this.checkBoxEstaHabilitadoActualmente.Enabled = false;
-            this.checkBoxNoEstaHabilitadoActualmente.Enabled = false;
-            this.checkBoxTieneVistaExteriorActualmente.Enabled = false;
-            this.checkBoxNoTieneVistaExteriorActualmente.Enabled = false;
-        }
+            }
     }
 }

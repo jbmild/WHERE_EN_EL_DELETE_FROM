@@ -42,15 +42,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBoxActualHotel = new System.Windows.Forms.TextBox();
-            this.textBoxActualPiso = new System.Windows.Forms.TextBox();
-            this.textBoxActualDescripcion = new System.Windows.Forms.TextBox();
-            this.checkBoxTieneVistaExteriorActualmente = new System.Windows.Forms.CheckBox();
-            this.checkBoxNoTieneVistaExteriorActualmente = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.checkBoxNoEstaHabilitadoActualmente = new System.Windows.Forms.CheckBox();
-            this.checkBoxEstaHabilitadoActualmente = new System.Windows.Forms.CheckBox();
+            this.labelHotelActual = new System.Windows.Forms.Label();
+            this.labelPisoEnHotel = new System.Windows.Forms.Label();
+            this.labelDescripcionActual = new System.Windows.Forms.Label();
+            this.labelTieneVistaExterior = new System.Windows.Forms.Label();
+            this.labelHabilitadoActualmente = new System.Windows.Forms.Label();
             this.groupBoxModificarHabitacion.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -205,55 +203,6 @@
             this.label3.TabIndex = 21;
             this.label3.Text = "Descripcion actual:";
             // 
-            // textBoxActualHotel
-            // 
-            this.textBoxActualHotel.Enabled = false;
-            this.textBoxActualHotel.Location = new System.Drawing.Point(207, 27);
-            this.textBoxActualHotel.Name = "textBoxActualHotel";
-            this.textBoxActualHotel.Size = new System.Drawing.Size(285, 22);
-            this.textBoxActualHotel.TabIndex = 22;
-            // 
-            // textBoxActualPiso
-            // 
-            this.textBoxActualPiso.Enabled = false;
-            this.textBoxActualPiso.Location = new System.Drawing.Point(207, 79);
-            this.textBoxActualPiso.Name = "textBoxActualPiso";
-            this.textBoxActualPiso.Size = new System.Drawing.Size(100, 22);
-            this.textBoxActualPiso.TabIndex = 23;
-            // 
-            // textBoxActualDescripcion
-            // 
-            this.textBoxActualDescripcion.Enabled = false;
-            this.textBoxActualDescripcion.Location = new System.Drawing.Point(207, 123);
-            this.textBoxActualDescripcion.Multiline = true;
-            this.textBoxActualDescripcion.Name = "textBoxActualDescripcion";
-            this.textBoxActualDescripcion.Size = new System.Drawing.Size(285, 57);
-            this.textBoxActualDescripcion.TabIndex = 24;
-            // 
-            // checkBoxTieneVistaExteriorActualmente
-            // 
-            this.checkBoxTieneVistaExteriorActualmente.AutoSize = true;
-            this.checkBoxTieneVistaExteriorActualmente.Enabled = false;
-            this.checkBoxTieneVistaExteriorActualmente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxTieneVistaExteriorActualmente.Location = new System.Drawing.Point(298, 206);
-            this.checkBoxTieneVistaExteriorActualmente.Name = "checkBoxTieneVistaExteriorActualmente";
-            this.checkBoxTieneVistaExteriorActualmente.Size = new System.Drawing.Size(44, 21);
-            this.checkBoxTieneVistaExteriorActualmente.TabIndex = 25;
-            this.checkBoxTieneVistaExteriorActualmente.Text = "Sí";
-            this.checkBoxTieneVistaExteriorActualmente.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxNoTieneVistaExteriorActualmente
-            // 
-            this.checkBoxNoTieneVistaExteriorActualmente.AutoSize = true;
-            this.checkBoxNoTieneVistaExteriorActualmente.Enabled = false;
-            this.checkBoxNoTieneVistaExteriorActualmente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxNoTieneVistaExteriorActualmente.Location = new System.Drawing.Point(356, 206);
-            this.checkBoxNoTieneVistaExteriorActualmente.Name = "checkBoxNoTieneVistaExteriorActualmente";
-            this.checkBoxNoTieneVistaExteriorActualmente.Size = new System.Drawing.Size(50, 21);
-            this.checkBoxNoTieneVistaExteriorActualmente.TabIndex = 26;
-            this.checkBoxNoTieneVistaExteriorActualmente.Text = "No";
-            this.checkBoxNoTieneVistaExteriorActualmente.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -272,44 +221,62 @@
             this.label5.TabIndex = 28;
             this.label5.Text = "Está habilitado actualmente:";
             // 
-            // checkBoxNoEstaHabilitadoActualmente
+            // labelHotelActual
             // 
-            this.checkBoxNoEstaHabilitadoActualmente.AutoSize = true;
-            this.checkBoxNoEstaHabilitadoActualmente.Enabled = false;
-            this.checkBoxNoEstaHabilitadoActualmente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxNoEstaHabilitadoActualmente.Location = new System.Drawing.Point(356, 242);
-            this.checkBoxNoEstaHabilitadoActualmente.Name = "checkBoxNoEstaHabilitadoActualmente";
-            this.checkBoxNoEstaHabilitadoActualmente.Size = new System.Drawing.Size(50, 21);
-            this.checkBoxNoEstaHabilitadoActualmente.TabIndex = 30;
-            this.checkBoxNoEstaHabilitadoActualmente.Text = "No";
-            this.checkBoxNoEstaHabilitadoActualmente.UseVisualStyleBackColor = true;
+            this.labelHotelActual.AutoSize = true;
+            this.labelHotelActual.Enabled = false;
+            this.labelHotelActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHotelActual.Location = new System.Drawing.Point(148, 30);
+            this.labelHotelActual.Name = "labelHotelActual";
+            this.labelHotelActual.Size = new System.Drawing.Size(0, 17);
+            this.labelHotelActual.TabIndex = 29;
             // 
-            // checkBoxEstaHabilitadoActualmente
+            // labelPisoEnHotel
             // 
-            this.checkBoxEstaHabilitadoActualmente.AutoSize = true;
-            this.checkBoxEstaHabilitadoActualmente.Enabled = false;
-            this.checkBoxEstaHabilitadoActualmente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxEstaHabilitadoActualmente.Location = new System.Drawing.Point(298, 242);
-            this.checkBoxEstaHabilitadoActualmente.Name = "checkBoxEstaHabilitadoActualmente";
-            this.checkBoxEstaHabilitadoActualmente.Size = new System.Drawing.Size(44, 21);
-            this.checkBoxEstaHabilitadoActualmente.TabIndex = 29;
-            this.checkBoxEstaHabilitadoActualmente.Text = "Sí";
-            this.checkBoxEstaHabilitadoActualmente.UseVisualStyleBackColor = true;
+            this.labelPisoEnHotel.AutoSize = true;
+            this.labelPisoEnHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPisoEnHotel.Location = new System.Drawing.Point(211, 79);
+            this.labelPisoEnHotel.Name = "labelPisoEnHotel";
+            this.labelPisoEnHotel.Size = new System.Drawing.Size(0, 17);
+            this.labelPisoEnHotel.TabIndex = 30;
+            // 
+            // labelDescripcionActual
+            // 
+            this.labelDescripcionActual.AutoSize = true;
+            this.labelDescripcionActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescripcionActual.Location = new System.Drawing.Point(187, 123);
+            this.labelDescripcionActual.Name = "labelDescripcionActual";
+            this.labelDescripcionActual.Size = new System.Drawing.Size(0, 17);
+            this.labelDescripcionActual.TabIndex = 31;
+            // 
+            // labelTieneVistaExterior
+            // 
+            this.labelTieneVistaExterior.AutoSize = true;
+            this.labelTieneVistaExterior.Location = new System.Drawing.Point(273, 211);
+            this.labelTieneVistaExterior.Name = "labelTieneVistaExterior";
+            this.labelTieneVistaExterior.Size = new System.Drawing.Size(0, 17);
+            this.labelTieneVistaExterior.TabIndex = 32;
+            // 
+            // labelHabilitadoActualmente
+            // 
+            this.labelHabilitadoActualmente.AutoSize = true;
+            this.labelHabilitadoActualmente.Location = new System.Drawing.Point(241, 251);
+            this.labelHabilitadoActualmente.Name = "labelHabilitadoActualmente";
+            this.labelHabilitadoActualmente.Size = new System.Drawing.Size(0, 17);
+            this.labelHabilitadoActualmente.TabIndex = 33;
             // 
             // modificarDatosHabitacioncs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1614, 609);
-            this.Controls.Add(this.checkBoxNoEstaHabilitadoActualmente);
-            this.Controls.Add(this.checkBoxEstaHabilitadoActualmente);
+            this.Controls.Add(this.labelHabilitadoActualmente);
+            this.Controls.Add(this.labelTieneVistaExterior);
+            this.Controls.Add(this.labelDescripcionActual);
+            this.Controls.Add(this.labelPisoEnHotel);
+            this.Controls.Add(this.labelHotelActual);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.checkBoxNoTieneVistaExteriorActualmente);
-            this.Controls.Add(this.checkBoxTieneVistaExteriorActualmente);
-            this.Controls.Add(this.textBoxActualDescripcion);
-            this.Controls.Add(this.textBoxActualPiso);
-            this.Controls.Add(this.textBoxActualHotel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBoxModificarHabitacion);
@@ -340,14 +307,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxActualHotel;
-        private System.Windows.Forms.TextBox textBoxActualPiso;
-        private System.Windows.Forms.TextBox textBoxActualDescripcion;
-        private System.Windows.Forms.CheckBox checkBoxTieneVistaExteriorActualmente;
-        private System.Windows.Forms.CheckBox checkBoxNoTieneVistaExteriorActualmente;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.CheckBox checkBoxNoEstaHabilitadoActualmente;
-        private System.Windows.Forms.CheckBox checkBoxEstaHabilitadoActualmente;
+        private System.Windows.Forms.Label labelHotelActual;
+        private System.Windows.Forms.Label labelPisoEnHotel;
+        private System.Windows.Forms.Label labelDescripcionActual;
+        private System.Windows.Forms.Label labelTieneVistaExterior;
+        private System.Windows.Forms.Label labelHabilitadoActualmente;
     }
 }
