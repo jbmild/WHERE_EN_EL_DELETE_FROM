@@ -15,7 +15,7 @@ namespace FrbaHotel.AbmHabitacion
     {
         Busqueda busqueda;
         string habitacion_numero;
-        List<ElementoForm> elementosForm;
+        
         MostrarHoteles mHoteles=new MostrarHoteles();
         MostrarHabitaciones mHabitaciones = new MostrarHabitaciones();
         public modificarHabitacion()
@@ -271,6 +271,11 @@ namespace FrbaHotel.AbmHabitacion
             comboBoxNumeroHabitacion.DisplayMember = "numero";
             comboBoxNumeroHabitacion.SelectedIndex = 0;
             comboBoxNumeroHabitacion.ValueMember = "habitacion_id";
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
 
 

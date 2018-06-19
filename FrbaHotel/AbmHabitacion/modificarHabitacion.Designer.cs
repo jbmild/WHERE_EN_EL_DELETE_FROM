@@ -145,7 +145,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 185);
+            this.label4.Location = new System.Drawing.Point(6, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(121, 17);
             this.label4.TabIndex = 25;
@@ -154,7 +154,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 216);
+            this.label5.Location = new System.Drawing.Point(6, 20);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 17);
             this.label5.TabIndex = 27;
@@ -163,7 +163,7 @@
             // radioButtonExteriorSI
             // 
             this.radioButtonExteriorSI.AutoSize = true;
-            this.radioButtonExteriorSI.Location = new System.Drawing.Point(9, 19);
+            this.radioButtonExteriorSI.Location = new System.Drawing.Point(146, 16);
             this.radioButtonExteriorSI.Name = "radioButtonExteriorSI";
             this.radioButtonExteriorSI.Size = new System.Drawing.Size(41, 21);
             this.radioButtonExteriorSI.TabIndex = 30;
@@ -174,7 +174,7 @@
             // radioButtonExteriorNO
             // 
             this.radioButtonExteriorNO.AutoSize = true;
-            this.radioButtonExteriorNO.Location = new System.Drawing.Point(57, 19);
+            this.radioButtonExteriorNO.Location = new System.Drawing.Point(193, 16);
             this.radioButtonExteriorNO.Name = "radioButtonExteriorNO";
             this.radioButtonExteriorNO.Size = new System.Drawing.Size(47, 21);
             this.radioButtonExteriorNO.TabIndex = 31;
@@ -185,7 +185,7 @@
             // radioButtonExteriorNA
             // 
             this.radioButtonExteriorNA.AutoSize = true;
-            this.radioButtonExteriorNA.Location = new System.Drawing.Point(111, 19);
+            this.radioButtonExteriorNA.Location = new System.Drawing.Point(255, 16);
             this.radioButtonExteriorNA.Name = "radioButtonExteriorNA";
             this.radioButtonExteriorNA.Size = new System.Drawing.Size(48, 21);
             this.radioButtonExteriorNA.TabIndex = 32;
@@ -196,7 +196,7 @@
             // radioButtonHabilitadoNA
             // 
             this.radioButtonHabilitadoNA.AutoSize = true;
-            this.radioButtonHabilitadoNA.Location = new System.Drawing.Point(99, 21);
+            this.radioButtonHabilitadoNA.Location = new System.Drawing.Point(255, 16);
             this.radioButtonHabilitadoNA.Name = "radioButtonHabilitadoNA";
             this.radioButtonHabilitadoNA.Size = new System.Drawing.Size(48, 21);
             this.radioButtonHabilitadoNA.TabIndex = 35;
@@ -207,7 +207,7 @@
             // radioButtonHabilitadoNO
             // 
             this.radioButtonHabilitadoNO.AutoSize = true;
-            this.radioButtonHabilitadoNO.Location = new System.Drawing.Point(49, 21);
+            this.radioButtonHabilitadoNO.Location = new System.Drawing.Point(198, 17);
             this.radioButtonHabilitadoNO.Name = "radioButtonHabilitadoNO";
             this.radioButtonHabilitadoNO.Size = new System.Drawing.Size(47, 21);
             this.radioButtonHabilitadoNO.TabIndex = 34;
@@ -218,7 +218,7 @@
             // radioButtonHabilitadoSI
             // 
             this.radioButtonHabilitadoSI.AutoSize = true;
-            this.radioButtonHabilitadoSI.Location = new System.Drawing.Point(2, 21);
+            this.radioButtonHabilitadoSI.Location = new System.Drawing.Point(145, 16);
             this.radioButtonHabilitadoSI.Name = "radioButtonHabilitadoSI";
             this.radioButtonHabilitadoSI.Size = new System.Drawing.Size(41, 21);
             this.radioButtonHabilitadoSI.TabIndex = 33;
@@ -231,7 +231,7 @@
             this.labelExteriorError.AutoSize = true;
             this.labelExteriorError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelExteriorError.ForeColor = System.Drawing.Color.Red;
-            this.labelExteriorError.Location = new System.Drawing.Point(327, 181);
+            this.labelExteriorError.Location = new System.Drawing.Point(327, 174);
             this.labelExteriorError.Name = "labelExteriorError";
             this.labelExteriorError.Size = new System.Drawing.Size(210, 25);
             this.labelExteriorError.TabIndex = 36;
@@ -243,7 +243,7 @@
             this.labelHabilitadoError.AutoSize = true;
             this.labelHabilitadoError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHabilitadoError.ForeColor = System.Drawing.Color.Red;
-            this.labelHabilitadoError.Location = new System.Drawing.Point(327, 212);
+            this.labelHabilitadoError.Location = new System.Drawing.Point(327, 218);
             this.labelHabilitadoError.Name = "labelHabilitadoError";
             this.labelHabilitadoError.Size = new System.Drawing.Size(210, 25);
             this.labelHabilitadoError.TabIndex = 37;
@@ -252,23 +252,27 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox1.Controls.Add(this.radioButtonExteriorNA);
             this.groupBox1.Controls.Add(this.radioButtonExteriorNO);
             this.groupBox1.Controls.Add(this.radioButtonExteriorSI);
-            this.groupBox1.Location = new System.Drawing.Point(140, 159);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Location = new System.Drawing.Point(12, 160);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(171, 43);
+            this.groupBox1.Size = new System.Drawing.Size(309, 43);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.radioButtonHabilitadoSI);
             this.groupBox2.Controls.Add(this.radioButtonHabilitadoNO);
             this.groupBox2.Controls.Add(this.radioButtonHabilitadoNA);
-            this.groupBox2.Location = new System.Drawing.Point(149, 205);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Location = new System.Drawing.Point(12, 205);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(153, 48);
+            this.groupBox2.Size = new System.Drawing.Size(309, 49);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             // 
@@ -281,8 +285,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelHabilitadoError);
             this.Controls.Add(this.labelExteriorError);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.comboBoxPiso);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label6);
