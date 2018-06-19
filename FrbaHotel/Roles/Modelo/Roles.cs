@@ -13,7 +13,7 @@ namespace FrbaHotel.Roles.Modelo
         public static DataTable obtener()
         {
             ConexionSQL conn = new ConexionSQL();
-            string sqlQuery = "SELECT nombre, habilitado FROM WHERE_EN_EL_DELETE_FROM.Roles";
+            string sqlQuery = "SELECT rol_id, nombre, habilitado FROM WHERE_EN_EL_DELETE_FROM.Roles";
             DataTable dt = conn.cargarTablaSQL(sqlQuery);
             return dt;
         }
