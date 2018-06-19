@@ -19,9 +19,30 @@ namespace FrbaHotel.Roles
 
         private void frmRolesGrid_Load(object sender, EventArgs e)
         {
-            using (DataTable dt = Roles.Modelo.Roles.obtener())
+            this.cmbHabilitado.SelectedIndex = 0;
+            this.LoadGrid(Roles.Modelo.Roles.obtener());
+            
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            this.txtNombre.Text = "";
+            this.cmbHabilitado.SelectedIndex = 0;
+            this.btnBuscar_Click(sender, e);
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            this.LoadGrid(Roles.Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex-1));
+        }
+
+        private void LoadGrid(DataTable dt)
+        {
+            this.dgwRoles.DataSource = null;
+            using (dt)
             {
                 this.dgwRoles.AutoGenerateColumns = false;
+                this.dgwRoles.Columns.Clear();
 
                 DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
                 id.HeaderText = "Id";
