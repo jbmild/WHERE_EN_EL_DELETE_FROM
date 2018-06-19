@@ -273,13 +273,36 @@ namespace FrbaHotel.AbmHabitacion
             comboBoxNumeroHabitacion.ValueMember = "habitacion_id";
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            int row = e.RowIndex;
+            int tieneVista=0;
+            int estaHabilitado=0;
+            DataGridViewRow selectedRow=dataGridView1.Rows[row];
+            HabitacionElegida habitacion= new HabitacionElegida();
+            //System.Windows.Forms.MessageBox.Show(dataGridView1.Columns.Count.ToString());
+            
+                habitacion.SetNumero(Int32.Parse(selectedRow.Cells[1].Value.ToString()));
+                habitacion.SetPiso(Int32.Parse(selectedRow.Cells[2].Value.ToString()));
+                habitacion.SetDescripcion(selectedRow.Cells[3].Value.ToString());
+                habitacion.SetTipo(selectedRow.Cells[4].Value.ToString());
+                habitacion.SetDireccion(this.comboBoxHoteles.Text);
+                if (selectedRow.Cells[5].Value.Equals(true))
+                {
+                    tieneVista = 1;
+                }
+                if (selectedRow.Cells[6].Value.Equals(true))
+                {
+                    estaHabilitado = 1;
+                }
+                habitacion.SetVista(tieneVista);
+                habitacion.SetHabilitado(estaHabilitado);
+                modificarDatosHabitacioncs modifDatos = new modificarDatosHabitacioncs();
+                modifDatos.RecibirHabitacion(habitacion);
+                modifDatos.Show();
 
         }
-
-
-
-    
     }
 }
+
+ 

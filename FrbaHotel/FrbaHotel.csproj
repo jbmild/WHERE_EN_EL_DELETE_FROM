@@ -74,6 +74,7 @@
     <Compile Include="AbmHabitacion\darBajaHabitacion.Designer.cs">
       <DependentUpon>darBajaHabitacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHabitacion\HabitacionElegida.cs" />
     <Compile Include="AbmHabitacion\modificarDatosHabitacioncs.cs">
       <SubType>Form</SubType>
     </Compile>
