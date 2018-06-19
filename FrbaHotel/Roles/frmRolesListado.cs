@@ -60,7 +60,7 @@ namespace FrbaHotel.Roles
                 DataGridViewCheckBoxColumn habilitado = new DataGridViewCheckBoxColumn();
                 habilitado.HeaderText = "Habilitado";
                 habilitado.DataPropertyName = "habilitado";
-                nombre.ReadOnly = true;
+                habilitado.ReadOnly = true;
                 habilitado.FalseValue = "0";
                 habilitado.TrueValue = "1";
                 this.dgwRoles.Columns.Add(habilitado);
