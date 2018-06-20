@@ -319,6 +319,19 @@ namespace FrbaHotel.AbmHabitacion
             hotelIDValue.ValueMember="hotel_id";
             return Int32.Parse(hotelID.Rows[0].ItemArray[0].ToString());
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.comboBoxHoteles.SelectedIndex=comboBoxHoteles.FindStringExact("");
+            this.comboBoxNumeroHabitacion.SelectedIndex = comboBoxNumeroHabitacion.FindStringExact("");
+            this.comboBoxPiso.SelectedIndex=comboBoxPiso.FindStringExact("");
+            this.radioButtonExteriorNA.Checked = false;
+            this.radioButtonExteriorNO.Checked = false;
+            this.radioButtonExteriorSI.Checked = false;
+            this.radioButtonHabilitadoNA.Checked = false;
+            this.radioButtonHabilitadoNO.Checked = false;
+            this.radioButtonHabilitadoSI.Checked = false;
+        }
     }
 }
 

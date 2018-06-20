@@ -50,6 +50,7 @@
             this.labelHabilitadoError = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -85,7 +86,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(221, 295);
+            this.button1.Location = new System.Drawing.Point(317, 336);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(153, 40);
@@ -289,11 +290,22 @@
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(44, 336);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(122, 37);
+            this.button2.TabIndex = 40;
+            this.button2.Text = "Limpiar campos";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // modificarHabitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1876, 514);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelHabilitadoError);
@@ -347,5 +359,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.Button button2;
     }
 }
