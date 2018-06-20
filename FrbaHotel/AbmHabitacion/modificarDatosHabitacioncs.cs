@@ -68,38 +68,99 @@ namespace FrbaHotel.AbmHabitacion
 
         private void buttonGuardarCambios_Click(object sender, EventArgs e)
         {
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable resultadoDeBuscar = conexion.cargarTablaSQL("select ho.hotel_id from WHERE_EN_EL_DELETE_FROM.Hoteles ho join WHERE_EN_EL_DELETE_FROM.Habitaciones ha"
-                + " on ha.hotel_id=ho.hotel_id " + " where ho.direccion='" + this.labelHotelActual.Text + "' and ha.numero=" + this.textBoxNumeroHabitacionNuevo.Text);
-            if (resultadoDeBuscar.Rows.Count.Equals(0))
+            if (this.CamposCompletos())
+
             {
-
-                SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
-                con1.Open();
-                string update = "update WHERE_EN_EL_DELETE_FROM.Habitaciones set hotel_id=@hotel_id, numero=@numero, piso=@piso, habilitado=@habilitado, frente=@frente, descripcion=@descripcion where habitacion_id=" + this.habitacionID;
-                SqlCommand sqlQuery = new SqlCommand(update);
-                sqlQuery.Connection = con1;
-                sqlQuery.Parameters.Add("@hotel_id", SqlDbType.Int).Value = this.hotel_ID;
-                sqlQuery.Parameters.Add("@numero", SqlDbType.Int).Value = this.textBoxNumeroHabitacionNuevo.Text;
-                sqlQuery.Parameters.Add("@piso", SqlDbType.Int).Value = this.comboBoxNuevoPiso.SelectedValue;
-                sqlQuery.Parameters.Add("@habilitado", SqlDbType.Bit).Value = this.checkBoxEstaHabilitado.Checked;
-                sqlQuery.Parameters.Add("@frente", SqlDbType.Bit).Value = this.checkBoxTieneVistaExterior.Checked;
-                sqlQuery.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = this.textBoxNuevaDescripcion.Text;
-
-                int result = sqlQuery.ExecuteNonQuery();
-
-
-                if (result.Equals(1))
+                this.labelPisoPendiente.Visible = false;
+                this.labelHotelPendiente.Visible = false;
+                this.labelNumeroHabiPendiente.Visible = false;
+                ConexionSQL conexion = new ConexionSQL();
+                DataTable resultadoDeBuscar = conexion.cargarTablaSQL("select ho.hotel_id from WHERE_EN_EL_DELETE_FROM.Hoteles ho join WHERE_EN_EL_DELETE_FROM.Habitaciones ha"
+                    + " on ha.hotel_id=ho.hotel_id " + " where ho.direccion='" + this.labelHotelActual.Text + "' and ha.numero=" + this.textBoxNumeroHabitacionNuevo.Text);
+                if (resultadoDeBuscar.Rows.Count.Equals(0))
                 {
-                    this.labelNotificarError.Visible = false;
-                    this.labelExito.Visible = true;
+
+                    SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+                    con1.Open();
+                    string update = "update WHERE_EN_EL_DELETE_FROM.Habitaciones set hotel_id=@hotel_id, numero=@numero, piso=@piso, habilitado=@habilitado, frente=@frente, descripcion=@descripcion where habitacion_id=" + this.habitacionID;
+                    SqlCommand sqlQuery = new SqlCommand(update);
+                    sqlQuery.Connection = con1;
+                    sqlQuery.Parameters.Add("@hotel_id", SqlDbType.Int).Value = this.hotel_ID;
+                    sqlQuery.Parameters.Add("@numero", SqlDbType.Int).Value = this.textBoxNumeroHabitacionNuevo.Text;
+                    sqlQuery.Parameters.Add("@piso", SqlDbType.Int).Value = this.comboBoxNuevoPiso.SelectedValue;
+                    sqlQuery.Parameters.Add("@habilitado", SqlDbType.Bit).Value = this.checkBoxEstaHabilitado.Checked;
+                    sqlQuery.Parameters.Add("@frente", SqlDbType.Bit).Value = this.checkBoxTieneVistaExterior.Checked;
+                    sqlQuery.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = this.textBoxNuevaDescripcion.Text;
+
+                    int result = sqlQuery.ExecuteNonQuery();
+
+
+                    if (result.Equals(1))
+                    {
+                        this.labelNotificarError.Visible = false;
+                        this.labelExito.Visible = true;
+                    }
+                }
+                else
+                {
+                    this.labelNotificarError.Visible = true;
                 }
             }
             else 
             {
-                this.labelNotificarError.Visible = true;
+                this.labelHotelPendiente.Visible = true;
+                this.labelPisoPendiente.Visible = true;
+                this.labelNumeroHabiPendiente.Visible = true;
             }
+
             
+        }
+
+        private bool CamposCompletos()
+        {
+            return this.NuevoHotelCompleto() && this.NuevoNumeroHabitacionCompleto() && this.NuevoPisoCompleto();
+            
+        }
+
+        private bool NuevoPisoCompleto()
+        {
+            if (this.comboBoxNuevoPiso.Text.Equals(""))
+            {
+                this.labelPisoPendiente.Visible = true;
+                return false;
+            }
+            else 
+            {
+                this.labelPisoPendiente.Visible = false;
+                return true;
+            }
+        }
+
+        private bool NuevoNumeroHabitacionCompleto()
+        {
+            if (this.textBoxNumeroHabitacionNuevo.Text.Equals(""))
+            {
+                this.labelNumeroHabiPendiente.Visible = true;
+                return false;
+            }
+            else 
+            {
+                this.labelNumeroHabiPendiente.Visible = false;
+                return true;
+            }
+        }
+
+        private bool NuevoHotelCompleto()
+        {
+            if (this.comboBoxNuevoHotel.Text.Equals(""))
+            {
+                this.labelHotelPendiente.Visible = true;
+                return false;
+            }
+            else {
+                this.labelHotelPendiente.Visible = false;
+                return true;
+            }
         }
 
         private void comboBoxNuevoHotel_SelectionChangeCommitted(object sender, EventArgs e)
@@ -126,6 +187,13 @@ namespace FrbaHotel.AbmHabitacion
                 this.comboBoxNuevoPiso.DataSource = null;
             }
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.comboBoxNuevoHotel.SelectedIndex = comboBoxNuevoHotel.FindStringExact("");
+            this.textBoxNumeroHabitacionNuevo.Text = "";
+            this.comboBoxNuevoPiso.SelectedIndex=comboBoxNuevoPiso.FindStringExact("");
         }
     }
 }
