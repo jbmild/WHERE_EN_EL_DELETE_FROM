@@ -285,6 +285,7 @@ namespace FrbaHotel.AbmHabitacion
             //System.Windows.Forms.MessageBox.Show(dataGridView1.Columns.Count.ToString());
             
                 habitacion.SetNumero(Int32.Parse(selectedRow.Cells[1].Value.ToString()));
+                
                 habitacion.SetPiso(Int32.Parse(selectedRow.Cells[2].Value.ToString()));
                 habitacion.SetDescripcion(selectedRow.Cells[3].Value.ToString());
                 habitacion.SetTipo(selectedRow.Cells[4].Value.ToString());

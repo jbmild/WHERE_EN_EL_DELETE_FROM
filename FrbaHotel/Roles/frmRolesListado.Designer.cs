@@ -32,8 +32,8 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cmbHabilitado = new System.Windows.Forms.ComboBox();
             this.lblHabilitado = new System.Windows.Forms.Label();
+            this.cmbHabilitado = new System.Windows.Forms.ComboBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnAlta = new System.Windows.Forms.Button();
@@ -43,12 +43,15 @@
             // 
             // dgwRoles
             // 
+            this.dgwRoles.AllowUserToAddRows = false;
             this.dgwRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwRoles.Location = new System.Drawing.Point(12, 173);
+            this.dgwRoles.MultiSelect = false;
             this.dgwRoles.Name = "dgwRoles";
             this.dgwRoles.RowTemplate.Height = 28;
             this.dgwRoles.Size = new System.Drawing.Size(719, 348);
             this.dgwRoles.TabIndex = 0;
+            this.dgwRoles.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwRoles_CellMouseClick);
             // 
             // txtNombre
             // 
@@ -79,6 +82,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros";
             // 
+            // lblHabilitado
+            // 
+            this.lblHabilitado.AutoSize = true;
+            this.lblHabilitado.Location = new System.Drawing.Point(6, 70);
+            this.lblHabilitado.Name = "lblHabilitado";
+            this.lblHabilitado.Size = new System.Drawing.Size(80, 20);
+            this.lblHabilitado.TabIndex = 5;
+            this.lblHabilitado.Text = "Habilitado";
+            // 
             // cmbHabilitado
             // 
             this.cmbHabilitado.Items.AddRange(new object[] {
@@ -89,15 +101,6 @@
             this.cmbHabilitado.Name = "cmbHabilitado";
             this.cmbHabilitado.Size = new System.Drawing.Size(265, 28);
             this.cmbHabilitado.TabIndex = 4;
-            // 
-            // lblHabilitado
-            // 
-            this.lblHabilitado.AutoSize = true;
-            this.lblHabilitado.Location = new System.Drawing.Point(6, 70);
-            this.lblHabilitado.Name = "lblHabilitado";
-            this.lblHabilitado.Size = new System.Drawing.Size(80, 20);
-            this.lblHabilitado.TabIndex = 5;
-            this.lblHabilitado.Text = "Habilitado";
             // 
             // btnLimpiar
             // 
