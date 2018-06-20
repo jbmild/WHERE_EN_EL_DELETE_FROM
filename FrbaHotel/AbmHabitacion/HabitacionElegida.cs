@@ -14,8 +14,27 @@ namespace FrbaHotel.AbmHabitacion
         private string descripcion;
         private int piso;
         private string tipo_text;
+        private int hotelID;
+        private int habitacionID;
         private int tipo_clave;
 
+        public int GetHabiID()
+        {
+            return this.habitacionID;
+        }
+
+        public void SetHabiID(int v)
+        {
+             this.habitacionID=v;
+        }
+        public int GetHotelID()
+        {
+            return this.hotelID;
+        }
+        public void SetHotelID(int v)
+        {
+            this.hotelID=v;
+        }
         public void SetTipo(String nuevoTipo)
         {
             this.tipo_text = nuevoTipo;

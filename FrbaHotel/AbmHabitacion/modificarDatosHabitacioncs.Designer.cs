@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBoxModificarHabitacion = new System.Windows.Forms.GroupBox();
+            this.labelExito = new System.Windows.Forms.Label();
+            this.textBoxNumeroHabitacionNuevo = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.labelHotelNuevo = new System.Windows.Forms.Label();
             this.labelNotificarError = new System.Windows.Forms.Label();
             this.comboBoxNuevoHotel = new System.Windows.Forms.ComboBox();
@@ -49,11 +52,16 @@
             this.labelDescripcionActual = new System.Windows.Forms.Label();
             this.labelTieneVistaExterior = new System.Windows.Forms.Label();
             this.labelHabilitadoActualmente = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.labelNumeroHabitacionActual = new System.Windows.Forms.Label();
             this.groupBoxModificarHabitacion.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxModificarHabitacion
             // 
+            this.groupBoxModificarHabitacion.Controls.Add(this.labelExito);
+            this.groupBoxModificarHabitacion.Controls.Add(this.textBoxNumeroHabitacionNuevo);
+            this.groupBoxModificarHabitacion.Controls.Add(this.label7);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelHotelNuevo);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelNotificarError);
             this.groupBoxModificarHabitacion.Controls.Add(this.comboBoxNuevoHotel);
@@ -69,24 +77,50 @@
             this.groupBoxModificarHabitacion.Size = new System.Drawing.Size(975, 297);
             this.groupBoxModificarHabitacion.TabIndex = 20;
             this.groupBoxModificarHabitacion.TabStop = false;
-            this.groupBoxModificarHabitacion.Visible = false;
+            // 
+            // labelExito
+            // 
+            this.labelExito.AutoSize = true;
+            this.labelExito.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelExito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.labelExito.Location = new System.Drawing.Point(430, 168);
+            this.labelExito.Name = "labelExito";
+            this.labelExito.Size = new System.Drawing.Size(332, 25);
+            this.labelExito.TabIndex = 21;
+            this.labelExito.Text = "¡Habitación modificada con éxito!";
+            this.labelExito.Visible = false;
+            // 
+            // textBoxNumeroHabitacionNuevo
+            // 
+            this.textBoxNumeroHabitacionNuevo.Location = new System.Drawing.Point(275, 47);
+            this.textBoxNumeroHabitacionNuevo.Name = "textBoxNumeroHabitacionNuevo";
+            this.textBoxNumeroHabitacionNuevo.Size = new System.Drawing.Size(100, 22);
+            this.textBoxNumeroHabitacionNuevo.TabIndex = 20;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(42, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(194, 17);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Número de habitación nuevo:";
             // 
             // labelHotelNuevo
             // 
             this.labelHotelNuevo.AutoSize = true;
-            this.labelHotelNuevo.Location = new System.Drawing.Point(42, 31);
+            this.labelHotelNuevo.Location = new System.Drawing.Point(42, 17);
             this.labelHotelNuevo.Name = "labelHotelNuevo";
             this.labelHotelNuevo.Size = new System.Drawing.Size(84, 17);
             this.labelHotelNuevo.TabIndex = 5;
             this.labelHotelNuevo.Text = "Hotel nuevo";
-            this.labelHotelNuevo.Visible = false;
             // 
             // labelNotificarError
             // 
             this.labelNotificarError.AutoSize = true;
             this.labelNotificarError.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNotificarError.ForeColor = System.Drawing.Color.Red;
-            this.labelNotificarError.Location = new System.Drawing.Point(430, 29);
+            this.labelNotificarError.Location = new System.Drawing.Point(430, 13);
             this.labelNotificarError.Name = "labelNotificarError";
             this.labelNotificarError.Size = new System.Drawing.Size(535, 25);
             this.labelNotificarError.TabIndex = 18;
@@ -96,12 +130,12 @@
             // comboBoxNuevoHotel
             // 
             this.comboBoxNuevoHotel.FormattingEnabled = true;
-            this.comboBoxNuevoHotel.Location = new System.Drawing.Point(143, 31);
+            this.comboBoxNuevoHotel.Location = new System.Drawing.Point(143, 13);
             this.comboBoxNuevoHotel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxNuevoHotel.Name = "comboBoxNuevoHotel";
             this.comboBoxNuevoHotel.Size = new System.Drawing.Size(232, 24);
             this.comboBoxNuevoHotel.TabIndex = 6;
-            this.comboBoxNuevoHotel.Visible = false;
+            this.comboBoxNuevoHotel.SelectionChangeCommitted += new System.EventHandler(this.comboBoxNuevoHotel_SelectionChangeCommitted);
             // 
             // checkBoxEstaHabilitado
             // 
@@ -112,7 +146,6 @@
             this.checkBoxEstaHabilitado.TabIndex = 15;
             this.checkBoxEstaHabilitado.Text = "Está habilitado";
             this.checkBoxEstaHabilitado.UseVisualStyleBackColor = true;
-            this.checkBoxEstaHabilitado.Visible = false;
             // 
             // buttonGuardarCambios
             // 
@@ -123,7 +156,7 @@
             this.buttonGuardarCambios.TabIndex = 12;
             this.buttonGuardarCambios.Text = "Guardar cambios";
             this.buttonGuardarCambios.UseVisualStyleBackColor = true;
-            this.buttonGuardarCambios.Visible = false;
+            this.buttonGuardarCambios.Click += new System.EventHandler(this.buttonGuardarCambios_Click);
             // 
             // labelPisoNuevo
             // 
@@ -133,7 +166,6 @@
             this.labelPisoNuevo.Size = new System.Drawing.Size(148, 17);
             this.labelPisoNuevo.TabIndex = 7;
             this.labelPisoNuevo.Text = "Piso en el hotel nuevo";
-            this.labelPisoNuevo.Visible = false;
             // 
             // checkBoxTieneVistaExterior
             // 
@@ -144,7 +176,6 @@
             this.checkBoxTieneVistaExterior.TabIndex = 14;
             this.checkBoxTieneVistaExterior.Text = "Tiene vista al exterior";
             this.checkBoxTieneVistaExterior.UseVisualStyleBackColor = true;
-            this.checkBoxTieneVistaExterior.Visible = false;
             // 
             // comboBoxNuevoPiso
             // 
@@ -154,7 +185,6 @@
             this.comboBoxNuevoPiso.Name = "comboBoxNuevoPiso";
             this.comboBoxNuevoPiso.Size = new System.Drawing.Size(121, 24);
             this.comboBoxNuevoPiso.TabIndex = 8;
-            this.comboBoxNuevoPiso.Visible = false;
             // 
             // labelDescripcionNueva
             // 
@@ -164,7 +194,6 @@
             this.labelDescripcionNueva.Size = new System.Drawing.Size(82, 17);
             this.labelDescripcionNueva.TabIndex = 9;
             this.labelDescripcionNueva.Text = "Descripcion";
-            this.labelDescripcionNueva.Visible = false;
             // 
             // textBoxNuevaDescripcion
             // 
@@ -174,7 +203,6 @@
             this.textBoxNuevaDescripcion.Name = "textBoxNuevaDescripcion";
             this.textBoxNuevaDescripcion.Size = new System.Drawing.Size(199, 90);
             this.textBoxNuevaDescripcion.TabIndex = 10;
-            this.textBoxNuevaDescripcion.Visible = false;
             // 
             // label1
             // 
@@ -265,11 +293,31 @@
             this.labelHabilitadoActualmente.Size = new System.Drawing.Size(0, 17);
             this.labelHabilitadoActualmente.TabIndex = 33;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(46, 169);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(151, 17);
+            this.label6.TabIndex = 34;
+            this.label6.Text = "Número de habitación:";
+            // 
+            // labelNumeroHabitacionActual
+            // 
+            this.labelNumeroHabitacionActual.AutoSize = true;
+            this.labelNumeroHabitacionActual.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumeroHabitacionActual.Location = new System.Drawing.Point(208, 168);
+            this.labelNumeroHabitacionActual.Name = "labelNumeroHabitacionActual";
+            this.labelNumeroHabitacionActual.Size = new System.Drawing.Size(0, 17);
+            this.labelNumeroHabitacionActual.TabIndex = 35;
+            // 
             // modificarDatosHabitacioncs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1614, 609);
+            this.Controls.Add(this.labelNumeroHabitacionActual);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.labelHabilitadoActualmente);
             this.Controls.Add(this.labelTieneVistaExterior);
             this.Controls.Add(this.labelDescripcionActual);
@@ -314,5 +362,10 @@
         private System.Windows.Forms.Label labelDescripcionActual;
         private System.Windows.Forms.Label labelTieneVistaExterior;
         private System.Windows.Forms.Label labelHabilitadoActualmente;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelNumeroHabitacionActual;
+        private System.Windows.Forms.TextBox textBoxNumeroHabitacionNuevo;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelExito;
     }
 }

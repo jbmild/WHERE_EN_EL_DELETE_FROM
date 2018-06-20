@@ -77,7 +77,7 @@ namespace FrbaHotel.AbmHabitacion
                 ConexionSQL con2 = new ConexionSQL();
                 Consulta consulta = new Consulta();
                 consulta.ConcatToQuery("select ha.numero as 'Numero_Habitacion', ha.piso as 'Piso', ha.descripcion as 'Descripcion'," +
-              "t.descripcion 'Tipo_Habitacion', convert(bit,ha.frente) as 'Tiene_vista_al_exterior', convert(bit,habilitado) as 'Esta_habilitada', ho.direccion as 'Direccion' from" +
+              "t.descripcion 'Tipo_Habitacion', convert(bit,ha.frente) as 'Tiene_vista_al_exterior', convert(bit,habilitado) as 'Esta_habilitada', ho.direccion as 'Direccion',  ha.habitacion_id as 'ID' from" +
                   " WHERE_EN_EL_DELETE_FROM.habitaciones ha join WHERE_EN_EL_DELETE_FROM.habitaciones_tipos t on ha.tipos_id=t.tipo_id join WHERE_EN_EL_DELETE_FROM.hoteles ho" +
                   " on ho.hotel_id=ha.hotel_id ");
 
@@ -289,7 +289,10 @@ namespace FrbaHotel.AbmHabitacion
                 habitacion.SetDescripcion(selectedRow.Cells[3].Value.ToString());
                 habitacion.SetTipo(selectedRow.Cells[4].Value.ToString());
                 habitacion.SetDireccion(selectedRow.Cells[7].Value.ToString());
+                habitacion.SetHabiID(Int32.Parse(selectedRow.Cells[8].Value.ToString()));    
+                habitacion.SetHotelID(this.ObtenerHotelID(habitacion));
                 
+            
                 if (selectedRow.Cells[5].Value.Equals(true))
                 {
                     tieneVista = 1;
@@ -304,6 +307,17 @@ namespace FrbaHotel.AbmHabitacion
                 modifDatos.RecibirHabitacion(habitacion);
                 modifDatos.Show();
 
+        }
+
+        private int ObtenerHotelID(HabitacionElegida habi)
+        {
+            ConexionSQL c = new ConexionSQL();
+            DataTable hotelID = c.cargarTablaSQL("select hotel_id from WHERE_EN_EL_DELETE_FROM.Habitaciones where habitacion_id=" + habi.GetHabiID());
+            ComboBox hotelIDValue= new ComboBox();
+            hotelIDValue.Visible=false;
+            hotelIDValue.DataSource=hotelID;
+            hotelIDValue.ValueMember="hotel_id";
+            return Int32.Parse(hotelID.Rows[0].ItemArray[0].ToString());
         }
     }
 }
