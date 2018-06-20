@@ -30,9 +30,9 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                 DataTable dt = conexion.cargarTablaSQL("WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles @fdesde='" + dtpFechaCheckin.Value + "'" + 
                                                         ",@fhasta='" + dtpFechaCheckout.Value + "'" +
-                                                        ",@hotel_id=" + (cmbHotel.SelectedText.Length == 0 ? "null": cmbHotel.SelectedValue) +
-                                                        ",@regimen_id=" + (cmbTipoRegimen.SelectedText.Length == 0? "null": cmbTipoRegimen.SelectedValue) +
-                                                        ",@tipoHabitacion_id=" + (cmbTipoHab.SelectedText.Length == 0 ? "null" : cmbTipoHab.SelectedValue));
+                                                        ",@hotel_id=" + (cmbHotel.SelectedIndex == 0 ? "null": cmbHotel.SelectedValue) +
+                                                        ",@regimen_id=" + (cmbTipoRegimen.SelectedValue) +
+                                                        ",@tipoHabitacion_id=" + (cmbTipoHab.SelectedIndex == 0 ? "null" : cmbTipoHab.SelectedValue));
 
                 //Se muestra por pantalla la tabla con los resultados del SELECT
                 dataGridView1.DataSource = dt;
@@ -68,13 +68,11 @@ namespace FrbaHotel.GenerarModificacionReserva
 
 
             dt = conexion.cargarTablaSQL("select regimen_id, descripcion FROM WHERE_EN_EL_DELETE_FROM.regimenes WHERE habilitado = 1");
-            dt.Rows.InsertAt(dt.NewRow(), 0);
             cmbTipoRegimen.DataSource = dt;
             cmbTipoRegimen.DisplayMember = "descripcion";
             cmbTipoRegimen.ValueMember = "regimen_id";
 
             dt = conexion.cargarTablaSQL("select hotel_id, 'Hotel ' + direccion AS nombre FROM WHERE_EN_EL_DELETE_FROM.hoteles");
-            dt.Rows.InsertAt(dt.NewRow(), 0);
             cmbHotel.DataSource = dt;
             cmbHotel.DisplayMember = "nombre";
             cmbHotel.ValueMember = "hotel_id";
@@ -93,7 +91,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
                     habs.Add(new Habitacion(Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[3].Value),
-                                                Convert.ToInt32(row.Cells[0].Value)));
+                                                Convert.ToInt32(row.Cells[1].Value)));
                     //Mandar datos reserva a pantalla Ingreso datos cliente
                 }
 
