@@ -99,16 +99,16 @@ namespace FrbaHotel.Roles.Modelo
             try
             {
                 ConexionSQL conn = new ConexionSQL();
-                string sql = "INSERT INTO WHERE_EN_EL_DELETE_FROM.Roles (nombre, habilitado, esDefault) VALUES ('" + this.nombre + "', " + Convert.ToInt32(this.habilitado).ToString() + ", " + Convert.ToInt32(this.esDefault).ToString() + ")";
-                int modificado = conn.actualizarDatos(sql);
+                string sql = "INSERT INTO WHERE_EN_EL_DELETE_FROM.roles (nombre, habilitado, esDefault) VALUES ('" + this.nombre + "', " + Convert.ToInt32(this.habilitado).ToString() + ", " + Convert.ToInt32(this.esDefault).ToString() + ")";
+                int insertado = conn.ejecutarComandoSQL(sql);
 
                 if (this.esDefault == true)
                 {
-                    sql = "UPDATE WHERE_EN_EL_DELETE_FROM.Roles SET esDefault = 0 WHERE rol_id<>" + this.rol_id.ToString();
+                    sql = "UPDATE WHERE_EN_EL_DELETE_FROM.roles SET esDefault = 0 WHERE rol_id<>" + this.rol_id.ToString();
                     conn.actualizarDatos(sql);
                 }
 
-                if (modificado == 0)
+                if (insertado == 0)
                 {
                     errores.Add(new KeyValuePair<string, string>("general", "No se pudo guardar el rol."));
                 }
@@ -161,7 +161,7 @@ namespace FrbaHotel.Roles.Modelo
                 if (this.rol_id > 0)
                 {
                     ConexionSQL conn = new ConexionSQL();
-                    string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE rol_id=" + this.rol_id.ToString();
+                    string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE rol_id=" + this.rol_id.ToString();
                     DataTable dt = conn.cargarTablaSQL(sql);
                     if (dt.Rows.Count == 1)
                     {
@@ -192,7 +192,7 @@ namespace FrbaHotel.Roles.Modelo
             else
             {
                 ConexionSQL conn = new ConexionSQL();
-                string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE nombre='" + this.nombre+"' AND role_id<>" + this.rol_id.ToString();
+                string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE nombre='" + this.nombre+"' AND rol_id<>" + this.rol_id.ToString();
                 DataTable dt = conn.cargarTablaSQL(sql);
                 if (dt.Rows.Count > 0)
                 {

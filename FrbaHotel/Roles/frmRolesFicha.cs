@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Roles.Modelo;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.Roles
 {
@@ -26,7 +28,7 @@ namespace FrbaHotel.Roles
         {
             if (this.rol.RolId == 0)
             {
-                lblTitulo.Text = "Alta de nuevo rol.";
+                lblTitulo.Text = "Alta de nuevo rol";
                 btnGuardar.Text = "Crear";
                 btnLimpiar.Text = "Limpiar";
 
@@ -41,7 +43,7 @@ namespace FrbaHotel.Roles
                 {
                     foreach (Permiso permiso in this.rol.PermisosRestringidos)
                     {
-                        lbxDenegados.Items.Add(new ComboBoxItem(permiso.PermisoId.ToString(), permiso.Nombre));
+                        lbxDenegados.Items.Add(new Option(permiso.PermisoId.ToString(), permiso.Nombre));
                     }
                 }
                 
@@ -62,39 +64,86 @@ namespace FrbaHotel.Roles
                 {
                     foreach (Permiso permiso in this.rol.PermisosDados)
                     {
-                        lbxConcedidos.Items.Add(new ComboBoxItem(permiso.PermisoId.ToString(), permiso.Nombre));
+                        lbxConcedidos.Items.Add(new Option(permiso.PermisoId.ToString(), permiso.Nombre));
                     }
                 }
                 if (this.rol.PermisosRestringidos != null)
                 {
                     foreach (Permiso permiso in this.rol.PermisosRestringidos)
                     {
-                        lbxDenegados.Items.Add(new ComboBoxItem(permiso.PermisoId.ToString(), permiso.Nombre));
+                        lbxDenegados.Items.Add(new Option(permiso.PermisoId.ToString(), permiso.Nombre));
                     }
                 }
             }
         }
 
-        private void lbxDenegados_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnConceder_Click(object sender, EventArgs e)
         {
-            MessageBox.Show( ((ComboBoxItem)lbxDenegados.Items[lbxDenegados.SelectedIndex]).Value);
+            if (this.lbxDenegados.SelectedIndex != -1)
+            {
+                Option opcion = (Option)this.lbxDenegados.Items[this.lbxDenegados.SelectedIndex];
+                lbxConcedidos.Items.Add(opcion);
+                this.lbxDenegados.Items.Remove(opcion);
+
+                List<Option> opciones = new List<Option>();
+                foreach (Option op in lbxConcedidos.Items)
+                {
+                    opciones.Add(op);
+                }
+
+                opciones = opciones.OrderBy(item => item.Text).ToList();
+
+                lbxConcedidos.Items.Clear();
+                foreach (Option op in opciones)
+                {
+                    lbxConcedidos.Items.Add(op);
+                }
+            }
+
         }
-    }
 
-    public class ComboBoxItem
-    {
-        public string Value;
-        public string Text;
-
-        public ComboBoxItem(string val, string text)
+        private void btnDenegar_Click(object sender, EventArgs e)
         {
-            Value = val;
-            Text = text;
+            if (this.lbxConcedidos.SelectedIndex != -1)
+            {
+                Option opcion = (Option)this.lbxConcedidos.Items[this.lbxConcedidos.SelectedIndex];
+                lbxDenegados.Items.Add(opcion);
+                this.lbxConcedidos.Items.Remove(opcion);
+
+                List<Option> opciones = new List<Option>();
+                foreach (Option op in lbxDenegados.Items){
+                    opciones.Add(op);
+                }
+
+                opciones = opciones.OrderBy(item => item.Text).ToList();
+
+                lbxDenegados.Items.Clear();
+                foreach (Option op in opciones)
+                {
+                    lbxDenegados.Items.Add(op);
+                }
+         
+            }
         }
 
-        public override string ToString()
+        private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            return Text;
+            this.cargarFormulario();
         }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            this.rol.Nombre = txtNombre.Text;
+            this.rol.Habilitado = chkHabilitado.Checked;
+
+            List<Permiso> permisos = new List<Permiso>();
+            foreach (Option op in lbxConcedidos.Items)
+            {
+                permisos.Add(new Permiso(Convert.ToInt32(op.Value)));
+            }
+            this.rol.PermisosDados = permisos;
+            this.rol.guardar();
+        }
+
     }
 }

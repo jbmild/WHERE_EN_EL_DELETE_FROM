@@ -34,14 +34,14 @@
             this.lblDenegados = new System.Windows.Forms.Label();
             this.lblConcedidos = new System.Windows.Forms.Label();
             this.gbxPermisos = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.lbxConcedidos = new System.Windows.Forms.ListBox();
+            this.lbxDenegados = new System.Windows.Forms.ListBox();
+            this.btnDenegar = new System.Windows.Forms.Button();
             this.btnConceder = new System.Windows.Forms.Button();
             this.gbxGeneral = new System.Windows.Forms.GroupBox();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.lbxDenegados = new System.Windows.Forms.ListBox();
-            this.lbxConcedidos = new System.Windows.Forms.ListBox();
             this.gbxPermisos.SuspendLayout();
             this.gbxGeneral.SuspendLayout();
             this.SuspendLayout();
@@ -96,7 +96,7 @@
             // 
             this.gbxPermisos.Controls.Add(this.lbxConcedidos);
             this.gbxPermisos.Controls.Add(this.lbxDenegados);
-            this.gbxPermisos.Controls.Add(this.button2);
+            this.gbxPermisos.Controls.Add(this.btnDenegar);
             this.gbxPermisos.Controls.Add(this.btnConceder);
             this.gbxPermisos.Controls.Add(this.lblDenegados);
             this.gbxPermisos.Controls.Add(this.lblConcedidos);
@@ -107,14 +107,33 @@
             this.gbxPermisos.TabStop = false;
             this.gbxPermisos.Text = "Permisos";
             // 
-            // button2
+            // lbxConcedidos
             // 
-            this.button2.Location = new System.Drawing.Point(318, 217);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(165, 57);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "<- Denegar ";
-            this.button2.UseVisualStyleBackColor = true;
+            this.lbxConcedidos.FormattingEnabled = true;
+            this.lbxConcedidos.ItemHeight = 20;
+            this.lbxConcedidos.Location = new System.Drawing.Point(489, 56);
+            this.lbxConcedidos.Name = "lbxConcedidos";
+            this.lbxConcedidos.Size = new System.Drawing.Size(302, 344);
+            this.lbxConcedidos.TabIndex = 12;
+            // 
+            // lbxDenegados
+            // 
+            this.lbxDenegados.FormattingEnabled = true;
+            this.lbxDenegados.ItemHeight = 20;
+            this.lbxDenegados.Location = new System.Drawing.Point(6, 56);
+            this.lbxDenegados.Name = "lbxDenegados";
+            this.lbxDenegados.Size = new System.Drawing.Size(306, 344);
+            this.lbxDenegados.TabIndex = 11;
+            // 
+            // btnDenegar
+            // 
+            this.btnDenegar.Location = new System.Drawing.Point(318, 217);
+            this.btnDenegar.Name = "btnDenegar";
+            this.btnDenegar.Size = new System.Drawing.Size(165, 57);
+            this.btnDenegar.TabIndex = 3;
+            this.btnDenegar.Text = "<- Denegar ";
+            this.btnDenegar.UseVisualStyleBackColor = true;
+            this.btnDenegar.Click += new System.EventHandler(this.btnDenegar_Click);
             // 
             // btnConceder
             // 
@@ -124,6 +143,7 @@
             this.btnConceder.TabIndex = 10;
             this.btnConceder.Text = "Conceder ->";
             this.btnConceder.UseVisualStyleBackColor = true;
+            this.btnConceder.Click += new System.EventHandler(this.btnConceder_Click);
             // 
             // gbxGeneral
             // 
@@ -155,6 +175,7 @@
             this.btnGuardar.TabIndex = 12;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnLimpiar
             // 
@@ -164,25 +185,7 @@
             this.btnLimpiar.TabIndex = 13;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
-            // 
-            // lbxDenegados
-            // 
-            this.lbxDenegados.FormattingEnabled = true;
-            this.lbxDenegados.ItemHeight = 20;
-            this.lbxDenegados.Location = new System.Drawing.Point(6, 56);
-            this.lbxDenegados.Name = "lbxDenegados";
-            this.lbxDenegados.Size = new System.Drawing.Size(306, 344);
-            this.lbxDenegados.TabIndex = 11;
-            this.lbxDenegados.SelectedIndexChanged += new System.EventHandler(this.lbxDenegados_SelectedIndexChanged);
-            // 
-            // lbxConcedidos
-            // 
-            this.lbxConcedidos.FormattingEnabled = true;
-            this.lbxConcedidos.ItemHeight = 20;
-            this.lbxConcedidos.Location = new System.Drawing.Point(489, 56);
-            this.lbxConcedidos.Name = "lbxConcedidos";
-            this.lbxConcedidos.Size = new System.Drawing.Size(302, 344);
-            this.lbxConcedidos.TabIndex = 12;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // frmRolesFicha
             // 
@@ -215,7 +218,7 @@
         private System.Windows.Forms.GroupBox gbxPermisos;
         private System.Windows.Forms.GroupBox gbxGeneral;
         private System.Windows.Forms.Label lblTitulo;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDenegar;
         private System.Windows.Forms.Button btnConceder;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnLimpiar;
