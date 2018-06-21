@@ -109,6 +109,12 @@
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Regimenes.cs" />
+    <Compile Include="Roles\frmRolesFicha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Roles\frmRolesFicha.Designer.cs">
+      <DependentUpon>frmRolesFicha.cs</DependentUpon>
+    </Compile>
     <Compile Include="Roles\frmRolesListado.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,8 +220,13 @@
     <Compile Include="RegistrarEstadia\RegistrarEstadia.Designer.cs">
       <DependentUpon>RegistrarEstadia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Roles\Modelo\Permiso.cs" />
+    <Compile Include="Roles\Modelo\Permisos.cs" />
     <Compile Include="Roles\Modelo\Rol.cs" />
     <Compile Include="Roles\Modelo\Roles.cs" />
+    <Compile Include="Roles\Modelo\RolesPermisos.cs" />
+    <Compile Include="Roles\Modelo\RolPermiso.cs" />
+    <Compile Include="Tools\Option.cs" />
     <EmbeddedResource Include="AbmHabitacion\abmHabitacionBotones.resx">
       <DependentUpon>abmHabitacionBotones.cs</DependentUpon>
     </EmbeddedResource>
@@ -278,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\RegistrarEstadia.resx">
       <DependentUpon>RegistrarEstadia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Roles\frmRolesFicha.resx">
+      <DependentUpon>frmRolesFicha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Roles\frmRolesListado.resx">
       <DependentUpon>frmRolesListado.cs</DependentUpon>

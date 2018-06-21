@@ -118,18 +118,18 @@ namespace FrbaHotel
             SqlDataAdapter dataAdapter = new SqlDataAdapter(miCommand);
             
             // REM CARGO EL DATATABLE PRODUCTOS A TRAVEZ DEL DATAREADER
-            int rowsAffected = dataAdapter.Fill(ds);
+            int rowsAffected = dataAdapter.UpdateBatchSize;
             this.desconectar();
 
             return rowsAffected;
         }
 
-        public void ejecutarComandoSQL(string miCommand)
+        public int ejecutarComandoSQL(string miCommand)
         {
             SqlCommand coman2 = new SqlCommand(string.Format(miCommand), miConexionSQL);
-            this.ejecutarComando(coman2);
+            return this.ejecutarComando(coman2);
         }
-        public void ejecutarComando(SqlCommand miCommand)
+        public int ejecutarComando(SqlCommand miCommand)
         {
             DataTable ds = new DataTable();
             // REM CONFIGURO EL OBJETO COMMAND
@@ -139,8 +139,10 @@ namespace FrbaHotel
             // REM INDICO EL TIPO QUE SE PASARA EN COMMANDTEXT
             miCommand.CommandType = CommandType.Text;
 
-            miCommand.ExecuteNonQuery();
+            int rowsAffected = miCommand.ExecuteNonQuery();
             this.desconectar();
+
+            return rowsAffected;
         }
         #endregion
 
