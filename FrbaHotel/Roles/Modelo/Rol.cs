@@ -65,7 +65,24 @@ namespace FrbaHotel.Roles.Modelo
         }
         private List<KeyValuePair<string, string>> insertar()
         {
-            return new List<KeyValuePair<string, string>>();
+            List<KeyValuePair<string, string>> errores = new List<KeyValuePair<string, string>>();
+            try
+            {
+                ConexionSQL conn = new ConexionSQL();
+                string sql = "INSERT INTO WHERE_EN_EL_DELETE_FROM.Roles (nombre, habilitado, esDefault) VALUES ('" + this.nombre + "', " + Convert.ToInt32(this.habilitado).ToString() + ", " + Convert.ToInt32(this.esDefault).ToString() + ")";
+                int modificado = conn.actualizarDatos(sql);
+
+                if (modificado == 0)
+                {
+                    errores.Add(new KeyValuePair<string, string>("general", "No se pudo guardar el rol."));
+                }
+            }
+            catch (Exception e)
+            {
+                errores.Add(new KeyValuePair<string, string>("general", e.Message));
+            }
+
+            return errores;
         }
         private List<KeyValuePair<string, string>> actualizar()
         {
