@@ -118,7 +118,7 @@ namespace FrbaHotel
             SqlDataAdapter dataAdapter = new SqlDataAdapter(miCommand);
             
             // REM CARGO EL DATATABLE PRODUCTOS A TRAVEZ DEL DATAREADER
-            int rowsAffected = dataAdapter.Fill(ds);
+            int rowsAffected = dataAdapter.UpdateBatchSize;
             this.desconectar();
 
             return rowsAffected;

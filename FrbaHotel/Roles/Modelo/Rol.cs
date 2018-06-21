@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace FrbaHotel.Roles.Modelo
 {
-    class Rol
+    public class Rol
     {
         private int rol_id;
         private string nombre;
         private bool habilitado;
         private bool esDefault;
+        private List<Permiso> permisos_dados;
+        private List<Permiso> permisos_restringidos;
 
         public int RolId
         {
@@ -32,6 +34,34 @@ namespace FrbaHotel.Roles.Modelo
         {
             get { return esDefault; }
             set { esDefault = value; }
+        }
+        public List<Permiso> PermisosDados
+        {
+            get
+            {
+                if (this.permisos_dados == null)
+                {
+                    this.permisos_dados = RolesPermisos.obtenerPermisosDadosPorRol(this.rol_id);
+                }
+
+                return permisos_dados;
+            }
+            set
+            {
+                this.permisos_dados = value;
+            }
+        }
+        public List<Permiso> PermisosRestringidos
+        {
+            get
+            {
+                if (this.permisos_restringidos == null)
+                {
+                    this.permisos_restringidos = RolesPermisos.obtenerPermisosRestringidosPorRol(this.rol_id);
+                }
+
+                return permisos_restringidos;
+            }
         }
 
         public Rol(int rolId)
@@ -72,6 +102,12 @@ namespace FrbaHotel.Roles.Modelo
                 string sql = "INSERT INTO WHERE_EN_EL_DELETE_FROM.Roles (nombre, habilitado, esDefault) VALUES ('" + this.nombre + "', " + Convert.ToInt32(this.habilitado).ToString() + ", " + Convert.ToInt32(this.esDefault).ToString() + ")";
                 int modificado = conn.actualizarDatos(sql);
 
+                if (this.esDefault == true)
+                {
+                    sql = "UPDATE WHERE_EN_EL_DELETE_FROM.Roles SET esDefault = 0 WHERE rol_id<>" + this.rol_id.ToString();
+                    conn.actualizarDatos(sql);
+                }
+
                 if (modificado == 0)
                 {
                     errores.Add(new KeyValuePair<string, string>("general", "No se pudo guardar el rol."));
@@ -93,6 +129,12 @@ namespace FrbaHotel.Roles.Modelo
                 string sql = "UPDATE WHERE_EN_EL_DELETE_FROM.Roles SET nombre='" + this.nombre + "',habilitado=" + Convert.ToInt32(this.habilitado).ToString() + ",esDefault=" + Convert.ToInt32(this.esDefault).ToString() + " WHERE rol_id=" + this.rol_id.ToString();
                 int modificado = conn.actualizarDatos(sql);
 
+                if (this.esDefault == true)
+                {
+                    sql = "UPDATE WHERE_EN_EL_DELETE_FROM.Roles SET esDefault = 0 WHERE rol_id<>" + this.rol_id.ToString();
+                    conn.actualizarDatos(sql);
+                }
+
                 if (modificado == 0)
                 {
                     errores.Add(new KeyValuePair<string, string>("general", "No se actualizo ningun dato del registro."));
@@ -109,42 +151,53 @@ namespace FrbaHotel.Roles.Modelo
 
             return errores;
         }
-
-
+        
         public List<KeyValuePair<string, string>> guardar()
         {
-            List<KeyValuePair<string, string>> errores = new List<KeyValuePair<string, string>>();
-            if (this.rol_id > 0)
+            List<KeyValuePair<string, string>> errores = this.validar();
+
+            if (errores.Count == 0)
             {
-                ConexionSQL conn = new ConexionSQL();
-                string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE rol_id=" + this.rol_id.ToString();
-                DataTable dt = conn.cargarTablaSQL(sql);
-                if (dt.Rows.Count == 1)
+                if (this.rol_id > 0)
                 {
-                    errores = errores.Concat(this.actualizar()).ToList();
+                    ConexionSQL conn = new ConexionSQL();
+                    string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE rol_id=" + this.rol_id.ToString();
+                    DataTable dt = conn.cargarTablaSQL(sql);
+                    if (dt.Rows.Count == 1)
+                    {
+                        errores = errores.Concat(this.actualizar()).ToList();
+                    }
+                    else
+                    {
+                        errores.Add(new KeyValuePair<string, string>("general", "El rol ya no existe"));
+                    }
                 }
                 else
                 {
-                    errores.Add(new KeyValuePair<string, string>("general", "El rol ya no existe"));
+                    errores = errores.Concat(this.insertar()).ToList();
                 }
             }
-            else
-            {
-                errores = errores.Concat(this.insertar()).ToList();
-            }
-
-            
 
             return errores;
         }
-
         public List<KeyValuePair<string, string>> validar()
         {
             List<KeyValuePair<string, string>> errores = new List<KeyValuePair<string, string>>();
 
-            if (this.nombre == null || this.nombre.Length > 255 || this.nombre.Length==0)
+            //Valido el nombre
+            if (this.nombre == null || this.nombre.Length > 255 || this.nombre.Length == 0)
             {
-                errores.Add(new KeyValuePair<string,string>("nombre", "El nombre no puede ser nulo, vacio ni tener mas de 255 caracteres."));
+                errores.Add(new KeyValuePair<string, string>("nombre", "El nombre no puede ser nulo, vacio ni tener mas de 255 caracteres."));
+            }
+            else
+            {
+                ConexionSQL conn = new ConexionSQL();
+                string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE nombre='" + this.nombre+"' AND role_id<>" + this.rol_id.ToString();
+                DataTable dt = conn.cargarTablaSQL(sql);
+                if (dt.Rows.Count > 0)
+                {
+                    errores.Add(new KeyValuePair<string, string>("nombre", "El nombre ya se encuentra en uso."));
+                }
             }
 
             return errores;

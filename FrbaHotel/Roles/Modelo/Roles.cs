@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 
 namespace FrbaHotel.Roles.Modelo
 {
-    static class Roles
+    public static class Roles
     {
         public static DataTable obtener()
         {

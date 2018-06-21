@@ -21,20 +21,20 @@ namespace FrbaHotel.Roles
         private void frmRolesGrid_Load(object sender, EventArgs e)
         {
             this.cmbHabilitado.SelectedIndex = 2;
-            this.LoadGrid(Roles.Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex - 1));
+            this.LoadGrid(Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex - 1));
             
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             this.txtNombre.Text = "";
-            this.cmbHabilitado.SelectedIndex = 0;
+            this.cmbHabilitado.SelectedIndex = 2;
             this.btnBuscar_Click(sender, e);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            this.LoadGrid(Roles.Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex-1));
+            this.LoadGrid(Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex-1));
         }
 
         private void LoadGrid(DataTable dt)
@@ -124,6 +124,13 @@ namespace FrbaHotel.Roles
                 }
             }
 
+        }
+
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+            Rol rol = new Rol(0);
+            Roles.frmRolesFicha frmFicha = new Roles.frmRolesFicha(rol);
+            frmFicha.Show();
         }
     }
 }
