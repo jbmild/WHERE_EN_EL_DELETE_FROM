@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Roles.Modelo;
 
 namespace FrbaHotel.Roles
 {
@@ -19,8 +20,8 @@ namespace FrbaHotel.Roles
 
         private void frmRolesGrid_Load(object sender, EventArgs e)
         {
-            this.cmbHabilitado.SelectedIndex = 0;
-            this.LoadGrid(Roles.Modelo.Roles.obtener());
+            this.cmbHabilitado.SelectedIndex = 2;
+            this.LoadGrid(Roles.Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex - 1));
             
         }
 
@@ -65,8 +66,64 @@ namespace FrbaHotel.Roles
                 habilitado.TrueValue = "1";
                 this.dgwRoles.Columns.Add(habilitado);
 
+                DataGridViewTextBoxColumn modificar = new DataGridViewTextBoxColumn();
+                modificar.HeaderText = "Modificar";
+                modificar.ReadOnly = true;
+                this.dgwRoles.Columns.Add(modificar);
+
+                DataGridViewTextBoxColumn eliminar = new DataGridViewTextBoxColumn();
+                eliminar.HeaderText = "Eliminar";
+                eliminar.ReadOnly = true;
+                eliminar.DefaultCellStyle.ForeColor = Color.Aqua;
+                this.dgwRoles.Columns.Add(eliminar);
+
                 this.dgwRoles.DataSource = dt;
             }
+        }
+
+        private void dgwRoles_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex != -1)
+            {
+                switch (this.dgwRoles.CurrentCell.ColumnIndex)
+                {
+                    case 3:
+                        MessageBox.Show(String.Concat("Queria modificar a ", this.dgwRoles.Rows[e.RowIndex].Cells[1].Value, " ", this.dgwRoles.CurrentCell.ColumnIndex.ToString()));
+                        break;
+                    case 4:
+                        this.deleteRol((int)this.dgwRoles.Rows[e.RowIndex].Cells[0].Value, this.dgwRoles.Rows[e.RowIndex].Cells[1].Value.ToString());
+                        break;
+
+                }
+            }
+        }
+
+        private void deleteRol(int rolId, string name)
+        {
+            var confirmResult = MessageBox.Show(String.Concat("Esta seguro que desea eliminar logicamente el rol '", name, "'?"), "Confirmar eliminacion logica", MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                Rol rol = new Rol(rolId);
+                List<KeyValuePair<string,string>> errores = rol.eliminar();
+                if (errores.Count == 0)
+                {
+                    MessageBox.Show("Se realizo el eliminado logico exitosamente!");
+                }
+                else
+                {
+                    string impresionErrores = "";
+                    foreach(KeyValuePair<string, string> data in errores){
+                        if(impresionErrores.Length==0){
+                            impresionErrores = data.Value;
+                        }else{
+                            impresionErrores = impresionErrores + Environment.NewLine + data.Value;
+                        }
+                    }
+
+                    MessageBox.Show(impresionErrores, "Ocurrio un error al eliminar el rol.");
+                }
+            }
+
         }
     }
 }
