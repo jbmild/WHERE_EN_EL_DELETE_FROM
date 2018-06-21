@@ -40,12 +40,19 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Cliente cli = new Cliente();
+            if (txtNroDocumento.Text.Length > 0 || txtMail.Text.Length > 0)
+            {
+                Cliente cli = new Cliente();
+
+                IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(reserva, Convert.ToInt32(cmbTiposDocumentos.SelectedValue),
+                                                                                txtNroDocumento.Text,
+                                                                                txtMail.Text);
+                frmUsuExtendido.Show();
+            }
+            else {
+                System.Windows.Forms.MessageBox.Show("Debe completar nro documento o mail para poder continuar. ");
+            }
             
-            IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(reserva, Convert.ToInt32(cmbTiposDocumentos.SelectedValue),
-                                                                            txtNroDocumento.Text,
-                                                                            txtMail.Text);
-            frmUsuExtendido.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)

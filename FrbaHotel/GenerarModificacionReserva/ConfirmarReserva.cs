@@ -36,13 +36,23 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void frmConfirmarReserva_Load(object sender, EventArgs e)
         {
-            lblDatosCliente.Text.Replace("{cliente}", _cliente.apellido + " " + _cliente.nombre);
-            //TODO: mostrar datos reserva
+            lblDatosCliente.Text = lblDatosCliente.Text.Replace("{cliente}", _cliente.apellido + " " + 
+                                    _cliente.nombre);
+            string strDatosReserva = lblDatosReserva.Text;
+            Hotel hotel = new Hotel();
+            TipoRegimen tipoRegimen = new TipoRegimen();
+            strDatosReserva = strDatosReserva.Replace("{checkin}", _reserva.fecha_desde.ToShortDateString());
+            strDatosReserva = strDatosReserva.Replace("{checkout}", _reserva.fecha_desde.ToShortDateString());
+            strDatosReserva = strDatosReserva.Replace("{hotel}", hotel.getNombreById(_reserva.hotel_id));
+            strDatosReserva = strDatosReserva.Replace("{regimen}", tipoRegimen.getDescripcionById(_reserva.regimen_id));
+
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             //TODO: Salvar reserva
+            
+
             System.Windows.Forms.MessageBox.Show("La reserva ha sido guardada. Lo esperamos!");
         }
     }

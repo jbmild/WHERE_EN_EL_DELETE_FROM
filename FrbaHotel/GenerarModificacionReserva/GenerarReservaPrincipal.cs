@@ -14,7 +14,7 @@ namespace FrbaHotel.GenerarModificacionReserva
     public partial class GenerarReservaPrincipal: Form
     {
 
-        private Reserva reserva = null;
+        private Reserva _reserva = null;
         public GenerarReservaPrincipal()
         {
             InitializeComponent();
@@ -27,14 +27,14 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         public void GenerarReservaPrincipal_Load(object sender, EventArgs e)
         {
-            if (reserva != null) {
-                this.lblHotel.Text = this.lblHotel.Text.Replace("{hotel}", (new Hotel()).getNombreById(reserva.hotel_id));
-                this.lblFechaDesde.Text = this.lblFechaDesde.Text.Replace("{checkin}", reserva.fecha_desde.ToShortDateString());
-                this.lblFechaHasta.Text = this.lblFechaHasta.Text.Replace("{checkout}", reserva.fecha_hasta.ToShortDateString());
-                this.lblTipoRegimen.Text = this.lblTipoRegimen.Text.Replace("{regimen}", (new TipoRegimen()).getDescripcionById(reserva.regimen_id));
+            if (_reserva != null) {
+                this.lblHotel.Text = this.lblHotel.Text.Replace("{hotel}", (new Hotel()).getNombreById(_reserva.hotel_id));
+                this.lblFechaDesde.Text = this.lblFechaDesde.Text.Replace("{checkin}", _reserva.fecha_desde.ToShortDateString());
+                this.lblFechaHasta.Text = this.lblFechaHasta.Text.Replace("{checkout}", _reserva.fecha_hasta.ToShortDateString());
+                this.lblTipoRegimen.Text = this.lblTipoRegimen.Text.Replace("{regimen}", (new TipoRegimen()).getDescripcionById(_reserva.regimen_id));
                 
                 String strHabitaciones = String.Empty;
-                foreach (Habitacion hab in reserva.habitaciones) {
+                foreach (Habitacion hab in _reserva.habitaciones) {
                     strHabitaciones += hab.numero.ToString() + ", ";
                 }
                 txtNrosHabitaciones.Text = strHabitaciones.Substring(0, strHabitaciones.Length - 2);
@@ -56,7 +56,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         }
 
         public void pasarReserva(Reserva res) {
-            this.reserva = res;
+            this._reserva = res;
         }
 
         private void btnBuscarHabitaciones_Click(object sender, EventArgs e)
@@ -83,8 +83,19 @@ namespace FrbaHotel.GenerarModificacionReserva
             //Armar objeto reserva con datos que tengo, tanto:
             // (A) si es nuevo (nro habitacion, tipo de regimen, hotel, fdesde, fhasta, clienteId)
             // (B) si lo está modificando (nro de reserva)
-            IdentificarUsuarioExtendido form = new IdentificarUsuarioExtendido(1); // va a romper.
-            form.Show();
+            if ((txtNroDocumento.Text.Length > 0 || txtMail.Text.Length > 0) && txtNrosHabitaciones.Text.Length > 0)
+            {
+                Cliente cli = new Cliente();
+
+                IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(_reserva, Convert.ToInt32(cmbTiposDocumentos.SelectedValue),
+                                                                                txtNroDocumento.Text,
+                                                                                txtMail.Text);
+                frmUsuExtendido.Show();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Debe completar nro documento o mail para poder continuar. ");
+            }
         }
     }
 }

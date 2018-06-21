@@ -130,7 +130,7 @@
             // lblTipoRegimen
             // 
             this.lblTipoRegimen.AutoSize = true;
-            this.lblTipoRegimen.Location = new System.Drawing.Point(263, 102);
+            this.lblTipoRegimen.Location = new System.Drawing.Point(290, 102);
             this.lblTipoRegimen.Name = "lblTipoRegimen";
             this.lblTipoRegimen.Size = new System.Drawing.Size(137, 13);
             this.lblTipoRegimen.TabIndex = 7;
@@ -139,7 +139,7 @@
             // lblFechaHasta
             // 
             this.lblFechaHasta.AutoSize = true;
-            this.lblFechaHasta.Location = new System.Drawing.Point(263, 70);
+            this.lblFechaHasta.Location = new System.Drawing.Point(290, 70);
             this.lblFechaHasta.Name = "lblFechaHasta";
             this.lblFechaHasta.Size = new System.Drawing.Size(127, 13);
             this.lblFechaHasta.TabIndex = 5;

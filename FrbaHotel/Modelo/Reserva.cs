@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using System.Data.SqlClient;
 
 
 namespace FrbaHotel.Modelo
@@ -74,6 +76,16 @@ namespace FrbaHotel.Modelo
         public List<Habitacion> habitaciones {
             get { return _habitaciones; }
             set { _habitaciones = value; }
+        }
+
+        public int GuardarReserva(Reserva res) {
+            SqlCommand command = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas (fecha_desde, fecha_hasta, fecha_creacion, cliente_id, codigo, estado, usuario_id, total, regimen_id, hotel_id)
+                                                VALUES(@fdesde, @fhasta, getdate(), @cliente_id)");
+
+            SqlCommand command2 = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas_Habitaciones (habitacion_id, reserva_id, precio_diario)
+                                                VALUES(@habitacion_id, @reserva_id, @precio_diario)");
+
+            return 0; // TODO: Devolver variable exito.
         }
     }
 }

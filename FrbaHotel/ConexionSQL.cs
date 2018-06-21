@@ -64,7 +64,7 @@ namespace FrbaHotel
 
         public static SqlConnection obtenerConexion()
         {
-            SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString);
+            SqlConnection conexion = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
          
             
             conexion.Open();

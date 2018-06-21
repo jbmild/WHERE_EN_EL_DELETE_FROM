@@ -71,6 +71,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 txtTelefono.Text = _cli.telefono;
                 txtLocalidad.Text = _cli.direccion_localidad;
                 txtPaisVivienda.Text = _cli.direccion_pais;
+                _res.cliente_id = _cli.idCliente;
 
             }
 

@@ -33,6 +33,11 @@ namespace FrbaHotel.Modelo
             get { return _numero; }
             set { _numero = value; }
         }
+
+        public int hotel_id {
+            get { return _hotel_id;  }
+            set { _hotel_id = value; }
+        }
     }
 
     

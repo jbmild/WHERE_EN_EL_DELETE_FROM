@@ -98,7 +98,7 @@ namespace FrbaHotel.Modelo
             _idCliente = id;
         }
 
-        public Cliente(int id, string email, string nombre, string apellido, string telefono, string pasaporte, 
+        public Cliente(int id, string email, string nombre, string apellido, string telefono, string nro_documento, 
                 string direccion_calle, string direccion_numero, string direccion_piso, string direccion_depto, 
             string direccion_localidad, string direccion_pais, string nacionalidad)
         {
@@ -107,7 +107,7 @@ namespace FrbaHotel.Modelo
             _nombre = nombre;
             _apellido = apellido;
             _telefono = telefono;
-            _nrodocumento = pasaporte;
+            _nrodocumento = nro_documento;
             _direccion_calle = direccion_calle;
             _direccion_numero = direccion_numero;
             _direccion_piso = direccion_piso;
@@ -124,17 +124,17 @@ namespace FrbaHotel.Modelo
         public Cliente getClienteByTipoNroDocEmail(int tipoDoc, string nroDoc, string email){
             ConexionSQL conn = new ConexionSQL();
 
-            string sqlQuery = "select * from WHERE_EN_EL_DELETE_FROM.Clientes cli WHERE ";
+            string sqlQuery = "select * from WHERE_EN_EL_DELETE_FROM.Clientes cli WHERE 1=1 ";
             
-            //if(tipoDoc != null){
-            //    sqlQuery+= "tipoDocumento='" + tipoDoc + "' "
-            //}
-
-            if(nroDoc != null || nroDoc.Length > 0){
-                sqlQuery+= "pasaporte='" + nroDoc + "' ";
+            if(tipoDoc != 0){
+                sqlQuery += "AND documento_tipo='" + tipoDoc + "' ";
             }
 
-            if(email != null || email.Length > 0){
+            if(nroDoc.Length > 0 || nroDoc.Length > 0){
+                sqlQuery+= " AND documento_nro='" + nroDoc + "' ";
+            }
+
+            if(email.Length > 0 || email.Length > 0){
                 sqlQuery += " AND mail='" + email + "' ";
             }
             
@@ -149,14 +149,14 @@ namespace FrbaHotel.Modelo
                                                     row[4].ToString(), // nombre
                                                     row[5].ToString(), // apellido
                                                     row[6].ToString(), // telefono
-                                                    row[7].ToString(), // pasaporte
-                                                    row[8].ToString(), // direccion_calle
-                                                    row[9].ToString(), // direccion_nro
-                                                    row[10].ToString(), // direccion_piso
-                                                    row[11].ToString(), // direccion_depto
-                                                    row[12].ToString(), // direccion_localidad
-                                                    row[13].ToString(), // direccion_pais
-                                                    row[14].ToString()); // nacionalidad
+                                                    row[8].ToString(), // documento_nro
+                                                    row[9].ToString(), // direccion_calle
+                                                    row[10].ToString(), // direccion_nro
+                                                    row[11].ToString(), // direccion_piso
+                                                    row[12].ToString(), // direccion_depto
+                                                    row[13].ToString(), // direccion_localidad
+                                                    row[14].ToString(), // direccion_pais
+                                                    row[15].ToString()); // nacionalidad
 
             }
             else {
@@ -172,13 +172,11 @@ namespace FrbaHotel.Modelo
             
             int usuario_id = 1; //TODO: Leerlo del usuario logueado.
 
-
-
             if (cli.idCliente != 0)
             {
                 command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
                                                 mail=@mail,nombre=@nombre,apellido=@apellido,telefono=@telefono,
-                                                pasaporte=@nrodocumento,direccion_calle=@direccion_calle,
+                                                documento_nro=@nrodocumento,direccion_calle=@direccion_calle,
                                                 direccion_nro=@direccion_nro,direccion_piso=@direccion_piso,
                                                 direccion_depto=@direccion_depto,direccion_localidad=@direccion_localidad,
                                                 direccion_pais=@direccion_pais,nacionalidad=@nacionalidad,consistente=1
@@ -187,7 +185,7 @@ namespace FrbaHotel.Modelo
             else
             {
                 command = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Clientes 
-                                        (usuario_id, mail, nombre, apellido, telefono, pasaporte, direccion_calle, direccion_nro, direccion_piso, direccion_depto, direccion_localidad, direccion_pais, nacionalidad, consistente)
+                                        (usuario_id, mail, nombre, apellido, telefono, documento_nro, direccion_calle, direccion_nro, direccion_piso, direccion_depto, direccion_localidad, direccion_pais, nacionalidad, consistente)
                                         VALUES(@usuario_id, @mail, @nombre, @apellido, @telefono, @nrodocumento, @direccion_calle, @direccion_nro, @direccion_piso, @direccion_depto, @direccion_localidad, @direccion_pais, @nacionalidad, 1))");
             }
 
@@ -217,7 +215,7 @@ namespace FrbaHotel.Modelo
                                                         "apellido='" + cli.apellido + "'," +
                                             
             "telefono='" + cli.telefono + "'," +
-                                                        "pasaporte='" + cli.nrodocumento + "'," +
+                                                        "documento_nro='" + cli.nrodocumento + "'," +
                                                         "direccion_calle='" + cli.direccion_calle + "'," +
                                                         "direccion_nro='" + cli.direccion_numero + "'," +
                                                         "direccion_piso='" + cli.direccion_piso + "'," +
