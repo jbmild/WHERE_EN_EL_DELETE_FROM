@@ -22,16 +22,13 @@ namespace FrbaHotel.AbmHabitacion
         {
             ConexionSQL c = new ConexionSQL();
             DataTable dtHoteles = c.cargarTablaSQL("select direccion, hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles ");
+            dtHoteles.Rows.InsertAt(dtHoteles.NewRow(), 0);
             comboBoxHotel.DataSource = dtHoteles;
+            comboBoxHotel.SelectedIndex = 0;
             comboBoxHotel.DisplayMember = "direccion";
             comboBoxHotel.ValueMember = "hotel_id";
 
-            /*Buscar pisos dentro del hotel elegido*/
-            DataTable dtPisos = c.cargarTablaSQL("select hotel_id, piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id='" 
-                + this.comboBoxHotel.SelectedValue + "'" + " " + "group by hotel_id, piso order by hotel_id desc, piso desc");
-            comboBoxPisoEnHotel.DataSource=dtPisos;
-            comboBoxPisoEnHotel.DisplayMember="piso";
-            comboBoxPisoEnHotel.ValueMember="piso";
+           
             /*Buscar numero de habitacion en el piso elegido del hotel*/
             
         }
@@ -41,7 +38,9 @@ namespace FrbaHotel.AbmHabitacion
 
             ConexionSQL c = new ConexionSQL();
             DataTable dtPisos = c.cargarTablaSQL("select hotel_id, piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id='" +comboBoxHotel.SelectedValue + "'" + " group by hotel_id, piso order by hotel_id desc, piso desc");
+            dtPisos.Rows.InsertAt(dtPisos.NewRow(), 0);
             comboBoxPisoEnHotel.DataSource = dtPisos;
+            comboBoxPisoEnHotel.SelectedIndex = 0;
             comboBoxPisoEnHotel.DisplayMember = "piso";
             comboBoxPisoEnHotel.ValueMember = "piso";
         }
@@ -52,8 +51,15 @@ namespace FrbaHotel.AbmHabitacion
         {
             int r;
             if (String.IsNullOrWhiteSpace(textBoxDescripcionHabitacion.Text) || String.IsNullOrWhiteSpace(textBoxNumeroHabitacion.Text) ||
-                !Int32.TryParse(textBoxNumeroHabitacion.Text, out r))
+                !Int32.TryParse(textBoxNumeroHabitacion.Text, out r) || this.comboBoxHotel.Text.Equals("") || this.VistaPendiente())
             {
+                if (this.comboBoxHotel.Text.Equals(""))
+                {
+                    labelHotelPendiente.Visible = true;
+                }
+                else {
+                    labelHotelPendiente.Visible = false;
+                }
                 if (String.IsNullOrWhiteSpace(textBoxDescripcionHabitacion.Text))
                 {
                     labelDescVacia.Visible = true;
@@ -75,9 +81,19 @@ namespace FrbaHotel.AbmHabitacion
                         labelNroVacio.Visible = true;
                     };
                 }
+                if (this.VistaPendiente())
+                {
+                    this.labelVistaPendiente.Visible = true;
+                }
+                else { this.labelVistaPendiente.Visible = false; }
             }
             else
             {
+                this.labelHotelPendiente.Visible = false;
+                this.labelDescVacia.Visible = false;
+                this.labelNroVacio.Visible = false;
+                bool vista;
+                if (this.radioButtonVistaExteriorNO.Checked) { vista = false; } else { vista = true; }
                 SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
                 con1.Open();
                 string select = String.Concat("SELECT ha.numero FROM WHERE_EN_EL_DELETE_FROM.habitaciones ha JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id where ",
@@ -97,7 +113,7 @@ namespace FrbaHotel.AbmHabitacion
                     sql.Parameters.Add("@hotel", SqlDbType.Int).Value = comboBoxHotel.SelectedValue;
                     sql.Parameters.Add("@numeroHabitacion", SqlDbType.Int).Value = textBoxNumeroHabitacion.Text;
                     sql.Parameters.Add("@piso", SqlDbType.Int).Value = comboBoxPisoEnHotel.SelectedValue;
-                    sql.Parameters.Add("@vista", SqlDbType.Bit).Value = checkBoxVistaExterior.Checked;
+                    sql.Parameters.Add("@vista", SqlDbType.Bit).Value = vista;
                     sql.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = textBoxDescripcionHabitacion.Text;
 
                     int result = sql.ExecuteNonQuery();
@@ -115,6 +131,19 @@ namespace FrbaHotel.AbmHabitacion
                 }
 
             }
+        }
+
+        private bool VistaPendiente()
+        {
+            return this.radioButtonVistaExteriorNO.Checked.Equals(false) && this.radioButtonVistaExteriorSI.Checked.Equals(false);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.comboBoxHotel.SelectedText = "";
+            this.comboBoxPisoEnHotel.SelectedText = "";
+            this.textBoxDescripcionHabitacion.Text = "";
+            
         }
 
   
