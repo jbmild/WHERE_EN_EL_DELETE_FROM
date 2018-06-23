@@ -29,6 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBoxModificarHabitacion = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.radioButtonHabilitadoNO = new System.Windows.Forms.RadioButton();
+            this.radioButtonHabilitadoSI = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.radioButtonVistaNO = new System.Windows.Forms.RadioButton();
+            this.radioButtonVistaSI = new System.Windows.Forms.RadioButton();
+            this.labelPisoPendiente = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.labelNumeroHabiPendiente = new System.Windows.Forms.Label();
             this.labelHotelPendiente = new System.Windows.Forms.Label();
@@ -39,10 +48,8 @@
             this.labelHotelNuevo = new System.Windows.Forms.Label();
             this.labelNotificarError = new System.Windows.Forms.Label();
             this.comboBoxNuevoHotel = new System.Windows.Forms.ComboBox();
-            this.checkBoxEstaHabilitado = new System.Windows.Forms.CheckBox();
             this.buttonGuardarCambios = new System.Windows.Forms.Button();
             this.labelPisoNuevo = new System.Windows.Forms.Label();
-            this.checkBoxTieneVistaExterior = new System.Windows.Forms.CheckBox();
             this.comboBoxNuevoPiso = new System.Windows.Forms.ComboBox();
             this.labelDescripcionNueva = new System.Windows.Forms.Label();
             this.textBoxNuevaDescripcion = new System.Windows.Forms.TextBox();
@@ -58,12 +65,15 @@
             this.labelHabilitadoActualmente = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.labelNumeroHabitacionActual = new System.Windows.Forms.Label();
-            this.labelPisoPendiente = new System.Windows.Forms.Label();
             this.groupBoxModificarHabitacion.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxModificarHabitacion
             // 
+            this.groupBoxModificarHabitacion.Controls.Add(this.groupBox2);
+            this.groupBoxModificarHabitacion.Controls.Add(this.groupBox1);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelPisoPendiente);
             this.groupBoxModificarHabitacion.Controls.Add(this.label8);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelNumeroHabiPendiente);
@@ -75,18 +85,112 @@
             this.groupBoxModificarHabitacion.Controls.Add(this.labelHotelNuevo);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelNotificarError);
             this.groupBoxModificarHabitacion.Controls.Add(this.comboBoxNuevoHotel);
-            this.groupBoxModificarHabitacion.Controls.Add(this.checkBoxEstaHabilitado);
             this.groupBoxModificarHabitacion.Controls.Add(this.buttonGuardarCambios);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelPisoNuevo);
-            this.groupBoxModificarHabitacion.Controls.Add(this.checkBoxTieneVistaExterior);
             this.groupBoxModificarHabitacion.Controls.Add(this.comboBoxNuevoPiso);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelDescripcionNueva);
             this.groupBoxModificarHabitacion.Controls.Add(this.textBoxNuevaDescripcion);
             this.groupBoxModificarHabitacion.Location = new System.Drawing.Point(627, 12);
             this.groupBoxModificarHabitacion.Name = "groupBoxModificarHabitacion";
-            this.groupBoxModificarHabitacion.Size = new System.Drawing.Size(975, 357);
+            this.groupBoxModificarHabitacion.Size = new System.Drawing.Size(1111, 357);
             this.groupBoxModificarHabitacion.TabIndex = 20;
             this.groupBoxModificarHabitacion.TabStop = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Controls.Add(this.radioButtonHabilitadoNO);
+            this.groupBox2.Controls.Add(this.radioButtonHabilitadoSI);
+            this.groupBox2.Location = new System.Drawing.Point(23, 272);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(256, 38);
+            this.groupBox2.TabIndex = 28;
+            this.groupBox2.TabStop = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(5, 13);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(101, 17);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "Está habilitado";
+            // 
+            // radioButtonHabilitadoNO
+            // 
+            this.radioButtonHabilitadoNO.AutoSize = true;
+            this.radioButtonHabilitadoNO.Location = new System.Drawing.Point(203, 12);
+            this.radioButtonHabilitadoNO.Name = "radioButtonHabilitadoNO";
+            this.radioButtonHabilitadoNO.Size = new System.Drawing.Size(47, 21);
+            this.radioButtonHabilitadoNO.TabIndex = 1;
+            this.radioButtonHabilitadoNO.TabStop = true;
+            this.radioButtonHabilitadoNO.Text = "No";
+            this.radioButtonHabilitadoNO.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonHabilitadoSI
+            // 
+            this.radioButtonHabilitadoSI.AutoSize = true;
+            this.radioButtonHabilitadoSI.Location = new System.Drawing.Point(156, 12);
+            this.radioButtonHabilitadoSI.Name = "radioButtonHabilitadoSI";
+            this.radioButtonHabilitadoSI.Size = new System.Drawing.Size(41, 21);
+            this.radioButtonHabilitadoSI.TabIndex = 0;
+            this.radioButtonHabilitadoSI.TabStop = true;
+            this.radioButtonHabilitadoSI.Text = "Sí";
+            this.radioButtonHabilitadoSI.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.radioButtonVistaNO);
+            this.groupBox1.Controls.Add(this.radioButtonVistaSI);
+            this.groupBox1.Location = new System.Drawing.Point(23, 228);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(256, 38);
+            this.groupBox1.TabIndex = 27;
+            this.groupBox1.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(5, 13);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(143, 17);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Tiene vista al exterior";
+            // 
+            // radioButtonVistaNO
+            // 
+            this.radioButtonVistaNO.AutoSize = true;
+            this.radioButtonVistaNO.Location = new System.Drawing.Point(203, 12);
+            this.radioButtonVistaNO.Name = "radioButtonVistaNO";
+            this.radioButtonVistaNO.Size = new System.Drawing.Size(47, 21);
+            this.radioButtonVistaNO.TabIndex = 1;
+            this.radioButtonVistaNO.TabStop = true;
+            this.radioButtonVistaNO.Text = "No";
+            this.radioButtonVistaNO.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonVistaSI
+            // 
+            this.radioButtonVistaSI.AutoSize = true;
+            this.radioButtonVistaSI.Location = new System.Drawing.Point(156, 12);
+            this.radioButtonVistaSI.Name = "radioButtonVistaSI";
+            this.radioButtonVistaSI.Size = new System.Drawing.Size(41, 21);
+            this.radioButtonVistaSI.TabIndex = 0;
+            this.radioButtonVistaSI.TabStop = true;
+            this.radioButtonVistaSI.Text = "Sí";
+            this.radioButtonVistaSI.UseVisualStyleBackColor = true;
+            // 
+            // labelPisoPendiente
+            // 
+            this.labelPisoPendiente.AutoSize = true;
+            this.labelPisoPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPisoPendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelPisoPendiente.Location = new System.Drawing.Point(381, 80);
+            this.labelPisoPendiente.Name = "labelPisoPendiente";
+            this.labelPisoPendiente.Size = new System.Drawing.Size(337, 25);
+            this.labelPisoPendiente.TabIndex = 26;
+            this.labelPisoPendiente.Text = "Debe elegir un piso para la habitación";
+            this.labelPisoPendiente.Visible = false;
             // 
             // label8
             // 
@@ -124,7 +228,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(323, 261);
+            this.button1.Location = new System.Drawing.Point(351, 261);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 36);
             this.button1.TabIndex = 22;
@@ -135,11 +239,11 @@
             // labelExito
             // 
             this.labelExito.AutoSize = true;
-            this.labelExito.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelExito.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelExito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.labelExito.Location = new System.Drawing.Point(430, 168);
             this.labelExito.Name = "labelExito";
-            this.labelExito.Size = new System.Drawing.Size(332, 25);
+            this.labelExito.Size = new System.Drawing.Size(445, 31);
             this.labelExito.TabIndex = 21;
             this.labelExito.Text = "¡Habitación modificada con éxito!";
             this.labelExito.Visible = false;
@@ -191,16 +295,6 @@
             this.comboBoxNuevoHotel.TabIndex = 6;
             this.comboBoxNuevoHotel.SelectionChangeCommitted += new System.EventHandler(this.comboBoxNuevoHotel_SelectionChangeCommitted);
             // 
-            // checkBoxEstaHabilitado
-            // 
-            this.checkBoxEstaHabilitado.AutoSize = true;
-            this.checkBoxEstaHabilitado.Location = new System.Drawing.Point(45, 244);
-            this.checkBoxEstaHabilitado.Name = "checkBoxEstaHabilitado";
-            this.checkBoxEstaHabilitado.Size = new System.Drawing.Size(123, 21);
-            this.checkBoxEstaHabilitado.TabIndex = 15;
-            this.checkBoxEstaHabilitado.Text = "Está habilitado";
-            this.checkBoxEstaHabilitado.UseVisualStyleBackColor = true;
-            // 
             // buttonGuardarCambios
             // 
             this.buttonGuardarCambios.Location = new System.Drawing.Point(482, 261);
@@ -220,16 +314,6 @@
             this.labelPisoNuevo.Size = new System.Drawing.Size(148, 17);
             this.labelPisoNuevo.TabIndex = 7;
             this.labelPisoNuevo.Text = "Piso en el hotel nuevo";
-            // 
-            // checkBoxTieneVistaExterior
-            // 
-            this.checkBoxTieneVistaExterior.AutoSize = true;
-            this.checkBoxTieneVistaExterior.Location = new System.Drawing.Point(45, 220);
-            this.checkBoxTieneVistaExterior.Name = "checkBoxTieneVistaExterior";
-            this.checkBoxTieneVistaExterior.Size = new System.Drawing.Size(165, 21);
-            this.checkBoxTieneVistaExterior.TabIndex = 14;
-            this.checkBoxTieneVistaExterior.Text = "Tiene vista al exterior";
-            this.checkBoxTieneVistaExterior.UseVisualStyleBackColor = true;
             // 
             // comboBoxNuevoPiso
             // 
@@ -365,23 +449,11 @@
             this.labelNumeroHabitacionActual.Size = new System.Drawing.Size(0, 17);
             this.labelNumeroHabitacionActual.TabIndex = 35;
             // 
-            // labelPisoPendiente
-            // 
-            this.labelPisoPendiente.AutoSize = true;
-            this.labelPisoPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPisoPendiente.ForeColor = System.Drawing.Color.Red;
-            this.labelPisoPendiente.Location = new System.Drawing.Point(381, 80);
-            this.labelPisoPendiente.Name = "labelPisoPendiente";
-            this.labelPisoPendiente.Size = new System.Drawing.Size(337, 25);
-            this.labelPisoPendiente.TabIndex = 26;
-            this.labelPisoPendiente.Text = "Debe elegir un piso para la habitación";
-            this.labelPisoPendiente.Visible = false;
-            // 
             // modificarDatosHabitacioncs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1614, 609);
+            this.ClientSize = new System.Drawing.Size(1750, 609);
             this.Controls.Add(this.labelNumeroHabitacionActual);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.labelHabilitadoActualmente);
@@ -400,6 +472,10 @@
             this.Load += new System.EventHandler(this.modificarDatosHabitacioncs_Load);
             this.groupBoxModificarHabitacion.ResumeLayout(false);
             this.groupBoxModificarHabitacion.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,10 +487,8 @@
         private System.Windows.Forms.Label labelHotelNuevo;
         private System.Windows.Forms.Label labelNotificarError;
         private System.Windows.Forms.ComboBox comboBoxNuevoHotel;
-        private System.Windows.Forms.CheckBox checkBoxEstaHabilitado;
         private System.Windows.Forms.Button buttonGuardarCambios;
         private System.Windows.Forms.Label labelPisoNuevo;
-        private System.Windows.Forms.CheckBox checkBoxTieneVistaExterior;
         private System.Windows.Forms.ComboBox comboBoxNuevoPiso;
         private System.Windows.Forms.Label labelDescripcionNueva;
         private System.Windows.Forms.TextBox textBoxNuevaDescripcion;
@@ -438,5 +512,13 @@
         private System.Windows.Forms.Label labelHotelPendiente;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label labelPisoPendiente;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.RadioButton radioButtonHabilitadoNO;
+        private System.Windows.Forms.RadioButton radioButtonHabilitadoSI;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.RadioButton radioButtonVistaNO;
+        private System.Windows.Forms.RadioButton radioButtonVistaSI;
     }
 }

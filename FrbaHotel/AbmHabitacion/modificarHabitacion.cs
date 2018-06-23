@@ -44,6 +44,7 @@ namespace FrbaHotel.AbmHabitacion
             mHoteles.CargarHoteles(this.comboBoxHoteles);
             this.comboBoxPiso.SelectedValue="";
             this.comboBoxNumeroHabitacion.SelectedValue="";
+            
             //this.CargarHoteles();
          //   mHabitaciones.CargarHabitacionesParaHotelElegido(this.comboBoxNumeroHabitacion, this.comboBoxHoteles);
           //  this.CargarHabitacionesParaHotelElegido();
@@ -107,18 +108,30 @@ namespace FrbaHotel.AbmHabitacion
                 dataGridView1.Columns[1].Width = 30;
                 dataGridView1.Columns[4].Width = 130;
                 dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.Enabled = true;
+                dataGridView1.Columns[0].ReadOnly = true;
+                dataGridView1.Columns[1].ReadOnly = true;
+                dataGridView1.Columns[2].ReadOnly = true;
+                dataGridView1.Columns[3].ReadOnly = true;
+                dataGridView1.Columns[4].ReadOnly = true;
+                dataGridView1.Columns[5].ReadOnly = true;
+                dataGridView1.Columns[6].ReadOnly = true;
 
             }
             else 
             {
-                if (this.vista_o_no_elegido().Equals(false)) 
+                if (this.vista_o_no_elegido().Equals(false))
                 {
                     labelExteriorError.Visible = true;
+                }
+                else {
+                    labelExteriorError.Visible = false;
                 }
                 if (this.habilitado_o_no_elegido().Equals(false))
                 {
                     labelHabilitadoError.Visible = true;
                 }
+                else { labelHabilitadoError.Visible = false; }
 
             }
             
@@ -264,6 +277,8 @@ namespace FrbaHotel.AbmHabitacion
         private void comboBoxPiso_SelectedIndexChanged(object sender, EventArgs e)
         {
             ConexionSQL c = new ConexionSQL();
+            if(this.comboBoxPiso.SelectedValue.ToString().Equals("")){
+            }else{
             string q = "select habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" + comboBoxHoteles.SelectedValue +
                 " and piso=" + comboBoxPiso.SelectedValue + " order by numero asc";
 
@@ -272,28 +287,41 @@ namespace FrbaHotel.AbmHabitacion
             dthabitaciones.Rows.InsertAt(dthabitaciones.NewRow(), 0);
             comboBoxNumeroHabitacion.DisplayMember = "numero";
             comboBoxNumeroHabitacion.SelectedIndex = 0;
-            comboBoxNumeroHabitacion.ValueMember = "habitacion_id";
+            comboBoxNumeroHabitacion.ValueMember = "habitacion_id";}
+            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int row = e.RowIndex;
-            int tieneVista=0;
-            int estaHabilitado=0;
-            DataGridViewRow selectedRow=dataGridView1.Rows[row];
-            HabitacionElegida habitacion= new HabitacionElegida();
-            //System.Windows.Forms.MessageBox.Show(dataGridView1.Columns.Count.ToString());
-            
+            if (e.ColumnIndex.Equals(0)) {
+                this.Hide();
+                int row = e.RowIndex;
+                int tieneVista = 0;
+                int estaHabilitado = 0;
+
+                DataGridViewRow selectedRow = dataGridView1.Rows[row];
+                int piso = this.mapearPiso(selectedRow);
+                HabitacionElegida habitacion = new HabitacionElegida();
+                //System.Windows.Forms.MessageBox.Show(dataGridView1.Columns.Count.ToString());
+
+
                 habitacion.SetNumero(Int32.Parse(selectedRow.Cells[1].Value.ToString()));
-                
-                habitacion.SetPiso(Int32.Parse(selectedRow.Cells[2].Value.ToString()));
+                if (piso.Equals(0))
+                {
+                    habitacion.SetPiso(Int32.Parse(selectedRow.Cells[2].Value.ToString()));
+                }
+                else
+                {
+                    habitacion.SetPiso(piso);
+                }
+
                 habitacion.SetDescripcion(selectedRow.Cells[3].Value.ToString());
                 habitacion.SetTipo(selectedRow.Cells[4].Value.ToString());
                 habitacion.SetDireccion(selectedRow.Cells[7].Value.ToString());
-                habitacion.SetHabiID(Int32.Parse(selectedRow.Cells[8].Value.ToString()));    
+                habitacion.SetHabiID(Int32.Parse(selectedRow.Cells[8].Value.ToString()));
                 habitacion.SetHotelID(this.ObtenerHotelID(habitacion));
-                
-            
+
+
                 if (selectedRow.Cells[5].Value.Equals(true))
                 {
                     tieneVista = 1;
@@ -307,7 +335,22 @@ namespace FrbaHotel.AbmHabitacion
                 modificarDatosHabitacioncs modifDatos = new modificarDatosHabitacioncs();
                 modifDatos.RecibirHabitacion(habitacion);
                 modifDatos.Show();
+            }
+            
+            
+            
+        }
 
+        private int mapearPiso(DataGridViewRow d)
+        {
+            
+           if(d.Cells[2].Value.ToString().Equals(""))
+           {
+               return -1;
+           }
+            
+            else { return Int32.Parse(d.Cells[2].Value.ToString()); }
+            
         }
 
         private int ObtenerHotelID(HabitacionElegida habi)
@@ -332,6 +375,13 @@ namespace FrbaHotel.AbmHabitacion
             this.radioButtonHabilitadoNA.Checked = false;
             this.radioButtonHabilitadoNO.Checked = false;
             this.radioButtonHabilitadoSI.Checked = false;
+            this.dataGridView1.DataSource = null;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            altaHabitacion alta = new altaHabitacion();
+            alta.Show();
         }
     }
 }

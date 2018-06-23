@@ -69,7 +69,8 @@ namespace FrbaHotel.AbmHabitacion
         }
         public void SetPiso(int nuevoPiso) 
         {
-            this.piso = nuevoPiso;
+            if (nuevoPiso.Equals(-1)) { } else { this.piso = nuevoPiso; }
+            
         }
 
 

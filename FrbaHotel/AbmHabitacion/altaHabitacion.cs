@@ -81,29 +81,27 @@ namespace FrbaHotel.AbmHabitacion
                         labelNroVacio.Visible = true;
                     };
                 }
-                if (this.VistaPendiente())
+                if (this.radioButtonVistaExteriorNO.Checked.Equals(true) || this.radioButtonVistaExteriorSI.Checked.Equals(true))
                 {
-                    this.labelVistaPendiente.Visible = true;
+                    this.labelVistaPendiente.Visible = false;
                 }
-                else { this.labelVistaPendiente.Visible = false; }
+                else { this.labelVistaPendiente.Visible = true; }
             }
             else
+
             {
+                this.labelVistaPendiente.Visible = false; 
                 this.labelHotelPendiente.Visible = false;
                 this.labelDescVacia.Visible = false;
                 this.labelNroVacio.Visible = false;
                 bool vista;
                 if (this.radioButtonVistaExteriorNO.Checked) { vista = false; } else { vista = true; }
-                SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
-                con1.Open();
-                string select = String.Concat("SELECT ha.numero FROM WHERE_EN_EL_DELETE_FROM.habitaciones ha JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id where ",
-                    "ho.hotel_id=@hotelBusqueda and ha.numero=@numeroBusqueda");
-                SqlCommand sqlQuery = new SqlCommand(select);
-                sqlQuery.Connection = con1;
-                sqlQuery.Parameters.Add("@hotelBusqueda", SqlDbType.Int).Value = comboBoxHotel.SelectedValue;
-                sqlQuery.Parameters.Add("@numeroBusqueda", SqlDbType.Int).Value = textBoxNumeroHabitacion.Text;
-                int busqueda = sqlQuery.ExecuteNonQuery();
-                if (busqueda.Equals(0)) 
+                
+                /************/
+                ConexionSQL busq = new ConexionSQL();
+                DataTable resultado = busq.cargarTablaSQL("SELECT ha.numero FROM WHERE_EN_EL_DELETE_FROM.habitaciones ha JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id where " +
+                    " ho.hotel_id=" + this.comboBoxHotel.SelectedValue + " and ha.numero=" + this.textBoxNumeroHabitacion.Text);
+                if (resultado.Rows.Count.Equals(0)) 
                 {
                     SqlConnection con = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
                     con.Open();
@@ -121,16 +119,33 @@ namespace FrbaHotel.AbmHabitacion
 
                     if (result.Equals(1))
                     {
-                        labelAgregado.Visible = true;
+                        //labelAgregado.Visible = true;
+                        System.Windows.Forms.MessageBox.Show("¡Habitación agregada con éxito!");
+
+                        this.Hide();
                     }
 
-                    
-                }else{
-                        labelNoSePuede.Visible = true;
- 
-                }
 
-            }
+                }
+                else
+                {
+                    labelNoSePuede.Visible = true;
+
+                }
+                }
+                /************/
+
+               // SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+               // con1.Open();
+               // string select = String.Concat("SELECT ha.numero FROM WHERE_EN_EL_DELETE_FROM.habitaciones ha JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id where ",
+               //     "ho.hotel_id=@hotelBusqueda and ha.numero=@numeroBusqueda");
+               // SqlCommand sqlQuery = new SqlCommand(select);
+               // sqlQuery.Connection = con1;
+               // sqlQuery.Parameters.Add("@hotelBusqueda", SqlDbType.Int).Value = comboBoxHotel.SelectedValue;
+               // sqlQuery.Parameters.Add("@numeroBusqueda", SqlDbType.Int).Value = Int32.Parse(textBoxNumeroHabitacion.Text.ToString());
+                //int busqueda = sqlQuery.ExecuteNonQuery();
+               // if (busqueda.Equals(0) || busqueda.Equals(-1)) 
+             
         }
 
         private bool VistaPendiente()
@@ -140,10 +155,14 @@ namespace FrbaHotel.AbmHabitacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-            this.comboBoxHotel.SelectedText = "";
-            this.comboBoxPisoEnHotel.SelectedText = "";
+            this.comboBoxHotel.SelectedIndex = comboBoxHotel.FindStringExact("");
             this.textBoxDescripcionHabitacion.Text = "";
-            
+            this.comboBoxPisoEnHotel.SelectedIndex = comboBoxPisoEnHotel.FindStringExact("");
+            this.textBoxNumeroHabitacion.Text = "";
+            this.labelAgregado.Visible = false;
+            this.radioButtonVistaExteriorNO.Checked = false;
+            this.radioButtonVistaExteriorSI.Checked = false;
+            this.labelNoSePuede.Visible = false;
         }
 
   

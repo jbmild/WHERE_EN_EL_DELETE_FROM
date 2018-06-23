@@ -119,7 +119,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(644, 292);
+            this.button1.Location = new System.Drawing.Point(940, 278);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 56);
             this.button1.TabIndex = 9;
@@ -169,13 +169,13 @@
             // labelAgregado
             // 
             this.labelAgregado.AutoSize = true;
-            this.labelAgregado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAgregado.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAgregado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.labelAgregado.Location = new System.Drawing.Point(104, 303);
             this.labelAgregado.Name = "labelAgregado";
-            this.labelAgregado.Size = new System.Drawing.Size(281, 25);
+            this.labelAgregado.Size = new System.Drawing.Size(395, 31);
             this.labelAgregado.TabIndex = 16;
-            this.labelAgregado.Text = "Habitación agregada con éxito!";
+            this.labelAgregado.Text = "¡Habitación agregada con éxito!";
             this.labelAgregado.Visible = false;
             // 
             // labelNoSePuede
@@ -204,7 +204,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(511, 292);
+            this.button2.Location = new System.Drawing.Point(773, 278);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(117, 56);
             this.button2.TabIndex = 19;

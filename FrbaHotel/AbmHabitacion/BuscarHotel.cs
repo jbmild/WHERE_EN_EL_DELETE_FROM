@@ -18,7 +18,7 @@ namespace FrbaHotel.AbmHabitacion
             {
                 consulta.ConcatToQuery(" where ha.hotel_id=" + Int32.Parse(idHotel));
                 b.SetHotel(true);
-             }
+            }
 
             
         }

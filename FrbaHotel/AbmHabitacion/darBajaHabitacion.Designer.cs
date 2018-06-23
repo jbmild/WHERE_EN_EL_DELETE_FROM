@@ -35,6 +35,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.labelInhabilitada = new System.Windows.Forms.Label();
             this.labelErrorInhabilitar = new System.Windows.Forms.Label();
+            this.labelNumeroVacio = new System.Windows.Forms.Label();
+            this.labelHotelVacio = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -53,6 +55,7 @@
             this.comboBoxHoteles.Name = "comboBoxHoteles";
             this.comboBoxHoteles.Size = new System.Drawing.Size(326, 24);
             this.comboBoxHoteles.TabIndex = 1;
+            this.comboBoxHoteles.SelectionChangeCommitted += new System.EventHandler(this.comboBoxHoteles_SelectionChangeCommitted);
             // 
             // label2
             // 
@@ -70,6 +73,7 @@
             this.comboBoxNumeroHabitacion.Name = "comboBoxNumeroHabitacion";
             this.comboBoxNumeroHabitacion.Size = new System.Drawing.Size(121, 24);
             this.comboBoxNumeroHabitacion.TabIndex = 3;
+            this.comboBoxNumeroHabitacion.SelectedIndexChanged += new System.EventHandler(this.comboBoxNumeroHabitacion_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -105,11 +109,37 @@
             this.labelErrorInhabilitar.Text = "Error al intentar inhabilitar";
             this.labelErrorInhabilitar.Visible = false;
             // 
+            // labelNumeroVacio
+            // 
+            this.labelNumeroVacio.AutoSize = true;
+            this.labelNumeroVacio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNumeroVacio.ForeColor = System.Drawing.Color.Red;
+            this.labelNumeroVacio.Location = new System.Drawing.Point(578, 93);
+            this.labelNumeroVacio.Name = "labelNumeroVacio";
+            this.labelNumeroVacio.Size = new System.Drawing.Size(179, 20);
+            this.labelNumeroVacio.TabIndex = 7;
+            this.labelNumeroVacio.Text = "Debe elegir un número";
+            this.labelNumeroVacio.Visible = false;
+            // 
+            // labelHotelVacio
+            // 
+            this.labelHotelVacio.AutoSize = true;
+            this.labelHotelVacio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHotelVacio.ForeColor = System.Drawing.Color.Red;
+            this.labelHotelVacio.Location = new System.Drawing.Point(578, 53);
+            this.labelHotelVacio.Name = "labelHotelVacio";
+            this.labelHotelVacio.Size = new System.Drawing.Size(159, 20);
+            this.labelHotelVacio.TabIndex = 8;
+            this.labelHotelVacio.Text = "Debe elegir un hotel";
+            this.labelHotelVacio.Visible = false;
+            // 
             // darBajaHabitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 393);
+            this.Controls.Add(this.labelHotelVacio);
+            this.Controls.Add(this.labelNumeroVacio);
             this.Controls.Add(this.labelErrorInhabilitar);
             this.Controls.Add(this.labelInhabilitada);
             this.Controls.Add(this.button1);
@@ -134,5 +164,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label labelInhabilitada;
         private System.Windows.Forms.Label labelErrorInhabilitar;
+        private System.Windows.Forms.Label labelNumeroVacio;
+        private System.Windows.Forms.Label labelHotelVacio;
     }
 }
