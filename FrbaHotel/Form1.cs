@@ -55,7 +55,7 @@ namespace FrbaHotel
 
         private void button5_Click(object sender, EventArgs e)
         {
-            AbmHotel.altaHotel alta = new AbmHotel.altaHotel();
+            AbmHotel.pantallaPrincipalHotel alta = new AbmHotel.pantallaPrincipalHotel();
             alta.Show();
         }
     }
