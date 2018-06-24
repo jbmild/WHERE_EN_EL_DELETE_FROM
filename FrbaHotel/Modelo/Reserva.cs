@@ -119,16 +119,18 @@ namespace FrbaHotel.Modelo
             command2.Parameters.Add("@habitacion_id", SqlDbType.Int);
             command2.Parameters.Add("@reserva_id", SqlDbType.Int);
             command2.Parameters.Add("@precio_diario", SqlDbType.Decimal);
-            foreach(Habitacion hab in _habitaciones){
-                command2.Parameters["@habitacion_id"].Value = hab.id;
-                command2.Parameters["@reserva_id"].Value = idReserva;
-                command2.Parameters["@precio_diario"].Value = hab.precio;
-            }
 
             int exito = 0;
             try
             {
-                exito = command2.ExecuteNonQuery();
+                foreach (Habitacion hab in _habitaciones)
+                {
+                    command2.Parameters["@habitacion_id"].Value = hab.id;
+                    command2.Parameters["@reserva_id"].Value = idReserva;
+                    command2.Parameters["@precio_diario"].Value = hab.precio;
+                    exito = command2.ExecuteNonQuery();
+                }
+                
             }
             catch (Exception ex) {
                 throw (ex);

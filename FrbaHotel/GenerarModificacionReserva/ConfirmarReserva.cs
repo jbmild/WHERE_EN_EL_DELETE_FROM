@@ -66,6 +66,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 string mensajeExito = "La reserva y los datos del cliente han sido guardados. Codigo reserva: {codigo}. Hasta pronto!";
                 mensajeExito = mensajeExito.Replace("{codigo}", _reserva.codigo);
                 System.Windows.Forms.MessageBox.Show("La reserva y los datos del cliente han sido guardados. Codigo reserva: {codigo}. Hasta pronto!");
+                volverAMenuPrincipal();
             }
             else {
                 System.Windows.Forms.MessageBox.Show("Se ha producido un error. Intente realizar la reserva nuevamente. ");
@@ -73,10 +74,14 @@ namespace FrbaHotel.GenerarModificacionReserva
             
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ((GenerarReservaPrincipal)((IdentificarUsuarioExtendido)this.Owner).Owner).Close();            
+        private void volverAMenuPrincipal() {
+            ((GenerarReservaPrincipal)((IdentificarUsuarioExtendido)this.Owner).Owner).Close();
             this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            volverAMenuPrincipal();
         }
 
         private void btnAtras_Click(object sender, EventArgs e)

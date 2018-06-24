@@ -101,7 +101,9 @@ namespace FrbaHotel.GenerarModificacionReserva
                 isValidEmail = regexValidator.IsValidEmail(txtMail.Text);
             }
 
-            if (txtNroDocumento.Text.Length > 0 && txtMail.Text.Length > 0 && txtNombre.Text.Length > 0 && txtApellido.Text.Length > 0)
+            if (txtNroDocumento.Text.Length > 0 && txtMail.Text.Length > 0 && txtNombre.Text.Length > 0 && txtApellido.Text.Length > 0
+                        && txtDireccionCalle.Text.Length > 0 && txtDireccionNro.Text.Length > 0 
+                        && txtDireccionPiso.Text.Length > 0 && txtDireccionDepto.Text.Length > 0)
             {
                 if (isValidEmail)
                 {
@@ -119,25 +121,31 @@ namespace FrbaHotel.GenerarModificacionReserva
                     _cli.direccion_localidad = txtLocalidad.Text;
                     _cli.direccion_pais = txtPaisVivienda.Text;
 
-
-
-
-                    int resultGuardarCliente = _cli.guardarCliente(_cli);
-
-                    if (resultGuardarCliente != 0)
+                    bool datosDuplicados = _cli.existeClientePorDatosUnicos();
+                    if (!datosDuplicados)
                     {
-                        _cli.idCliente = _res.cliente_id = resultGuardarCliente;
-                        frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva(_cli, _res);
-                        frmConfirmarReserva.Owner = this;
-                        frmConfirmarReserva.Show();
+                        int resultGuardarCliente = _cli.guardarCliente(_cli);
+
+                        if (resultGuardarCliente != 0)
+                        {
+                            _cli.idCliente = _res.cliente_id;
+                            frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva(_cli, _res);
+                            frmConfirmarReserva.Owner = this;
+                            frmConfirmarReserva.Show();
+                        }
+                        else
+                        {
+                            //no se pudo grabar
+                            this.UseWaitCursor = false;
+                            System.Windows.Forms.MessageBox.Show("ERROR al intentar guardar datos. Reintente por favor.");
+                            this.Hide();
+                        }
                     }
                     else
                     {
-                        //no se pudo grabar
-                        this.UseWaitCursor = false;
-                        System.Windows.Forms.MessageBox.Show("ERROR al intentar guardar datos. Reintente por favor.");
-                        this.Hide();
+                        System.Windows.Forms.MessageBox.Show(this, "El mail y/o tipo+nro de documento que ha ingresado ya existen. Corrija los datos para poder continuar. ", "Error!");
                     }
+                    
 
                 }
                 else {
