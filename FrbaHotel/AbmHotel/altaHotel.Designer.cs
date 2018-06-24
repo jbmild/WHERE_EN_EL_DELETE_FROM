@@ -42,14 +42,25 @@
             this.textBoxCiudadNuevoHotel = new System.Windows.Forms.TextBox();
             this.textBoxPaisNuevoHotel = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxEstrellas = new System.Windows.Forms.ComboBox();
             this.listBoxRegimenes = new System.Windows.Forms.ListBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxTelefonoNuevo = new System.Windows.Forms.TextBox();
+            this.labelNombrePendiente = new System.Windows.Forms.Label();
+            this.labelMailPendiente = new System.Windows.Forms.Label();
+            this.labelDireccionPendiente = new System.Windows.Forms.Label();
+            this.labelTelefonoPendiente = new System.Windows.Forms.Label();
+            this.labelEstrellasPendiente = new System.Windows.Forms.Label();
+            this.labelCiudadPendiente = new System.Windows.Forms.Label();
+            this.labelPaisPendiente = new System.Windows.Forms.Label();
+            this.labelRegimenesPendiente = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(163, 55);
+            this.label1.Location = new System.Drawing.Point(132, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(120, 17);
             this.label1.TabIndex = 0;
@@ -58,7 +69,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(166, 87);
+            this.label2.Location = new System.Drawing.Point(135, 76);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 17);
             this.label2.TabIndex = 1;
@@ -67,7 +78,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(166, 123);
+            this.label3.Location = new System.Drawing.Point(134, 104);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 17);
             this.label3.TabIndex = 2;
@@ -76,7 +87,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(167, 157);
+            this.label4.Location = new System.Drawing.Point(136, 163);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 17);
             this.label4.TabIndex = 3;
@@ -85,7 +96,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(167, 195);
+            this.label5.Location = new System.Drawing.Point(137, 198);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 17);
             this.label5.TabIndex = 4;
@@ -94,7 +105,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(169, 236);
+            this.label6.Location = new System.Drawing.Point(138, 232);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 17);
             this.label6.TabIndex = 5;
@@ -104,7 +115,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(167, 276);
+            this.label7.Location = new System.Drawing.Point(143, 270);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(126, 17);
             this.label7.TabIndex = 6;
@@ -121,42 +132,42 @@
             // 
             // textBoxNombreNuevoHotel
             // 
-            this.textBoxNombreNuevoHotel.Location = new System.Drawing.Point(325, 49);
+            this.textBoxNombreNuevoHotel.Location = new System.Drawing.Point(294, 38);
             this.textBoxNombreNuevoHotel.Name = "textBoxNombreNuevoHotel";
             this.textBoxNombreNuevoHotel.Size = new System.Drawing.Size(263, 22);
             this.textBoxNombreNuevoHotel.TabIndex = 8;
             // 
             // textBoxMailNuevoHotel
             // 
-            this.textBoxMailNuevoHotel.Location = new System.Drawing.Point(326, 79);
+            this.textBoxMailNuevoHotel.Location = new System.Drawing.Point(295, 68);
             this.textBoxMailNuevoHotel.Name = "textBoxMailNuevoHotel";
             this.textBoxMailNuevoHotel.Size = new System.Drawing.Size(262, 22);
             this.textBoxMailNuevoHotel.TabIndex = 9;
             // 
             // textBoxDireccionNuevoHotel
             // 
-            this.textBoxDireccionNuevoHotel.Location = new System.Drawing.Point(329, 111);
+            this.textBoxDireccionNuevoHotel.Location = new System.Drawing.Point(296, 98);
             this.textBoxDireccionNuevoHotel.Name = "textBoxDireccionNuevoHotel";
             this.textBoxDireccionNuevoHotel.Size = new System.Drawing.Size(259, 22);
             this.textBoxDireccionNuevoHotel.TabIndex = 10;
             // 
             // textBoxCiudadNuevoHotel
             // 
-            this.textBoxCiudadNuevoHotel.Location = new System.Drawing.Point(330, 193);
+            this.textBoxCiudadNuevoHotel.Location = new System.Drawing.Point(298, 192);
             this.textBoxCiudadNuevoHotel.Name = "textBoxCiudadNuevoHotel";
             this.textBoxCiudadNuevoHotel.Size = new System.Drawing.Size(258, 22);
             this.textBoxCiudadNuevoHotel.TabIndex = 11;
             // 
             // textBoxPaisNuevoHotel
             // 
-            this.textBoxPaisNuevoHotel.Location = new System.Drawing.Point(328, 230);
+            this.textBoxPaisNuevoHotel.Location = new System.Drawing.Point(298, 224);
             this.textBoxPaisNuevoHotel.Name = "textBoxPaisNuevoHotel";
             this.textBoxPaisNuevoHotel.Size = new System.Drawing.Size(260, 22);
             this.textBoxPaisNuevoHotel.TabIndex = 12;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(215, 308);
+            this.button1.Location = new System.Drawing.Point(191, 302);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(111, 35);
             this.button1.TabIndex = 14;
@@ -164,37 +175,171 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox1
+            // comboBoxEstrellas
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxEstrellas.FormattingEnabled = true;
+            this.comboBoxEstrellas.Items.AddRange(new object[] {
             "1",
             "2",
             "3",
             "4",
             "5"});
-            this.comboBox1.Location = new System.Drawing.Point(332, 156);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 15;
+            this.comboBoxEstrellas.Location = new System.Drawing.Point(297, 163);
+            this.comboBoxEstrellas.Name = "comboBoxEstrellas";
+            this.comboBoxEstrellas.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxEstrellas.TabIndex = 15;
             // 
             // listBoxRegimenes
             // 
             this.listBoxRegimenes.FormattingEnabled = true;
             this.listBoxRegimenes.ItemHeight = 16;
-            this.listBoxRegimenes.Location = new System.Drawing.Point(332, 276);
+            this.listBoxRegimenes.Location = new System.Drawing.Point(308, 270);
             this.listBoxRegimenes.Name = "listBoxRegimenes";
             this.listBoxRegimenes.Size = new System.Drawing.Size(232, 84);
             this.listBoxRegimenes.TabIndex = 16;
             this.listBoxRegimenes.Visible = false;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(572, 362);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(148, 65);
+            this.button2.TabIndex = 17;
+            this.button2.Text = "Agregar";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(137, 132);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(68, 17);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Teléfono:";
+            // 
+            // textBoxTelefonoNuevo
+            // 
+            this.textBoxTelefonoNuevo.Location = new System.Drawing.Point(294, 132);
+            this.textBoxTelefonoNuevo.Name = "textBoxTelefonoNuevo";
+            this.textBoxTelefonoNuevo.Size = new System.Drawing.Size(155, 22);
+            this.textBoxTelefonoNuevo.TabIndex = 19;
+            this.textBoxTelefonoNuevo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTelefonoNuevo_KeyPress);
+            // 
+            // labelNombrePendiente
+            // 
+            this.labelNombrePendiente.AutoSize = true;
+            this.labelNombrePendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombrePendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelNombrePendiente.Location = new System.Drawing.Point(582, 38);
+            this.labelNombrePendiente.Name = "labelNombrePendiente";
+            this.labelNombrePendiente.Size = new System.Drawing.Size(250, 17);
+            this.labelNombrePendiente.TabIndex = 20;
+            this.labelNombrePendiente.Text = "Debe escribir el nombre del hotel";
+            this.labelNombrePendiente.Visible = false;
+            // 
+            // labelMailPendiente
+            // 
+            this.labelMailPendiente.AutoSize = true;
+            this.labelMailPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelMailPendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelMailPendiente.Location = new System.Drawing.Point(582, 66);
+            this.labelMailPendiente.Name = "labelMailPendiente";
+            this.labelMailPendiente.Size = new System.Drawing.Size(210, 17);
+            this.labelMailPendiente.TabIndex = 21;
+            this.labelMailPendiente.Text = "Debe escribir un mail válido";
+            this.labelMailPendiente.Visible = false;
+            // 
+            // labelDireccionPendiente
+            // 
+            this.labelDireccionPendiente.AutoSize = true;
+            this.labelDireccionPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDireccionPendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelDireccionPendiente.Location = new System.Drawing.Point(582, 97);
+            this.labelDireccionPendiente.Name = "labelDireccionPendiente";
+            this.labelDireccionPendiente.Size = new System.Drawing.Size(208, 17);
+            this.labelDireccionPendiente.TabIndex = 22;
+            this.labelDireccionPendiente.Text = "Debe escribir una dirección";
+            this.labelDireccionPendiente.Visible = false;
+            // 
+            // labelTelefonoPendiente
+            // 
+            this.labelTelefonoPendiente.AutoSize = true;
+            this.labelTelefonoPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTelefonoPendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelTelefonoPendiente.Location = new System.Drawing.Point(477, 133);
+            this.labelTelefonoPendiente.Name = "labelTelefonoPendiente";
+            this.labelTelefonoPendiente.Size = new System.Drawing.Size(240, 17);
+            this.labelTelefonoPendiente.TabIndex = 23;
+            this.labelTelefonoPendiente.Text = "Debe escribir un teléfono válido";
+            this.labelTelefonoPendiente.Visible = false;
+            // 
+            // labelEstrellasPendiente
+            // 
+            this.labelEstrellasPendiente.AutoSize = true;
+            this.labelEstrellasPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEstrellasPendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelEstrellasPendiente.Location = new System.Drawing.Point(454, 167);
+            this.labelEstrellasPendiente.Name = "labelEstrellasPendiente";
+            this.labelEstrellasPendiente.Size = new System.Drawing.Size(286, 17);
+            this.labelEstrellasPendiente.TabIndex = 24;
+            this.labelEstrellasPendiente.Text = "Debe ingresar la cantidad de estrellas";
+            this.labelEstrellasPendiente.Visible = false;
+            // 
+            // labelCiudadPendiente
+            // 
+            this.labelCiudadPendiente.AutoSize = true;
+            this.labelCiudadPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCiudadPendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelCiudadPendiente.Location = new System.Drawing.Point(597, 195);
+            this.labelCiudadPendiente.Name = "labelCiudadPendiente";
+            this.labelCiudadPendiente.Size = new System.Drawing.Size(190, 17);
+            this.labelCiudadPendiente.TabIndex = 25;
+            this.labelCiudadPendiente.Text = "Debe escribir una ciudad";
+            this.labelCiudadPendiente.Visible = false;
+            // 
+            // labelPaisPendiente
+            // 
+            this.labelPaisPendiente.AutoSize = true;
+            this.labelPaisPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPaisPendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelPaisPendiente.Location = new System.Drawing.Point(597, 227);
+            this.labelPaisPendiente.Name = "labelPaisPendiente";
+            this.labelPaisPendiente.Size = new System.Drawing.Size(163, 17);
+            this.labelPaisPendiente.TabIndex = 26;
+            this.labelPaisPendiente.Text = "Debe escribir un país";
+            this.labelPaisPendiente.Visible = false;
+            // 
+            // labelRegimenesPendiente
+            // 
+            this.labelRegimenesPendiente.AutoSize = true;
+            this.labelRegimenesPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRegimenesPendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelRegimenesPendiente.Location = new System.Drawing.Point(546, 270);
+            this.labelRegimenesPendiente.Name = "labelRegimenesPendiente";
+            this.labelRegimenesPendiente.Size = new System.Drawing.Size(387, 17);
+            this.labelRegimenesPendiente.TabIndex = 27;
+            this.labelRegimenesPendiente.Text = "Debe seleccionar al menos un régimen para el hotel";
+            this.labelRegimenesPendiente.Visible = false;
+            // 
             // altaHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(911, 439);
+            this.ClientSize = new System.Drawing.Size(1098, 439);
+            this.Controls.Add(this.labelRegimenesPendiente);
+            this.Controls.Add(this.labelPaisPendiente);
+            this.Controls.Add(this.labelCiudadPendiente);
+            this.Controls.Add(this.labelEstrellasPendiente);
+            this.Controls.Add(this.labelTelefonoPendiente);
+            this.Controls.Add(this.labelDireccionPendiente);
+            this.Controls.Add(this.labelMailPendiente);
+            this.Controls.Add(this.labelNombrePendiente);
+            this.Controls.Add(this.textBoxTelefonoNuevo);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.listBoxRegimenes);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxEstrellas);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBoxPaisNuevoHotel);
             this.Controls.Add(this.textBoxCiudadNuevoHotel);
@@ -233,7 +378,18 @@
         private System.Windows.Forms.TextBox textBoxCiudadNuevoHotel;
         private System.Windows.Forms.TextBox textBoxPaisNuevoHotel;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxEstrellas;
         private System.Windows.Forms.ListBox listBoxRegimenes;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxTelefonoNuevo;
+        private System.Windows.Forms.Label labelNombrePendiente;
+        private System.Windows.Forms.Label labelMailPendiente;
+        private System.Windows.Forms.Label labelDireccionPendiente;
+        private System.Windows.Forms.Label labelTelefonoPendiente;
+        private System.Windows.Forms.Label labelEstrellasPendiente;
+        private System.Windows.Forms.Label labelCiudadPendiente;
+        private System.Windows.Forms.Label labelPaisPendiente;
+        private System.Windows.Forms.Label labelRegimenesPendiente;
     }
 }
