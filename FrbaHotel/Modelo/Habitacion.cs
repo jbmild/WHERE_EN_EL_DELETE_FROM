@@ -16,12 +16,15 @@ namespace FrbaHotel.Modelo
         private string _descripcion;
         private bool _habilitado;
         private int _tipo;
+        private decimal _max_huespedes;
+        private decimal _porcentual;
+        private decimal _precio;
 
-        public Habitacion(int id, int hotel_id, int numero){
+        public Habitacion(int id, int hotel_id, int numero, decimal precio){
             _id = id;
             _hotel_id = hotel_id;
             _numero = numero;
-
+            _precio = precio;
         }
 
         public int id {
@@ -37,6 +40,21 @@ namespace FrbaHotel.Modelo
         public int hotel_id {
             get { return _hotel_id;  }
             set { _hotel_id = value; }
+        }
+
+        public decimal max_huespedes {
+            get { return _max_huespedes; }
+            set { _max_huespedes = value; }
+        }
+
+        public decimal porcentual {
+            get { return _porcentual; }
+            set { _porcentual = value; }
+        }
+
+        public decimal precio {
+            get { return _precio; }
+            set { _precio = value; }
         }
     }
 

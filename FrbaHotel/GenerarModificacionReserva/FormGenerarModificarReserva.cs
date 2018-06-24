@@ -27,10 +27,10 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             try
             {
-
+                //TODO: Si es recepcionista, mandar hotel_id en el que está logueada.
                 DataTable dt = conexion.cargarTablaSQL("WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles @fdesde='" + dtpFechaCheckin.Value + "'" + 
                                                         ",@fhasta='" + dtpFechaCheckout.Value + "'" +
-                                                        ",@hotel_id=" + (cmbHotel.SelectedIndex == 0 ? "null": cmbHotel.SelectedValue) +
+                                                        ",@hotel_id=" + cmbHotel.SelectedValue +
                                                         ",@regimen_id=" + (cmbTipoRegimen.SelectedValue) +
                                                         ",@tipoHabitacion_id=" + (cmbTipoHab.SelectedIndex == 0 ? "null" : cmbTipoHab.SelectedValue));
 
@@ -78,21 +78,22 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmbHotel.ValueMember = "hotel_id";
 
 
-            //Ocultar combo hotel si el usuario es recepcionista. 
+            //TODO: Ocultar combo hotel si el usuario es recepcionista. 
             //Si es admin o guest, mostrar combo hotel.
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
             List <Habitacion> habs = new List<Habitacion>();
-
+            decimal precioTotal = 0;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
                     habs.Add(new Habitacion(Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[3].Value),
-                                                Convert.ToInt32(row.Cells[1].Value)));
-                    //Mandar datos reserva a pantalla Ingreso datos cliente
+                                                Convert.ToInt32(row.Cells[1].Value), 
+                                                Convert.ToDecimal(row.Cells[6].Value)));
+                    precioTotal += Convert.ToDecimal(row.Cells[6].Value);
                 }
 
             }
@@ -113,7 +114,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             f2.pasarReserva(new Reserva(dtpFechaCheckin.Value, dtpFechaCheckout.Value,
                                                                 0,
-                                                                0, // Completar total de todas las habs
+                                                                precioTotal, // Completar total de todas las habs
                                                                 Convert.ToInt32(cmbTipoRegimen.SelectedValue),
                                                                 Convert.ToInt32(cmbHotel.SelectedValue),
                                                                 habs));

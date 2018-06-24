@@ -16,7 +16,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private Reserva _res;
         //private int _idCliente;
         private Cliente _cli;
-        private int _idTipoDocumento;
+        private string _idTipoDocumento;
         private string _nroDocumento;
         private string _email;
 
@@ -25,7 +25,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             InitializeComponent();
         }
 
-        public IdentificarUsuarioExtendido(Reserva reserva, int idTipoDocumento, string nroDocumento, string email)
+        public IdentificarUsuarioExtendido(Reserva reserva, string idTipoDocumento, string nroDocumento, string email)
         {
             InitializeComponent();
             _cli = new Cliente();
@@ -48,17 +48,20 @@ namespace FrbaHotel.GenerarModificacionReserva
             
             
             
-            _cli = _cli.getClienteByTipoNroDocEmail(Convert.ToInt32(_idTipoDocumento), _nroDocumento, _email);
+            _cli = _cli.getClienteByTipoNroDocEmail(_idTipoDocumento, _nroDocumento, _email);
 
             if (_cli.idCliente == 0) // es cliente nuevo
             {
                 lblMensajeLoginORegister.Text = "Usted no está registrado como cliente. Complete sus datos: ";
+                txtMail.Text = _email;
+                cmbTiposDocumentos.SelectedValue = _idTipoDocumento;
+                TxtNroDocumento.Text = _nroDocumento;
             }
             else { 
                 //prepopular campos con objeto cli
                 lblMensajeLoginORegister.Text = "Usted ya es cliente del hotel. Puede modificar sus datos o directamente confirmar la reserva.";
 
-                cmbTiposDocumentos.SelectedIndex = _idTipoDocumento;
+                cmbTiposDocumentos.Text = _cli.tipoDocumento;
                 TxtNroDocumento.Text = _cli.nrodocumento;
                 txtNombre.Text = _cli.nombre;
                 txtApellido.Text = _cli.apellido;
@@ -84,6 +87,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             
 
             //TODO: agregar tipo documento cuando se agregue en la tabla
+            _cli.tipoDocumento = cmbTiposDocumentos.Text;
             _cli.nrodocumento = TxtNroDocumento.Text;
             _cli.nombre = txtNombre.Text;
             _cli.apellido = txtApellido.Text;
@@ -97,8 +101,11 @@ namespace FrbaHotel.GenerarModificacionReserva
             _cli.direccion_localidad = txtLocalidad.Text;
             _cli.direccion_pais = txtPaisVivienda.Text;
 
-            if (_cli.guardarCliente(_cli) > 0)
+            int resultGuardarCliente = _cli.guardarCliente(_cli);
+
+            if (resultGuardarCliente != 0)
             {
+                _cli.idCliente = _res.cliente_id = resultGuardarCliente;
                 frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva(_cli, _res);
                 frmConfirmarReserva.Show();
             }

@@ -56,15 +56,15 @@ BEGIN
 		hot.hotel_id,
 		hab.habitacion_id,
 		habTipos.max_huespedes AS [Cant Huespedes],
-		reg.precio * habTipos.max_huespedes * hot.estrellas_recargo AS PrecioBase,
+		reg.precio * habTipos.max_huespedes * hot.estrellas_recargo AS precio,
 		reg.descripcion AS TipoRegimen,
 		reg.codigo AS CodigoRegimen
 	FROM
 		WHERE_EN_EL_DELETE_FROM.habitaciones hab
 	INNER JOIN
 		WHERE_EN_EL_DELETE_FROM.hoteles hot on
-		hot.hotel_id = hab.hoteles_id
-		and (hab.hoteles_id = @hotel_id or @hotel_id is null)
+		hot.hotel_id = hab.hotel_id
+		and (hab.hotel_id = @hotel_id or @hotel_id is null)
 		and (hab.tipos_id = @tipoHabitacion_id or @tipoHabitacion_id is null)
 	INNER JOIN
 		WHERE_EN_EL_DELETE_FROM.regimenes_hoteles regHot on

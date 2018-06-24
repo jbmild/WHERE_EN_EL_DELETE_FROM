@@ -27,6 +27,9 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         public void GenerarReservaPrincipal_Load(object sender, EventArgs e)
         {
+            cmbTiposDocumentos.Items.Add("DNI");
+            cmbTiposDocumentos.Items.Add("Pasaporte");
+
             if (_reserva != null) {
                 this.lblHotel.Text = this.lblHotel.Text.Replace("{hotel}", (new Hotel()).getNombreById(_reserva.hotel_id));
                 this.lblFechaDesde.Text = this.lblFechaDesde.Text.Replace("{checkin}", _reserva.fecha_desde.ToShortDateString());
@@ -87,7 +90,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             {
                 Cliente cli = new Cliente();
 
-                IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(_reserva, Convert.ToInt32(cmbTiposDocumentos.SelectedValue),
+                IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(_reserva, cmbTiposDocumentos.SelectedText,
                                                                                 txtNroDocumento.Text,
                                                                                 txtMail.Text);
                 frmUsuExtendido.Show();

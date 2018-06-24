@@ -42,18 +42,35 @@ namespace FrbaHotel.GenerarModificacionReserva
             Hotel hotel = new Hotel();
             TipoRegimen tipoRegimen = new TipoRegimen();
             strDatosReserva = strDatosReserva.Replace("{checkin}", _reserva.fecha_desde.ToShortDateString());
-            strDatosReserva = strDatosReserva.Replace("{checkout}", _reserva.fecha_desde.ToShortDateString());
+            strDatosReserva = strDatosReserva.Replace("{checkout}", _reserva.fecha_hasta.ToShortDateString());
             strDatosReserva = strDatosReserva.Replace("{hotel}", hotel.getNombreById(_reserva.hotel_id));
             strDatosReserva = strDatosReserva.Replace("{regimen}", tipoRegimen.getDescripcionById(_reserva.regimen_id));
-
+            lblDatosReserva.Text = strDatosReserva;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            //TODO: Salvar reserva
-            
 
-            System.Windows.Forms.MessageBox.Show("La reserva ha sido guardada. Lo esperamos!");
+            int exito = 0;
+
+            try
+            {
+                exito = _reserva.GuardarReserva();
+            }
+            catch (Exception ex){
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+            if (exito != 0)
+            {
+                string mensajeExito = "La reserva y los datos del cliente han sido guardados. Codigo reserva: {codigo}. Hasta pronto!";
+                mensajeExito = mensajeExito.Replace("{codigo}", _reserva.codigo);
+                System.Windows.Forms.MessageBox.Show("La reserva y los datos del cliente han sido guardados. Codigo reserva: {codigo}. Hasta pronto!");
+            }
+            else {
+                System.Windows.Forms.MessageBox.Show("Se ha producido un error. Intente realizar la reserva nuevamente. ");
+            }
+            
         }
     }
 }

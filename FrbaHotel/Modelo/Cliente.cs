@@ -15,6 +15,7 @@ namespace FrbaHotel.Modelo
         private string _nombre;
         private string _apellido;
         private string _telefono;
+        private string _tipoDocumento;
         private string _nrodocumento;
         private string _direccion_calle;
         private string _direccion_numero;
@@ -49,6 +50,12 @@ namespace FrbaHotel.Modelo
             get { return _telefono; }
             set { _telefono = value; }
         }
+
+        public string tipoDocumento {
+            get { return _tipoDocumento; }
+            set { _tipoDocumento = value; }
+        }
+
         public string nrodocumento
         {
             get { return _nrodocumento; }
@@ -98,7 +105,7 @@ namespace FrbaHotel.Modelo
             _idCliente = id;
         }
 
-        public Cliente(int id, string email, string nombre, string apellido, string telefono, string nro_documento, 
+        public Cliente(int id, string email, string nombre, string apellido, string telefono, string tipoDoc, string nro_documento, 
                 string direccion_calle, string direccion_numero, string direccion_piso, string direccion_depto, 
             string direccion_localidad, string direccion_pais, string nacionalidad)
         {
@@ -107,6 +114,7 @@ namespace FrbaHotel.Modelo
             _nombre = nombre;
             _apellido = apellido;
             _telefono = telefono;
+            _tipoDocumento = tipoDoc;
             _nrodocumento = nro_documento;
             _direccion_calle = direccion_calle;
             _direccion_numero = direccion_numero;
@@ -121,12 +129,12 @@ namespace FrbaHotel.Modelo
         }
 
 
-        public Cliente getClienteByTipoNroDocEmail(int tipoDoc, string nroDoc, string email){
+        public Cliente getClienteByTipoNroDocEmail(string tipoDoc, string nroDoc, string email){
             ConexionSQL conn = new ConexionSQL();
 
             string sqlQuery = "select * from WHERE_EN_EL_DELETE_FROM.Clientes cli WHERE 1=1 ";
             
-            if(tipoDoc != 0){
+            if(tipoDoc.Length > 0){
                 sqlQuery += "AND documento_tipo='" + tipoDoc + "' ";
             }
 
@@ -149,6 +157,7 @@ namespace FrbaHotel.Modelo
                                                     row[4].ToString(), // nombre
                                                     row[5].ToString(), // apellido
                                                     row[6].ToString(), // telefono
+                                                    row[7].ToString(), // tipoDoc
                                                     row[8].ToString(), // documento_nro
                                                     row[9].ToString(), // direccion_calle
                                                     row[10].ToString(), // direccion_nro
@@ -167,7 +176,6 @@ namespace FrbaHotel.Modelo
 
         public int guardarCliente(Cliente cli) {
 
-            int exito;
             SqlCommand command;
             
             int usuario_id = 1; //TODO: Leerlo del usuario logueado.
@@ -176,6 +184,7 @@ namespace FrbaHotel.Modelo
             {
                 command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
                                                 mail=@mail,nombre=@nombre,apellido=@apellido,telefono=@telefono,
+                                                documento_tipo=@tipoDoc,
                                                 documento_nro=@nrodocumento,direccion_calle=@direccion_calle,
                                                 direccion_nro=@direccion_nro,direccion_piso=@direccion_piso,
                                                 direccion_depto=@direccion_depto,direccion_localidad=@direccion_localidad,
@@ -185,8 +194,9 @@ namespace FrbaHotel.Modelo
             else
             {
                 command = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Clientes 
-                                        (usuario_id, mail, nombre, apellido, telefono, documento_nro, direccion_calle, direccion_nro, direccion_piso, direccion_depto, direccion_localidad, direccion_pais, nacionalidad, consistente)
-                                        VALUES(@usuario_id, @mail, @nombre, @apellido, @telefono, @nrodocumento, @direccion_calle, @direccion_nro, @direccion_piso, @direccion_depto, @direccion_localidad, @direccion_pais, @nacionalidad, 1))");
+                                        (usuarios_id, mail, nombre, apellido, telefono, documento_tipo, documento_nro, direccion_calle, direccion_nro, direccion_piso, direccion_depto, direccion_localidad, direccion_pais, nacionalidad, consistente)
+                                        VALUES(@usuario_id, @mail, @nombre, @apellido, @telefono, @tipoDoc, @nrodocumento, @direccion_calle, @direccion_nro, @direccion_piso, @direccion_depto, @direccion_localidad, @direccion_pais, @nacionalidad, 1)
+                                        SELECT SCOPE_IDENTITY() ");
             }
 
             command.Connection = ConexionSQL.obtenerConexion();
@@ -195,6 +205,7 @@ namespace FrbaHotel.Modelo
             command.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = cli.nombre;
             command.Parameters.Add("@apellido", SqlDbType.NVarChar).Value = cli.apellido;
             command.Parameters.Add("@telefono", SqlDbType.NVarChar).Value = cli.telefono;
+            command.Parameters.Add("@tipoDoc", SqlDbType.NVarChar).Value = cli._tipoDocumento;
             command.Parameters.Add("@nrodocumento", SqlDbType.NVarChar).Value = cli.nrodocumento;
             command.Parameters.Add("@direccion_calle", SqlDbType.NVarChar).Value = cli.direccion_calle;
             command.Parameters.Add("@direccion_nro", SqlDbType.NVarChar).Value = cli.direccion_numero;
@@ -204,41 +215,9 @@ namespace FrbaHotel.Modelo
             command.Parameters.Add("@direccion_pais", SqlDbType.NVarChar).Value = cli.direccion_pais;
             command.Parameters.Add("@nacionalidad", SqlDbType.NVarChar).Value = cli.nacionalidad;
             command.Parameters.Add("@cliente_id", SqlDbType.NVarChar).Value = cli.idCliente;
-            exito = command.ExecuteNonQuery();
+            _idCliente = Convert.ToInt32(command.ExecuteScalar());
 
-            /*
-            if (cli.idCliente != 0)
-            {
-                exito = conex.actualizarDatos(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
-                                                    mail='" + cli.email + "'," +
-                                                        "nombre='" + cli.nombre + "'," +
-                                                        "apellido='" + cli.apellido + "'," +
-                                            
-            "telefono='" + cli.telefono + "'," +
-                                                        "documento_nro='" + cli.nrodocumento + "'," +
-                                                        "direccion_calle='" + cli.direccion_calle + "'," +
-                                                        "direccion_nro='" + cli.direccion_numero + "'," +
-                                                        "direccion_piso='" + cli.direccion_piso + "'," +
-                                                        "direccion_depto='" + cli.direccion_depto + "'," +
-                                                        "direccion_localidad='" + cli.direccion_localidad + "'," +
-                                                        "direccion_pais='" + cli.direccion_pais + "'," +
-                                                        "nacionalidad='" + cli.nacionalidad + "'," +
-                                                        "consistente=1 WHERE cliente_id=" + cli.idCliente);
-
-                
-            }
-            else {
-                exito = conex.actualizarDatos(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Clientes 
-                                                      (usuarios_id, mail, nombre, apellido, telefono, pasaporte, direccion_calle, direccion_nro, direccion_piso, direccion_depto, direccion_localidad, direccion_pais, nacionalidad, consistente)
-                                                    VALUES(1, '"+
-                                                      cli.email + "', '"+cli.nombre+"','"+cli.apellido+"','"+cli.telefono
-                                                      +"','"+cli.nrodocumento+"','"+cli.direccion_calle+"','"+
-                                                      cli.direccion_numero + "','" + cli._direccion_piso+"',"
-                                                    );
-            }
-             * */
-
-            return exito; //devuelvo cant rows afectadas
+            return _idCliente; 
         }
 
     }

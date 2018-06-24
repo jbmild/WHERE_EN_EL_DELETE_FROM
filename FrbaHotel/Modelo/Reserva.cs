@@ -16,7 +16,7 @@ namespace FrbaHotel.Modelo
         private DateTime _fecha_hasta;
         //private DateTime _fecha_creacion;
         private int _cliente_id;
-        //private string _codigo;
+        private string _codigo;
         //private string _estado;
         private decimal _total;
         private int _regimen_id;
@@ -67,6 +67,12 @@ namespace FrbaHotel.Modelo
             set { _regimen_id = value; }
         }
 
+        public string codigo
+        {
+            get { return _codigo; }
+            set { _codigo = value; }
+        }
+
         public int hotel_id
         {
             get { return _hotel_id; }
@@ -78,14 +84,58 @@ namespace FrbaHotel.Modelo
             set { _habitaciones = value; }
         }
 
-        public int GuardarReserva(Reserva res) {
-            SqlCommand command = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas (fecha_desde, fecha_hasta, fecha_creacion, cliente_id, codigo, estado, usuario_id, total, regimen_id, hotel_id)
-                                                VALUES(@fdesde, @fhasta, getdate(), @cliente_id)");
+        public int GuardarReserva() {
 
+            //Sumarizo total de la reserva
+
+            SqlCommand command = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas (fecha_desde, fecha_hasta, fecha_creacion, cliente_id, /*codigo,*/ usuario_id, total, regimen_id, hotel_id)
+                                                VALUES(@fdesde, @fhasta, getdate(), @cliente_id, /*WHERE_EN_EL_DELETE_FROM.getLastCodigo(),*/ @usuario_id, @total, @regimen_id, @hotel_id)
+                                                SELECT SCOPE_IDENTITY()");
+
+            command.Connection = ConexionSQL.obtenerConexion();
+            command.Parameters.Add("@fdesde", SqlDbType.DateTime).Value = _fecha_desde;
+            command.Parameters.Add("@fhasta", SqlDbType.DateTime).Value = _fecha_hasta;
+            command.Parameters.Add("@cliente_id", SqlDbType.Int).Value = cliente_id;
+            command.Parameters.Add("@usuario_id", SqlDbType.Int).Value = 1;
+            command.Parameters.Add("@total", SqlDbType.Decimal).Value = _total;
+            command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = _regimen_id;
+            command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = _hotel_id;
+
+            int idReserva = 0;
+            try
+            {
+                idReserva = Convert.ToInt32(command.ExecuteScalar());
+            }
+            catch (Exception ex) {
+                throw (ex);
+            }
+            
+            
+            
             SqlCommand command2 = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas_Habitaciones (habitacion_id, reserva_id, precio_diario)
                                                 VALUES(@habitacion_id, @reserva_id, @precio_diario)");
 
-            return 0; // TODO: Devolver variable exito.
+            command2.Connection = ConexionSQL.obtenerConexion();
+            command2.Parameters.Add("@habitacion_id", SqlDbType.Int);
+            command2.Parameters.Add("@reserva_id", SqlDbType.Int);
+            command2.Parameters.Add("@precio_diario", SqlDbType.Decimal);
+            foreach(Habitacion hab in _habitaciones){
+                command2.Parameters["@habitacion_id"].Value = hab.id;
+                command2.Parameters["@reserva_id"].Value = idReserva;
+                command2.Parameters["@precio_diario"].Value = hab.precio;
+            }
+
+            int exito = 0;
+            try
+            {
+                exito = command2.ExecuteNonQuery();
+            }
+            catch (Exception ex) {
+                throw (ex);
+            }
+            
+
+            return exito;
         }
     }
 }

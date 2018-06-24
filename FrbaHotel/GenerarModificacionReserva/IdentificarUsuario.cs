@@ -44,7 +44,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             {
                 Cliente cli = new Cliente();
 
-                IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(reserva, Convert.ToInt32(cmbTiposDocumentos.SelectedValue),
+                IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(reserva, cmbTiposDocumentos.SelectedText,
                                                                                 txtNroDocumento.Text,
                                                                                 txtMail.Text);
                 frmUsuExtendido.Show();
