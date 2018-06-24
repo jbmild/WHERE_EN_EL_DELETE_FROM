@@ -11,6 +11,7 @@ namespace FrbaHotel.Modelo
     public class Cliente
     {
         private int _idCliente;
+        private bool _habilitado;
         private string _email;
         private string _nombre;
         private string _apellido;
@@ -24,6 +25,7 @@ namespace FrbaHotel.Modelo
         private string _direccion_localidad;
         private string _direccion_pais;
         private string _nacionalidad;
+        
 
 
         //Getters y setters
@@ -31,6 +33,13 @@ namespace FrbaHotel.Modelo
             get {return _idCliente;}
             set { _idCliente = value;}
         }
+
+        public bool habilitado {
+            get { return _habilitado; }
+            set { _habilitado = value; }
+        }
+
+
         public string email {
             get { return _email;  }
             set { _email = value; }

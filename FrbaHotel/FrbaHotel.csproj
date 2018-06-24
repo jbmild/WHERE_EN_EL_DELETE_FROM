@@ -89,6 +89,26 @@
     </Compile>
     <Compile Include="AbmHabitacion\MostrarHabitaciones.cs" />
     <Compile Include="AbmHabitacion\MostrarHoteles.cs" />
+    <Compile Include="AbmHotel\AbmHoteles.cs" />
+    <Compile Include="AbmHotel\altaHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\altaHotel.Designer.cs">
+      <DependentUpon>altaHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\buscadorRegimenes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\buscadorRegimenes.Designer.cs">
+      <DependentUpon>buscadorRegimenes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\pantallaPrincipalHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\pantallaPrincipalHotel.Designer.cs">
+      <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\RegimenElegido.cs" />
     <Compile Include="AbmRegimen\ABM_regimen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,6 +262,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\modificarHabitacion.resx">
       <DependentUpon>modificarHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\altaHotel.resx">
+      <DependentUpon>altaHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\buscadorRegimenes.resx">
+      <DependentUpon>buscadorRegimenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\pantallaPrincipalHotel.resx">
+      <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRegimen\.Designer.resx">
       <DependentUpon>.Designer.cs</DependentUpon>

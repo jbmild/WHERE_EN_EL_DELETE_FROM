@@ -40,6 +40,14 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //VALIDACION: si el cliente esta inhablitado, no lo dejo continuar.
+            _cli = _cli.getClienteByTipoNroDocEmail(_idTipoDocumento, _nroDocumento, _email);
+
+            if (!_cli.habilitado) {
+                System.Windows.Forms.MessageBox.Show("Usted está inhabilitado, por lo que no puede realizar ninguna reserva. Para más información, contacte al responsable del hotel. ");
+                this.Close();
+            }
+
             //Lleno combo de tipo de documento
             cmbTiposDocumentos.Items.Add("DNI");
             cmbTiposDocumentos.Items.Add("Pasaporte");
@@ -50,7 +58,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             
             
             
-            _cli = _cli.getClienteByTipoNroDocEmail(_idTipoDocumento, _nroDocumento, _email);
+            
 
             if (_cli.idCliente == 0) // es cliente nuevo
             {
