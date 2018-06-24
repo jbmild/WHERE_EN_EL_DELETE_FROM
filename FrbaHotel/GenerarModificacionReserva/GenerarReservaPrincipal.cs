@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Modelo;
+using FrbaHotel.Tools;
+
 
 namespace FrbaHotel.GenerarModificacionReserva
 {
@@ -86,19 +88,40 @@ namespace FrbaHotel.GenerarModificacionReserva
             //Armar objeto reserva con datos que tengo, tanto:
             // (A) si es nuevo (nro habitacion, tipo de regimen, hotel, fdesde, fhasta, clienteId)
             // (B) si lo está modificando (nro de reserva)
+
+            RegexUtilities regexValidator = new RegexUtilities();
+            bool isValidEmail = true;
+            if(txtMail.Text.Length > 0)
+            {
+                isValidEmail = regexValidator.IsValidEmail(txtMail.Text);
+            }
+            
             if ((txtNroDocumento.Text.Length > 0 || txtMail.Text.Length > 0) && txtNrosHabitaciones.Text.Length > 0)
             {
-                Cliente cli = new Cliente();
+                if (isValidEmail)
+                {
+                    Cliente cli = new Cliente();
 
-                IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(_reserva, cmbTiposDocumentos.SelectedText,
-                                                                                txtNroDocumento.Text,
-                                                                                txtMail.Text);
-                frmUsuExtendido.Show();
+                    IdentificarUsuarioExtendido frmUsuExtendido = new IdentificarUsuarioExtendido(_reserva, cmbTiposDocumentos.SelectedText,
+                                                                                    txtNroDocumento.Text,
+                                                                                    txtMail.Text);
+                    frmUsuExtendido.Owner = this;
+                    frmUsuExtendido.Show();
+                }
+                else {
+                    System.Windows.Forms.MessageBox.Show("Debe completar nro documento o mail para poder continuar. ");
+                }
+                
             }
             else
             {
                 System.Windows.Forms.MessageBox.Show("Debe completar nro documento o mail para poder continuar. ");
             }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

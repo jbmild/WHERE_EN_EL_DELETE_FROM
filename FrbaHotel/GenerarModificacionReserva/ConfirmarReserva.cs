@@ -36,8 +36,8 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void frmConfirmarReserva_Load(object sender, EventArgs e)
         {
-            lblDatosCliente.Text = lblDatosCliente.Text.Replace("{cliente}", _cliente.apellido + " " + 
-                                    _cliente.nombre);
+            lblDatosCliente.Text = lblDatosCliente.Text.Replace("{cliente}", _cliente.apellido.ToUpper() + ", " + 
+                                    _cliente.nombre.ToUpper());
             string strDatosReserva = lblDatosReserva.Text;
             Hotel hotel = new Hotel();
             TipoRegimen tipoRegimen = new TipoRegimen();
@@ -71,6 +71,17 @@ namespace FrbaHotel.GenerarModificacionReserva
                 System.Windows.Forms.MessageBox.Show("Se ha producido un error. Intente realizar la reserva nuevamente. ");
             }
             
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ((GenerarReservaPrincipal)((IdentificarUsuarioExtendido)this.Owner).Owner).Close();            
+            this.Close();
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

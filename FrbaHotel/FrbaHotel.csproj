@@ -226,6 +226,7 @@
     <Compile Include="Roles\Modelo\Roles.cs" />
     <Compile Include="Roles\Modelo\RolesPermisos.cs" />
     <Compile Include="Roles\Modelo\RolPermiso.cs" />
+    <Compile Include="Tools\RegexUtilities.cs" />
     <Compile Include="Tools\Option.cs" />
     <EmbeddedResource Include="AbmHabitacion\abmHabitacionBotones.resx">
       <DependentUpon>abmHabitacionBotones.cs</DependentUpon>

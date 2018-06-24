@@ -46,7 +46,7 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.TxtNroDocumento = new System.Windows.Forms.TextBox();
+            this.txtNroDocumento = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cmbTiposDocumentos = new System.Windows.Forms.ComboBox();
             this.txtNacionalidad = new System.Windows.Forms.TextBox();
@@ -58,6 +58,7 @@
             this.txtDireccionPiso = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // linkLabel1
@@ -175,11 +176,11 @@
             // 
             // btnReservar
             // 
-            this.btnReservar.Location = new System.Drawing.Point(171, 439);
+            this.btnReservar.Location = new System.Drawing.Point(206, 439);
             this.btnReservar.Name = "btnReservar";
             this.btnReservar.Size = new System.Drawing.Size(102, 31);
             this.btnReservar.TabIndex = 18;
-            this.btnReservar.Text = "Confirmar";
+            this.btnReservar.Text = "Siguiente >";
             this.btnReservar.UseVisualStyleBackColor = true;
             this.btnReservar.Click += new System.EventHandler(this.btnReservar_Click);
             // 
@@ -189,7 +190,7 @@
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(102, 31);
             this.btnCancelar.TabIndex = 19;
-            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.Text = "Cancelar ( x )";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
@@ -219,12 +220,12 @@
             this.txtNombre.Size = new System.Drawing.Size(129, 20);
             this.txtNombre.TabIndex = 22;
             // 
-            // TxtNroDocumento
+            // txtNroDocumento
             // 
-            this.TxtNroDocumento.Location = new System.Drawing.Point(164, 140);
-            this.TxtNroDocumento.Name = "TxtNroDocumento";
-            this.TxtNroDocumento.Size = new System.Drawing.Size(129, 20);
-            this.TxtNroDocumento.TabIndex = 23;
+            this.txtNroDocumento.Location = new System.Drawing.Point(164, 140);
+            this.txtNroDocumento.Name = "txtNroDocumento";
+            this.txtNroDocumento.Size = new System.Drawing.Size(129, 20);
+            this.txtNroDocumento.TabIndex = 23;
             // 
             // label11
             // 
@@ -314,11 +315,22 @@
             this.txtLocalidad.Size = new System.Drawing.Size(122, 20);
             this.txtLocalidad.TabIndex = 35;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(98, 439);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 31);
+            this.button1.TabIndex = 36;
+            this.button1.Text = "< Atrás";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // IdentificarUsuarioExtendido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 496);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtLocalidad);
             this.Controls.Add(this.txtDireccionPiso);
             this.Controls.Add(this.label13);
@@ -330,7 +342,7 @@
             this.Controls.Add(this.txtNacionalidad);
             this.Controls.Add(this.cmbTiposDocumentos);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.TxtNroDocumento);
+            this.Controls.Add(this.txtNroDocumento);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -377,7 +389,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox TxtNroDocumento;
+        private System.Windows.Forms.TextBox txtNroDocumento;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmbTiposDocumentos;
         private System.Windows.Forms.TextBox txtNacionalidad;
@@ -389,5 +401,6 @@
         private System.Windows.Forms.TextBox txtDireccionPiso;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtLocalidad;
+        private System.Windows.Forms.Button button1;
     }
 }
