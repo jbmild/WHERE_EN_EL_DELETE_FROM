@@ -52,5 +52,11 @@ namespace FrbaHotel
             Roles.frmRolesListado frmListado = new Roles.frmRolesListado();
             frmListado.Show();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            AbmHotel.altaHotel alta = new AbmHotel.altaHotel();
+            alta.Show();
+        }
     }
 }
