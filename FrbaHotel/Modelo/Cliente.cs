@@ -11,6 +11,7 @@ namespace FrbaHotel.Modelo
     public class Cliente
     {
         private int _idCliente;
+        private bool _habilitado;
         private string _email;
         private string _nombre;
         private string _apellido;
@@ -24,6 +25,7 @@ namespace FrbaHotel.Modelo
         private string _direccion_localidad;
         private string _direccion_pais;
         private string _nacionalidad;
+        
 
 
         //Getters y setters
@@ -31,6 +33,13 @@ namespace FrbaHotel.Modelo
             get {return _idCliente;}
             set { _idCliente = value;}
         }
+
+        public bool habilitado {
+            get { return _habilitado; }
+            set { _habilitado = value; }
+        }
+
+
         public string email {
             get { return _email;  }
             set { _email = value; }
@@ -105,11 +114,12 @@ namespace FrbaHotel.Modelo
             _idCliente = id;
         }
 
-        public Cliente(int id, string email, string nombre, string apellido, string telefono, string tipoDoc, string nro_documento, 
+        public Cliente(int id, bool habilitado, string email, string nombre, string apellido, string telefono, string tipoDoc, string nro_documento, 
                 string direccion_calle, string direccion_numero, string direccion_piso, string direccion_depto, 
             string direccion_localidad, string direccion_pais, string nacionalidad)
         {
             _idCliente = id;
+            _habilitado = habilitado;
             _email = email;
             _nombre = nombre;
             _apellido = apellido;
@@ -152,7 +162,8 @@ namespace FrbaHotel.Modelo
             {
                 //armar objeto cliente
                 object[] row = dt.Rows[0].ItemArray;
-                return new Cliente(Convert.ToInt32(row[0]), // cliente_id
+                return new Cliente(Convert.ToInt32(row[0]), 
+                                                    Convert.ToBoolean(row[2]), //habilitado
                                                     row[3].ToString(), // mail
                                                     row[4].ToString(), // nombre
                                                     row[5].ToString(), // apellido
@@ -189,7 +200,8 @@ namespace FrbaHotel.Modelo
                                                 direccion_nro=@direccion_nro,direccion_piso=@direccion_piso,
                                                 direccion_depto=@direccion_depto,direccion_localidad=@direccion_localidad,
                                                 direccion_pais=@direccion_pais,nacionalidad=@nacionalidad,consistente=1
-                                                WHERE cliente_id=@cliente_id");
+                                                WHERE cliente_id=@cliente_id
+                                                SELECT @@ROWCOUNT ");
             }
             else
             {
@@ -220,5 +232,19 @@ namespace FrbaHotel.Modelo
             return _idCliente; 
         }
 
+        public bool existeClientePorDatosUnicos() {
+
+            ConexionSQL conn = new ConexionSQL();
+            string query = @"SELECT 1 FROM WHERE_EN_EL_DELETE_FROM.Clientes WHERE (mail='"+_email+
+                                "' OR (documento_tipo='"+_tipoDocumento+"' AND documento_nro='"+_nrodocumento+"'))";
+            if (_idCliente != 0)
+            {
+                query += " AND cliente_id != " + _idCliente.ToString();
+            }
+            
+            DataTable dt = conn.cargarTablaSQL(query);
+            return (dt.Rows.Count > 0);
+
+        }
     }
 }

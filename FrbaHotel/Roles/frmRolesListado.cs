@@ -37,7 +37,7 @@ namespace FrbaHotel.Roles
             this.LoadGrid(Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex-1));
         }
 
-        private void LoadGrid(DataTable dt)
+        public void LoadGrid(DataTable dt)
         {
             this.dgwRoles.DataSource = null;
             using (dt)
@@ -88,7 +88,7 @@ namespace FrbaHotel.Roles
                 switch (this.dgwRoles.CurrentCell.ColumnIndex)
                 {
                     case 3:
-                        MessageBox.Show(String.Concat("Queria modificar a ", this.dgwRoles.Rows[e.RowIndex].Cells[1].Value, " ", this.dgwRoles.CurrentCell.ColumnIndex.ToString()));
+                        this.modificarRol((int)this.dgwRoles.Rows[e.RowIndex].Cells[0].Value);
                         break;
                     case 4:
                         this.deleteRol((int)this.dgwRoles.Rows[e.RowIndex].Cells[0].Value, this.dgwRoles.Rows[e.RowIndex].Cells[1].Value.ToString());
@@ -96,6 +96,14 @@ namespace FrbaHotel.Roles
 
                 }
             }
+        }
+
+        private void modificarRol(int rolId)
+        {
+            Rol rol = new Rol(rolId);
+            Roles.frmRolesFicha frmFicha = new Roles.frmRolesFicha(rol);
+            frmFicha.FormClosed += new FormClosedEventHandler(frmRolesFicha_Closed);
+            frmFicha.Show();
         }
 
         private void deleteRol(int rolId, string name)
@@ -107,6 +115,7 @@ namespace FrbaHotel.Roles
                 List<KeyValuePair<string,string>> errores = rol.eliminar();
                 if (errores.Count == 0)
                 {
+                    this.LoadGrid(Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex - 1));
                     MessageBox.Show("Se realizo el eliminado logico exitosamente!");
                 }
                 else
@@ -130,7 +139,13 @@ namespace FrbaHotel.Roles
         {
             Rol rol = new Rol(0);
             Roles.frmRolesFicha frmFicha = new Roles.frmRolesFicha(rol);
+            frmFicha.FormClosed += new FormClosedEventHandler(frmRolesFicha_Closed);
             frmFicha.Show();
+        }
+
+        private void frmRolesFicha_Closed(object sender, FormClosedEventArgs e)
+        {
+            this.LoadGrid(Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex - 1));
         }
     }
 }

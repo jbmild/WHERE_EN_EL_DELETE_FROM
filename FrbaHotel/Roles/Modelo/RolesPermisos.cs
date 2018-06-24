@@ -16,7 +16,7 @@ namespace FrbaHotel.Roles.Modelo
                 List<Permiso> permisos = new List<Permiso>();
 
                 ConexionSQL conn = new ConexionSQL();
-                string sqlQuery = "SELECT permiso_id, nombre FROM WHERE_EN_EL_DELETE_FROM.roles_permisos WHERE rol_id="+rolId.ToString();
+                string sqlQuery = "SELECT p.permiso_id, p.nombre FROM WHERE_EN_EL_DELETE_FROM.roles_permisos rp INNER JOIN WHERE_EN_EL_DELETE_FROM.permisos p ON p.permiso_id=rp.permiso_id WHERE rp.rol_id="+rolId.ToString();
                 DataTable dt = conn.cargarTablaSQL(sqlQuery);
 
                 foreach(DataRow fila in dt.Rows){
@@ -42,6 +42,37 @@ namespace FrbaHotel.Roles.Modelo
             }
 
             return permisos;
+        }
+
+        public static List<KeyValuePair<string, string>> actualizarPermisos(Rol rol)
+        {
+            List<KeyValuePair<string, string>> errores = new List<KeyValuePair<string, string>>();
+
+            if (rol.RolId > 0)
+            {
+                ConexionSQL conn = new ConexionSQL();
+                string sql = "DELETE FROM WHERE_EN_EL_DELETE_FROM.roles_permisos WHERE rol_id=" + rol.RolId.ToString();
+                conn.ejecutarComandoSQL(sql);
+
+                foreach (Permiso permiso in rol.PermisosDados)
+                {
+                    if (permiso.PermisoId > 0)
+                    {
+                        RolPermiso rolpermiso = new RolPermiso(rol.RolId, permiso.PermisoId);
+                        errores = errores.Concat(rolpermiso.guardar()).ToList();
+                    }
+                    else
+                    {
+                        errores.Add(new KeyValuePair<string, string>("general", "El permiso '" + permiso.Nombre + "' no es valido"));
+                    }
+                }
+            }
+            else
+            {
+                errores.Add(new KeyValuePair<string,string>("general", "El rol '" + rol.Nombre + "' no es valido"));
+            }
+
+            return errores;
         }
     }
 }

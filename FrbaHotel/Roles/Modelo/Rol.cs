@@ -99,8 +99,8 @@ namespace FrbaHotel.Roles.Modelo
             try
             {
                 ConexionSQL conn = new ConexionSQL();
-                string sql = "INSERT INTO WHERE_EN_EL_DELETE_FROM.roles (nombre, habilitado, esDefault) VALUES ('" + this.nombre + "', " + Convert.ToInt32(this.habilitado).ToString() + ", " + Convert.ToInt32(this.esDefault).ToString() + ")";
-                int insertado = conn.ejecutarComandoSQL(sql);
+                string sql = "INSERT INTO WHERE_EN_EL_DELETE_FROM.roles (nombre, habilitado, esDefault) VALUES ('" + this.nombre + "', " + Convert.ToInt32(this.habilitado).ToString() + ", " + Convert.ToInt32(this.esDefault).ToString() + ")SELECT SCOPE_IDENTITY()";
+                int insertado = conn.insertarDatos(sql);
 
                 if (this.esDefault == true)
                 {
@@ -111,6 +111,10 @@ namespace FrbaHotel.Roles.Modelo
                 if (insertado == 0)
                 {
                     errores.Add(new KeyValuePair<string, string>("general", "No se pudo guardar el rol."));
+                }
+                else
+                {
+                    this.rol_id = insertado;
                 }
             }
             catch (Exception e)
@@ -175,6 +179,10 @@ namespace FrbaHotel.Roles.Modelo
                 else
                 {
                     errores = errores.Concat(this.insertar()).ToList();
+                    if (this.rol_id > 0)
+                    {
+                        errores = errores.Concat(RolesPermisos.actualizarPermisos(this)).ToList();
+                    }
                 }
             }
 

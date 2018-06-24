@@ -32,8 +32,9 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.lblDatosReserva = new System.Windows.Forms.Label();
             this.btnConfirmar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnAtras = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblDatosCliente
@@ -42,9 +43,9 @@
             this.lblDatosCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDatosCliente.Location = new System.Drawing.Point(101, 73);
             this.lblDatosCliente.Name = "lblDatosCliente";
-            this.lblDatosCliente.Size = new System.Drawing.Size(247, 18);
+            this.lblDatosCliente.Size = new System.Drawing.Size(202, 18);
             this.lblDatosCliente.TabIndex = 6;
-            this.lblDatosCliente.Text = "CONFIRME SU RESERVA, {cliente}";
+            this.lblDatosCliente.Text = "Confirme su reserva, {cliente}";
             this.lblDatosCliente.Click += new System.EventHandler(this.label1_Click);
             // 
             // linkLabel1
@@ -70,22 +71,23 @@
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(120, 209);
+            this.btnConfirmar.Location = new System.Drawing.Point(104, 209);
             this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.Size = new System.Drawing.Size(108, 28);
+            this.btnConfirmar.Size = new System.Drawing.Size(105, 28);
             this.btnConfirmar.TabIndex = 8;
-            this.btnConfirmar.Text = "Confirmar";
+            this.btnConfirmar.Text = "Confirmar ✓";
             this.btnConfirmar.UseVisualStyleBackColor = true;
             this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
-            // button2
+            // btnCancelar
             // 
-            this.button2.Location = new System.Drawing.Point(250, 209);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(108, 28);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Cancelar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCancelar.Location = new System.Drawing.Point(303, 209);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(90, 28);
+            this.btnCancelar.TabIndex = 9;
+            this.btnCancelar.Text = "Cancelar ( x )";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label3
             // 
@@ -95,14 +97,25 @@
             this.label3.Size = new System.Drawing.Size(0, 13);
             this.label3.TabIndex = 10;
             // 
+            // btnAtras
+            // 
+            this.btnAtras.Location = new System.Drawing.Point(212, 209);
+            this.btnAtras.Name = "btnAtras";
+            this.btnAtras.Size = new System.Drawing.Size(89, 28);
+            this.btnAtras.TabIndex = 11;
+            this.btnAtras.Text = "< Atrás";
+            this.btnAtras.UseVisualStyleBackColor = true;
+            this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
+            // 
             // frmConfirmarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(516, 346);
+            this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.lblDatosReserva);
             this.Controls.Add(this.lblDatosCliente);
@@ -121,7 +134,8 @@
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label lblDatosReserva;
         private System.Windows.Forms.Button btnConfirmar;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnAtras;
     }
 }

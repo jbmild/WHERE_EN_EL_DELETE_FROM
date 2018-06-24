@@ -42,6 +42,8 @@
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.lblErrorNombre = new System.Windows.Forms.Label();
+            this.lblErrorGeneral = new System.Windows.Forms.Label();
             this.gbxPermisos.SuspendLayout();
             this.gbxGeneral.SuspendLayout();
             this.SuspendLayout();
@@ -65,7 +67,7 @@
             // chkHabilitado
             // 
             this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Location = new System.Drawing.Point(430, 40);
+            this.chkHabilitado.Location = new System.Drawing.Point(10, 80);
             this.chkHabilitado.Name = "chkHabilitado";
             this.chkHabilitado.Size = new System.Drawing.Size(106, 24);
             this.chkHabilitado.TabIndex = 2;
@@ -100,7 +102,7 @@
             this.gbxPermisos.Controls.Add(this.btnConceder);
             this.gbxPermisos.Controls.Add(this.lblDenegados);
             this.gbxPermisos.Controls.Add(this.lblConcedidos);
-            this.gbxPermisos.Location = new System.Drawing.Point(12, 144);
+            this.gbxPermisos.Location = new System.Drawing.Point(12, 199);
             this.gbxPermisos.Name = "gbxPermisos";
             this.gbxPermisos.Size = new System.Drawing.Size(797, 419);
             this.gbxPermisos.TabIndex = 10;
@@ -147,12 +149,13 @@
             // 
             // gbxGeneral
             // 
+            this.gbxGeneral.Controls.Add(this.lblErrorNombre);
             this.gbxGeneral.Controls.Add(this.lblNombre);
             this.gbxGeneral.Controls.Add(this.txtNombre);
             this.gbxGeneral.Controls.Add(this.chkHabilitado);
-            this.gbxGeneral.Location = new System.Drawing.Point(12, 41);
+            this.gbxGeneral.Location = new System.Drawing.Point(12, 75);
             this.gbxGeneral.Name = "gbxGeneral";
-            this.gbxGeneral.Size = new System.Drawing.Size(797, 88);
+            this.gbxGeneral.Size = new System.Drawing.Size(797, 118);
             this.gbxGeneral.TabIndex = 11;
             this.gbxGeneral.TabStop = false;
             this.gbxGeneral.Text = "Datos generales";
@@ -169,7 +172,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(682, 579);
+            this.btnGuardar.Location = new System.Drawing.Point(682, 624);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(127, 42);
             this.btnGuardar.TabIndex = 12;
@@ -179,7 +182,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(12, 579);
+            this.btnLimpiar.Location = new System.Drawing.Point(12, 624);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(127, 42);
             this.btnLimpiar.TabIndex = 13;
@@ -187,11 +190,34 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
+            // lblErrorNombre
+            // 
+            this.lblErrorNombre.AutoSize = true;
+            this.lblErrorNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorNombre.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorNombre.Location = new System.Drawing.Point(333, 38);
+            this.lblErrorNombre.Name = "lblErrorNombre";
+            this.lblErrorNombre.Size = new System.Drawing.Size(0, 25);
+            this.lblErrorNombre.TabIndex = 19;
+            this.lblErrorNombre.Visible = false;
+            // 
+            // lblErrorGeneral
+            // 
+            this.lblErrorGeneral.AutoSize = true;
+            this.lblErrorGeneral.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorGeneral.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorGeneral.Location = new System.Drawing.Point(17, 47);
+            this.lblErrorGeneral.Name = "lblErrorGeneral";
+            this.lblErrorGeneral.Size = new System.Drawing.Size(0, 25);
+            this.lblErrorGeneral.TabIndex = 20;
+            this.lblErrorGeneral.Visible = false;
+            // 
             // frmRolesFicha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 635);
+            this.ClientSize = new System.Drawing.Size(821, 681);
+            this.Controls.Add(this.lblErrorGeneral);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.lblTitulo);
@@ -224,5 +250,7 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.ListBox lbxConcedidos;
         private System.Windows.Forms.ListBox lbxDenegados;
+        private System.Windows.Forms.Label lblErrorNombre;
+        private System.Windows.Forms.Label lblErrorGeneral;
     }
 }

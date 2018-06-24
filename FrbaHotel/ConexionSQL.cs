@@ -124,6 +124,32 @@ namespace FrbaHotel
             return rowsAffected;
         }
 
+        public int insertarDatos(string query)
+        {
+
+            SqlCommand miCommand = new SqlCommand(string.Format(query), miConexionSQL);
+
+
+
+            DataTable ds = new DataTable();
+            // REM CONFIGURO EL OBJETO COMMAND
+            this.conectar();
+            // REM INDICO LA CONEXION ACTIVA
+            miCommand.Connection = miConexionSQL;
+            // REM INDICO EL TIPO QUE SE PASARA EN COMMANDTEXT
+            miCommand.CommandType = CommandType.Text;
+
+
+            // REM CREO UN DATAREADER
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(miCommand);
+
+            // REM CARGO EL DATATABLE PRODUCTOS A TRAVEZ DEL DATAREADER
+            int id = Convert.ToInt32(miCommand.ExecuteScalar());
+            this.desconectar();
+
+            return id;
+        }
+
         public int ejecutarComandoSQL(string miCommand)
         {
             SqlCommand coman2 = new SqlCommand(string.Format(miCommand), miConexionSQL);

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Modelo;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.GenerarModificacionReserva
 {
@@ -23,6 +24,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         public IdentificarUsuarioExtendido(int idCliente)
         {
             InitializeComponent();
+            
         }
 
         public IdentificarUsuarioExtendido(Reserva reserva, string idTipoDocumento, string nroDocumento, string email)
@@ -38,6 +40,14 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //VALIDACION: si el cliente esta inhablitado, no lo dejo continuar.
+            _cli = _cli.getClienteByTipoNroDocEmail(_idTipoDocumento, _nroDocumento, _email);
+
+            if (!_cli.habilitado) {
+                System.Windows.Forms.MessageBox.Show("Usted está inhabilitado, por lo que no puede realizar ninguna reserva. Para más información, contacte al responsable del hotel. ");
+                this.Close();
+            }
+
             //Lleno combo de tipo de documento
             cmbTiposDocumentos.Items.Add("DNI");
             cmbTiposDocumentos.Items.Add("Pasaporte");
@@ -48,21 +58,21 @@ namespace FrbaHotel.GenerarModificacionReserva
             
             
             
-            _cli = _cli.getClienteByTipoNroDocEmail(_idTipoDocumento, _nroDocumento, _email);
+            
 
             if (_cli.idCliente == 0) // es cliente nuevo
             {
                 lblMensajeLoginORegister.Text = "Usted no está registrado como cliente. Complete sus datos: ";
                 txtMail.Text = _email;
                 cmbTiposDocumentos.SelectedValue = _idTipoDocumento;
-                TxtNroDocumento.Text = _nroDocumento;
+                txtNroDocumento.Text = _nroDocumento;
             }
             else { 
                 //prepopular campos con objeto cli
                 lblMensajeLoginORegister.Text = "Usted ya es cliente del hotel. Puede modificar sus datos o directamente confirmar la reserva.";
 
                 cmbTiposDocumentos.Text = _cli.tipoDocumento;
-                TxtNroDocumento.Text = _cli.nrodocumento;
+                txtNroDocumento.Text = _cli.nrodocumento;
                 txtNombre.Text = _cli.nombre;
                 txtApellido.Text = _cli.apellido;
                 txtNacionalidad.Text = _cli.nacionalidad;
@@ -84,39 +94,68 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void btnReservar_Click(object sender, EventArgs e)
         {
 
-            
-
-            //TODO: agregar tipo documento cuando se agregue en la tabla
-            _cli.tipoDocumento = cmbTiposDocumentos.Text;
-            _cli.nrodocumento = TxtNroDocumento.Text;
-            _cli.nombre = txtNombre.Text;
-            _cli.apellido = txtApellido.Text;
-            _cli.nacionalidad = txtNacionalidad.Text;
-            _cli.email = txtMail.Text;
-            _cli.direccion_calle = txtDireccionCalle.Text;
-            _cli.direccion_numero = txtDireccionNro.Text;
-            _cli.direccion_piso = txtDireccionPiso.Text;
-            _cli.direccion_depto = txtDireccionDepto.Text;
-            _cli.telefono = txtTelefono.Text;
-            _cli.direccion_localidad = txtLocalidad.Text;
-            _cli.direccion_pais = txtPaisVivienda.Text;
-
-            int resultGuardarCliente = _cli.guardarCliente(_cli);
-
-            if (resultGuardarCliente != 0)
+            RegexUtilities regexValidator = new RegexUtilities();
+            bool isValidEmail = true;
+            if(txtMail.Text.Length > 0)
             {
-                _cli.idCliente = _res.cliente_id = resultGuardarCliente;
-                frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva(_cli, _res);
-                frmConfirmarReserva.Show();
+                isValidEmail = regexValidator.IsValidEmail(txtMail.Text);
+            }
+
+            if (txtNroDocumento.Text.Length > 0 && txtMail.Text.Length > 0 && txtNombre.Text.Length > 0 && txtApellido.Text.Length > 0
+                        && txtDireccionCalle.Text.Length > 0 && txtDireccionNro.Text.Length > 0 
+                        && txtDireccionPiso.Text.Length > 0 && txtDireccionDepto.Text.Length > 0)
+            {
+                if (isValidEmail)
+                {
+                    _cli.tipoDocumento = cmbTiposDocumentos.Text;
+                    _cli.nrodocumento = txtNroDocumento.Text;
+                    _cli.nombre = txtNombre.Text;
+                    _cli.apellido = txtApellido.Text;
+                    _cli.nacionalidad = txtNacionalidad.Text;
+                    _cli.email = txtMail.Text;
+                    _cli.direccion_calle = txtDireccionCalle.Text;
+                    _cli.direccion_numero = txtDireccionNro.Text;
+                    _cli.direccion_piso = txtDireccionPiso.Text;
+                    _cli.direccion_depto = txtDireccionDepto.Text;
+                    _cli.telefono = txtTelefono.Text;
+                    _cli.direccion_localidad = txtLocalidad.Text;
+                    _cli.direccion_pais = txtPaisVivienda.Text;
+
+                    bool datosDuplicados = _cli.existeClientePorDatosUnicos();
+                    if (!datosDuplicados)
+                    {
+                        int resultGuardarCliente = _cli.guardarCliente(_cli);
+
+                        if (resultGuardarCliente != 0)
+                        {
+                            _cli.idCliente = _res.cliente_id;
+                            frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva(_cli, _res);
+                            frmConfirmarReserva.Owner = this;
+                            frmConfirmarReserva.Show();
+                        }
+                        else
+                        {
+                            //no se pudo grabar
+                            this.UseWaitCursor = false;
+                            System.Windows.Forms.MessageBox.Show("ERROR al intentar guardar datos. Reintente por favor.");
+                            this.Hide();
+                        }
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show(this, "El mail y/o tipo+nro de documento que ha ingresado ya existen. Corrija los datos para poder continuar. ", "Error!");
+                    }
+                    
+
+                }
+                else {
+                    System.Windows.Forms.MessageBox.Show("El mail tiene un formato incorrecto. Corríjalo para poder continuar. ");
+                }
             }
             else {
-                //no se pudo grabar
-                this.UseWaitCursor = false;
-                System.Windows.Forms.MessageBox.Show("ERROR al intentar guardar datos. Reintente por favor.");
-                this.Hide();
+                System.Windows.Forms.MessageBox.Show("Complete los datos obligatorios para poder continuar. ");
             }
 
-            
         }
 
         private void label9_Click(object sender, EventArgs e)
@@ -140,6 +179,13 @@ namespace FrbaHotel.GenerarModificacionReserva
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            ((GenerarReservaPrincipal)this.Owner).Close();
+            this.Close();
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
         }

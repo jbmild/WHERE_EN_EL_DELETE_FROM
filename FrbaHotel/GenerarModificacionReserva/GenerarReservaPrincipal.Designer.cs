@@ -33,8 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblHotel = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.lblTipoRegimen = new System.Windows.Forms.Label();
             this.lblFechaHasta = new System.Windows.Forms.Label();
             this.lblFechaDesde = new System.Windows.Forms.Label();
@@ -50,6 +48,7 @@
             this.lblNroDoc = new System.Windows.Forms.Label();
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -80,15 +79,14 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(186, 51);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 18);
+            this.label1.Size = new System.Drawing.Size(210, 18);
             this.label1.TabIndex = 4;
-            this.label1.Text = "GENERAR/MODIFICAR RESERVAS";
+            this.label1.Text = "GENERAR NUEVA RESERVA";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lblHotel);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.lblTipoRegimen);
             this.groupBox1.Controls.Add(this.lblFechaHasta);
             this.groupBox1.Controls.Add(this.lblFechaDesde);
@@ -111,21 +109,6 @@
             this.lblHotel.Size = new System.Drawing.Size(69, 13);
             this.lblHotel.TabIndex = 10;
             this.lblHotel.Text = "Hotel: {hotel}";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(108, 27);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(63, 20);
-            this.textBox2.TabIndex = 9;
-            // 
-            // label5
-            // 
-            this.label5.Location = new System.Drawing.Point(13, 27);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(102, 28);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Nro reserva (si quiere modificarla): ";
             // 
             // lblTipoRegimen
             // 
@@ -157,28 +140,27 @@
             // 
             // btnBuscarHabitaciones
             // 
-            this.btnBuscarHabitaciones.Location = new System.Drawing.Point(388, 19);
+            this.btnBuscarHabitaciones.Location = new System.Drawing.Point(246, 25);
             this.btnBuscarHabitaciones.Name = "btnBuscarHabitaciones";
-            this.btnBuscarHabitaciones.Size = new System.Drawing.Size(91, 28);
+            this.btnBuscarHabitaciones.Size = new System.Drawing.Size(80, 38);
             this.btnBuscarHabitaciones.TabIndex = 2;
-            this.btnBuscarHabitaciones.Text = "Buscar";
+            this.btnBuscarHabitaciones.Text = "Buscar habitaciones";
             this.btnBuscarHabitaciones.UseVisualStyleBackColor = true;
             this.btnBuscarHabitaciones.Click += new System.EventHandler(this.btnBuscarHabitaciones_Click);
             // 
             // txtNrosHabitaciones
             // 
             this.txtNrosHabitaciones.Enabled = false;
-            this.txtNrosHabitaciones.Location = new System.Drawing.Point(266, 27);
+            this.txtNrosHabitaciones.Location = new System.Drawing.Point(133, 30);
             this.txtNrosHabitaciones.Name = "txtNrosHabitaciones";
-            this.txtNrosHabitaciones.Size = new System.Drawing.Size(105, 20);
+            this.txtNrosHabitaciones.Size = new System.Drawing.Size(91, 20);
             this.txtNrosHabitaciones.TabIndex = 1;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(185, 30);
+            this.label3.Location = new System.Drawing.Point(14, 30);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
+            this.label3.Size = new System.Drawing.Size(89, 33);
             this.label3.TabIndex = 0;
             this.label3.Text = "Habitaciones: ";
             // 
@@ -253,24 +235,35 @@
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(104, 29);
             this.btnSiguiente.TabIndex = 9;
-            this.btnSiguiente.Text = "Siguiente";
+            this.btnSiguiente.Text = "Siguiente >";
             this.btnSiguiente.UseVisualStyleBackColor = true;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(482, 450);
+            this.btnLimpiar.Location = new System.Drawing.Point(444, 450);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(104, 29);
             this.btnLimpiar.TabIndex = 10;
-            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.Text = "Limpiar (-)";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(554, 450);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(104, 29);
+            this.btnCerrar.TabIndex = 11;
+            this.btnCerrar.Text = "Cerrar ( x )";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // GenerarReservaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 491);
+            this.ClientSize = new System.Drawing.Size(690, 492);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnSiguiente);
             this.Controls.Add(this.groupBox2);
@@ -311,8 +304,7 @@
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.TextBox txtNroDocumento;
         private System.Windows.Forms.ComboBox cmbTiposDocumentos;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblHotel;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }

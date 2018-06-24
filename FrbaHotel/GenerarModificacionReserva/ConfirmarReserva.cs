@@ -36,8 +36,8 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void frmConfirmarReserva_Load(object sender, EventArgs e)
         {
-            lblDatosCliente.Text = lblDatosCliente.Text.Replace("{cliente}", _cliente.apellido + " " + 
-                                    _cliente.nombre);
+            lblDatosCliente.Text = lblDatosCliente.Text.Replace("{cliente}", _cliente.apellido.ToUpper() + ", " + 
+                                    _cliente.nombre.ToUpper());
             string strDatosReserva = lblDatosReserva.Text;
             Hotel hotel = new Hotel();
             TipoRegimen tipoRegimen = new TipoRegimen();
@@ -66,11 +66,27 @@ namespace FrbaHotel.GenerarModificacionReserva
                 string mensajeExito = "La reserva y los datos del cliente han sido guardados. Codigo reserva: {codigo}. Hasta pronto!";
                 mensajeExito = mensajeExito.Replace("{codigo}", _reserva.codigo);
                 System.Windows.Forms.MessageBox.Show("La reserva y los datos del cliente han sido guardados. Codigo reserva: {codigo}. Hasta pronto!");
+                volverAMenuPrincipal();
             }
             else {
                 System.Windows.Forms.MessageBox.Show("Se ha producido un error. Intente realizar la reserva nuevamente. ");
             }
             
+        }
+
+        private void volverAMenuPrincipal() {
+            ((GenerarReservaPrincipal)((IdentificarUsuarioExtendido)this.Owner).Owner).Close();
+            this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            volverAMenuPrincipal();
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
