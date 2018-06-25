@@ -260,7 +260,7 @@ SET @FechaActual = GETDATE();
 		fecha_hasta DATE NOT NULL,
 		fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
 		cliente_id INT NOT NULL,
-		codigo NVARCHAR(255),
+		codigo INT,
 		estado NVARCHAR(255) CHECK (estado IN('correcta', 'modificada', 'cancelada_recepcion', 'cancelada_cliente', 'cancelada_noshow', 'efectivizada')) DEFAULT 'correcta',
 		usuario_id INT NOT NULL,
 		cancelacion_fecha DATETIME NULL,
