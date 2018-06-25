@@ -32,6 +32,8 @@ namespace FrbaHotel.RegistrarEstadia
         private void button2_Click(object sender, EventArgs e)
         {
             //checkout
+            CheckOut checkOut = new CheckOut();
+            checkOut.Show();
         }
     }
 }
