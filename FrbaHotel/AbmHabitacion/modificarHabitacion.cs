@@ -367,6 +367,11 @@ namespace FrbaHotel.AbmHabitacion
             altaHabitacion alta = new altaHabitacion();
             alta.Show();
         }
+
+        private void comboBoxHoteles_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
