@@ -50,6 +50,7 @@
             this.btnModificarCancelar.TabIndex = 1;
             this.btnModificarCancelar.Text = "Modificar/borrar reserva";
             this.btnModificarCancelar.UseVisualStyleBackColor = true;
+            this.btnModificarCancelar.Click += new System.EventHandler(this.btnModificarCancelar_Click);
             // 
             // Form2
             // 
@@ -59,7 +60,7 @@
             this.Controls.Add(this.btnModificarCancelar);
             this.Controls.Add(this.button1);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "OpcionesReserva";
             this.ResumeLayout(false);
 
         }

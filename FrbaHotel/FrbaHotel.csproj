@@ -135,6 +135,18 @@
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Regimenes.cs" />
+    <Compile Include="GenerarModificacionReserva\Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\ModificarCancelarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\ModificarCancelarReserva.Designer.cs">
+      <DependentUpon>ModificarCancelarReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Roles\frmRolesFicha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -293,6 +305,9 @@
     <EmbeddedResource Include="GenerarModificacionReserva\ConfirmarReserva.resx">
       <DependentUpon>ConfirmarReserva.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\GenerarReservaPrincipal.resx">
       <DependentUpon>GenerarReservaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\IdentificarUsuarioExtendido.resx">
       <DependentUpon>IdentificarUsuarioExtendido.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\ModificarCancelarReserva.resx">
+      <DependentUpon>ModificarCancelarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\View\Access_user.resx">
       <DependentUpon>Access_user.cs</DependentUpon>

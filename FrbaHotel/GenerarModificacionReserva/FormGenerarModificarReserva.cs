@@ -87,7 +87,8 @@ namespace FrbaHotel.GenerarModificacionReserva
 		                                ) res on res.habitacion_id = hab.habitacion_id
 		
 	                                WHERE
-		                                res.reserva_id is null ");
+		                                res.reserva_id is null
+                                        AND @FechaDesde >= getdate() ");
 
                 command.Connection = ConexionSQL.obtenerConexion();
                 command.Parameters.Add("@fdesde", SqlDbType.VarChar).Value = dtpFechaCheckin.Value;
