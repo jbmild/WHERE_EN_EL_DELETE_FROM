@@ -107,8 +107,8 @@ namespace FrbaHotel.AbmHotel
                     int id_hotel = Int32.Parse(resultados_.Rows[0].ItemArray[0].ToString());
 
 
-                    SqlConnection con2 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
-                    con2.Open();
+                    SqlConnection con2 = ConexionSQL.obtenerConexion();//"Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+                    //con2.Open();
                     string query2 = "INSERT INTO [GD1C2018].[WHERE_EN_EL_DELETE_FROM].[regimenes_hoteles] (hotel_id, regimen_id) values(@hotel, @regimen)";
                     SqlCommand sql2 = new SqlCommand(query2);
                     sql2.Connection = con2;

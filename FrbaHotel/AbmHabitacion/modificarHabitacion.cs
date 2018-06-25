@@ -29,25 +29,11 @@ namespace FrbaHotel.AbmHabitacion
             //this.BuscarPisoParaHotelSeleccionado();
             
         }
-
-        //private void BuscarPisoParaHotelSeleccionado()
-        //{
-          //  ConexionSQL c = new ConexionSQL();
-         //   DataTable dtpisosNuevos = c.cargarTablaSQL("select distinct piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" +
-            //  this.comboBoxNuevoHotel.SelectedValue + " order by piso asc");
-            //comboBoxNuevoPiso.DataSource = dtpisosNuevos;
-            //comboBoxNuevoPiso.DisplayMember = "piso";
-            //comboBoxNuevoPiso.ValueMember = "piso";
-        //}
         private void modificarHabitacion_Load(object sender, EventArgs e)
         {
             mHoteles.CargarHoteles(this.comboBoxHoteles);
             this.comboBoxPiso.SelectedValue="";
             this.comboBoxNumeroHabitacion.SelectedValue="";
-            
-            //this.CargarHoteles();
-         //   mHabitaciones.CargarHabitacionesParaHotelElegido(this.comboBoxNumeroHabitacion, this.comboBoxHoteles);
-          //  this.CargarHabitacionesParaHotelElegido();
          }
 
         private void CargarHabitacionesParaHotelElegido()
@@ -73,8 +59,6 @@ namespace FrbaHotel.AbmHabitacion
                 labelExteriorError.Visible = false;
                 /*Guardo el numero de habitacion conocido por el empleado*/
                 habitacion_numero = comboBoxNumeroHabitacion.Text;
-
-                //textBoxNuevaDescripcion.Text = Convert.ToString(habitacion_numero);
                 ConexionSQL con2 = new ConexionSQL();
                 Consulta consulta = new Consulta();
                 consulta.ConcatToQuery("select ha.numero as 'Numero_Habitacion', ha.piso as 'Piso', ha.descripcion as 'Descripcion'," +
@@ -382,6 +366,11 @@ namespace FrbaHotel.AbmHabitacion
         {
             altaHabitacion alta = new altaHabitacion();
             alta.Show();
+        }
+
+        private void comboBoxHoteles_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
