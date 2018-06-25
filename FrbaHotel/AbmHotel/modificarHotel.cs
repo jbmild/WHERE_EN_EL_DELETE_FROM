@@ -84,6 +84,35 @@ namespace FrbaHotel.AbmHotel
             comboBoxEstrellas.SelectedIndex = 0;
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex.Equals(0))
+            {
+                this.Hide();
+                int row = e.RowIndex;
+                
+                DataGridViewRow selectedRow = dataGridView1.Rows[row];
+                HotelElegido hotel = new HotelElegido();
+                hotel.SetNombre(selectedRow.Cells[2].Value.ToString());
+                hotel.SetMail(selectedRow.Cells[3].Value.ToString());
+                hotel.SetTelefono(Int32.Parse(selectedRow.Cells[4].Value.ToString()));
+                hotel.SetDireccion(selectedRow.Cells[5].Value.ToString());
+                hotel.SetCiudad(selectedRow.Cells[6].Value.ToString());
+                hotel.SetPais(selectedRow.Cells[7].Value.ToString());
+                hotel.SetEstrellas_Cant(Int32.Parse(selectedRow.Cells[8].Value.ToString()));
+                hotel.SetEstrellas_Recargo(Int32.Parse(selectedRow.Cells[9].Value.ToString()));
+                hotel.SetFechaCreacion(DateTime.Parse(selectedRow.Cells[8].Value.ToString()));
+                //hotel.SetNombre(selectedRow.Cells[3].Value.ToString());
+                //habitacion.SetTipo(selectedRow.Cells[4].Value.ToString());
+                //habitacion.SetDireccion(selectedRow.Cells[7].Value.ToString());
+                //habitacion.SetHabiID(Int32.Parse(selectedRow.Cells[8].Value.ToString()));
+                //habitacion.SetHotelID(this.ObtenerHotelID(habitacion));
+
+
+              
+            }
+        }
+
        
     }
 }

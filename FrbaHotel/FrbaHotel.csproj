@@ -102,6 +102,13 @@
     <Compile Include="AbmHotel\buscadorRegimenes.Designer.cs">
       <DependentUpon>buscadorRegimenes.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHotel\darBajaHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\darBajaHotel.Designer.cs">
+      <DependentUpon>darBajaHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\HotelElegido.cs" />
     <Compile Include="AbmHotel\modificarHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +281,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\buscadorRegimenes.resx">
       <DependentUpon>buscadorRegimenes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\darBajaHotel.resx">
+      <DependentUpon>darBajaHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\modificarHotel.resx">
       <DependentUpon>modificarHotel.cs</DependentUpon>
