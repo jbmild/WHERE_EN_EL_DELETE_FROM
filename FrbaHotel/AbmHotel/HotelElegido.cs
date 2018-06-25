@@ -15,7 +15,7 @@ namespace FrbaHotel.AbmHotel
         string direccion;
         string mail;
 
-        public int telefono { get; set; }
+        public string telefono { get; set; }
         internal void SetNombre(string p)
         {
             this.nombre = p;
@@ -61,12 +61,12 @@ namespace FrbaHotel.AbmHotel
         internal string GetDireccion() {
             return this.direccion;
         }
-        internal void SetTelefono(int p)
+        internal void SetTelefono(string p)
         {
             this.telefono = p;
         }
 
-        internal int GetTelefono() {
+        internal string GetTelefono() {
             return this.telefono;
         }
 
@@ -78,5 +78,15 @@ namespace FrbaHotel.AbmHotel
             return this.fechaCreacion;
         }
         public DateTime fechaCreacion { get; set; }
+
+        internal void SetID(int p)
+        {
+            this.id= p;
+        }
+        internal int GetID()
+        {
+            return this.id;
+        }
+        public int id { get; set; }
     }
 }
