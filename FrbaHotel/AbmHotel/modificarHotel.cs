@@ -93,6 +93,7 @@ namespace FrbaHotel.AbmHotel
                 
                 DataGridViewRow selectedRow = dataGridView1.Rows[row];
                 HotelElegido hotel = new HotelElegido();
+                
                 hotel.SetNombre(selectedRow.Cells[2].Value.ToString());
                 hotel.SetMail(selectedRow.Cells[3].Value.ToString());
                 hotel.SetTelefono(Int32.Parse(selectedRow.Cells[4].Value.ToString()));
@@ -101,7 +102,10 @@ namespace FrbaHotel.AbmHotel
                 hotel.SetPais(selectedRow.Cells[7].Value.ToString());
                 hotel.SetEstrellas_Cant(Int32.Parse(selectedRow.Cells[8].Value.ToString()));
                 hotel.SetEstrellas_Recargo(Int32.Parse(selectedRow.Cells[9].Value.ToString()));
-                hotel.SetFechaCreacion(DateTime.Parse(selectedRow.Cells[8].Value.ToString()));
+                hotel.SetFechaCreacion(DateTime.Parse(selectedRow.Cells[10].Value.ToString()));
+                modificarDatosHotel datosHotel = new modificarDatosHotel();
+                datosHotel.RecibirHotel(hotel);
+
                 //hotel.SetNombre(selectedRow.Cells[3].Value.ToString());
                 //habitacion.SetTipo(selectedRow.Cells[4].Value.ToString());
                 //habitacion.SetDireccion(selectedRow.Cells[7].Value.ToString());

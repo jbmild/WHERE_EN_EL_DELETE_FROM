@@ -109,6 +109,12 @@
       <DependentUpon>darBajaHotel.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHotel\HotelElegido.cs" />
+    <Compile Include="AbmHotel\modificarDatosHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\modificarDatosHotel.Designer.cs">
+      <DependentUpon>modificarDatosHotel.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHotel\modificarHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -284,6 +290,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\darBajaHotel.resx">
       <DependentUpon>darBajaHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\modificarDatosHotel.resx">
+      <DependentUpon>modificarDatosHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\modificarHotel.resx">
       <DependentUpon>modificarHotel.cs</DependentUpon>
