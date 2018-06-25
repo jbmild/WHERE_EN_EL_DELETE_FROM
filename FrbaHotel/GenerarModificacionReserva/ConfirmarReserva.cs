@@ -51,21 +51,22 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
 
-            int exito = 0;
+            int codigoReserva = 0;
 
             try
             {
-                exito = _reserva.GuardarReserva();
+                codigoReserva = _reserva.GuardarReserva();
             }
             catch (Exception ex){
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
 
-            if (exito != 0)
+            if (codigoReserva != 0)
             {
+                _reserva.codigo = codigoReserva;
                 string mensajeExito = "La reserva y los datos del cliente han sido guardados. Codigo reserva: {codigo}. Hasta pronto!";
-                mensajeExito = mensajeExito.Replace("{codigo}", _reserva.codigo);
-                System.Windows.Forms.MessageBox.Show("La reserva y los datos del cliente han sido guardados. Codigo reserva: {codigo}. Hasta pronto!");
+                mensajeExito = mensajeExito.Replace("{codigo}", _reserva.codigo.ToString());
+                System.Windows.Forms.MessageBox.Show(mensajeExito);
                 volverAMenuPrincipal();
             }
             else {

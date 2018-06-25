@@ -16,7 +16,7 @@ namespace FrbaHotel.Modelo
         private DateTime _fecha_hasta;
         //private DateTime _fecha_creacion;
         private int _cliente_id;
-        private string _codigo;
+        private int _codigo;
         //private string _estado;
         private decimal _total;
         private int _regimen_id;
@@ -67,7 +67,7 @@ namespace FrbaHotel.Modelo
             set { _regimen_id = value; }
         }
 
-        public string codigo
+        public int codigo
         {
             get { return _codigo; }
             set { _codigo = value; }
@@ -88,8 +88,10 @@ namespace FrbaHotel.Modelo
 
             //Sumarizo total de la reserva
 
-            SqlCommand command = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas (fecha_desde, fecha_hasta, fecha_creacion, cliente_id, /*codigo,*/ usuario_id, total, regimen_id, hotel_id)
-                                                VALUES(@fdesde, @fhasta, getdate(), @cliente_id, /*WHERE_EN_EL_DELETE_FROM.getLastCodigo(),*/ @usuario_id, @total, @regimen_id, @hotel_id)
+            SqlCommand command = new SqlCommand(@" DECLARE @ultimoCodigo int
+                                                SELECT @ultimoCodigo = MAX(codigo) FROM WHERE_EN_EL_DELETE_FROM.Reservas
+                                                INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas (fecha_desde, fecha_hasta, fecha_creacion, cliente_id, codigo, usuario_id, total, regimen_id, hotel_id)
+                                                VALUES(@fdesde, @fhasta, getdate(), @cliente_id, @ultimoCodigo+1, @usuario_id, @total, @regimen_id, @hotel_id)
                                                 SELECT SCOPE_IDENTITY()");
 
             command.Connection = ConexionSQL.obtenerConexion();
@@ -121,6 +123,7 @@ namespace FrbaHotel.Modelo
             command2.Parameters.Add("@precio_diario", SqlDbType.Decimal);
 
             int exito = 0;
+            int codigo = 0;
             try
             {
                 foreach (Habitacion hab in _habitaciones)
@@ -135,9 +138,13 @@ namespace FrbaHotel.Modelo
             catch (Exception ex) {
                 throw (ex);
             }
-            
 
-            return exito;
+            SqlCommand command3 = new SqlCommand(" SELECT codigo FROM WHERE_EN_EL_DELETE_FROM.Reservas WHERE reserva_id = " + idReserva);
+            command3.Connection = ConexionSQL.obtenerConexion();
+
+            return codigo = Convert.ToInt32(command3.ExecuteScalar());
+            
+            return codigo;
         }
     }
 }

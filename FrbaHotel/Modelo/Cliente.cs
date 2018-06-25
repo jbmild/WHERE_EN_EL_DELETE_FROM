@@ -131,7 +131,7 @@ namespace FrbaHotel.Modelo
             _direccion_piso = direccion_piso;
             _direccion_depto = direccion_depto;
             _direccion_localidad = direccion_localidad;
-            _direccion_pais = direccion_piso;
+            _direccion_pais = direccion_pais;
             _nacionalidad = nacionalidad;
         }
 
