@@ -78,7 +78,7 @@ namespace FrbaHotel.Roles.Modelo
             {
                 ConexionSQL conn = new ConexionSQL();
                 string sql = "INSERT INTO WHERE_EN_EL_DELETE_FROM.roles_permisos (rol_id, permiso_id) VALUES (" + this.rol_id.ToString() + ", " + this.permiso_id.ToString() + ")";
-                int insertado = conn.actualizarDatos(sql);
+                int insertado = conn.ejecutarComandoSQL(sql);
 
                 if (insertado != 1)
                 {
@@ -107,7 +107,7 @@ namespace FrbaHotel.Roles.Modelo
                 }
                 else
                 {
-                    errores.Add(new KeyValuePair<string, string>("general", "El permiso ya esta asociado a este rol."));
+                    errores.Add(new KeyValuePair<string, string>("general", "El permiso '" + this.Permiso.Nombre + "' ya esta asociado al rol '" + this.Rol.Nombre + "'."));
                 }
             }
 
@@ -125,7 +125,7 @@ namespace FrbaHotel.Roles.Modelo
             {
                 errores.Add(new KeyValuePair<string, string>("rol", "El rol no es valido."));
             }
-            else
+            else if (this.permiso_id == 0)
             {
                 errores.Add(new KeyValuePair<string, string>("permiso", "El permiso no es valido."));
             }

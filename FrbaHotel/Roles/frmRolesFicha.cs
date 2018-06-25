@@ -142,7 +142,50 @@ namespace FrbaHotel.Roles
                 permisos.Add(new Permiso(Convert.ToInt32(op.Value)));
             }
             this.rol.PermisosDados = permisos;
-            this.rol.guardar();
+            this.loadError(this.rol.guardar());
+        }
+
+        private void loadError(List<KeyValuePair<string, string>> errores)
+        {
+            if (errores.Count == 0)
+            {
+                MessageBox.Show(String.Concat("La operacion se realizo con exito!"), "Exito", MessageBoxButtons.OK);
+                this.Close();
+            }
+            else
+            {
+                lblErrorNombre.Text = "";
+                lblErrorGeneral.Text = "";
+
+                foreach (KeyValuePair<string, string> error in errores)
+                {
+                    switch (error.Key)
+                    {
+                        case "nombre":
+                            if (lblErrorNombre.Text == "")
+                            {
+                                lblErrorNombre.Text = error.Value;
+                            }
+                            else
+                            {
+                                lblErrorNombre.Text = lblErrorNombre.Text + " " + error.Value;
+                            }
+                            lblErrorNombre.Show();
+                            break;
+                        case "general":
+                            if (lblErrorGeneral.Text == "")
+                            {
+                                lblErrorGeneral.Text = error.Value;
+                            }
+                            else
+                            {
+                                lblErrorGeneral.Text = lblErrorGeneral.Text + " " + error.Value;
+                            }
+                            lblErrorGeneral.Show();
+                            break;
+                    }
+                }
+            }
         }
 
     }
