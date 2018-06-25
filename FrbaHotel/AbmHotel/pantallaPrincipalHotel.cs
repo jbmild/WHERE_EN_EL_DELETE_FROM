@@ -27,5 +27,11 @@ namespace FrbaHotel.AbmHotel
             AbmHotel.altaHotel alta = new AbmHotel.altaHotel();
             alta.Show();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AbmHotel.modificarHotel m = new AbmHotel.modificarHotel();
+           
+        }
     }
 }

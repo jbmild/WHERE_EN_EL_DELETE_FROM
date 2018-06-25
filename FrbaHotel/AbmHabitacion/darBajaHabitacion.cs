@@ -59,8 +59,7 @@ namespace FrbaHotel.AbmHabitacion
             {
                 this.labelHotelVacio.Visible = false;
                 this.labelNumeroVacio.Visible = false;
-                SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
-                con1.Open();
+                SqlConnection con1 = ConexionSQL.obtenerConexion();
                 string up = "UPDATE WHERE_EN_EL_DELETE_FROM.habitaciones set habilitado=@value where habitacion_id=@habitacion";
                 SqlCommand sqlQuery = new SqlCommand(up);
                 sqlQuery.Connection = con1;

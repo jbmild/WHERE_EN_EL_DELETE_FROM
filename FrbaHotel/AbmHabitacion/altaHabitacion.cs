@@ -103,8 +103,8 @@ namespace FrbaHotel.AbmHabitacion
                     " ho.hotel_id=" + this.comboBoxHotel.SelectedValue + " and ha.numero=" + this.textBoxNumeroHabitacion.Text);
                 if (resultado.Rows.Count.Equals(0)) 
                 {
-                    SqlConnection con = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
-                    con.Open();
+                    SqlConnection con = ConexionSQL.obtenerConexion();
+                    
                     string query = String.Concat("INSERT INTO WHERE_EN_EL_DELETE_FROM.habitaciones (hotel_id, numero, piso, frente, descripcion, habilitado, tipos_id)", " VALUES ( " + "@hotel" + ", " + "@numeroHabitacion" + ", " + "@piso" + ", " + "@vista" + ", " + "@descripcion" + ", " + 1 + ", " + 1 + ")");
                     SqlCommand sql = new SqlCommand(query);
                     sql.Connection = con;
@@ -133,18 +133,7 @@ namespace FrbaHotel.AbmHabitacion
 
                 }
                 }
-                /************/
 
-               // SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
-               // con1.Open();
-               // string select = String.Concat("SELECT ha.numero FROM WHERE_EN_EL_DELETE_FROM.habitaciones ha JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id where ",
-               //     "ho.hotel_id=@hotelBusqueda and ha.numero=@numeroBusqueda");
-               // SqlCommand sqlQuery = new SqlCommand(select);
-               // sqlQuery.Connection = con1;
-               // sqlQuery.Parameters.Add("@hotelBusqueda", SqlDbType.Int).Value = comboBoxHotel.SelectedValue;
-               // sqlQuery.Parameters.Add("@numeroBusqueda", SqlDbType.Int).Value = Int32.Parse(textBoxNumeroHabitacion.Text.ToString());
-                //int busqueda = sqlQuery.ExecuteNonQuery();
-               // if (busqueda.Equals(0) || busqueda.Equals(-1)) 
              
         }
 
