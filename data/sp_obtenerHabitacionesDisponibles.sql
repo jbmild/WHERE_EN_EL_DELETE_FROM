@@ -17,6 +17,7 @@ GO
 
 -- WHERE_EN_EL_DELETE_FROM.obtenerHabitacionesDisponibles @fdesde='02/06/2018 03:31:02 p.m.',@fhasta='02/06/2018 03:31:02 p.m.',@hotel_id=1,@regimen_id=1,@tipoHabitacion_id=1
 
+
 ALTER PROCEDURE [WHERE_EN_EL_DELETE_FROM].[obtenerHabitacionesDisponibles]
 	@fdesde varchar(30),
 	@fhasta varchar(30),
@@ -34,13 +35,13 @@ BEGIN
 	@tipoHabitacion_id int
 
 
-	SELECT @fdesde = '02/06/2018 03:31:02 p.m.',
-	@fhasta = '02/06/2018 03:31:02 p.m.',
+	SELECT @fdesde = '01/06/2016 03:31:02 p.m.',
+	@fhasta = '24/06/2016 03:31:02 p.m.',
 	@hotel_id = 1,
 	@regimen_id = NULL,
-	@tipoHabitacion_id = NULL
-	
+	@tipoHabitacion_id = 1
 	*/
+	
 	
 	DECLARE @FechaDesde datetime
 	DECLARE @FechaHasta datetime
@@ -51,7 +52,7 @@ BEGIN
 	SET NOCOUNT ON;
 
 	SELECT distinct
-		hab.habitacion_id AS [Nro Habitacion],
+		hab.numero AS [Nro Habitacion],
 		hot.direccion AS Hotel,
 		hot.hotel_id,
 		hab.habitacion_id,

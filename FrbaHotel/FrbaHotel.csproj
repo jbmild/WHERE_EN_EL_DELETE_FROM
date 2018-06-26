@@ -135,11 +135,17 @@
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Regimenes.cs" />
-    <Compile Include="GenerarModificacionReserva\Form2.cs">
+    <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GenerarModificacionReserva\Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.Designer.cs">
+      <DependentUpon>frmMotivoCancelacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\MenuCRUDReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GenerarModificacionReserva\MenuCRUDReserva.Designer.cs">
+      <DependentUpon>MenuCRUDReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="GenerarModificacionReserva\ModificarCancelarReserva.cs">
       <SubType>Form</SubType>
@@ -305,8 +311,11 @@
     <EmbeddedResource Include="GenerarModificacionReserva\ConfirmarReserva.resx">
       <DependentUpon>ConfirmarReserva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GenerarModificacionReserva\Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="GenerarModificacionReserva\frmMotivoCancelacion.resx">
+      <DependentUpon>frmMotivoCancelacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GenerarModificacionReserva\MenuCRUDReserva.resx">
+      <DependentUpon>MenuCRUDReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\GenerarReservaPrincipal.resx">
       <DependentUpon>GenerarReservaPrincipal.cs</DependentUpon>

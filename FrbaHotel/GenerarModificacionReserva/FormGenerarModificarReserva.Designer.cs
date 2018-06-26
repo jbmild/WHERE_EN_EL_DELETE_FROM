@@ -150,10 +150,11 @@
             // 
             this.dtpFechaCheckin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaCheckin.Location = new System.Drawing.Point(110, 118);
+            this.dtpFechaCheckin.MinDate = new System.DateTime(2018, 6, 25, 0, 0, 0, 0);
             this.dtpFechaCheckin.Name = "dtpFechaCheckin";
             this.dtpFechaCheckin.Size = new System.Drawing.Size(124, 20);
             this.dtpFechaCheckin.TabIndex = 16;
-            this.dtpFechaCheckin.Value = new System.DateTime(2016, 6, 1, 0, 59, 0, 0);
+            this.dtpFechaCheckin.Value = new System.DateTime(2018, 6, 25, 0, 0, 0, 0);
             // 
             // dtpFechaCheckout
             // 

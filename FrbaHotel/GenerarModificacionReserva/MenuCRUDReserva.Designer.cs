@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.GenerarModificacionReserva
 {
-    partial class Form2
+    partial class MenuCRUDReserva
     {
         /// <summary>
         /// Required designer variable.
@@ -52,14 +52,14 @@
             this.btnModificarCancelar.UseVisualStyleBackColor = true;
             this.btnModificarCancelar.Click += new System.EventHandler(this.btnModificarCancelar_Click);
             // 
-            // Form2
+            // MenuCRUDReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 273);
             this.Controls.Add(this.btnModificarCancelar);
             this.Controls.Add(this.button1);
-            this.Name = "Form2";
+            this.Name = "MenuCRUDReserva";
             this.Text = "OpcionesReserva";
             this.ResumeLayout(false);
 

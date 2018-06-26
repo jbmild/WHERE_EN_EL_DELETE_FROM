@@ -28,8 +28,14 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             try
             {
-                //TODO: Si es recepcionista, mandar hotel_id en el que está logueada.
-                SqlCommand command = new SqlCommand(@"DECLARE @FechaDesde datetime
+                if ((dtpFechaCheckout.Value <= dtpFechaCheckin.Value) ||
+                ((dtpFechaCheckout.Value - dtpFechaCheckin.Value).Days < 1))
+                {
+                    System.Windows.Forms.MessageBox.Show("La fecha de checkout debe ser posterior a la fecha de check-in.");
+                }
+                else {
+                    //TODO: Si es recepcionista, mandar hotel_id en el que está logueada.
+                    SqlCommand command = new SqlCommand(@"DECLARE @FechaDesde datetime
 	                                DECLARE @FechaHasta datetime
 	
 	                                SELECT @FechaDesde = convert(datetime, SUBSTRING(@fdesde, 0, 11), 103)
@@ -90,20 +96,22 @@ namespace FrbaHotel.GenerarModificacionReserva
 		                                res.reserva_id is null
                                         AND @FechaDesde >= getdate() ");
 
-                command.Connection = ConexionSQL.obtenerConexion();
-                command.Parameters.Add("@fdesde", SqlDbType.VarChar).Value = dtpFechaCheckin.Value;
-                command.Parameters.Add("@fhasta", SqlDbType.VarChar).Value = dtpFechaCheckout.Value;
-                command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = cmbTipoRegimen.SelectedValue;
-                command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = cmbHotel.SelectedValue;
-                command.Parameters.Add("@tipoHabitacion_id", SqlDbType.Int).Value = (cmbTipoHab.SelectedIndex == 0 ? "null" : cmbTipoHab.SelectedValue);
-                SqlDataReader reader = command.ExecuteReader();
-                DataTable dt = new DataTable();
-                dt.Load(reader);
-                dataGridView1.DataSource = dt;
+                    command.Connection = ConexionSQL.obtenerConexion();
+                    command.Parameters.Add("@fdesde", SqlDbType.VarChar).Value = dtpFechaCheckin.Value;
+                    command.Parameters.Add("@fhasta", SqlDbType.VarChar).Value = dtpFechaCheckout.Value;
+                    command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = cmbTipoRegimen.SelectedValue;
+                    command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = cmbHotel.SelectedValue;
+                    command.Parameters.Add("@tipoHabitacion_id", SqlDbType.Int).Value = (cmbTipoHab.SelectedIndex == 0 ? "null" : cmbTipoHab.SelectedValue);
+                    SqlDataReader reader = command.ExecuteReader();
+                    DataTable dt = new DataTable();
+                    dt.Load(reader);
+                    dataGridView1.DataSource = dt;
 
-                //Se muestra por pantalla la tabla con los resultados del SELECT
-                //dataGridView1.DataSource = dt;
-                dataGridView1.Columns[3].Visible = dataGridView1.Columns[4].Visible = false;
+                    //Se muestra por pantalla la tabla con los resultados del SELECT
+                    //dataGridView1.DataSource = dt;
+                    dataGridView1.Columns[3].Visible = dataGridView1.Columns[4].Visible = false;
+                    this.Cursor = Cursors.Default;
+                }
                 this.Cursor = Cursors.Default;
             }
             catch (Exception ex)
@@ -120,9 +128,13 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void FormGenerarModificarReserva_Load(object sender, EventArgs e)
         {
+            dtpFechaCheckin.MinDate = DateTime.Today;
+            dtpFechaCheckout.MinDate = DateTime.Today.AddDays(1);
             
+            
+
             ConexionSQL conexion = new ConexionSQL();
-            
+
             DataTable dt;
             dt = conexion.cargarTablaSQL("select tipo_id, descripcion from WHERE_EN_EL_DELETE_FROM.habitaciones_tipos");
             dt.Rows.InsertAt(dt.NewRow(), 0); //DESCOMENTAR PARA QUE AGREGUE UNA ROW VACIA EN COMBO
@@ -131,8 +143,6 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             cmbTipoHab.DisplayMember = "descripcion";
             cmbTipoHab.ValueMember = "tipo_id";
-
-
 
             dt = conexion.cargarTablaSQL("select regimen_id, descripcion FROM WHERE_EN_EL_DELETE_FROM.regimenes WHERE habilitado = 1");
             cmbTipoRegimen.DataSource = dt;
@@ -147,6 +157,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             //TODO: Ocultar combo hotel si el usuario es recepcionista. 
             //Si es admin o guest, mostrar combo hotel.
+            
         }
 
         private void btnSeleccionar_Click(object sender, EventArgs e)

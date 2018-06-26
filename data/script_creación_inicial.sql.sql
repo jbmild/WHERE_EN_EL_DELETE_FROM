@@ -265,6 +265,7 @@ SET @FechaActual = GETDATE();
 		usuario_id INT NOT NULL,
 		cancelacion_fecha DATETIME NULL,
 		cancelacion_usuario_id INT NULL,
+		motivo_cancelacion NVARCHAR(255) NULL,
 		total NUMERIC(10,2) DEFAULT 0,
 		regimen_id INT NOT NULL,
 		hotel_id INT NOT NULL,

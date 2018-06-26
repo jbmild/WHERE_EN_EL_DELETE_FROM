@@ -43,21 +43,22 @@ namespace FrbaHotel.GenerarModificacionReserva
             //VALIDACION: si el cliente esta inhablitado, no lo dejo continuar.
             _cli = _cli.getClienteByTipoNroDocEmail(_idTipoDocumento, _nroDocumento, _email);
 
-            if (!_cli.habilitado) {
-                System.Windows.Forms.MessageBox.Show("Usted está inhabilitado, por lo que no puede realizar ninguna reserva. Para más información, contacte al responsable del hotel. ");
-                this.Close();
+            if (_cli.idCliente != 0) {
+                if (!_cli.habilitado)
+                {
+                    System.Windows.Forms.MessageBox.Show("Usted está inhabilitado, por lo que no puede realizar ninguna reserva. Para más información, contacte al responsable del hotel. ");
+                    this.Close();
+                }
             }
+            
 
             //Lleno combo de tipo de documento
             cmbTiposDocumentos.Items.Add("DNI");
             cmbTiposDocumentos.Items.Add("Pasaporte");
             
-            
+            //TODO: ABM De clientes
             //Si el atributo reserva != NULL, es porque viene de una reserva.
             //Si atributo reserva == NULL, es ABM de clientes.
-            
-            
-            
             
 
             if (_cli.idCliente == 0) // es cliente nuevo
@@ -128,7 +129,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
                         if (resultGuardarCliente != 0)
                         {
-                            _cli.idCliente = _res.cliente_id;
+                            _res.cliente_id = _cli.idCliente;
                             frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva(_cli, _res);
                             frmConfirmarReserva.Owner = this;
                             frmConfirmarReserva.Show();
