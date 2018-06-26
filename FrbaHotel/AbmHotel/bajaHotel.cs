@@ -22,9 +22,9 @@ namespace FrbaHotel.AbmHotel
         {
             ConexionSQL c = new ConexionSQL();
             DataTable hoteles = c.cargarTablaSQL("select hotel_id, isNull(nombre, 'hotel ' + direccion) as 'nombre' from WHERE_EN_EL_DELETE_FROM.hoteles");
-            hoteles.Rows.InsertAt(hoteles.NewRow(), 0);
+            
             comboBoxHoteles.DataSource = hoteles;
-            comboBoxHoteles.SelectedIndex = 0;
+            
             comboBoxHoteles.DisplayMember = "nombre";
             comboBoxHoteles.ValueMember = "hotel_id";
 
@@ -53,34 +53,36 @@ namespace FrbaHotel.AbmHotel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (monthCalendar1.SelectionEnd.Date > monthCalendar2.SelectionEnd.Date) 
+            if (labelFechaFin.Text.Equals("") || labelFechaInicio.Text.Equals(""))
             {
                 this.labelErrorFechas.Visible = true;
-                if (comboBoxHoteles.SelectedText.Equals("")) { System.Windows.Forms.MessageBox.Show("Debe elegir un hotel para continuar"); }
             }
-            else 
-            { 
+            else
+            {
                 this.labelErrorFechas.Visible = false;
-                if (comboBoxHoteles.SelectedIndex.Equals(0))
+                if (monthCalendar1.SelectionEnd.Date > monthCalendar2.SelectionEnd.Date)
                 {
-                    System.Windows.Forms.MessageBox.Show("Debe elegir un hotel para continuar");
+
+                    System.Windows.Forms.MessageBox.Show("La fecha de inicio debe ser menor o igual que la fecha de fin");
+
                 }
-                else 
+                else
                 {
+                    this.labelErrorFechas.Visible = false;
                     if (this.NoHayReservasEnEsePeriodo(this.monthCalendar1.SelectionEnd, this.monthCalendar2.SelectionEnd) &&
                         this.NoHayAlojamientosEnEsePeriodo(this.monthCalendar1.SelectionEnd, this.monthCalendar2.SelectionEnd))
                     {
                         this.DarDeBajaHotel(this.monthCalendar1.SelectionEnd, this.monthCalendar2.SelectionEnd);
                     }
-                    else 
+                    else
                     {
                         System.Windows.Forms.MessageBox.Show("No puede dar de baja hotel en esta fecha por reservas o alojamientos efectuados en la misma");
                     }
+
+
                 }
 
             }
-            
-            
         }
 
         private void DarDeBajaHotel(DateTime dateTime1, DateTime dateTime2)
@@ -151,7 +153,7 @@ namespace FrbaHotel.AbmHotel
                 }
             }
             hotelesFiltrados = c.cargarTablaSQL(queryHotelesFiltrados);
-            hotelesFiltrados.Rows.InsertAt(hotelesFiltrados.NewRow(), 0);
+            
             comboBoxHoteles.DataSource = hotelesFiltrados;
             comboBoxHoteles.ValueMember = "hotel_id";
             comboBoxHoteles.DisplayMember = "nombre";

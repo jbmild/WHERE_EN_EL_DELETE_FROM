@@ -178,13 +178,13 @@
             // labelErrorFechas
             // 
             this.labelErrorFechas.AutoSize = true;
-            this.labelErrorFechas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelErrorFechas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelErrorFechas.ForeColor = System.Drawing.Color.Red;
-            this.labelErrorFechas.Location = new System.Drawing.Point(48, 436);
+            this.labelErrorFechas.Location = new System.Drawing.Point(47, 159);
             this.labelErrorFechas.Name = "labelErrorFechas";
-            this.labelErrorFechas.Size = new System.Drawing.Size(529, 25);
+            this.labelErrorFechas.Size = new System.Drawing.Size(267, 20);
             this.labelErrorFechas.TabIndex = 15;
-            this.labelErrorFechas.Text = "La fecha de inicio debe ser menor o igual que la fecha de fin";
+            this.labelErrorFechas.Text = "Debe elegir fecha inicio y fecha fin";
             this.labelErrorFechas.Visible = false;
             // 
             // button2
