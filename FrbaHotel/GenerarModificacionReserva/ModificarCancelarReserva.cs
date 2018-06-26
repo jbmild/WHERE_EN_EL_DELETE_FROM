@@ -54,7 +54,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     if (Convert.ToInt32(row.Cells[0].Value) >= 1)
                     {
                         //TODO: MUESTRO FORM PARA MODIFICAR RESERVA
-                        Convert.ToInt32(row.Cells[6].Value); // codigo reserva
+                        Convert.ToInt32(row.Cells[1].Value); // codigo reserva
                     }
                     else {
                         System.Windows.Forms.MessageBox.Show("No es posible modificar su reserva a menos de un día de que comience. ");
@@ -75,7 +75,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                     if (Convert.ToInt32(row.Cells[0].Value) >= 1)
                     {
                         Reserva res = new Reserva();
-                        res.codigo = Convert.ToInt32(row.Cells[6].Value);
+                        res.codigo = Convert.ToInt32(row.Cells[1].Value);
                         res.usuarioCancelacion = usuario;
                         frmMotivoCancelacion form = new frmMotivoCancelacion(res);
                         form.Owner = this;

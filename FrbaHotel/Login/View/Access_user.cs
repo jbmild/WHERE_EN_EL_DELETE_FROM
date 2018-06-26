@@ -70,20 +70,21 @@ namespace FrbaHotel.Login.View
                     string habilitado = dt5.Rows[0][0].ToString();
                     if (habilitado == "1")
                     {
-                        string query2 = "SELECT COUNT(*) FROM [WHERE_EN_EL_DELETE_FROM].[roles] ROLES JOIN [WHERE_EN_EL_DELETE_FROM].[usuarios] USUARIOS ON (USUARIOS.ID_USUARIO = ROLES.ID_USUARIO) WHERE USUARIOS.USUARIO = '" + username + "' AND USUARIOS.HABILITADO = 1";
+                        string query2 = "SELECT COUNT(*) FROM [WHERE_EN_EL_DELETE_FROM].[roles] ROLES JOIN [WHERE_EN_EL_DELETE_FROM].[usuarios] USUARIOS ON (USUARIOS.USUARIO_ID = ROLES.USUARIO_ID) WHERE USUARIOS.USUARIO = '" + username + "' AND USUARIOS.HABILITADO = 1";
                         DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
                         string cantidadRoles = dt2.Rows[0][0].ToString();
                         if (cantidadRoles == "1")
                         {
-                               //ACA DEBERIAMOS DE HACER QUE TENGA UNA U OTRA FUNCIONALIDAD RESPECTO AL ROL QUE TENGA. * JUANMA CARUCCI * 
+                            //ingresa de una! * JCARUCCI *
                         }
-                        else if (cantidadRoles == "0")
+                        if (cantidadRoles == "0")
                         {
                             MessageBox.Show("El usuario no tiene roles habilitados", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
-                               //ACA DEBERIA DE ELEGIR EL ROL QUE TENGA (YA QUE VA A TENER VARIOS) * JCARUCCI * 
+                            ElegirRol.ElegirRol elegirRol = new ElegirRol.ElegirRol(username);
+                            elegirRol.Show();
                         }
                     }
                     else

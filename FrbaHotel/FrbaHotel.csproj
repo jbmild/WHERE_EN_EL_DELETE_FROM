@@ -96,17 +96,42 @@
     <Compile Include="AbmHotel\altaHotel.Designer.cs">
       <DependentUpon>altaHotel.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHotel\bajaHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\bajaHotel.Designer.cs">
+      <DependentUpon>bajaHotel.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHotel\buscadorRegimenes.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmHotel\buscadorRegimenes.Designer.cs">
       <DependentUpon>buscadorRegimenes.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHotel\darBajaHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\darBajaHotel.Designer.cs">
+      <DependentUpon>darBajaHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\HotelElegido.cs" />
+    <Compile Include="AbmHotel\modificarDatosHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\modificarDatosHotel.Designer.cs">
+      <DependentUpon>modificarDatosHotel.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHotel\modificarHotel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="AbmHotel\modificarHotel.Designer.cs">
       <DependentUpon>modificarHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\motivoBajaHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\motivoBajaHotel.Designer.cs">
+      <DependentUpon>motivoBajaHotel.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHotel\pantallaPrincipalHotel.cs">
       <SubType>Form</SubType>
@@ -138,6 +163,10 @@
     <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ElegirRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ElegirRol.Designer.cs" />
     <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.Designer.cs">
       <DependentUpon>frmMotivoCancelacion.cs</DependentUpon>
     </Compile>
@@ -290,11 +319,23 @@
     <EmbeddedResource Include="AbmHotel\altaHotel.resx">
       <DependentUpon>altaHotel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\bajaHotel.resx">
+      <DependentUpon>bajaHotel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\buscadorRegimenes.resx">
       <DependentUpon>buscadorRegimenes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\darBajaHotel.resx">
+      <DependentUpon>darBajaHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\modificarDatosHotel.resx">
+      <DependentUpon>modificarDatosHotel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\modificarHotel.resx">
       <DependentUpon>modificarHotel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\motivoBajaHotel.resx">
+      <DependentUpon>motivoBajaHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\pantallaPrincipalHotel.resx">
       <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
@@ -305,6 +346,7 @@
     <EmbeddedResource Include="AbmRegimen\bajaRegimen.resx">
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ElegirRol.resx" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

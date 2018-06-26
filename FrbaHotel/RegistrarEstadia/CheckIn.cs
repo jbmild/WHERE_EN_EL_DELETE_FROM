@@ -18,8 +18,7 @@ namespace FrbaHotel.RegistrarEstadia
         {
             InitializeComponent();
 
-            numeroDeReserva = nroreserva.Text;
-            fechaDesde = fechaingreso.Value.Date;
+            
         }
 
         private void CheckIn_Load(object sender, EventArgs e)
@@ -30,7 +29,10 @@ namespace FrbaHotel.RegistrarEstadia
         private void button1_Click(object sender, EventArgs e)
         {
             //boton aceptar
-            MessageBox.Show("Fecha es" + fechaDesde.ToString(), fechaDesde.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            fechaDesde = fechaingreso.Value.Date;
+            numeroDeReserva = nroreserva.Text;
+            
+            MessageBox.Show("Fecha es: " + fechaDesde.ToString() + "con reserva: " + numeroDeReserva.ToString(), fechaDesde.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
