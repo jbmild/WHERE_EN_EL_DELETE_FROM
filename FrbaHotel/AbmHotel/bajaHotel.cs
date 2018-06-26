@@ -101,8 +101,8 @@ namespace FrbaHotel.AbmHotel
             DataTable estadias= c.cargarTablaSQL("select e.estadia_id from WHERE_EN_EL_DELETE_FROM.estadias e" + 
                 " join WHERE_EN_EL_DELETE_FROM.reservas r on r.reserva_id=e.reserva_id " + 
                 " join WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh on rh.reserva_id=r.reserva_id " + 
-                " join WHERE_EN_EL_DELETE_FROM.habitaciones h on rh.habitacion_od=h.habitacion_id" + 
-                " where h.hotel=id=" + comboBoxHoteles.SelectedValue.ToString() + " and e.ingreso_fecha >='" + dateTime1.ToString() + "' and e.egreso_fecha<='" + dateTime2.ToString() + "'");
+                " join WHERE_EN_EL_DELETE_FROM.habitaciones h on rh.habitacion_id=h.habitacion_id" + 
+                " where h.hotel_id=" + comboBoxHoteles.SelectedValue.ToString() + " and e.ingreso_fecha >='" + dateTime1.ToString() + "' and e.egreso_fecha<='" + dateTime2.ToString() + "'");
             return estadias.Rows.Count.Equals(0);
         }
 

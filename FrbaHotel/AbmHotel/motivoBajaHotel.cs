@@ -31,6 +31,8 @@ namespace FrbaHotel.AbmHotel
             sql.Parameters.Add("@hotel_id", SqlDbType.Int).Value = hotelID;
             sql.Parameters.Add("@fecha_inicio", SqlDbType.DateTime).Value = fechaIn;
             sql.Parameters.Add("@fecha_fin", SqlDbType.DateTime).Value = fechaOut;
+            sql.Parameters.Add("@titulo", SqlDbType.NVarChar).Value = textBoxTitulo.Text;
+            sql.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = textBoxDetalle.Text;
             int result = sql.ExecuteNonQuery();
             if (result.Equals(1))
             {
