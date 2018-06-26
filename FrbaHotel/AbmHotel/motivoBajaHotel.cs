@@ -36,7 +36,9 @@ namespace FrbaHotel.AbmHotel
             int result = sql.ExecuteNonQuery();
             if (result.Equals(1))
             {
+                
                 System.Windows.Forms.MessageBox.Show("¡Se ha añadido un nuevo cese de actividad!");
+                this.Hide();
             }
             else { System.Windows.Forms.MessageBox.Show("Error al intentar añadir un nuevo cese de actividad"); }
         }
