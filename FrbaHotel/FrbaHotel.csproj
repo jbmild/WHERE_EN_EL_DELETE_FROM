@@ -96,6 +96,12 @@
     <Compile Include="AbmHotel\altaHotel.Designer.cs">
       <DependentUpon>altaHotel.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmHotel\bajaHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\bajaHotel.Designer.cs">
+      <DependentUpon>bajaHotel.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHotel\buscadorRegimenes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,12 @@
     </Compile>
     <Compile Include="AbmHotel\modificarHotel.Designer.cs">
       <DependentUpon>modificarHotel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmHotel\motivoBajaHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmHotel\motivoBajaHotel.Designer.cs">
+      <DependentUpon>motivoBajaHotel.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHotel\pantallaPrincipalHotel.cs">
       <SubType>Form</SubType>
@@ -148,6 +160,10 @@
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Regimenes.cs" />
+    <Compile Include="ElegirRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ElegirRol.Designer.cs" />
     <Compile Include="GenerarModificacionReserva\Form2.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,6 +313,9 @@
     <EmbeddedResource Include="AbmHotel\altaHotel.resx">
       <DependentUpon>altaHotel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\bajaHotel.resx">
+      <DependentUpon>bajaHotel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\buscadorRegimenes.resx">
       <DependentUpon>buscadorRegimenes.cs</DependentUpon>
     </EmbeddedResource>
@@ -309,6 +328,9 @@
     <EmbeddedResource Include="AbmHotel\modificarHotel.resx">
       <DependentUpon>modificarHotel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AbmHotel\motivoBajaHotel.resx">
+      <DependentUpon>motivoBajaHotel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\pantallaPrincipalHotel.resx">
       <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
     </EmbeddedResource>
@@ -318,6 +340,7 @@
     <EmbeddedResource Include="AbmRegimen\bajaRegimen.resx">
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ElegirRol.resx" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
