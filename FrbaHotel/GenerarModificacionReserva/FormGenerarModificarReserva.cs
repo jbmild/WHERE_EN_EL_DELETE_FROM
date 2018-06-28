@@ -14,10 +14,21 @@ namespace FrbaHotel.GenerarModificacionReserva
 {
     public partial class FormGenerarModificarReserva : Form
     {
+        Reserva _res = null;
+        int _idTipoHabitacion;
+
         public FormGenerarModificarReserva()
         {
             InitializeComponent();
         }
+
+        public FormGenerarModificarReserva(Reserva r, int idTipoHabitacion)
+        {
+            _res = r;
+            _idTipoHabitacion = idTipoHabitacion;
+            InitializeComponent();
+        }
+
 
        
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -128,10 +139,6 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void FormGenerarModificarReserva_Load(object sender, EventArgs e)
         {
-            dtpFechaCheckin.MinDate = DateTime.Today;
-            dtpFechaCheckout.MinDate = DateTime.Today.AddDays(1);
-            
-            
 
             ConexionSQL conexion = new ConexionSQL();
 
@@ -157,6 +164,22 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             //TODO: Ocultar combo hotel si el usuario es recepcionista. 
             //Si es admin o guest, mostrar combo hotel.
+            if (_res.codigo != 0)
+            {
+                dtpFechaCheckin.Value = _res.fecha_desde;
+                dtpFechaCheckout.Value = _res.fecha_hasta;
+                cmbTipoRegimen.SelectedValue = _res.regimen_id;
+                cmbHotel.SelectedValue = _res.hotel_id;
+                cmbTipoHab.SelectedValue = _idTipoHabitacion;
+
+                dataGridView1.DataSource = _res.getHabitacionesByReserva();
+                this.Cursor = Cursors.Default;
+            }
+            else
+            {
+                dtpFechaCheckin.MinDate = DateTime.Today;
+                dtpFechaCheckout.MinDate = DateTime.Today.AddDays(1);
+            }
             
         }
 
@@ -176,30 +199,48 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             }
 
-
-            GenerarReservaPrincipal f2 = null;
-            for (int i = 0; i < Application.OpenForms.Count; i++)
+            if (_res == null) // es nueva reserva
             {
-                if (Application.OpenForms[i] is GenerarReservaPrincipal)
+                GenerarReservaPrincipal f2 = null;
+                for (int i = 0; i < Application.OpenForms.Count; i++)
                 {
-                    f2 = (GenerarReservaPrincipal) Application.OpenForms[i];
-                    break;
+                    if (Application.OpenForms[i] is GenerarReservaPrincipal)
+                    {
+                        f2 = (GenerarReservaPrincipal)Application.OpenForms[i];
+                        break;
+                    }
                 }
+
+                if (f2 == null)
+                    f2 = new GenerarReservaPrincipal();
+
+
+
+                f2.pasarReserva(new Reserva(dtpFechaCheckin.Value, dtpFechaCheckout.Value,
+                                                                    0,
+                                                                    precioTotal, // Completar total de todas las habs
+                                                                    Convert.ToInt32(cmbTipoRegimen.SelectedValue),
+                                                                    Convert.ToInt32(cmbHotel.SelectedValue),
+                                                                    habs));
+
+                ((GenerarReservaPrincipal)this.Owner).GenerarReservaPrincipal_Load(sender, e);
+                this.Close();
+                f2.Show();
             }
+            else {
+                //TODO: Borrar filas actuales de habitaciones_reservas!!
+                ConexionSQL conex = new ConexionSQL();
 
-            if (f2 == null)
-                f2 = new GenerarReservaPrincipal();
+                conex.cargarTablaSQL(@"DELETE FROM WHERE_EN_EL_DELETE_FROM.reservas_habitaciones 
+                                       WHERE reserva_id=" + _res.id);
 
-            f2.pasarReserva(new Reserva(dtpFechaCheckin.Value, dtpFechaCheckout.Value,
-                                                                0,
-                                                                precioTotal, // Completar total de todas las habs
-                                                                Convert.ToInt32(cmbTipoRegimen.SelectedValue),
-                                                                Convert.ToInt32(cmbHotel.SelectedValue),
-                                                                habs));
+                Cliente c = (new Cliente()).getClienteById(_res.cliente_id);
+                //insertar nuevos registros habitaciones_reservas:
+                frmConfirmarReserva frm = new frmConfirmarReserva(c, _res);
+                frm.Show();
 
-            ((GenerarReservaPrincipal)this.Owner).GenerarReservaPrincipal_Load(sender, e);
-            this.Close();
-            f2.Show();
+            }
+            
         }
     }
 }

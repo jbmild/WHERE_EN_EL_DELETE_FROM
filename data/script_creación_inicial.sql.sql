@@ -263,6 +263,7 @@ SET @FechaActual = GETDATE();
 		codigo INT,
 		estado NVARCHAR(255) CHECK (estado IN('correcta', 'modificada', 'cancelada_recepcion', 'cancelada_cliente', 'cancelada_noshow', 'efectivizada')) DEFAULT 'correcta',
 		usuario_id INT NOT NULL,
+		ultima_modificacion_usuario_id INT NULL,
 		cancelacion_fecha DATETIME NULL,
 		cancelacion_usuario_id INT NULL,
 		motivo_cancelacion NVARCHAR(255) NULL,
@@ -273,6 +274,7 @@ SET @FechaActual = GETDATE();
 		CONSTRAINT FK_reservas_clientes FOREIGN KEY (cliente_id) REFERENCES WHERE_EN_EL_DELETE_FROM.clientes (cliente_id),
 		CONSTRAINT FK_reservas_usuarios FOREIGN KEY (usuario_id) REFERENCES WHERE_EN_EL_DELETE_FROM.usuarios (usuario_id),
 		CONSTRAINT FK_reservas_usuarios_cancelacion FOREIGN KEY (cancelacion_usuario_id) REFERENCES WHERE_EN_EL_DELETE_FROM.usuarios (usuario_id),
+		CONSTRAINT FK_reservas_usuarios_modificacion FOREIGN KEY (ultima_modificacion_usuario_id) REFERENCES WHERE_EN_EL_DELETE_FROM.usuarios (usuario_id),
 		CONSTRAINT FK_reservas_regimenes FOREIGN KEY (regimen_id) REFERENCES WHERE_EN_EL_DELETE_FROM.regimenes (regimen_id),
 	)
 

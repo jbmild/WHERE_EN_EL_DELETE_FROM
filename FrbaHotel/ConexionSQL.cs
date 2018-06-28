@@ -94,7 +94,14 @@ namespace FrbaHotel
             // REM CREO UN DATAREADER
             SqlDataAdapter dataAdapter = new SqlDataAdapter(miCommand);
             // REM CARGO EL DATATABLE PRODUCTOS A TRAVEZ DEL DATAREADER
-            dataAdapter.Fill(ds);
+            try
+            {
+                dataAdapter.Fill(ds);
+            }
+            catch (Exception ex) {
+                throw (ex);
+            }
+            
             this.desconectar();
             return ds;
         }

@@ -38,7 +38,8 @@ namespace FrbaHotel.Modelo
             _habitaciones = habitaciones;
         }
 
-        public Reserva() { 
+        public Reserva() {
+            codigo = 0;
         }
 
         //Getters y setters
@@ -181,6 +182,37 @@ namespace FrbaHotel.Modelo
 
             return exito;
 
+        }
+
+        public List<Habitacion> getHabitacionesByReserva() {
+
+            string sqlQuery = @"select hab.habitacion_id, r.codigo, reshab.precio_diario, isNull(h.nombre, 'Hotel ' + h.direccion) AS Hotel, h.hotel_id, 
+                                numero, piso, habTip.max_huespedes,
+		                        reg.precio * habTip.max_huespedes * h.estrellas_recargo AS precio
+                    from WHERE_EN_EL_DELETE_FROM.Reservas r
+                    INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas_habitaciones reshab on reshab.reserva_id= r.reserva_id 
+                    INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones hab on hab.habitacion_id = reshab.habitacion_id 
+                    INNER JOIN WHERE_EN_EL_DELETE_FROM.hoteles h on h.hotel_id = hab.hotel_id 
+                    INNER JOIN WHERE_EN_EL_DELETE_FROM.regimenes_hoteles regHot on regHot.hotel_id = h.hotel_id 
+                    INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones_tipos habTip on habTip.tipo_id = hab.tipos_id
+                    INNER JOIN WHERE_EN_EL_DELETE_FROM.regimenes reg on reg.regimen_id = reghot.regimen_id
+                    WHERE r.codigo = {codigo} AND regHot.regimen_id={regimen_id} ";
+
+            sqlQuery = sqlQuery.Replace("{codigo}", codigo.ToString());
+            sqlQuery = sqlQuery.Replace("{regimen_id}", regimen_id.ToString());
+
+            ConexionSQL conex = new ConexionSQL();
+            DataTable dt = conex.cargarTablaSQL(sqlQuery);
+            habitaciones = new List<Habitacion>();
+
+            foreach (DataRow dr in dt.Rows) { 
+                Habitacion hab = new Habitacion(Convert.ToInt32(dr["habitacion_id"]), Convert.ToInt32(dr["hotel_id"]), Convert.ToInt32(dr["numero"]), Convert.ToDecimal(dr["precio"]));
+                hab.max_huespedes = Convert.ToInt32(dr["max_huespedes"]);
+
+                habitaciones.Add(hab);
+            }
+
+            return habitaciones;
         }
     }
 }

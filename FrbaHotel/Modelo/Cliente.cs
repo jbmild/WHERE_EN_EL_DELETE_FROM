@@ -137,7 +137,40 @@ namespace FrbaHotel.Modelo
 
         public Cliente() { 
         }
+        public Cliente getClienteById(int cliente_id) { 
+            ConexionSQL conn = new ConexionSQL();
 
+            string sqlQuery = @"SELECT * FROM WHERE_EN_EL_DELETE_FROM.Clientes WHERE cliente_id="
+                + cliente_id;
+
+            DataTable dt = conn.cargarTablaSQL(sqlQuery);
+
+            if (dt.Rows.Count > 0)
+            {
+                object[] row = dt.Rows[0].ItemArray;
+                return new Cliente(Convert.ToInt32(row[0]),
+                                                    Convert.ToBoolean(row[2]), //habilitado
+                                                    row[3].ToString(), // mail
+                                                    row[4].ToString(), // nombre
+                                                    row[5].ToString(), // apellido
+                                                    row[6].ToString(), // telefono
+                                                    row[7].ToString(), // tipoDoc
+                                                    row[8].ToString(), // documento_nro
+                                                    row[9].ToString(), // direccion_calle
+                                                    row[10].ToString(), // direccion_nro
+                                                    row[11].ToString(), // direccion_piso
+                                                    row[12].ToString(), // direccion_depto
+                                                    row[13].ToString(), // direccion_localidad
+                                                    row[14].ToString(), // direccion_pais
+                                                    row[15].ToString()); // nacionalidad
+
+            }
+            else
+            {
+                return new Cliente(0);
+            }
+        
+        }
 
         public Cliente getClienteByTipoNroDocEmail(string tipoDoc, string nroDoc, string email){
             ConexionSQL conn = new ConexionSQL();
@@ -160,7 +193,6 @@ namespace FrbaHotel.Modelo
 
             if (dt.Rows.Count > 0)
             {
-                //armar objeto cliente
                 object[] row = dt.Rows[0].ItemArray;
                 return new Cliente(Convert.ToInt32(row[0]), 
                                                     Convert.ToBoolean(row[2]), //habilitado
