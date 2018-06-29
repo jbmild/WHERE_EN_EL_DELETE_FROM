@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="AbmHabitacion\MostrarHabitaciones.cs" />
     <Compile Include="AbmHabitacion\MostrarHoteles.cs" />
+    <Compile Include="AbmHabitacion\SQLQueryGenerator.cs" />
     <Compile Include="AbmHotel\AbmHoteles.cs" />
     <Compile Include="AbmHotel\altaHotel.cs">
       <SubType>Form</SubType>
@@ -269,11 +270,11 @@
     <Compile Include="Modelo\TipoHabitacion.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegistrarConsumible\Form1.cs">
+    <Compile Include="RegistrarConsumible\registrarConsumible.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegistrarConsumible\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="RegistrarConsumible\registrarConsumible.Designer.cs">
+      <DependentUpon>registrarConsumible.cs</DependentUpon>
     </Compile>
     <Compile Include="RegistrarEstadia\CheckIn.cs">
       <SubType>Form</SubType>
@@ -392,6 +393,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistrarConsumible\registrarConsumible.resx">
+      <DependentUpon>registrarConsumible.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\CheckIn.resx">
       <DependentUpon>CheckIn.cs</DependentUpon>
     </EmbeddedResource>

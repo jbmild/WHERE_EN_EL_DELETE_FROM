@@ -58,5 +58,11 @@ namespace FrbaHotel
             AbmHotel.pantallaPrincipalHotel alta = new AbmHotel.pantallaPrincipalHotel();
             alta.Show();
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            RegistrarConsumible.registrarConsumible consumible = new RegistrarConsumible.registrarConsumible();
+            consumible.Show();
+        }
     }
 }

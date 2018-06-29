@@ -13,6 +13,7 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class altaHabitacion : Form
     {
+        SQLQueryGenerator sqlQueryGenerator;
         public altaHabitacion()
         {
             InitializeComponent();
@@ -20,13 +21,10 @@ namespace FrbaHotel.AbmHabitacion
 
         private void altaHabitacion_Load(object sender, EventArgs e)
         {
-            ConexionSQL c = new ConexionSQL();
-            DataTable dtHoteles = c.cargarTablaSQL("select direccion, hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles ");
-            dtHoteles.Rows.InsertAt(dtHoteles.NewRow(), 0);
-            comboBoxHotel.DataSource = dtHoteles;
-            comboBoxHotel.SelectedIndex = 0;
-            comboBoxHotel.DisplayMember = "direccion";
-            comboBoxHotel.ValueMember = "hotel_id";
+            sqlQueryGenerator = new SQLQueryGenerator();
+            sqlQueryGenerator.Ejecutar(comboBoxHotel);
+           
+
 
            
             /*Buscar numero de habitacion en el piso elegido del hotel*/
@@ -35,14 +33,9 @@ namespace FrbaHotel.AbmHabitacion
 
         private void comboBoxHotel_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            ConexionSQL c = new ConexionSQL();
-            DataTable dtPisos = c.cargarTablaSQL("select hotel_id, piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id='" +comboBoxHotel.SelectedValue + "'" + " group by hotel_id, piso order by hotel_id desc, piso desc");
-            dtPisos.Rows.InsertAt(dtPisos.NewRow(), 0);
-            comboBoxPisoEnHotel.DataSource = dtPisos;
-            comboBoxPisoEnHotel.SelectedIndex = 0;
-            comboBoxPisoEnHotel.DisplayMember = "piso";
-            comboBoxPisoEnHotel.ValueMember = "piso";
+            sqlQueryGenerator = new SQLQueryGenerator();
+            sqlQueryGenerator.HotelCambioEnAltaHabitacion(comboBoxPisoEnHotel, comboBoxHotel);
+            
         }
 
     
@@ -99,22 +92,12 @@ namespace FrbaHotel.AbmHabitacion
                 
                 /************/
                 ConexionSQL busq = new ConexionSQL();
-                DataTable resultado = busq.cargarTablaSQL("SELECT ha.numero FROM WHERE_EN_EL_DELETE_FROM.habitaciones ha JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id where " +
-                    " ho.hotel_id=" + this.comboBoxHotel.SelectedValue + " and ha.numero=" + this.textBoxNumeroHabitacion.Text);
+               DataTable resultado= sqlQueryGenerator.GetHabitacionesEnAltaHotel(comboBoxHotel, textBoxNumeroHabitacion, busq);
+                 
                 if (resultado.Rows.Count.Equals(0)) 
                 {
                     SqlConnection con = ConexionSQL.obtenerConexion();
-                    
-                    string query = String.Concat("INSERT INTO WHERE_EN_EL_DELETE_FROM.habitaciones (hotel_id, numero, piso, frente, descripcion, habilitado, tipos_id)", " VALUES ( " + "@hotel" + ", " + "@numeroHabitacion" + ", " + "@piso" + ", " + "@vista" + ", " + "@descripcion" + ", " + 1 + ", " + 1 + ")");
-                    SqlCommand sql = new SqlCommand(query);
-                    sql.Connection = con;
-                    sql.Parameters.Add("@hotel", SqlDbType.Int).Value = comboBoxHotel.SelectedValue;
-                    sql.Parameters.Add("@numeroHabitacion", SqlDbType.Int).Value = textBoxNumeroHabitacion.Text;
-                    sql.Parameters.Add("@piso", SqlDbType.Int).Value = comboBoxPisoEnHotel.SelectedValue;
-                    sql.Parameters.Add("@vista", SqlDbType.Bit).Value = vista;
-                    sql.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = textBoxDescripcionHabitacion.Text;
-
-                    int result = sql.ExecuteNonQuery();
+                    int result = sqlQueryGenerator.InsertIntoHabitacionesNuevaHabitacion(con, comboBoxHotel, textBoxNumeroHabitacion, comboBoxPisoEnHotel, vista, textBoxDescripcionHabitacion);
 
 
                     if (result.Equals(1))
