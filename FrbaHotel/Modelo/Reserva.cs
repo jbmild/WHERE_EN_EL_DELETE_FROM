@@ -25,10 +25,13 @@ namespace FrbaHotel.Modelo
         private List<Habitacion> _habitaciones;
         private string _motivoCancelacion;
         private int _usuarioCancelacion;
-        //completar atributos
+        private int _usuario_modificacion_id;
+        
+
 
         //nueva reserva
         public Reserva(DateTime fd, DateTime fh, int cliente_id, decimal total, int regimen_id, int hotel_id, List<Habitacion> habitaciones) {
+            _id = 0;
             _fecha_desde = fd;
             _fecha_hasta = fh;
             _cliente_id = cliente_id;
@@ -101,62 +104,132 @@ namespace FrbaHotel.Modelo
             set { _usuarioCancelacion = value; }
         }
 
-        public int GuardarReserva() {
+        public int usuario_modificacion_id {
+            get { return _usuario_modificacion_id; }
+            set { _usuario_modificacion_id = value; }
+        }
+
+        public int GuardarReserva(List<Habitacion> habitacionesModificacion)
+        {
 
             //Sumarizo total de la reserva
+            SqlCommand command = new SqlCommand();
             SqlTransaction trans;
             SqlConnection conn = ConexionSQL.obtenerConexion();
+            int exito;
+
             trans = conn.BeginTransaction();
-            
-            SqlCommand command = new SqlCommand(@" DECLARE @ultimoCodigo int
+            command.Connection = conn;
+            command.Transaction = trans;
+
+            int idReserva = 0;
+            int codigo;
+
+            if (id != 0)
+            {
+                //Es modificacion de reserva
+                
+                string query = @" UPDATE WHERE_EN_EL_DELETE_FROM.Reservas 
+                                SET estado='modificada', fecha_desde=@fdesde, fecha_hasta=@fhasta, ultima_modificacion_usuario_id=@usuario_id, 
+                                total=@total, regimen_id=@regimen_id, hotel_id=@hotel_id
+                                WHERE codigo=" + _codigo;
+                
+                command.CommandText = query;
+                command.Parameters.Add("@fdesde", SqlDbType.DateTime).Value = _fecha_desde;
+                command.Parameters.Add("@fhasta", SqlDbType.DateTime).Value = _fecha_hasta;
+                command.Parameters.Add("@usuario_id", SqlDbType.Int).Value = _usuario_modificacion_id;
+                command.Parameters.Add("@total", SqlDbType.Decimal).Value = _total;
+                command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = _regimen_id;
+                command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = _hotel_id;
+
+                try
+                {
+                    exito = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception ex)
+                {
+                    throw (ex);
+                }
+
+                command.CommandText = @"INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas_Habitaciones (habitacion_id, reserva_id, precio_diario)
+                                            VALUES(@habitacion_id, @reserva_id, @precio_diario)";
+
+                command.Parameters.Clear();
+                command.Parameters.Add("@habitacion_id", SqlDbType.Int);
+                command.Parameters.Add("@reserva_id", SqlDbType.Int);
+                command.Parameters.Add("@precio_diario", SqlDbType.Decimal);
+
+                exito = 0;
+                try
+                {
+                    foreach (Habitacion hab in habitacionesModificacion)
+                    {
+                        command.Parameters["@habitacion_id"].Value = hab.id;
+                        command.Parameters["@reserva_id"].Value = _id == 0 ? idReserva : _id;
+                        command.Parameters["@precio_diario"].Value = hab.precio;
+                        exito = command.ExecuteNonQuery();
+                    }
+                    trans.Commit();
+
+                }
+                catch (Exception ex)
+                {
+                    trans.Rollback();
+                    throw (ex);
+                }
+
+            }
+            else {
+                //Es reserva nueva
+                command.CommandText = @" DECLARE @ultimoCodigo int
                                                 SELECT @ultimoCodigo = MAX(codigo) FROM WHERE_EN_EL_DELETE_FROM.Reservas
                                                 INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas (fecha_desde, fecha_hasta, fecha_creacion, cliente_id, codigo, usuario_id, total, regimen_id, hotel_id)
                                                 VALUES(@fdesde, @fhasta, getdate(), @cliente_id, @ultimoCodigo+1, @usuario_id, @total, @regimen_id, @hotel_id)
-                                                SELECT SCOPE_IDENTITY()");
-            command.Connection = conn;
-            command.Transaction = trans;
-            
-            
-            command.Parameters.Add("@fdesde", SqlDbType.DateTime).Value = _fecha_desde;
-            command.Parameters.Add("@fhasta", SqlDbType.DateTime).Value = _fecha_hasta;
-            command.Parameters.Add("@cliente_id", SqlDbType.Int).Value = cliente_id;
-            command.Parameters.Add("@usuario_id", SqlDbType.Int).Value = 1;
-            command.Parameters.Add("@total", SqlDbType.Decimal).Value = _total;
-            command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = _regimen_id;
-            command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = _hotel_id;
+                                                SELECT SCOPE_IDENTITY()";
 
-            int idReserva = 0;
-            try
-            {
-                idReserva = Convert.ToInt32(command.ExecuteScalar());
-            }
-            catch (Exception ex) {
-                throw (ex);
+                command.Parameters.Add("@fdesde", SqlDbType.DateTime).Value = _fecha_desde;
+                command.Parameters.Add("@fhasta", SqlDbType.DateTime).Value = _fecha_hasta;
+                command.Parameters.Add("@cliente_id", SqlDbType.Int).Value = cliente_id;
+                command.Parameters.Add("@usuario_id", SqlDbType.Int).Value = 1;
+                command.Parameters.Add("@total", SqlDbType.Decimal).Value = _total;
+                command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = _regimen_id;
+                command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = _hotel_id;
+
+                
+                try
+                {
+                    idReserva = Convert.ToInt32(command.ExecuteScalar());
+                }
+                catch (Exception ex)
+                {
+                    throw (ex);
+                }
             }
 
             command.CommandText = @"INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas_Habitaciones (habitacion_id, reserva_id, precio_diario)
-                                                VALUES(@habitacion_id, @reserva_id, @precio_diario)";
+                                            VALUES(@habitacion_id, @reserva_id, @precio_diario)";
 
             command.Parameters.Clear();
             command.Parameters.Add("@habitacion_id", SqlDbType.Int);
             command.Parameters.Add("@reserva_id", SqlDbType.Int);
             command.Parameters.Add("@precio_diario", SqlDbType.Decimal);
 
-            int exito = 0;
-            int codigo = 0;
+            codigo = 0;
+            exito = 0;
             try
             {
                 foreach (Habitacion hab in _habitaciones)
                 {
                     command.Parameters["@habitacion_id"].Value = hab.id;
-                    command.Parameters["@reserva_id"].Value = idReserva;
+                    command.Parameters["@reserva_id"].Value = _id == 0? idReserva: _id;
                     command.Parameters["@precio_diario"].Value = hab.precio;
                     exito = command.ExecuteNonQuery();
                 }
                 trans.Commit();
-                
+
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 trans.Rollback();
                 throw (ex);
             }
@@ -213,6 +286,20 @@ namespace FrbaHotel.Modelo
             }
 
             return habitaciones;
+        }
+
+        public int eliminarHabitaciones() {
+
+            SqlCommand command = new SqlCommand();
+            string query = @"DELETE FROM WHERE_EN_EL_DELETE_FROM.Reservas_Habitaciones WHERE
+                                    reserva_id in (" + id + ")";
+
+            
+            command.CommandText = query;
+            command.Connection = ConexionSQL.obtenerConexion();
+            int exito = command.ExecuteNonQuery();
+
+            return exito;
         }
     }
 }

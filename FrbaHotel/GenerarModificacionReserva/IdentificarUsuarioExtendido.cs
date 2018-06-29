@@ -130,7 +130,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         if (resultGuardarCliente != 0)
                         {
                             _res.cliente_id = _cli.idCliente;
-                            frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva(_cli, _res);
+                            frmConfirmarReserva frmConfirmarReserva = new frmConfirmarReserva(_cli, _res, null);
                             frmConfirmarReserva.Owner = this;
                             frmConfirmarReserva.Show();
                         }

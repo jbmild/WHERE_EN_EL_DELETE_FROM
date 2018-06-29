@@ -16,6 +16,7 @@ namespace FrbaHotel.GenerarModificacionReserva
     {
         Reserva _res = null;
         int _idTipoHabitacion;
+        int _usuarioLogueado = 1;
 
         public FormGenerarModificarReserva()
         {
@@ -172,6 +173,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 cmbHotel.SelectedValue = _res.hotel_id;
                 cmbTipoHab.SelectedValue = _idTipoHabitacion;
 
+
                 dataGridView1.DataSource = _res.getHabitacionesByReserva();
                 this.Cursor = Cursors.Default;
             }
@@ -228,15 +230,11 @@ namespace FrbaHotel.GenerarModificacionReserva
                 f2.Show();
             }
             else {
-                //TODO: Borrar filas actuales de habitaciones_reservas!!
-                ConexionSQL conex = new ConexionSQL();
-
-                conex.cargarTablaSQL(@"DELETE FROM WHERE_EN_EL_DELETE_FROM.reservas_habitaciones 
-                                       WHERE reserva_id=" + _res.id);
-
+              
+                _res.usuario_modificacion_id = _usuarioLogueado;
                 Cliente c = (new Cliente()).getClienteById(_res.cliente_id);
                 //insertar nuevos registros habitaciones_reservas:
-                frmConfirmarReserva frm = new frmConfirmarReserva(c, _res);
+                frmConfirmarReserva frm = new frmConfirmarReserva(c, _res, habs);
                 frm.Show();
 
             }
