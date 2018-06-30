@@ -231,9 +231,17 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
             else {
               
-                _res.usuario_modificacion_id = _usuarioLogueado;
+                
                 Cliente c = (new Cliente()).getClienteById(_res.cliente_id);
-                //insertar nuevos registros habitaciones_reservas:
+                
+                _res.fecha_desde = dtpFechaCheckin.Value;
+                _res.fecha_hasta = dtpFechaCheckout.Value;
+                _res.regimen_id = Convert.ToInt32(cmbTipoRegimen.SelectedValue);
+                _res.hotel_id = Convert.ToInt32(cmbHotel.SelectedValue);
+                _res.total = precioTotal;
+                _res.usuario_modificacion_id = _usuarioLogueado;
+
+
                 frmConfirmarReserva frm = new frmConfirmarReserva(c, _res, habs);
                 frm.Owner = this;
                 frm.Show();
