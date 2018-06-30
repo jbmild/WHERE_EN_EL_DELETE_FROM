@@ -29,7 +29,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             string sqlQuery = @"select codigo, fecha_desde, fecha_hasta, isNull(h.nombre, 'Hotel ' + h.direccion) AS Hotel, datediff(dd, getdate(), fecha_desde) AS DiasHastaLaReserva, 
                     r.hotel_id, r.regimen_id, (select distinct tipos_id FROM WHERE_EN_EL_DELETE_FROM.reservas_habitaciones reshab INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones hab on hab.habitacion_id = reshab.habitacion_id AND reshab.reserva_id = r.reserva_id) AS idTipoHabitacion,
-                    r.cliente_id 
+                    r.cliente_id, r.reserva_id 
                     FROM WHERE_EN_EL_DELETE_FROM.Reservas r 
                     INNER JOIN WHERE_EN_EL_DELETE_FROM.Hoteles h on h.hotel_id = r.hotel_id WHERE ";
 
@@ -67,6 +67,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                         res.hotel_id = Convert.ToInt32(row.Cells[6].Value);
                         res.regimen_id = Convert.ToInt32(row.Cells[7].Value);
                         res.cliente_id = Convert.ToInt32(row.Cells[9].Value);
+                        res.id = Convert.ToInt32(row.Cells[10].Value);
+
                         FormGenerarModificarReserva form = new FormGenerarModificarReserva(res, Convert.ToInt32(row.Cells[8].Value));
                         form.Show();
                     }

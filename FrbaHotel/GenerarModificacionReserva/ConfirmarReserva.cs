@@ -16,11 +16,13 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private Cliente _cliente;
         private Reserva _reserva;
+        private List<Habitacion> _habitacionesUpdate;
 
-        public frmConfirmarReserva(Cliente cli, Reserva res)
+        public frmConfirmarReserva(Cliente cli, Reserva res, List<Habitacion> habitacionesUpdate)
         {
             _cliente = cli;
             _reserva = res;
+            _habitacionesUpdate = habitacionesUpdate;
             InitializeComponent();
         }
 
@@ -36,6 +38,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void frmConfirmarReserva_Load(object sender, EventArgs e)
         {
+            
             lblDatosCliente.Text = lblDatosCliente.Text.Replace("{cliente}", _cliente.apellido.ToUpper() + ", " + 
                                     _cliente.nombre.ToUpper());
             string strDatosReserva = lblDatosReserva.Text;
@@ -55,7 +58,9 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             try
             {
-                codigoReserva = _reserva.GuardarReserva();
+                //eliminar habitaciones
+                _reserva.eliminarHabitaciones();
+                codigoReserva = _reserva.GuardarReserva(_habitacionesUpdate);
             }
             catch (Exception ex){
                 System.Windows.Forms.MessageBox.Show(ex.Message);
