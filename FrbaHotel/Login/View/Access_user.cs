@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -61,16 +62,30 @@ namespace FrbaHotel.Login.View
             else
             {
                 String passwordSistema = dt.Rows[0][0].ToString();
-                if (getSha256(contrasenia) == passwordSistema)
+
+                //byte[] claveObtenida = Encoding.ASCII.GetBytes(dt.Rows[0][0].ToString());
+
+                //var binWriter = new BinaryWriter(new MemoryStream());
+                //byte[] result = reader.ReadBytes((int)binWriter.BaseStream.Length);
+
+
+                //System.Text.Encoding enc = System.Text.Encoding.ASCII;
+                //String passwordSistema = enc.GetString(claveObtenida);
+                //String passwordSistema = System.Text.Encoding.ASCII.GetString(claveObtenida);
+
+                //if (getSha256(contrasenia) == passwordSistema)
+                if (contrasenia == passwordSistema)
                 {
                     string resetearIntentos = "UPDATE [WHERE_EN_EL_DELETE_FROM].[usuarios] SET CANT_INTENTOS = 0 WHERE USUARIO = '" + username + "'";
                     (new ConexionSQL()).ejecutarComandoSQL(resetearIntentos);
                     string query5 = "SELECT HABILITADO FROM [WHERE_EN_EL_DELETE_FROM].[usuarios] WHERE USUARIO = '" + username + "'";
                     DataTable dt5 = (new ConexionSQL()).cargarTablaSQL(query5);
                     string habilitado = dt5.Rows[0][0].ToString();
-                    if (habilitado == "1")
+                    if (habilitado == "True")
                     {
-                        string query2 = "SELECT COUNT(*) FROM [WHERE_EN_EL_DELETE_FROM].[roles] ROLES JOIN [WHERE_EN_EL_DELETE_FROM].[usuarios] USUARIOS ON (USUARIOS.USUARIO_ID = ROLES.USUARIO_ID) WHERE USUARIOS.USUARIO = '" + username + "' AND USUARIOS.HABILITADO = 1";
+                        string query2 = "SELECT COUNT(*) FROM[WHERE_EN_EL_DELETE_FROM].[usuarios_roles] U_ROLES JOIN[WHERE_EN_EL_DELETE_FROM].[usuarios] USUARIOS ON(USUARIOS.USUARIO_ID = U_ROLES.USUARIO_ID) JOIN[WHERE_EN_EL_DELETE_FROM].[ROLES] ROLES ON(U_ROLES.rol_id = ROLES.rol_id) WHERE USUARIOS.USUARIO = '"+ username +"' AND USUARIOS.HABILITADO = 1";
+
+                        //string query2 = "SELECT COUNT(*) FROM [WHERE_EN_EL_DELETE_FROM].[roles] ROLES JOIN [WHERE_EN_EL_DELETE_FROM].[usuarios] USUARIOS ON (USUARIOS.USUARIO_ID = ROLES.USUARIO_ID) WHERE USUARIOS.USUARIO = '" + username + "' AND USUARIOS.HABILITADO = 1";
                         DataTable dt2 = (new ConexionSQL()).cargarTablaSQL(query2);
                         string cantidadRoles = dt2.Rows[0][0].ToString();
                         if (cantidadRoles == "1")

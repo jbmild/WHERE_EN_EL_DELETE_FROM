@@ -160,5 +160,10 @@ namespace FrbaHotel.AbmHotel
             comboBoxHoteles.DisplayMember = "nombre";
 
         }
+
+        private void comboBoxHoteles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

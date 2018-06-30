@@ -164,10 +164,10 @@
     <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ElegirRol.cs">
+    <Compile Include="ElegirRol\ElegirRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ElegirRol.Designer.cs" />
+    <Compile Include="ElegirRol\ElegirRol.Designer.cs" />
     <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.Designer.cs">
       <DependentUpon>frmMotivoCancelacion.cs</DependentUpon>
     </Compile>
@@ -347,7 +347,7 @@
     <EmbeddedResource Include="AbmRegimen\bajaRegimen.resx">
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ElegirRol.resx" />
+    <EmbeddedResource Include="ElegirRol\ElegirRol.resx" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

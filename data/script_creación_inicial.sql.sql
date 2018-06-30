@@ -181,7 +181,7 @@ SET @FechaActual = GETDATE();
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.usuarios (
 		usuario_id int identity(1,1) PRIMARY KEY, 
 		usuario NVARCHAR(255), 
-		contrasena varbinary(32),
+		contrasena NVARCHAR(50),
 		habilitado bit DEFAULT 1, 
 		cant_intentos char DEFAULT 0
 	)

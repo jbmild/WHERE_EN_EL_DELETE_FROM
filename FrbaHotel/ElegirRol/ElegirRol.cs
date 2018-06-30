@@ -12,10 +12,6 @@ namespace FrbaHotel.ElegirRol
 {
     public partial class ElegirRol : Form
     {
-        public ElegirRol()
-        {
-            InitializeComponent();
-        }
 
         String rol;
         String nombreUsuario;
@@ -23,11 +19,12 @@ namespace FrbaHotel.ElegirRol
         public ElegirRol(String username)
         {
             InitializeComponent();
-
             nombreUsuario = username;
-            DataTable dt = (new ConexionSQL()).cargarTablaSQL("SELECT R.nombre FROM[WHERE_EN_EL_DELETE_FROM].usuarios_roles RU JOIN[WHERE_EN_EL_DELETE_FROM].USUARIOS U ON(U.usuario_id = RU.usuario_id) JOIN[WHERE_EN_EL_DELETE_FROM].ROLES R ON(R.rol_id = RU.rol_id) WHERE U.usuario = '" + username + "' AND R.HABILITADO = 0 AND U.HABILITADO = 0");
+            string query = "SELECT NOMBRE FROM[WHERE_EN_EL_DELETE_FROM].[usuarios_roles] U_ROLES JOIN[WHERE_EN_EL_DELETE_FROM].[usuarios] USUARIOS ON(USUARIOS.USUARIO_ID = U_ROLES.USUARIO_ID) JOIN[WHERE_EN_EL_DELETE_FROM].[ROLES] ROLES ON(U_ROLES.rol_id = ROLES.rol_id) WHERE USUARIOS.USUARIO = '" + username + "' AND USUARIOS.HABILITADO = 1 AND ROLES.habilitado = 1";
+
+            DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
             comboBoxRoles.DataSource = dt.DefaultView;
-            comboBoxRoles.ValueMember = "NOMBRE_ROL";
+            comboBoxRoles.ValueMember = "NOMBRE";
 
         }
 
@@ -43,6 +40,12 @@ namespace FrbaHotel.ElegirRol
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void ElegirRol_Load(object sender, EventArgs e)
         {
 
         }
