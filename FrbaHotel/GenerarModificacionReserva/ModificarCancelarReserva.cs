@@ -70,6 +70,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         res.id = Convert.ToInt32(row.Cells[10].Value);
 
                         FormGenerarModificarReserva form = new FormGenerarModificarReserva(res, Convert.ToInt32(row.Cells[8].Value));
+                        form.Owner = this;
                         form.Show();
                     }
                     else {

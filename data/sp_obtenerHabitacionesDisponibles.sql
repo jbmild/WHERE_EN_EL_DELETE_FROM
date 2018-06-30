@@ -27,20 +27,20 @@ ALTER PROCEDURE [WHERE_EN_EL_DELETE_FROM].[obtenerHabitacionesDisponibles]
 
 AS
 BEGIN
-	/*
-	DECLARE @fdesde varchar(30),
-	@fhasta varchar(30),
-	@hotel_id int,
-	@regimen_id int,
-	@tipoHabitacion_id int
+		/*
+		DECLARE @fdesde varchar(30),
+		@fhasta varchar(30),
+		@hotel_id int,
+		@regimen_id int,
+		@tipoHabitacion_id int
 
 
-	SELECT @fdesde = '01/06/2016 03:31:02 p.m.',
-	@fhasta = '24/06/2016 03:31:02 p.m.',
-	@hotel_id = 1,
-	@regimen_id = NULL,
-	@tipoHabitacion_id = 1
-	*/
+		SELECT @fdesde = '01/06/2016 03:31:02 p.m.',
+		@fhasta = '24/06/2016 03:31:02 p.m.',
+		@hotel_id = 1,
+		@regimen_id = NULL,
+		@tipoHabitacion_id = 1
+		*/
 	
 	
 	DECLARE @FechaDesde datetime

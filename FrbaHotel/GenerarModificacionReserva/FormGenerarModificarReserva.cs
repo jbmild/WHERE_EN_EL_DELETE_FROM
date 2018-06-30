@@ -235,6 +235,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                 Cliente c = (new Cliente()).getClienteById(_res.cliente_id);
                 //insertar nuevos registros habitaciones_reservas:
                 frmConfirmarReserva frm = new frmConfirmarReserva(c, _res, habs);
+                frm.Owner = this;
                 frm.Show();
 
             }

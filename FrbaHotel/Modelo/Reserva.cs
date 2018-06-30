@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.Modelo
 {
-    public class Reserva
+    public class Reserva 
     {
         private int _id;
         private DateTime _fecha_desde;
@@ -127,6 +127,7 @@ namespace FrbaHotel.Modelo
 
             if (id != 0)
             {
+                idReserva = id;
                 //Es modificacion de reserva
                 
                 string query = @" UPDATE WHERE_EN_EL_DELETE_FROM.Reservas 
@@ -151,32 +152,8 @@ namespace FrbaHotel.Modelo
                     throw (ex);
                 }
 
-                command.CommandText = @"INSERT INTO WHERE_EN_EL_DELETE_FROM.Reservas_Habitaciones (habitacion_id, reserva_id, precio_diario)
-                                            VALUES(@habitacion_id, @reserva_id, @precio_diario)";
-
-                command.Parameters.Clear();
-                command.Parameters.Add("@habitacion_id", SqlDbType.Int);
-                command.Parameters.Add("@reserva_id", SqlDbType.Int);
-                command.Parameters.Add("@precio_diario", SqlDbType.Decimal);
-
-                exito = 0;
-                try
-                {
-                    foreach (Habitacion hab in habitacionesModificacion)
-                    {
-                        command.Parameters["@habitacion_id"].Value = hab.id;
-                        command.Parameters["@reserva_id"].Value = _id == 0 ? idReserva : _id;
-                        command.Parameters["@precio_diario"].Value = hab.precio;
-                        exito = command.ExecuteNonQuery();
-                    }
-                    trans.Commit();
-
-                }
-                catch (Exception ex)
-                {
-                    trans.Rollback();
-                    throw (ex);
-                }
+                _habitaciones.Clear();
+                _habitaciones = habitacionesModificacion;
 
             }
             else {
@@ -194,7 +171,6 @@ namespace FrbaHotel.Modelo
                 command.Parameters.Add("@total", SqlDbType.Decimal).Value = _total;
                 command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = _regimen_id;
                 command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = _hotel_id;
-
                 
                 try
                 {

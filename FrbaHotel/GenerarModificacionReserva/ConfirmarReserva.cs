@@ -16,7 +16,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private Cliente _cliente;
         private Reserva _reserva;
-        private List<Habitacion> _habitacionesUpdate;
+        private List<Habitacion> _habitacionesUpdate = null;
 
         public frmConfirmarReserva(Cliente cli, Reserva res, List<Habitacion> habitacionesUpdate)
         {
@@ -81,7 +81,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         }
 
         private void volverAMenuPrincipal() {
-            ((GenerarReservaPrincipal)((IdentificarUsuarioExtendido)this.Owner).Owner).Close();
+            ((this.Owner).Owner).Close();
             this.Close();
         }
 
