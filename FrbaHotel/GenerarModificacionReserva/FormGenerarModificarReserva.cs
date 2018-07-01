@@ -70,7 +70,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 		                                WHERE_EN_EL_DELETE_FROM.hoteles hot on
 		                                hot.hotel_id = hab.hotel_id
 		                                and (hab.hotel_id = @hotel_id or @hotel_id is null)
-		                                and (hab.tipos_id = @tipoHabitacion_id or @tipoHabitacion_id is null)
+		                                and (hab.tipos_id = @tipoHabitacion_id or @tipoHabitacion_id is null or @tipoHabitacion_id = -1)
 	                                INNER JOIN
 		                                WHERE_EN_EL_DELETE_FROM.regimenes_hoteles regHot on
 		                                regHot.hotel_id = hot.hotel_id
@@ -105,15 +105,14 @@ namespace FrbaHotel.GenerarModificacionReserva
 		                                ) res on res.habitacion_id = hab.habitacion_id
 		
 	                                WHERE
-		                                res.reserva_id is null
-                                        AND @FechaDesde >= getdate() ");
+		                                res.reserva_id is null");
 
                     command.Connection = ConexionSQL.obtenerConexion();
                     command.Parameters.Add("@fdesde", SqlDbType.VarChar).Value = dtpFechaCheckin.Value;
                     command.Parameters.Add("@fhasta", SqlDbType.VarChar).Value = dtpFechaCheckout.Value;
-                    command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = cmbTipoRegimen.SelectedValue;
-                    command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = cmbHotel.SelectedValue;
-                    command.Parameters.Add("@tipoHabitacion_id", SqlDbType.Int).Value = (cmbTipoHab.SelectedIndex == 0 ? "null" : cmbTipoHab.SelectedValue);
+                    command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = Convert.ToInt32(cmbTipoRegimen.SelectedValue);
+                    command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = Convert.ToInt32(cmbHotel.SelectedValue);
+                    command.Parameters.Add("@tipoHabitacion_id", SqlDbType.Int).Value = ((cmbTipoHab.SelectedIndex == 0 || cmbTipoHab.SelectedIndex == -1) ? -1 : Convert.ToInt32(cmbTipoHab.SelectedValue));
                     SqlDataReader reader = command.ExecuteReader();
                     DataTable dt = new DataTable();
                     dt.Load(reader);
@@ -165,22 +164,29 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             //TODO: Ocultar combo hotel si el usuario es recepcionista. 
             //Si es admin o guest, mostrar combo hotel.
-            if (_res.codigo != 0)
+            if (_res != null)
             {
-                dtpFechaCheckin.Value = _res.fecha_desde;
-                dtpFechaCheckout.Value = _res.fecha_hasta;
-                cmbTipoRegimen.SelectedValue = _res.regimen_id;
-                cmbHotel.SelectedValue = _res.hotel_id;
-                cmbTipoHab.SelectedValue = _idTipoHabitacion;
+
+                if (_res.codigo != 0)
+                {
+                    dtpFechaCheckin.Value = _res.fecha_desde;
+                    dtpFechaCheckout.Value = _res.fecha_hasta;
+                    cmbTipoRegimen.SelectedValue = _res.regimen_id;
+                    cmbHotel.SelectedValue = _res.hotel_id;
+                    cmbTipoHab.SelectedValue = _idTipoHabitacion;
 
 
-                dataGridView1.DataSource = _res.getHabitacionesByReserva();
-                this.Cursor = Cursors.Default;
+                    dataGridView1.DataSource = _res.getHabitacionesByReserva();
+                    this.Cursor = Cursors.Default;
+                }
+
             }
-            else
-            {
-                dtpFechaCheckin.MinDate = DateTime.Today;
-                dtpFechaCheckout.MinDate = DateTime.Today.AddDays(1);
+            else { 
+                    dtpFechaCheckin.MinDate = DateTime.Today;
+                    dtpFechaCheckout.MinDate = DateTime.Today.AddDays(1);
+
+                    dtpFechaCheckin.Value = DateTime.Today;
+                    dtpFechaCheckout.Value = DateTime.Today.AddDays(1);
             }
             
         }

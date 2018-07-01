@@ -154,7 +154,7 @@
             this.dtpFechaCheckin.Name = "dtpFechaCheckin";
             this.dtpFechaCheckin.Size = new System.Drawing.Size(124, 20);
             this.dtpFechaCheckin.TabIndex = 16;
-            this.dtpFechaCheckin.Value = new System.DateTime(2018, 6, 25, 0, 0, 0, 0);
+            this.dtpFechaCheckin.Value = new System.DateTime(2018, 7, 1, 0, 0, 0, 0);
             // 
             // dtpFechaCheckout
             // 
@@ -163,7 +163,7 @@
             this.dtpFechaCheckout.Name = "dtpFechaCheckout";
             this.dtpFechaCheckout.Size = new System.Drawing.Size(155, 20);
             this.dtpFechaCheckout.TabIndex = 17;
-            this.dtpFechaCheckout.Value = new System.DateTime(2016, 6, 24, 0, 59, 0, 0);
+            this.dtpFechaCheckout.Value = new System.DateTime(2018, 7, 1, 0, 0, 0, 0);
             // 
             // cmbHotel
             // 
