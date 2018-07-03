@@ -55,6 +55,12 @@ namespace FrbaHotel
             //miConexionSQL.ConnectionString = miConnectionStringSQL;
         }
 
+        public static String UsuarioLog(string Username, string UsernameLogeado)
+        {
+            UsernameLogeado = Username;
+            return UsernameLogeado;      
+        }
+
         public ConexionSQL(String _connectionString)
         {
             miConexionSQL = new SqlConnection();
