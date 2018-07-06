@@ -185,9 +185,11 @@ namespace FrbaHotel.GenerarModificacionReserva
             }
             else {
                 CultureInfo culture = new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]);
+
+                dtpFechaCheckin.Value = dtpFechaCheckin.MinDate = dtpFechaCheckout.MinDate
+                            = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], culture);
                 
-                dtpFechaCheckin.MinDate = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], culture);
-                dtpFechaCheckout.Value = dtpFechaCheckin.MinDate.AddDays(1);
+                dtpFechaCheckout.Value = dtpFechaCheckin.Value.AddDays(1);
             }
             
         }

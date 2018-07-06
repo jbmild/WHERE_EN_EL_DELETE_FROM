@@ -64,5 +64,17 @@ namespace FrbaHotel
             RegistrarConsumible.registrarConsumible consumible = new RegistrarConsumible.registrarConsumible();
             consumible.Show();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AbmCliente.ClienteFicha form = new AbmCliente.ClienteFicha();
+            form.Show();
+        }
+
     }
 }
