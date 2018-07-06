@@ -17,6 +17,8 @@ namespace FrbaHotel
 
         private SqlConnection miConexionSQL;
         private String miConnectionStringSQL;
+        public static String UsuarioLogeado;
+        public static String RolUsuarioLogeado;
 
         #region "Propiedades"
 
@@ -51,14 +53,25 @@ namespace FrbaHotel
 
             //miConnectionStringSQL = gd20;
             //miConnectionStringSQL = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
-            
+
             //miConexionSQL.ConnectionString = miConnectionStringSQL;
         }
 
-        public static String UsuarioLog(string Username, string UsernameLogeado)
+        public static void SetUsuarioLog(string Username)
         {
-            UsernameLogeado = Username;
-            return UsernameLogeado;      
+            UsuarioLogeado = Username;
+        }
+        public static void SetRolUsuarioLog(string Rol)
+        {
+            RolUsuarioLogeado = Rol;
+        }
+        public static String GetUsuarioLog()
+        {
+            return UsuarioLogeado;
+        }
+        public static String GetRolUsuarioLog()
+        {
+            return RolUsuarioLogeado;
         }
 
         public ConexionSQL(String _connectionString)

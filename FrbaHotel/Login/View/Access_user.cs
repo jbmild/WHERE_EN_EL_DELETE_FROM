@@ -98,8 +98,10 @@ namespace FrbaHotel.Login.View
                         }
                         else
                         {
+                            ConexionSQL.SetUsuarioLog(username);
                             ElegirRol.ElegirRol elegirRol = new ElegirRol.ElegirRol(username);
                             elegirRol.Show();
+
                         }
                     }
                     else
