@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
+using System.Configuration;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -181,12 +183,11 @@ namespace FrbaHotel.GenerarModificacionReserva
                 }
 
             }
-            else { 
-                    dtpFechaCheckin.MinDate = DateTime.Today;
-                    dtpFechaCheckout.MinDate = DateTime.Today.AddDays(1);
-
-                    dtpFechaCheckin.Value = DateTime.Today;
-                    dtpFechaCheckout.Value = DateTime.Today.AddDays(1);
+            else {
+                CultureInfo culture = new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]);
+                
+                dtpFechaCheckin.MinDate = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], culture);
+                dtpFechaCheckout.Value = dtpFechaCheckin.MinDate.AddDays(1);
             }
             
         }
@@ -254,6 +255,11 @@ namespace FrbaHotel.GenerarModificacionReserva
 
             }
             
+        }
+
+        private void dtpFechaCheckout_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

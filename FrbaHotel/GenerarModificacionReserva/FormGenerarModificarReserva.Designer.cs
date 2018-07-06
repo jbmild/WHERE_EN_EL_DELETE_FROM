@@ -164,6 +164,7 @@
             this.dtpFechaCheckout.Size = new System.Drawing.Size(155, 20);
             this.dtpFechaCheckout.TabIndex = 17;
             this.dtpFechaCheckout.Value = new System.DateTime(2018, 7, 1, 0, 0, 0, 0);
+            this.dtpFechaCheckout.ValueChanged += new System.EventHandler(this.dtpFechaCheckout_ValueChanged);
             // 
             // cmbHotel
             // 
