@@ -915,6 +915,6 @@ SELECT 'Listado Estadístico'
 
 
 insert into WHERE_EN_EL_DELETE_FROM.roles_permisos
-select 1, nombre from WHERE_EN_EL_DELETE_FROM.permisos
+select 1, permiso_id from WHERE_EN_EL_DELETE_FROM.permisos
 
 /* +++ END +++ Fill data */
