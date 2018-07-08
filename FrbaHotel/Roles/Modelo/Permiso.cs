@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.Roles.Modelo
 {
@@ -27,9 +29,15 @@ namespace FrbaHotel.Roles.Modelo
         {
             if (permisoId > 0)
             {
-                ConexionSQL conn = new ConexionSQL();
-                string sql = "SELECT permiso_id, nombre FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE permiso_id=" + permisoId.ToString();
-                DataTable dt = conn.cargarTablaSQL(sql);
+                List<SqlParameter> parametros = new List<SqlParameter>();
+
+                SqlParameter parametro = new SqlParameter("@permisoId", permisoId);
+                parametro.DbType = DbType.Int32;
+                parametros.Add(parametro);
+
+                string sql = "SELECT permiso_id, nombre FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE permiso_id=@permisoId";
+                DataTable dt = DBInterface.seleccionar(sql, parametros);
+
                 if (dt.Rows.Count == 1)
                 {
                     this.permiso_id = Convert.ToInt32(dt.Rows[0][0]);

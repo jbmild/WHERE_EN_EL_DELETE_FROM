@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.Roles.Modelo
 {
@@ -69,8 +71,16 @@ namespace FrbaHotel.Roles.Modelo
             if (rolId > 0)
             {
                 ConexionSQL conn = new ConexionSQL();
-                string sql = "SELECT rol_id, nombre, habilitado, esDefault FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE rol_id=" + rolId.ToString();
-                DataTable dt = conn.cargarTablaSQL(sql);
+
+                List<SqlParameter> parametros = new List<SqlParameter>();
+
+                SqlParameter parametro = new SqlParameter("@rolId", rolId);
+                parametro.DbType = DbType.Int32;
+                parametros.Add(parametro);
+
+                string sql = "SELECT rol_id, nombre, habilitado, esDefault FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE rol_id=@rolId";
+                DataTable dt = DBInterface.seleccionar(sql, parametros);
+
                 if (dt.Rows.Count == 1)
                 {
                     this.rol_id = Convert.ToInt32(dt.Rows[0][0]);
@@ -98,14 +108,34 @@ namespace FrbaHotel.Roles.Modelo
             List<KeyValuePair<string, string>> errores = new List<KeyValuePair<string, string>>();
             try
             {
-                ConexionSQL conn = new ConexionSQL();
-                string sql = "INSERT INTO WHERE_EN_EL_DELETE_FROM.roles (nombre, habilitado, esDefault) VALUES ('" + this.nombre + "', " + Convert.ToInt32(this.habilitado).ToString() + ", " + Convert.ToInt32(this.esDefault).ToString() + ")SELECT SCOPE_IDENTITY()";
-                int insertado = conn.insertarDatos(sql);
+                List<SqlParameter> parametros = new List<SqlParameter>();
+
+                SqlParameter parametro = new SqlParameter("@nombre", this.nombre);
+                parametro.DbType = DbType.String;
+                parametros.Add(parametro);
+
+                parametro = new SqlParameter("@habilitado", this.habilitado);
+                parametro.DbType = DbType.Boolean;
+                parametros.Add(parametro);
+
+                parametro = new SqlParameter("@esDefault", this.esDefault);
+                parametro.DbType = DbType.Boolean;
+                parametros.Add(parametro);
+
+                string sql = "INSERT INTO WHERE_EN_EL_DELETE_FROM.roles (nombre, habilitado, esDefault) VALUES (@nombre, @habilitado, @esDefault)";
+
+                int insertado = DBInterface.insertar(sql, parametros, true);
 
                 if (this.esDefault == true)
                 {
+                    parametros.Clear();
+
+                    parametro = new SqlParameter("@rolId", this.rol_id);
+                    parametro.DbType = DbType.Int32;
+                    parametros.Add(parametro);
+
                     sql = "UPDATE WHERE_EN_EL_DELETE_FROM.roles SET esDefault = 0 WHERE rol_id<>" + this.rol_id.ToString();
-                    conn.actualizarDatos(sql);
+                    DBInterface.actualizar(sql, parametros);
                 }
 
                 if (insertado == 0)
@@ -129,14 +159,31 @@ namespace FrbaHotel.Roles.Modelo
             List<KeyValuePair<string, string>> errores = new List<KeyValuePair<string, string>>();
             try
             {
-                ConexionSQL conn = new ConexionSQL();
-                string sql = "UPDATE WHERE_EN_EL_DELETE_FROM.Roles SET nombre='" + this.nombre + "',habilitado=" + Convert.ToInt32(this.habilitado).ToString() + ",esDefault=" + Convert.ToInt32(this.esDefault).ToString() + " WHERE rol_id=" + this.rol_id.ToString();
-                int modificado = conn.actualizarDatos(sql);
+                List<SqlParameter> parametros = new List<SqlParameter>();
+
+                SqlParameter parametro = new SqlParameter("@nombre", this.nombre);
+                parametro.DbType = DbType.String;
+                parametros.Add(parametro);
+
+                parametro = new SqlParameter("@habilitado", this.habilitado);
+                parametro.DbType = DbType.Boolean;
+                parametros.Add(parametro);
+
+                parametro = new SqlParameter("@esDefault", this.esDefault);
+                parametro.DbType = DbType.Boolean;
+                parametros.Add(parametro);
+
+                parametro = new SqlParameter("@rolId", this.rol_id);
+                parametro.DbType = DbType.Int32;
+                parametros.Add(parametro);
+
+                string sql = "UPDATE WHERE_EN_EL_DELETE_FROM.Roles SET nombre=@nombre, habilitado=@habilitado, esDefault=@esDefault WHERE rol_id=@rolId";
+                int modificado = DBInterface.actualizar(sql, parametros);
 
                 if (this.esDefault == true)
                 {
-                    sql = "UPDATE WHERE_EN_EL_DELETE_FROM.Roles SET esDefault = 0 WHERE rol_id<>" + this.rol_id.ToString();
-                    conn.actualizarDatos(sql);
+                    sql = "UPDATE WHERE_EN_EL_DELETE_FROM.Roles SET esDefault = 0 WHERE rol_id<>@rolId";
+                    DBInterface.actualizar(sql, parametros);
                 }
 
                 if (modificado == 0)
@@ -164,9 +211,15 @@ namespace FrbaHotel.Roles.Modelo
             {
                 if (this.rol_id > 0)
                 {
-                    ConexionSQL conn = new ConexionSQL();
-                    string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE rol_id=" + this.rol_id.ToString();
-                    DataTable dt = conn.cargarTablaSQL(sql);
+                    List<SqlParameter> parametros = new List<SqlParameter>();
+
+                    SqlParameter parametro = new SqlParameter("@rolId", this.rol_id);
+                    parametro.DbType = DbType.Int32;
+                    parametros.Add(parametro);
+
+                    string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE rol_id=@rolId";
+                    DataTable dt = DBInterface.seleccionar(sql, parametros);
+
                     if (dt.Rows.Count == 1)
                     {
                         errores = errores.Concat(this.actualizar()).ToList();
@@ -199,9 +252,19 @@ namespace FrbaHotel.Roles.Modelo
             }
             else
             {
-                ConexionSQL conn = new ConexionSQL();
-                string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE nombre='" + this.nombre+"' AND rol_id<>" + this.rol_id.ToString();
-                DataTable dt = conn.cargarTablaSQL(sql);
+                List<SqlParameter> parametros = new List<SqlParameter>();
+
+                SqlParameter parametro = new SqlParameter("@nombre", this.nombre);
+                parametro.DbType = DbType.String;
+                parametros.Add(parametro);
+
+                parametro = new SqlParameter("@rolId", this.rol_id);
+                parametro.DbType = DbType.Int32;
+                parametros.Add(parametro);
+
+                string sql = "SELECT rol_id FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE nombre=@nombre AND rol_id<>@rolId";
+                DataTable dt = DBInterface.seleccionar(sql, parametros);
+
                 if (dt.Rows.Count > 0)
                 {
                     errores.Add(new KeyValuePair<string, string>("nombre", "El nombre ya se encuentra en uso."));

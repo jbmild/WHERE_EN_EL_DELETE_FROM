@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.Roles.Modelo
 {
@@ -13,12 +15,16 @@ namespace FrbaHotel.Roles.Modelo
         {
             if (rolId > 0)
             {
+                List<SqlParameter> parametros = new List<SqlParameter>();
+
+                SqlParameter parametro = new SqlParameter("@rolId", rolId);
+                parametro.DbType = DbType.Int32;
+                parametros.Add(parametro);
+
+                string sql = "SELECT p.permiso_id, p.nombre FROM WHERE_EN_EL_DELETE_FROM.roles_permisos rp INNER JOIN WHERE_EN_EL_DELETE_FROM.permisos p ON p.permiso_id=rp.permiso_id WHERE rp.rol_id=@rolId";
+                DataTable dt = DBInterface.seleccionar(sql, parametros);
+
                 List<Permiso> permisos = new List<Permiso>();
-
-                ConexionSQL conn = new ConexionSQL();
-                string sqlQuery = "SELECT p.permiso_id, p.nombre FROM WHERE_EN_EL_DELETE_FROM.roles_permisos rp INNER JOIN WHERE_EN_EL_DELETE_FROM.permisos p ON p.permiso_id=rp.permiso_id WHERE rp.rol_id="+rolId.ToString();
-                DataTable dt = conn.cargarTablaSQL(sqlQuery);
-
                 foreach(DataRow fila in dt.Rows){
                     permisos.Add(new Permiso(Convert.ToInt32(fila[0]), fila[1].ToString()));
                 }
@@ -30,12 +36,16 @@ namespace FrbaHotel.Roles.Modelo
         }
         public static List<Permiso> obtenerPermisosRestringidosPorRol(int rolId)
         {
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
+            SqlParameter parametro = new SqlParameter("@rolId", rolId);
+            parametro.DbType = DbType.Int32;
+            parametros.Add(parametro);
+
+            string sql = "SELECT permiso_id, nombre FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE permiso_id NOT IN (SELECT permiso_id FROM WHERE_EN_EL_DELETE_FROM.roles_permisos WHERE rol_id=@rolId)";
+            DataTable dt = DBInterface.seleccionar(sql, parametros);
+
             List<Permiso> permisos = new List<Permiso>();
-
-            ConexionSQL conn = new ConexionSQL();
-            string sqlQuery = "SELECT permiso_id, nombre FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE permiso_id NOT IN (SELECT permiso_id FROM WHERE_EN_EL_DELETE_FROM.roles_permisos WHERE rol_id=" + rolId.ToString() + ")";
-            DataTable dt = conn.cargarTablaSQL(sqlQuery);
-
             foreach (DataRow fila in dt.Rows)
             {
                 permisos.Add(new Permiso(Convert.ToInt32(fila[0]), fila[1].ToString()));
@@ -50,9 +60,14 @@ namespace FrbaHotel.Roles.Modelo
 
             if (rol.RolId > 0)
             {
-                ConexionSQL conn = new ConexionSQL();
-                string sql = "DELETE FROM WHERE_EN_EL_DELETE_FROM.roles_permisos WHERE rol_id=" + rol.RolId.ToString();
-                conn.ejecutarComandoSQL(sql);
+                List<SqlParameter> parametros = new List<SqlParameter>();
+
+                SqlParameter parametro = new SqlParameter("@rolId", rol.RolId);
+                parametro.DbType = DbType.Int32;
+                parametros.Add(parametro);
+
+                string sql = "DELETE FROM WHERE_EN_EL_DELETE_FROM.roles_permisos WHERE rol_id=@rolId";
+                DBInterface.borrar(sql, parametros);
 
                 foreach (Permiso permiso in rol.PermisosDados)
                 {
