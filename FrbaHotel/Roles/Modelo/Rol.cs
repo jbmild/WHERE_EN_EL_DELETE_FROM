@@ -207,6 +207,8 @@ namespace FrbaHotel.Roles.Modelo
         {
             List<KeyValuePair<string, string>> errores = this.validar();
 
+            DBInterface.transaccionIniciar();
+
             if (errores.Count == 0)
             {
                 if (this.rol_id > 0)
@@ -223,6 +225,7 @@ namespace FrbaHotel.Roles.Modelo
                     if (dt.Rows.Count == 1)
                     {
                         errores = errores.Concat(this.actualizar()).ToList();
+                        errores.Concat(RolesPermisos.actualizarPermisos(this)).ToList();
                     }
                     else
                     {
@@ -237,6 +240,15 @@ namespace FrbaHotel.Roles.Modelo
                         errores = errores.Concat(RolesPermisos.actualizarPermisos(this)).ToList();
                     }
                 }
+            }
+
+            if (errores.Count == 0)
+            {
+                DBInterface.transaccionComitear();
+            }
+            else
+            {
+                DBInterface.transaccionRevertir();
             }
 
             return errores;

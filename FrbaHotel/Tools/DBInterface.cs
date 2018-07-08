@@ -146,6 +146,12 @@ namespace FrbaHotel.Tools
 
                 SqlCommand comando = new SqlCommand(string.Format(sql), conexion);
                 comando.CommandType = CommandType.Text;
+
+                if (transaccion != null)
+                {
+                    comando.Transaction = transaccion;
+                }
+
                 if (getId)
                 {
                     return Convert.ToInt32(comando.ExecuteScalar());
@@ -176,9 +182,15 @@ namespace FrbaHotel.Tools
 
                 SqlCommand comando = new SqlCommand(string.Format(sql), conexion);
                 comando.CommandType = CommandType.Text;
+
                 foreach (SqlParameter parametro in parametros)
                 {
                     comando.Parameters.Add(parametro);
+                }
+
+                if (transaccion != null)
+                {
+                    comando.Transaction = transaccion;
                 }
 
                 if (getId)
@@ -209,6 +221,11 @@ namespace FrbaHotel.Tools
                 SqlCommand comando = new SqlCommand(string.Format(sql), conexion);
                 comando.CommandType = CommandType.Text;
 
+                if (transaccion != null)
+                {
+                    comando.Transaction = transaccion;
+                }
+
                 return comando.ExecuteNonQuery();
             }
             catch (Exception)
@@ -227,9 +244,15 @@ namespace FrbaHotel.Tools
 
                 SqlCommand comando = new SqlCommand(string.Format(sql), conexion);
                 comando.CommandType = CommandType.Text;
+
                 foreach (SqlParameter parametro in parametros)
                 {
                     comando.Parameters.Add(parametro);
+                }
+
+                if (transaccion != null)
+                {
+                    comando.Transaction = transaccion;
                 }
 
                 return comando.ExecuteNonQuery();
@@ -253,6 +276,11 @@ namespace FrbaHotel.Tools
                 SqlCommand comando = new SqlCommand(string.Format(sql), conexion);
                 comando.CommandType = CommandType.Text;
 
+                if (transaccion != null)
+                {
+                    comando.Transaction = transaccion;
+                }
+
                 return comando.ExecuteNonQuery();
             }
             catch (Exception)
@@ -271,9 +299,15 @@ namespace FrbaHotel.Tools
 
                 SqlCommand comando = new SqlCommand(string.Format(sql), conexion);
                 comando.CommandType = CommandType.Text;
+
                 foreach (SqlParameter parametro in parametros)
                 {
                     comando.Parameters.Add(parametro);
+                }
+
+                if (transaccion != null)
+                {
+                    comando.Transaction = transaccion;
                 }
 
                 return comando.ExecuteNonQuery();
@@ -294,6 +328,12 @@ namespace FrbaHotel.Tools
 
                 SqlCommand comando = new SqlCommand(string.Format(sql), conexion);
                 comando.CommandType = CommandType.Text;
+
+                if (transaccion != null)
+                {
+                    comando.Transaction = transaccion;
+                }
+
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(comando);
 
                 DataTable data = new DataTable();
@@ -316,10 +356,17 @@ namespace FrbaHotel.Tools
 
                 SqlCommand comando = new SqlCommand(string.Format(sql), conexion);
                 comando.CommandType = CommandType.Text;
+
                 foreach (SqlParameter parametro in parametros)
                 {
                     comando.Parameters.Add(parametro);
                 }
+
+                if (transaccion != null)
+                {
+                    comando.Transaction = transaccion;
+                }
+
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(comando);
 
                 DataTable data = new DataTable();
