@@ -53,7 +53,7 @@ namespace FrbaHotel
             {
                 switch ( p.PermisoId) {
 
-                    case 1: btn1.Visible = true;
+                    case 1: btnRoles.Visible = true;
                         break;
                     case 2: btn2.Visible = true;
                         break;
@@ -80,6 +80,12 @@ namespace FrbaHotel
                 }
             }
                
+        }
+
+        private void btnRoles_Click(object sender, EventArgs e)
+        {
+            Roles.frmRolesListado frmListado = new Roles.frmRolesListado();
+            frmListado.Show();
         }
     }
 }
