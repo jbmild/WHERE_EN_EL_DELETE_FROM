@@ -29,5 +29,11 @@ namespace FrbaHotel
         {
             this.labelhotel.Text = nombrehotel;
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            AbmHabitacion.modificarHabitacion habitaciones = new AbmHabitacion.modificarHabitacion();
+            habitaciones.Show();
+        }
     }
 }
