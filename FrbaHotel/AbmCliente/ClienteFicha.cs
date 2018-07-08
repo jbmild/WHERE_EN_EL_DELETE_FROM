@@ -20,6 +20,19 @@ namespace FrbaHotel.AbmCliente
         private string _idTipoDocumento;
         private string _nroDocumento;
         private string _email;
+        private bool _returnToCheckInFunctionality = false;
+
+        public ClienteFicha(bool returnToCheckInFunctionality) {
+            _returnToCheckInFunctionality = returnToCheckInFunctionality;
+            _cli = new Cliente(0);
+            InitializeComponent();
+        }
+
+
+        public ClienteFicha(Cliente cli) {
+            _cli = cli;
+            InitializeComponent();
+        }
 
         public ClienteFicha()
         {
@@ -120,12 +133,15 @@ namespace FrbaHotel.AbmCliente
                     bool datosDuplicados = _cli.existeClientePorDatosUnicos();
                     if (!datosDuplicados)
                     {
-                        int resultGuardarCliente = _cli.guardarCliente(_cli);
+                        int idCliente = _cli.guardarCliente(_cli);
 
-                        if (resultGuardarCliente != 0)
+                        if (idCliente != 0)
                         {
                             System.Windows.Forms.MessageBox.Show("El cliente ha sido guardado exitosamente. ");
                             this.Close();
+                            if (_returnToCheckInFunctionality) { 
+                                //TODO: @Juanma: volver a pantalla de checkin, devolver variable idCliente
+                            }
                         }
                         else
                         {

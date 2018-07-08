@@ -110,8 +110,53 @@ namespace FrbaHotel.Modelo
 
 
         //Constructores
-        public Cliente(int id) { 
-            _idCliente = id;
+        public Cliente(int id) {
+            if (id != 0)
+            {
+                ConexionSQL conn = new ConexionSQL();
+
+                string sqlQuery = @"SELECT * FROM WHERE_EN_EL_DELETE_FROM.Clientes WHERE cliente_id=" + id;
+
+                DataTable dt = conn.cargarTablaSQL(sqlQuery);
+
+                if (dt.Rows.Count > 0)
+                {
+                    object[] row = dt.Rows[0].ItemArray;
+                     _idCliente = Convert.ToInt32(row[0]);
+                    _habilitado = Convert.ToBoolean(row[2]);  //habilitado
+                    _email = row[3].ToString();
+                    _nombre = row[4].ToString();
+                    _apellido = row[5].ToString();
+                    _telefono = row[6].ToString();
+                    _tipoDocumento = row[7].ToString();
+                    _nrodocumento = row[8].ToString();
+                    _direccion_calle = row[9].ToString();
+                    _direccion_numero = row[10].ToString();
+                    _direccion_piso = row[11].ToString();
+                    _direccion_depto = row[12].ToString();
+                    _direccion_localidad = row[13].ToString();
+                    _direccion_pais = row[14].ToString();
+                    _nacionalidad = row[15].ToString();
+                }
+            }
+            else {
+                _idCliente = 0;
+                _habilitado = true;
+                _email = "";
+                _nombre = "";
+                _apellido = "";
+                _telefono = "";
+                _tipoDocumento = "";
+                _nrodocumento = "";
+                _direccion_calle = "";
+                _direccion_numero = "";
+                _direccion_piso = "";
+                _direccion_depto = "";
+                _direccion_localidad = "";
+                _direccion_pais = "";
+                _nacionalidad = "";
+            }
+            
         }
 
         public Cliente(int id, bool habilitado, string email, string nombre, string apellido, string telefono, string tipoDoc, string nro_documento, 
@@ -172,7 +217,8 @@ namespace FrbaHotel.Modelo
         
         }
 
-        public Cliente getClienteByTipoNroDocEmail(string tipoDoc, string nroDoc, string email){
+        public Cliente getClienteByTipoNroDocEmail(string tipoDoc, string nroDoc, string email, string nombre, string apellido)
+        {
             ConexionSQL conn = new ConexionSQL();
 
             string sqlQuery = "select * from WHERE_EN_EL_DELETE_FROM.Clientes cli WHERE 1=1 ";
@@ -181,12 +227,20 @@ namespace FrbaHotel.Modelo
                 sqlQuery += "AND documento_tipo='" + tipoDoc + "' ";
             }
 
-            if(nroDoc.Length > 0 || nroDoc.Length > 0){
+            if(nroDoc.Length > 0){
                 sqlQuery+= " AND documento_nro='" + nroDoc + "' ";
             }
 
-            if(email.Length > 0 || email.Length > 0){
+            if(email.Length > 0){
                 sqlQuery += " AND mail='" + email + "' ";
+            }
+
+            if (nombre.Length > 0) {
+                sqlQuery += " AND nombre like '" + nombre + "%' ";
+            }
+
+            if (apellido.Length > 0) {
+                sqlQuery += " AND apellido like '" + apellido + "%' ";
             }
             
             DataTable dt = conn.cargarTablaSQL(sqlQuery);            
@@ -215,6 +269,43 @@ namespace FrbaHotel.Modelo
                 return new Cliente(0);
             }
             
+        }
+
+        public DataTable getClientes(string tipoDoc, string nroDoc, string email, string nombre, string apellido)
+        {
+            ConexionSQL conn = new ConexionSQL();
+
+            string sqlQuery = "select * from WHERE_EN_EL_DELETE_FROM.Clientes cli WHERE 1=1 ";
+
+            if (tipoDoc.Length > 0)
+            {
+                sqlQuery += "AND documento_tipo='" + tipoDoc + "' ";
+            }
+
+            if (nroDoc.Length > 0)
+            {
+                sqlQuery += " AND documento_nro='" + nroDoc + "' ";
+            }
+
+            if (email.Length > 0)
+            {
+                sqlQuery += " AND mail='" + email + "' ";
+            }
+
+            if (nombre.Length > 0)
+            {
+                sqlQuery += " AND nombre like '" + nombre + "%' ";
+            }
+
+            if (apellido.Length > 0)
+            {
+                sqlQuery += " AND apellido like '" + apellido + "%' ";
+            }
+
+            DataTable dt = conn.cargarTablaSQL(sqlQuery);
+
+            return dt;
+
         }
 
         public int guardarCliente(Cliente cli) {

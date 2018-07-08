@@ -20,21 +20,21 @@ namespace FrbaHotel.AbmCliente
 
         private void frmRolesGrid_Load(object sender, EventArgs e)
         {
-            this.cmbHabilitado.SelectedIndex = 2;
-            //this.LoadGrid(Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex - 1));
+            Cliente cli = new Cliente();
+            this.LoadGrid(cli.getClientes("", "", "", "", ""));
             
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             this.txtNombre.Text = "";
-            this.cmbHabilitado.SelectedIndex = 2;
             this.btnBuscar_Click(sender, e);
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            //this.LoadGrid(Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex-1));
+            Cliente cli = new Cliente();
+            this.LoadGrid(cli.getClientes(cmbTipoDoc.SelectedText, txtNroDoc.Text, txtEmail.Text, txtNombre.Text, txtApellido.Text));
         }
 
         public void LoadGrid(DataTable dt)
@@ -46,9 +46,8 @@ namespace FrbaHotel.AbmCliente
                 this.dgwRoles.Columns.Clear();
 
                 DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
-                id.HeaderText = "Id";
-                id.DataPropertyName = "rol_id";
-                id.ReadOnly = true;
+                id.HeaderText = "ID";
+                id.DataPropertyName = "cliente_id";
                 id.Visible = false;
                 this.dgwRoles.Columns.Add(id);
 
@@ -58,13 +57,29 @@ namespace FrbaHotel.AbmCliente
                 nombre.ReadOnly = true;
                 this.dgwRoles.Columns.Add(nombre);
 
-                DataGridViewCheckBoxColumn habilitado = new DataGridViewCheckBoxColumn();
-                habilitado.HeaderText = "Habilitado";
-                habilitado.DataPropertyName = "habilitado";
-                habilitado.ReadOnly = true;
-                habilitado.FalseValue = "0";
-                habilitado.TrueValue = "1";
-                this.dgwRoles.Columns.Add(habilitado);
+                DataGridViewTextBoxColumn apellido = new DataGridViewTextBoxColumn();
+                apellido.HeaderText = "Apellido";
+                apellido.DataPropertyName = "apellido";
+                apellido.ReadOnly = true;
+                this.dgwRoles.Columns.Add(apellido);
+
+                DataGridViewTextBoxColumn tipoDoc = new DataGridViewTextBoxColumn();
+                tipoDoc.HeaderText = "Tipo Identificación";
+                tipoDoc.DataPropertyName = "documento_tipo";
+                tipoDoc.ReadOnly = true;
+                this.dgwRoles.Columns.Add(tipoDoc);
+
+                DataGridViewTextBoxColumn nroDoc = new DataGridViewTextBoxColumn();
+                nroDoc.HeaderText = "Nro Identificación";
+                nroDoc.DataPropertyName = "documento_nro";
+                nroDoc.ReadOnly = true;
+                this.dgwRoles.Columns.Add(nroDoc);
+
+                DataGridViewTextBoxColumn email = new DataGridViewTextBoxColumn();
+                email.HeaderText = "Email";
+                email.DataPropertyName = "mail";
+                email.ReadOnly = true;
+                this.dgwRoles.Columns.Add(email);
 
                 DataGridViewTextBoxColumn modificar = new DataGridViewTextBoxColumn();
                 modificar.HeaderText = "Modificar";
@@ -88,27 +103,27 @@ namespace FrbaHotel.AbmCliente
                 switch (this.dgwRoles.CurrentCell.ColumnIndex)
                 {
                     case 3:
-                        this.modificarRol((int)this.dgwRoles.Rows[e.RowIndex].Cells[0].Value);
+                        this.modificarCliente((int)this.dgwRoles.Rows[e.RowIndex].Cells[0].Value);
                         break;
                     case 4:
-                        this.deleteRol((int)this.dgwRoles.Rows[e.RowIndex].Cells[0].Value, this.dgwRoles.Rows[e.RowIndex].Cells[1].Value.ToString());
+                        this.deleteCliente((int)this.dgwRoles.Rows[e.RowIndex].Cells[0].Value, 
+                                        this.dgwRoles.Rows[e.RowIndex].Cells[1].Value.ToString() + " " +
+                                        this.dgwRoles.Rows[e.RowIndex].Cells[2].Value.ToString());
                         break;
 
                 }
             }
         }
 
-        private void modificarRol(int rolId)
+        private void modificarCliente(int clienteId)
         {
-            /*
-            Rol rol = new Rol(rolId);
-            Roles.frmRolesFicha frmFicha = new Roles.frmRolesFicha(rol);
-            frmFicha.FormClosed += new FormClosedEventHandler(frmRolesFicha_Closed);
+            Cliente cli = new Cliente(clienteId);
+            AbmCliente.ClienteFicha frmFicha = new ClienteFicha(clienteId);
+            frmFicha.FormClosed += new FormClosedEventHandler(frmClientesFicha_Closed);
             frmFicha.Show();
-             * */
         }
 
-        private void deleteRol(int rolId, string name)
+        private void deleteCliente(int rolId, string name)
         {
             /*
             var confirmResult = MessageBox.Show(String.Concat("Esta seguro que desea eliminar logicamente el rol '", name, "'?"), "Confirmar eliminacion logica", MessageBoxButtons.YesNo);
@@ -142,17 +157,18 @@ namespace FrbaHotel.AbmCliente
 
         private void btnAlta_Click(object sender, EventArgs e)
         {
-            /*Rol rol = new Rol(0);
-            Roles.frmRolesFicha frmFicha = new Roles.frmRolesFicha(rol);
-            frmFicha.FormClosed += new FormClosedEventHandler(frmRolesFicha_Closed);
+            Cliente cli = new Cliente(0);
+            ClienteFicha frmFicha = new ClienteFicha(cli);
+            frmFicha.FormClosed += new FormClosedEventHandler(frmClientesFicha_Closed);
             frmFicha.Show();
-            */             
+                        
         }
 
 
-        private void frmRolesFicha_Closed(object sender, FormClosedEventArgs e)
+        private void frmClientesFicha_Closed(object sender, FormClosedEventArgs e)
         {
-            //this.LoadGrid(Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex - 1));
+            Cliente cli = new Cliente();
+            this.LoadGrid(cli.getClientes("", "", "", "", ""));
         }
     }
 }
