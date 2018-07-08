@@ -20,7 +20,7 @@ namespace FrbaHotel.Roles
 
         private void frmRolesGrid_Load(object sender, EventArgs e)
         {
-            this.cmbHabilitado.SelectedIndex = 2;
+            this.cmbHabilitado.SelectedIndex = 0;
             this.LoadGrid(Modelo.Roles.obtener(txtNombre.Text, cmbHabilitado.SelectedIndex - 1));
             
         }
@@ -28,7 +28,7 @@ namespace FrbaHotel.Roles
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             this.txtNombre.Text = "";
-            this.cmbHabilitado.SelectedIndex = 2;
+            this.cmbHabilitado.SelectedIndex = 0;
             this.btnBuscar_Click(sender, e);
         }
 

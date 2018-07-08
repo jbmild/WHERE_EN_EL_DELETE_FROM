@@ -110,8 +110,53 @@ namespace FrbaHotel.Modelo
 
 
         //Constructores
-        public Cliente(int id) { 
-            _idCliente = id;
+        public Cliente(int id) {
+            if (id != 0)
+            {
+                ConexionSQL conn = new ConexionSQL();
+
+                string sqlQuery = @"SELECT * FROM WHERE_EN_EL_DELETE_FROM.Clientes WHERE cliente_id=" + id;
+
+                DataTable dt = conn.cargarTablaSQL(sqlQuery);
+
+                if (dt.Rows.Count > 0)
+                {
+                    object[] row = dt.Rows[0].ItemArray;
+                     _idCliente = Convert.ToInt32(row[0]);
+                    _habilitado = Convert.ToBoolean(row[2]);  //habilitado
+                    _email = row[3].ToString();
+                    _nombre = row[4].ToString();
+                    _apellido = row[5].ToString();
+                    _telefono = row[6].ToString();
+                    _tipoDocumento = row[7].ToString();
+                    _nrodocumento = row[8].ToString();
+                    _direccion_calle = row[9].ToString();
+                    _direccion_numero = row[10].ToString();
+                    _direccion_piso = row[11].ToString();
+                    _direccion_depto = row[12].ToString();
+                    _direccion_localidad = row[13].ToString();
+                    _direccion_pais = row[14].ToString();
+                    _nacionalidad = row[15].ToString();
+                }
+            }
+            else {
+                _idCliente = 0;
+                _habilitado = true;
+                _email = "";
+                _nombre = "";
+                _apellido = "";
+                _telefono = "";
+                _tipoDocumento = "";
+                _nrodocumento = "";
+                _direccion_calle = "";
+                _direccion_numero = "";
+                _direccion_piso = "";
+                _direccion_depto = "";
+                _direccion_localidad = "";
+                _direccion_pais = "";
+                _nacionalidad = "";
+            }
+            
         }
 
         public Cliente(int id, bool habilitado, string email, string nombre, string apellido, string telefono, string tipoDoc, string nro_documento, 
@@ -172,7 +217,8 @@ namespace FrbaHotel.Modelo
         
         }
 
-        public Cliente getClienteByTipoNroDocEmail(string tipoDoc, string nroDoc, string email){
+        public Cliente getClienteByTipoNroDocEmail(string tipoDoc, string nroDoc, string email, string nombre, string apellido)
+        {
             ConexionSQL conn = new ConexionSQL();
 
             string sqlQuery = "select * from WHERE_EN_EL_DELETE_FROM.Clientes cli WHERE 1=1 ";
@@ -181,12 +227,20 @@ namespace FrbaHotel.Modelo
                 sqlQuery += "AND documento_tipo='" + tipoDoc + "' ";
             }
 
-            if(nroDoc.Length > 0 || nroDoc.Length > 0){
+            if(nroDoc.Length > 0){
                 sqlQuery+= " AND documento_nro='" + nroDoc + "' ";
             }
 
-            if(email.Length > 0 || email.Length > 0){
+            if(email.Length > 0){
                 sqlQuery += " AND mail='" + email + "' ";
+            }
+
+            if (nombre.Length > 0) {
+                sqlQuery += " AND nombre like '" + nombre + "%' ";
+            }
+
+            if (apellido.Length > 0) {
+                sqlQuery += " AND apellido like '" + apellido + "%' ";
             }
             
             DataTable dt = conn.cargarTablaSQL(sqlQuery);            
@@ -217,6 +271,43 @@ namespace FrbaHotel.Modelo
             
         }
 
+        public DataTable getClientes(string tipoDoc, string nroDoc, string email, string nombre, string apellido)
+        {
+            ConexionSQL conn = new ConexionSQL();
+
+            string sqlQuery = "select cliente_id, CASE WHEN habilitado = 1 THEN 'SI' ELSE 'NO' END As EstaHabilitado, habilitado, nombre, apellido, documento_tipo, documento_nro, mail from WHERE_EN_EL_DELETE_FROM.Clientes cli WHERE 1=1 ";
+
+            if (tipoDoc.Length > 0)
+            {
+                sqlQuery += "AND documento_tipo='" + tipoDoc + "' ";
+            }
+
+            if (nroDoc.Length > 0)
+            {
+                sqlQuery += " AND documento_nro='" + nroDoc + "' ";
+            }
+
+            if (email.Length > 0)
+            {
+                sqlQuery += " AND mail='" + email + "' ";
+            }
+
+            if (nombre.Length > 0)
+            {
+                sqlQuery += " AND nombre like '" + nombre + "%' ";
+            }
+
+            if (apellido.Length > 0)
+            {
+                sqlQuery += " AND apellido like '" + apellido + "%' ";
+            }
+
+            DataTable dt = conn.cargarTablaSQL(sqlQuery);
+
+            return dt;
+
+        }
+
         public int guardarCliente(Cliente cli) {
 
             SqlCommand command;
@@ -225,7 +316,8 @@ namespace FrbaHotel.Modelo
 
             if (cli.idCliente != 0)
             {
-                command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
+                command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET
+                                                habilitado=@habilitado, 
                                                 mail=@mail,nombre=@nombre,apellido=@apellido,telefono=@telefono,
                                                 documento_tipo=@tipoDoc,
                                                 documento_nro=@nrodocumento,direccion_calle=@direccion_calle,
@@ -245,6 +337,7 @@ namespace FrbaHotel.Modelo
 
             command.Connection = ConexionSQL.obtenerConexion();
             command.Parameters.Add("@usuario_id", SqlDbType.Int).Value = usuario_id;
+            command.Parameters.Add("@habilitado", SqlDbType.Bit).Value = cli.habilitado;
             command.Parameters.Add("@mail", SqlDbType.NVarChar).Value = cli.email;
             command.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = cli.nombre;
             command.Parameters.Add("@apellido", SqlDbType.NVarChar).Value = cli.apellido;
@@ -276,6 +369,26 @@ namespace FrbaHotel.Modelo
             
             DataTable dt = conn.cargarTablaSQL(query);
             return (dt.Rows.Count > 0);
+
+        }
+
+        public List<KeyValuePair<string, string>> eliminar() {
+
+            ConexionSQL conn = new ConexionSQL();
+            List<KeyValuePair<string, string>> errores = new List<KeyValuePair<string, string>>();
+
+            string query = @"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET habilitado = 0 WHERE cliente_id=" + _idCliente;
+            DataTable dt = conn.cargarTablaSQL(query);
+            try
+            {
+                conn.actualizarDatos(query);
+            }
+            catch (Exception e)
+            {
+                errores.Add(new KeyValuePair<string, string>("general", e.Message));
+            }
+
+            return errores;
 
         }
     }

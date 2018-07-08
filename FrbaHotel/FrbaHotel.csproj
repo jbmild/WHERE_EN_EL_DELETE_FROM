@@ -51,6 +51,12 @@
     <Compile Include="AbmCliente\ClienteFicha.Designer.cs">
       <DependentUpon>ClienteFicha.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmCliente\frmClientesListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmCliente\frmClientesListado.Designer.cs">
+      <DependentUpon>frmClientesListado.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmHabitacion\abmHabitacionBotones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -321,10 +327,14 @@
     <Compile Include="Roles\Modelo\Roles.cs" />
     <Compile Include="Roles\Modelo\RolesPermisos.cs" />
     <Compile Include="Roles\Modelo\RolPermiso.cs" />
+    <Compile Include="Tools\DBInterface.cs" />
     <Compile Include="Tools\RegexUtilities.cs" />
     <Compile Include="Tools\Option.cs" />
     <EmbeddedResource Include="AbmCliente\ClienteFicha.resx">
       <DependentUpon>ClienteFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmCliente\frmClientesListado.resx">
+      <DependentUpon>frmClientesListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\abmHabitacionBotones.resx">
       <DependentUpon>abmHabitacionBotones.cs</DependentUpon>

@@ -33,7 +33,7 @@ namespace FrbaHotel.Roles
                 btnLimpiar.Text = "Limpiar";
 
                 txtNombre.Text = "";
-                chkHabilitado.Checked = false;
+                chkHabilitado.Checked = true;
 
                 lbxConcedidos.Items.Clear();
                 lbxDenegados.Items.Clear();

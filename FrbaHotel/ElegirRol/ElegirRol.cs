@@ -128,6 +128,7 @@ namespace FrbaHotel.ElegirRol
 
             FuncionesAdmin pantallaAdmin = new FuncionesAdmin();
             pantallaAdmin.HabilitarBotones(user.GetRol());
+            pantallaAdmin.Show();
             //if (user.GetRol().Equals(1))
             //{
             //    FuncionesAdmin pantallaAdmin = new FuncionesAdmin();

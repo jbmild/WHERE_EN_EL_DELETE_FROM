@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.Roles.Modelo
 {
@@ -20,20 +21,31 @@ namespace FrbaHotel.Roles.Modelo
 
         public static DataTable obtener(string nombre, int habilitado)
         {
-            ConexionSQL conn = new ConexionSQL();
+            List<SqlParameter> parametros = new List<SqlParameter>();
+
             string sql = "SELECT rol_id, nombre, habilitado FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE 1=1";
+
+            SqlParameter parametro;
 
             if (nombre.Length > 0)
             {
-                sql = String.Concat(sql, " AND nombre like '%", nombre, "%'");
+                parametro = new SqlParameter("@nombre", "%" + nombre + "%");
+                parametro.DbType = DbType.String;
+                parametros.Add(parametro);
+
+                sql = String.Concat(sql, " AND nombre like @nombre");
             }
 
             if (habilitado != -1)
             {
-                sql = String.Concat(sql, " AND habilitado=", habilitado);
+                parametro = new SqlParameter("@habilitado", habilitado);
+                parametro.DbType = DbType.Int32;
+                parametros.Add(parametro);
+
+                sql = String.Concat(sql, " AND habilitado=@habilitado");
             }
 
-            DataTable dt = conn.cargarTablaSQL(sql);
+            DataTable dt = DBInterface.seleccionar(sql, parametros);
             return dt;
         }
     }

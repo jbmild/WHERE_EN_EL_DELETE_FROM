@@ -39,10 +39,10 @@
             this.btnDenegar = new System.Windows.Forms.Button();
             this.btnConceder = new System.Windows.Forms.Button();
             this.gbxGeneral = new System.Windows.Forms.GroupBox();
+            this.lblErrorNombre = new System.Windows.Forms.Label();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.lblErrorNombre = new System.Windows.Forms.Label();
             this.lblErrorGeneral = new System.Windows.Forms.Label();
             this.gbxPermisos.SuspendLayout();
             this.gbxGeneral.SuspendLayout();
@@ -160,6 +160,17 @@
             this.gbxGeneral.TabStop = false;
             this.gbxGeneral.Text = "Datos generales";
             // 
+            // lblErrorNombre
+            // 
+            this.lblErrorNombre.AutoSize = true;
+            this.lblErrorNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblErrorNombre.ForeColor = System.Drawing.Color.Red;
+            this.lblErrorNombre.Location = new System.Drawing.Point(333, 38);
+            this.lblErrorNombre.Name = "lblErrorNombre";
+            this.lblErrorNombre.Size = new System.Drawing.Size(0, 25);
+            this.lblErrorNombre.TabIndex = 19;
+            this.lblErrorNombre.Visible = false;
+            // 
             // lblTitulo
             // 
             this.lblTitulo.AutoSize = true;
@@ -189,17 +200,6 @@
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // lblErrorNombre
-            // 
-            this.lblErrorNombre.AutoSize = true;
-            this.lblErrorNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblErrorNombre.ForeColor = System.Drawing.Color.Red;
-            this.lblErrorNombre.Location = new System.Drawing.Point(333, 38);
-            this.lblErrorNombre.Name = "lblErrorNombre";
-            this.lblErrorNombre.Size = new System.Drawing.Size(0, 25);
-            this.lblErrorNombre.TabIndex = 19;
-            this.lblErrorNombre.Visible = false;
             // 
             // lblErrorGeneral
             // 
