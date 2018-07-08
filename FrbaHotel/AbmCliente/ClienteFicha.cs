@@ -64,21 +64,19 @@ namespace FrbaHotel.AbmCliente
             //Lleno combo de tipo de documento
             cmbTiposDocumentos.Items.Add("DNI");
             cmbTiposDocumentos.Items.Add("Pasaporte");
-            
-            
-            //_cli = _cli.getClienteByTipoNroDocEmail(_idTipoDocumento, _nroDocumento, _email);
 
- 
+
             if (_cli.idCliente == 0) // es cliente nuevo
             {
-                lblMensajeLoginORegister.Text = "Usted no está registrado aún como cliente. Complete sus datos: ";
+                lblMensajeLoginORegister.Text = "Complete sus datos: ";
                 txtMail.Text = _email;
                 cmbTiposDocumentos.SelectedValue = _idTipoDocumento;
                 txtNroDocumento.Text = _nroDocumento;
             }
-            else { 
+            else
+            {
                 //prepopular campos con objeto cli
-                lblMensajeLoginORegister.Text = "Usted ya es cliente del hotel. Modifique sus datos a continuacion.";
+                lblMensajeLoginORegister.Text = "Modifique los datos del cliente a continuación.";
 
                 cmbTiposDocumentos.Text = _cli.tipoDocumento;
                 txtNroDocumento.Text = _cli.nrodocumento;
@@ -93,11 +91,27 @@ namespace FrbaHotel.AbmCliente
                 txtTelefono.Text = _cli.telefono;
                 txtLocalidad.Text = _cli.direccion_localidad;
                 txtPaisVivienda.Text = _cli.direccion_pais;
-                _res.cliente_id = _cli.idCliente;
+                chkRehabilitar.Checked = _cli.habilitado;
+
+                if (!_cli.habilitado)
+                {
+                    lblMensajeLoginORegister.Text = "El cliente está inhabilitado. Puede rehabilitarlo haciendo click en el checkbox. ";
+                    lblMensajeLoginORegister.ForeColor = Color.Red;
+                    chkRehabilitar.Visible = true;
+                    habilitarCampos(false);
+                }
+
 
             }
 
 
+        }
+
+        private void habilitarCampos(bool habilitar){
+            cmbTiposDocumentos.Enabled = txtNroDocumento.Enabled = txtNombre.Enabled = txtApellido.Enabled =
+                    txtNacionalidad.Enabled = txtMail.Enabled = txtDireccionCalle.Enabled = txtDireccionNro.Enabled =
+                    txtDireccionPiso.Enabled = txtDireccionDepto.Enabled = txtTelefono.Enabled = txtLocalidad.Enabled =
+                    txtPaisVivienda.Enabled = btnGuardar.Enabled = habilitar;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -116,6 +130,7 @@ namespace FrbaHotel.AbmCliente
             {
                 if (isValidEmail)
                 {
+                    _cli.habilitado = chkRehabilitar.Checked;
                     _cli.tipoDocumento = cmbTiposDocumentos.Text;
                     _cli.nrodocumento = txtNroDocumento.Text;
                     _cli.nombre = txtNombre.Text;
@@ -190,7 +205,6 @@ namespace FrbaHotel.AbmCliente
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Owner.Close();
             this.Close();
             
         }
@@ -198,6 +212,18 @@ namespace FrbaHotel.AbmCliente
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void chkRehabilitar_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkRehabilitar.Checked)
+            {
+                habilitarCampos(true);
+            }
+            else {
+                habilitarCampos(false);
+            }
+
         }
     }
 }

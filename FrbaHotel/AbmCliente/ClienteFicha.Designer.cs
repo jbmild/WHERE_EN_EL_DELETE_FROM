@@ -58,6 +58,7 @@
             this.txtDireccionPiso = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
+            this.chkRehabilitar = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // linkLabel1
@@ -75,7 +76,7 @@
             // 
             this.lblMensajeLoginORegister.AutoSize = true;
             this.lblMensajeLoginORegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMensajeLoginORegister.Location = new System.Drawing.Point(118, 44);
+            this.lblMensajeLoginORegister.Location = new System.Drawing.Point(241, 42);
             this.lblMensajeLoginORegister.Name = "lblMensajeLoginORegister";
             this.lblMensajeLoginORegister.Size = new System.Drawing.Size(153, 18);
             this.lblMensajeLoginORegister.TabIndex = 3;
@@ -314,11 +315,26 @@
             this.txtLocalidad.Size = new System.Drawing.Size(122, 20);
             this.txtLocalidad.TabIndex = 12;
             // 
+            // chkRehabilitar
+            // 
+            this.chkRehabilitar.AutoSize = true;
+            this.chkRehabilitar.CheckAlign = System.Drawing.ContentAlignment.TopRight;
+            this.chkRehabilitar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRehabilitar.Location = new System.Drawing.Point(51, 65);
+            this.chkRehabilitar.Name = "chkRehabilitar";
+            this.chkRehabilitar.Size = new System.Drawing.Size(103, 20);
+            this.chkRehabilitar.TabIndex = 34;
+            this.chkRehabilitar.Text = "Rehabilitar";
+            this.chkRehabilitar.UseVisualStyleBackColor = true;
+            this.chkRehabilitar.Visible = false;
+            this.chkRehabilitar.CheckedChanged += new System.EventHandler(this.chkRehabilitar_CheckedChanged);
+            // 
             // ClienteFicha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 496);
+            this.Controls.Add(this.chkRehabilitar);
             this.Controls.Add(this.txtLocalidad);
             this.Controls.Add(this.txtDireccionPiso);
             this.Controls.Add(this.label13);
@@ -389,5 +405,6 @@
         private System.Windows.Forms.TextBox txtDireccionPiso;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtLocalidad;
+        private System.Windows.Forms.CheckBox chkRehabilitar;
     }
 }

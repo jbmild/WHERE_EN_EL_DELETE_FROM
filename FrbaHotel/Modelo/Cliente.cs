@@ -275,7 +275,7 @@ namespace FrbaHotel.Modelo
         {
             ConexionSQL conn = new ConexionSQL();
 
-            string sqlQuery = "select * from WHERE_EN_EL_DELETE_FROM.Clientes cli WHERE 1=1 ";
+            string sqlQuery = "select cliente_id, CASE WHEN habilitado = 1 THEN 'SI' ELSE 'NO' END As EstaHabilitado, habilitado, nombre, apellido, documento_tipo, documento_nro, mail from WHERE_EN_EL_DELETE_FROM.Clientes cli WHERE 1=1 ";
 
             if (tipoDoc.Length > 0)
             {
@@ -316,7 +316,8 @@ namespace FrbaHotel.Modelo
 
             if (cli.idCliente != 0)
             {
-                command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET 
+                command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET
+                                                habilitado=@habilitado, 
                                                 mail=@mail,nombre=@nombre,apellido=@apellido,telefono=@telefono,
                                                 documento_tipo=@tipoDoc,
                                                 documento_nro=@nrodocumento,direccion_calle=@direccion_calle,
@@ -336,6 +337,7 @@ namespace FrbaHotel.Modelo
 
             command.Connection = ConexionSQL.obtenerConexion();
             command.Parameters.Add("@usuario_id", SqlDbType.Int).Value = usuario_id;
+            command.Parameters.Add("@habilitado", SqlDbType.Bit).Value = cli.habilitado;
             command.Parameters.Add("@mail", SqlDbType.NVarChar).Value = cli.email;
             command.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = cli.nombre;
             command.Parameters.Add("@apellido", SqlDbType.NVarChar).Value = cli.apellido;
@@ -367,6 +369,26 @@ namespace FrbaHotel.Modelo
             
             DataTable dt = conn.cargarTablaSQL(query);
             return (dt.Rows.Count > 0);
+
+        }
+
+        public List<KeyValuePair<string, string>> eliminar() {
+
+            ConexionSQL conn = new ConexionSQL();
+            List<KeyValuePair<string, string>> errores = new List<KeyValuePair<string, string>>();
+
+            string query = @"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET habilitado = 0 WHERE cliente_id=" + _idCliente;
+            DataTable dt = conn.cargarTablaSQL(query);
+            try
+            {
+                conn.actualizarDatos(query);
+            }
+            catch (Exception e)
+            {
+                errores.Add(new KeyValuePair<string, string>("general", e.Message));
+            }
+
+            return errores;
 
         }
     }

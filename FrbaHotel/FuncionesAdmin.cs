@@ -39,7 +39,8 @@ namespace FrbaHotel
 
         private void btn3_Click(object sender, EventArgs e)
         {
-
+            AbmCliente.frmClientesListado listadoClientes = new AbmCliente.frmClientesListado();
+            listadoClientes.Show();
         }
 
         internal void HabilitarBotones(string rol)

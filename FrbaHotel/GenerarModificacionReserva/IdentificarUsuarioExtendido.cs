@@ -56,10 +56,6 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmbTiposDocumentos.Items.Add("DNI");
             cmbTiposDocumentos.Items.Add("Pasaporte");
             
-            //TODO: ABM De clientes
-            //Si el atributo reserva != NULL, es porque viene de una reserva.
-            //Si atributo reserva == NULL, es ABM de clientes.
-            
 
             if (_cli.idCliente == 0) // es cliente nuevo
             {
