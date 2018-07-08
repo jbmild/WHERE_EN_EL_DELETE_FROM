@@ -97,8 +97,11 @@ namespace FrbaHotel.Login.View
                         if (rol == "Administrador General")
                         {
                             usuarioForm.SetRol("Administrador General");
-                            FuncionesAdmin f = new FuncionesAdmin();
-                            f.Show();
+                            FuncionesAdmin pantallaAdmin = new FuncionesAdmin();
+                            pantallaAdmin.HabilitarBotones("1");
+                            pantallaAdmin.Show();
+                            //FuncionesAdmin f = new FuncionesAdmin();
+                            //f.Show();
                             //ingresa de una! * JCARUCCI *
                         }
                         if (rol=="Recepcionista")
