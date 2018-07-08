@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrbaHotel.AbmHabitacion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace FrbaHotel.RegistrarConsumible
 {
     public partial class registrarConsumible : Form
     {
+        string fecha = "2018-07-05";
         int hotelid=1;
         public registrarConsumible()
         {
@@ -88,13 +90,15 @@ namespace FrbaHotel.RegistrarConsumible
 
             if (completo.Equals(3)) 
             {
+                SQLQueryGenerator q = new SQLQueryGenerator();
                 SqlConnection sql = ConexionSQL.obtenerConexion();
                 string insertConsumo = "insert into WHERE_EN_EL_DELETE_FROM.consumos values (@habitacion_id, @consumible_id, @estadia_id, @cantidad, @precio_unitario)";
                 SqlCommand command = new SqlCommand(insertConsumo);
                 command.Parameters.Add("@habitacion_id", SqlDbType.Int).Value = Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString());
                 command.Parameters.Add("@consumible_id", SqlDbType.Int).Value=Int32.Parse(comboBoxConsumible.SelectedValue.ToString());
-              //  command.Parameters.Add("@estadia_id", SqlDbType.Int).Value = this.GetEstadia(Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString()));
-
+                command.Parameters.Add("@estadia_id", SqlDbType.Int).Value = q.GetEstadia(Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString()), this.fecha, this.hotelid);
+                command.Parameters.Add("@cantidad_id", SqlDbType.Int).Value=1;
+                command.Parameters.Add("@precio_unitario", SqlDbType.Real).Value = textBoxPrecioSugerido.Text;
             }
         }
 

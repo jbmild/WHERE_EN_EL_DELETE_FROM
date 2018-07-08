@@ -12,6 +12,9 @@ namespace FrbaHotel
 {
     public partial class Form1 : Form
     {
+        private FrbaHotel.Modelo.Hotel hotel; //Es el hotel elegido al momento del log in
+        private FrbaHotel.Modelo.Usuario usuario; //Es el usuario que se logueó
+        private Roles.Modelo.Rol rol; //Es el rol elegido al momento del log in
         public Form1()
         {
             InitializeComponent();
@@ -37,8 +40,8 @@ namespace FrbaHotel
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Login.SeleccionUsuario seleccionUsuario = new Login.SeleccionUsuario();
-            seleccionUsuario.Show();
+            Login.View.AccesoUsuarioHotel acceso = new Login.View.AccesoUsuarioHotel();
+            acceso.Show();
         }
 
         private void btnRegistrarEstadia_Click(object sender, EventArgs e)
