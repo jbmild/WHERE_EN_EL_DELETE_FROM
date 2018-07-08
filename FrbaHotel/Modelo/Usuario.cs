@@ -10,6 +10,7 @@ namespace FrbaHotel.Modelo
     {
         private int usuario_ID;
         private string nombre;
+        private string nombreUsuario;
         private string rolActual;
         private bool habilitado;
         private FrbaHotel.Modelo.Hotel hotel;
@@ -22,5 +23,10 @@ namespace FrbaHotel.Modelo
         public void SetHabilitado(bool hab) { this.habilitado = hab; }
         public int GetID() { return this.usuario_ID;  }
         public void SetID(int ID) { this.usuario_ID = ID; }
+        public string NombreUsuario
+        {
+            get { return nombreUsuario; }
+            set { nombreUsuario = value; }
+        }
     }
 }

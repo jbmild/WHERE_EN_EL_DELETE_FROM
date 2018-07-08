@@ -236,6 +236,7 @@
             this.Controls.Add(this.lblBienvenido);
             this.Name = "Bienvenido";
             this.Text = "Bienvenido";
+            this.Load += new System.EventHandler(this.Bienvenido_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
