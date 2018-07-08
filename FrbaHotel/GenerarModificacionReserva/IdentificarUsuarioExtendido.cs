@@ -41,7 +41,7 @@ namespace FrbaHotel.GenerarModificacionReserva
         private void Form1_Load(object sender, EventArgs e)
         {
             //VALIDACION: si el cliente esta inhablitado, no lo dejo continuar.
-            _cli = _cli.getClienteByTipoNroDocEmail(_idTipoDocumento, _nroDocumento, _email);
+            _cli = _cli.getClienteByTipoNroDocEmail(_idTipoDocumento, _nroDocumento, _email, "", "");
 
             if (_cli.idCliente != 0) {
                 if (!_cli.habilitado)
