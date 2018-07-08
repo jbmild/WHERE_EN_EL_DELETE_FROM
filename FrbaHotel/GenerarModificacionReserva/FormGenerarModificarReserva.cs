@@ -52,8 +52,8 @@ namespace FrbaHotel.GenerarModificacionReserva
                     SqlCommand command = new SqlCommand(@"DECLARE @FechaDesde datetime
 	                                DECLARE @FechaHasta datetime
 	
-	                                SELECT @FechaDesde = convert(datetime, SUBSTRING(@fdesde, 0, 11), 103)
-	                                SELECT @FechaHasta = convert(datetime, SUBSTRING(@fhasta, 0, 11) + ' 23:59:59', 103)
+	                                SELECT @FechaDesde = convert(date, SUBSTRING(@fdesde, 0, 11), 103)
+	                                SELECT @FechaHasta = convert(date, SUBSTRING(@fhasta, 0, 11) + ' 23:59:59', 103)
 
 	                                SET NOCOUNT ON;
 
