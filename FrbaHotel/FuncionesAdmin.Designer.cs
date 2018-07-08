@@ -29,150 +29,169 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.btnClientes = new System.Windows.Forms.Button();
+            this.btn9 = new System.Windows.Forms.Button();
+            this.btn10 = new System.Windows.Forms.Button();
+            this.btn3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn4 = new System.Windows.Forms.Button();
+            this.btn6 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn2 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.btnRegistrarEstadia = new System.Windows.Forms.Button();
+            this.btn5 = new System.Windows.Forms.Button();
             this.labelhotel = new System.Windows.Forms.Label();
+            this.btn7 = new System.Windows.Forms.Button();
+            this.btn1 = new System.Windows.Forms.Button();
+            this.btn8 = new System.Windows.Forms.Button();
+            this.btn11 = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btn12 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnRegistrarEstadia);
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.btnClientes);
+            this.groupBox1.Controls.Add(this.btn11);
+            this.groupBox1.Controls.Add(this.btn8);
+            this.groupBox1.Controls.Add(this.btn7);
+            this.groupBox1.Controls.Add(this.btn9);
+            this.groupBox1.Controls.Add(this.btn10);
+            this.groupBox1.Controls.Add(this.btn3);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(127, 147);
+            this.groupBox1.Location = new System.Drawing.Point(127, 117);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(265, 320);
+            this.groupBox1.Size = new System.Drawing.Size(391, 350);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Operaciones con clientes";
             // 
-            // button6
+            // btn9
             // 
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(39, 148);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(189, 68);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "Registrar Consumibles";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btn9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn9.Location = new System.Drawing.Point(53, 143);
+            this.btn9.Margin = new System.Windows.Forms.Padding(4);
+            this.btn9.Name = "btn9";
+            this.btn9.Size = new System.Drawing.Size(149, 49);
+            this.btn9.TabIndex = 13;
+            this.btn9.Text = "Check-in";
+            this.btn9.UseVisualStyleBackColor = true;
+            this.btn9.Visible = false;
             // 
-            // btnClientes
+            // btn10
             // 
-            this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClientes.Location = new System.Drawing.Point(39, 58);
-            this.btnClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(192, 68);
-            this.btnClientes.TabIndex = 8;
-            this.btnClientes.Text = "Ver Clientes";
-            this.btnClientes.UseVisualStyleBackColor = true;
+            this.btn10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn10.Location = new System.Drawing.Point(53, 92);
+            this.btn10.Margin = new System.Windows.Forms.Padding(4);
+            this.btn10.Name = "btn10";
+            this.btn10.Size = new System.Drawing.Size(204, 40);
+            this.btn10.TabIndex = 7;
+            this.btn10.Text = "Registrar Consumibles";
+            this.btn10.UseVisualStyleBackColor = true;
+            this.btn10.Visible = false;
+            // 
+            // btn3
+            // 
+            this.btn3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn3.Location = new System.Drawing.Point(53, 33);
+            this.btn3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn3.Name = "btn3";
+            this.btn3.Size = new System.Drawing.Size(149, 45);
+            this.btn3.TabIndex = 8;
+            this.btn3.Text = "Ver Clientes";
+            this.btn3.UseVisualStyleBackColor = true;
+            this.btn3.Visible = false;
+            this.btn3.Click += new System.EventHandler(this.btn3_Click);
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.btn4);
+            this.groupBox2.Controls.Add(this.btn6);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(432, 147);
+            this.groupBox2.Location = new System.Drawing.Point(541, 117);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(238, 320);
+            this.groupBox2.Size = new System.Drawing.Size(238, 350);
             this.groupBox2.TabIndex = 11;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Operaciones de Hoteles";
             // 
-            // button5
+            // btn4
             // 
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(8, 58);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(213, 68);
-            this.button5.TabIndex = 6;
-            this.button5.Text = "Hoteles";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btn4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn4.Location = new System.Drawing.Point(31, 38);
+            this.btn4.Margin = new System.Windows.Forms.Padding(4);
+            this.btn4.Name = "btn4";
+            this.btn4.Size = new System.Drawing.Size(156, 40);
+            this.btn4.TabIndex = 6;
+            this.btn4.Text = "Hoteles";
+            this.btn4.UseVisualStyleBackColor = true;
+            this.btn4.Visible = false;
             // 
-            // button1
+            // btn6
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(8, 150);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(213, 68);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Regimenes";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn6.Location = new System.Drawing.Point(31, 88);
+            this.btn6.Margin = new System.Windows.Forms.Padding(4);
+            this.btn6.Name = "btn6";
+            this.btn6.Size = new System.Drawing.Size(156, 44);
+            this.btn6.TabIndex = 0;
+            this.btn6.Text = "Regimenes";
+            this.btn6.UseVisualStyleBackColor = true;
+            this.btn6.Visible = false;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.btn1);
+            this.groupBox3.Controls.Add(this.btn2);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(695, 147);
+            this.groupBox3.Location = new System.Drawing.Point(804, 117);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(277, 320);
+            this.groupBox3.Size = new System.Drawing.Size(277, 350);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Operaciones con usuarios";
             // 
-            // button2
+            // btn2
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(46, 58);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(188, 65);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Ver usuarios";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn2.Location = new System.Drawing.Point(47, 38);
+            this.btn2.Name = "btn2";
+            this.btn2.Size = new System.Drawing.Size(188, 43);
+            this.btn2.TabIndex = 0;
+            this.btn2.Text = "Ver usuarios";
+            this.btn2.UseVisualStyleBackColor = true;
+            this.btn2.Visible = false;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.button4);
+            this.groupBox4.Controls.Add(this.btn5);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(1006, 150);
+            this.groupBox4.Location = new System.Drawing.Point(1115, 117);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(254, 317);
+            this.groupBox4.Size = new System.Drawing.Size(254, 350);
             this.groupBox4.TabIndex = 12;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Operaciones con Habitaciones";
+            this.groupBox4.Visible = false;
             // 
-            // button4
+            // btn5
             // 
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(29, 55);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(178, 62);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "Ver habitaciones";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // btnRegistrarEstadia
-            // 
-            this.btnRegistrarEstadia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegistrarEstadia.Location = new System.Drawing.Point(39, 224);
-            this.btnRegistrarEstadia.Margin = new System.Windows.Forms.Padding(4);
-            this.btnRegistrarEstadia.Name = "btnRegistrarEstadia";
-            this.btnRegistrarEstadia.Size = new System.Drawing.Size(188, 68);
-            this.btnRegistrarEstadia.TabIndex = 13;
-            this.btnRegistrarEstadia.Text = "Check-in";
-            this.btnRegistrarEstadia.UseVisualStyleBackColor = true;
-            this.btnRegistrarEstadia.Visible = false;
+            this.btn5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn5.Location = new System.Drawing.Point(57, 35);
+            this.btn5.Name = "btn5";
+            this.btn5.Size = new System.Drawing.Size(159, 51);
+            this.btn5.TabIndex = 13;
+            this.btn5.Text = "Ver habitaciones";
+            this.btn5.UseVisualStyleBackColor = true;
+            this.btn5.Visible = false;
+            this.btn5.Click += new System.EventHandler(this.button4_Click);
             // 
             // labelhotel
             // 
@@ -184,23 +203,93 @@
             this.labelhotel.TabIndex = 13;
             this.labelhotel.Text = "{hotel}";
             // 
+            // btn7
+            // 
+            this.btn7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn7.Location = new System.Drawing.Point(53, 202);
+            this.btn7.Margin = new System.Windows.Forms.Padding(4);
+            this.btn7.Name = "btn7";
+            this.btn7.Size = new System.Drawing.Size(149, 37);
+            this.btn7.TabIndex = 14;
+            this.btn7.Text = "Generar Reserva";
+            this.btn7.UseVisualStyleBackColor = true;
+            this.btn7.Visible = false;
+            // 
+            // btn1
+            // 
+            this.btn1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn1.Location = new System.Drawing.Point(47, 92);
+            this.btn1.Name = "btn1";
+            this.btn1.Size = new System.Drawing.Size(188, 43);
+            this.btn1.TabIndex = 1;
+            this.btn1.Text = "Roles";
+            this.btn1.UseVisualStyleBackColor = true;
+            this.btn1.Visible = false;
+            // 
+            // btn8
+            // 
+            this.btn8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn8.Location = new System.Drawing.Point(53, 247);
+            this.btn8.Margin = new System.Windows.Forms.Padding(4);
+            this.btn8.Name = "btn8";
+            this.btn8.Size = new System.Drawing.Size(166, 65);
+            this.btn8.TabIndex = 15;
+            this.btn8.Text = "Modificar/Cancelar Reserva";
+            this.btn8.UseVisualStyleBackColor = true;
+            this.btn8.Visible = false;
+            // 
+            // btn11
+            // 
+            this.btn11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn11.Location = new System.Drawing.Point(220, 143);
+            this.btn11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btn11.Name = "btn11";
+            this.btn11.Size = new System.Drawing.Size(149, 45);
+            this.btn11.TabIndex = 16;
+            this.btn11.Text = "Facturar estadía";
+            this.btn11.UseVisualStyleBackColor = true;
+            this.btn11.Visible = false;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.btn12);
+            this.groupBox5.Location = new System.Drawing.Point(1385, 117);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(200, 100);
+            this.groupBox5.TabIndex = 14;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Listados";
+            // 
+            // btn12
+            // 
+            this.btn12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn12.Location = new System.Drawing.Point(20, 35);
+            this.btn12.Name = "btn12";
+            this.btn12.Size = new System.Drawing.Size(159, 51);
+            this.btn12.TabIndex = 14;
+            this.btn12.Text = "Listados estadísticos";
+            this.btn12.UseVisualStyleBackColor = true;
+            this.btn12.Visible = false;
+            // 
             // FuncionesAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1663, 494);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.labelhotel);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "FuncionesAdmin";
-            this.Text = "Funciones de Administrador";
+            this.Text = "Sistema de gestión de hoteles";
             this.Load += new System.EventHandler(this.FuncionesAdmin_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,16 +298,22 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button btnClientes;
+        private System.Windows.Forms.Button btn10;
+        private System.Windows.Forms.Button btn3;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn4;
+        private System.Windows.Forms.Button btn6;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn2;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button btnRegistrarEstadia;
+        private System.Windows.Forms.Button btn5;
+        private System.Windows.Forms.Button btn9;
         private System.Windows.Forms.Label labelhotel;
+        private System.Windows.Forms.Button btn7;
+        private System.Windows.Forms.Button btn1;
+        private System.Windows.Forms.Button btn8;
+        private System.Windows.Forms.Button btn11;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button btn12;
     }
 }

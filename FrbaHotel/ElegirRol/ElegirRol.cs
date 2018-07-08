@@ -30,14 +30,15 @@ namespace FrbaHotel.ElegirRol
             this.InitializeComponent();
             //InitializeComponent();
             nombreUsuario = u.GetNombre();
-            string query = "SELECT NOMBRE FROM[WHERE_EN_EL_DELETE_FROM].[usuarios_roles] U_ROLES JOIN[WHERE_EN_EL_DELETE_FROM].[usuarios] USUARIOS ON(USUARIOS.USUARIO_ID = U_ROLES.USUARIO_ID) JOIN[WHERE_EN_EL_DELETE_FROM].[ROLES] ROLES ON(U_ROLES.rol_id = ROLES.rol_id) WHERE USUARIOS.USUARIO = '" + nombreUsuario + "' AND USUARIOS.HABILITADO = 1 AND ROLES.habilitado = 1";
+            string query = "SELECT NOMBRE, ROLES.ROL_ID FROM[WHERE_EN_EL_DELETE_FROM].[usuarios_roles] U_ROLES JOIN[WHERE_EN_EL_DELETE_FROM].[usuarios] USUARIOS ON(USUARIOS.USUARIO_ID = U_ROLES.USUARIO_ID) JOIN[WHERE_EN_EL_DELETE_FROM].[ROLES] ROLES ON(U_ROLES.rol_id = ROLES.rol_id) WHERE USUARIOS.USUARIO = '" + nombreUsuario + "' AND USUARIOS.HABILITADO = 1 AND ROLES.habilitado = 1";
 
             ConexionSQL.SetUsuarioLog("ROL ELEGIDO");
             string user = ConexionSQL.GetRolUsuarioLog();
 
             DataTable dt = (new ConexionSQL()).cargarTablaSQL(query);
             comboBoxRolesUsuario.DataSource = dt;
-            comboBoxRolesUsuario.ValueMember = "NOMBRE";
+            comboBoxRolesUsuario.ValueMember = "ROL_ID";
+            comboBoxRolesUsuario.DisplayMember = "NOMBRE";
 
         }
 
@@ -115,6 +116,7 @@ namespace FrbaHotel.ElegirRol
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxRolesUsuario);
             this.Name = "ElegirRol";
+            this.Load += new System.EventHandler(this.ElegirRol_Load_2);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,12 +125,26 @@ namespace FrbaHotel.ElegirRol
         private void button1_Click_1(object sender, EventArgs e)
         {
             user.SetRol(comboBoxRolesUsuario.SelectedValue.ToString());
-            if (user.GetRol().Equals("Recepcionista"))
-            {
-                HotelSesionActual hotelForm = new HotelSesionActual();
-                hotelForm.RecibirDatosUsuario(this.user);
-                hotelForm.Show();
-            }
+
+            FuncionesAdmin pantallaAdmin = new FuncionesAdmin();
+            pantallaAdmin.HabilitarBotones(user.GetRol());
+            //if (user.GetRol().Equals(1))
+            //{
+            //    FuncionesAdmin pantallaAdmin = new FuncionesAdmin();
+            //    pantallaAdmin.HabilitarBotones();
+            //    //HotelSesionActual hotelForm = new HotelSesionActual();
+            //    //hotelForm.RecibirDatosUsuario(this.user);
+            //    //hotelForm.Show();
+            //}
+            //else 
+            //{
+                
+            //}
+        }
+
+        private void ElegirRol_Load_2(object sender, EventArgs e)
+        {
+
         }
     }
 }
