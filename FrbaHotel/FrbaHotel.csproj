@@ -167,6 +167,12 @@
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Regimenes.cs" />
+    <Compile Include="Bienvenido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bienvenido.Designer.cs">
+      <DependentUpon>Bienvenido.cs</DependentUpon>
+    </Compile>
     <Compile Include="BuscarHotelesInicioSesion.cs" />
     <Compile Include="FuncionesAdmin.cs">
       <SubType>Form</SubType>
@@ -330,6 +336,7 @@
     <Compile Include="Tools\DBInterface.cs" />
     <Compile Include="Tools\RegexUtilities.cs" />
     <Compile Include="Tools\Option.cs" />
+    <Compile Include="Tools\Sesion.cs" />
     <EmbeddedResource Include="AbmCliente\ClienteFicha.resx">
       <DependentUpon>ClienteFicha.cs</DependentUpon>
     </EmbeddedResource>
@@ -380,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmRegimen\bajaRegimen.resx">
       <DependentUpon>bajaRegimen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Bienvenido.resx">
+      <DependentUpon>Bienvenido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ElegirRol\ElegirRol.resx" />
     <EmbeddedResource Include="Form1.resx">
