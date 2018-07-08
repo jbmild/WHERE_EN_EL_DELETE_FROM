@@ -12,6 +12,9 @@ namespace FrbaHotel.Login
 {
     public partial class SeleccionUsuario : Form
     {
+        private FrbaHotel.Modelo.Usuario usuario;
+        private FrbaHotel.Modelo.Hotel hotel;
+        private Roles.Modelo.Rol rol;
         public SeleccionUsuario()
         {
             InitializeComponent();

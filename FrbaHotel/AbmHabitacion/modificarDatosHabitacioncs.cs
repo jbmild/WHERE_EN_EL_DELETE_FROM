@@ -296,6 +296,13 @@ namespace FrbaHotel.AbmHabitacion
             this.radioButtonHabilitadoNO.Checked = false;
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            modificarHabitacion m = new modificarHabitacion();
+            this.Hide();
+            m.Show();
+        }
+
       
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrbaHotel.AbmHabitacion;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,9 @@ namespace FrbaHotel.RegistrarConsumible
 {
     public partial class registrarConsumible : Form
     {
-        int hotelid=1;
+        string fecha = "2018-07-05";
+        int hotel_id;
+        string nombrehotel;
         public registrarConsumible()
         {
             InitializeComponent();
@@ -25,11 +28,12 @@ namespace FrbaHotel.RegistrarConsumible
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.labelHotel.Text = this.nombrehotel;
             this.labelPrecioSugerido.Visible = false;
             /* CARGAR HABITACIONES */
 
             ConexionSQL c1 = new ConexionSQL();
-            DataTable habitaciones = c1.cargarTablaSQL("select  distinct habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" +hotelid  + " order by numero asc" );
+            DataTable habitaciones = c1.cargarTablaSQL("select  distinct habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" +hotel_id  + " order by numero asc" );
             habitaciones.Rows.InsertAt(habitaciones.NewRow(), 0);
             comboBoxHabitaciones.DataSource = habitaciones;
             comboBoxHabitaciones.SelectedIndex = 0;
@@ -88,16 +92,24 @@ namespace FrbaHotel.RegistrarConsumible
 
             if (completo.Equals(3)) 
             {
+                SQLQueryGenerator q = new SQLQueryGenerator();
                 SqlConnection sql = ConexionSQL.obtenerConexion();
                 string insertConsumo = "insert into WHERE_EN_EL_DELETE_FROM.consumos values (@habitacion_id, @consumible_id, @estadia_id, @cantidad, @precio_unitario)";
                 SqlCommand command = new SqlCommand(insertConsumo);
                 command.Parameters.Add("@habitacion_id", SqlDbType.Int).Value = Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString());
                 command.Parameters.Add("@consumible_id", SqlDbType.Int).Value=Int32.Parse(comboBoxConsumible.SelectedValue.ToString());
-              //  command.Parameters.Add("@estadia_id", SqlDbType.Int).Value = this.GetEstadia(Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString()));
-
+                command.Parameters.Add("@estadia_id", SqlDbType.Int).Value = q.GetEstadia(Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString()), this.fecha, this.hotel_id);
+                command.Parameters.Add("@cantidad_id", SqlDbType.Int).Value=1;
+                command.Parameters.Add("@precio_unitario", SqlDbType.Real).Value = textBoxPrecioSugerido.Text;
             }
         }
 
-      
+
+
+        internal void RecibirHotel(string hotelnombre, int hotelid)
+        {
+            this.hotel_id = hotelid;
+            this.nombrehotel = hotelnombre;
+        }
     }
 }

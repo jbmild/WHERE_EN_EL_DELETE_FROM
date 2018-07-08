@@ -65,6 +65,7 @@
             this.labelHabilitadoActualmente = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.labelNumeroHabitacionActual = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBoxModificarHabitacion.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -72,6 +73,7 @@
             // 
             // groupBoxModificarHabitacion
             // 
+            this.groupBoxModificarHabitacion.Controls.Add(this.button2);
             this.groupBoxModificarHabitacion.Controls.Add(this.groupBox2);
             this.groupBoxModificarHabitacion.Controls.Add(this.groupBox1);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelPisoPendiente);
@@ -228,7 +230,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(351, 261);
+            this.button1.Location = new System.Drawing.Point(511, 302);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(106, 36);
             this.button1.TabIndex = 22;
@@ -297,7 +299,7 @@
             // 
             // buttonGuardarCambios
             // 
-            this.buttonGuardarCambios.Location = new System.Drawing.Point(482, 261);
+            this.buttonGuardarCambios.Location = new System.Drawing.Point(650, 302);
             this.buttonGuardarCambios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonGuardarCambios.Name = "buttonGuardarCambios";
             this.buttonGuardarCambios.Size = new System.Drawing.Size(169, 36);
@@ -449,6 +451,16 @@
             this.labelNumeroHabitacionActual.Size = new System.Drawing.Size(0, 17);
             this.labelNumeroHabitacionActual.TabIndex = 35;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(362, 303);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(106, 36);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "Volver";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // modificarDatosHabitacioncs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -520,5 +532,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.RadioButton radioButtonVistaNO;
         private System.Windows.Forms.RadioButton radioButtonVistaSI;
+        private System.Windows.Forms.Button button2;
     }
 }

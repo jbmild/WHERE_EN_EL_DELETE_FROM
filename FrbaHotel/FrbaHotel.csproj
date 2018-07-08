@@ -161,6 +161,19 @@
       <DependentUpon>bajaRegimen.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmRegimen\Regimenes.cs" />
+    <Compile Include="BuscarHotelesInicioSesion.cs" />
+    <Compile Include="FuncionesAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FuncionesAdmin.Designer.cs">
+      <DependentUpon>FuncionesAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FuncionesRecepcionista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FuncionesRecepcionista.Designer.cs">
+      <DependentUpon>FuncionesRecepcionista.cs</DependentUpon>
+    </Compile>
     <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +196,14 @@
     <Compile Include="GenerarModificacionReserva\ModificarCancelarReserva.Designer.cs">
       <DependentUpon>ModificarCancelarReserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="HotelSesionActual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HotelSesionActual.Designer.cs">
+      <DependentUpon>HotelSesionActual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\View\Encripter.cs" />
+    <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Roles\frmRolesFicha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -354,6 +375,12 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FuncionesAdmin.resx">
+      <DependentUpon>FuncionesAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FuncionesRecepcionista.resx">
+      <DependentUpon>FuncionesRecepcionista.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\ConfirmarReserva.resx">
       <DependentUpon>ConfirmarReserva.cs</DependentUpon>
     </EmbeddedResource>
@@ -377,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\ModificarCancelarReserva.resx">
       <DependentUpon>ModificarCancelarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HotelSesionActual.resx">
+      <DependentUpon>HotelSesionActual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\View\Access_user.resx">
       <DependentUpon>Access_user.cs</DependentUpon>

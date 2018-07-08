@@ -190,5 +190,11 @@ namespace FrbaHotel.AbmHotel
                 e.Handled = true;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            modificarHotel m = new modificarHotel();
+            m.Show();
+        }
     }
 }

@@ -116,7 +116,7 @@ GO
 	GO
 
 /* +++ END +++ Drops */
-DECLARE @FechaActual datetime;
+DECLARE @FechaActual date;
 SET @FechaActual = GETDATE();
 
 /* +++ BEGIN +++ Creates */
@@ -131,7 +131,7 @@ SET @FechaActual = GETDATE();
 		pais NVARCHAR(255), 
 		estrellas_cant smallint, 
 		estrellas_recargo smallint, 
-		fecha_creacion datetime
+		fecha_creacion date
 	)
 
 	/* Regimenes */
@@ -245,8 +245,8 @@ SET @FechaActual = GETDATE();
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.cese_actividades(
 		cese_id int identity(1,1) PRIMARY KEY,
 		hotel_id int NOT NULL,
-		fecha_inicio datetime,
-		fecha_fin datetime,
+		fecha_inicio date,
+		fecha_fin date,
 		titulo NVARCHAR(100),
 		descripcion NVARCHAR(255),
 
@@ -258,13 +258,13 @@ SET @FechaActual = GETDATE();
 		reserva_id INT identity(1,1) PRIMARY KEY,
 		fecha_desde DATE NOT NULL,
 		fecha_hasta DATE NOT NULL,
-		fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+		fecha_creacion DATE DEFAULT CURRENT_TIMESTAMP,
 		cliente_id INT NOT NULL,
 		codigo INT,
 		estado NVARCHAR(255) CHECK (estado IN('correcta', 'modificada', 'cancelada_recepcion', 'cancelada_cliente', 'cancelada_noshow', 'efectivizada')) DEFAULT 'correcta',
 		usuario_id INT NOT NULL,
 		ultima_modificacion_usuario_id INT NULL,
-		cancelacion_fecha DATETIME NULL,
+		cancelacion_fecha DATE NULL,
 		cancelacion_usuario_id INT NULL,
 		motivo_cancelacion NVARCHAR(255) NULL,
 		total NUMERIC(10,2) DEFAULT 0,
@@ -324,9 +324,9 @@ SET @FechaActual = GETDATE();
 		estadia_id int identity(1,1) PRIMARY KEY,
 		reserva_id int,
 		ingreso_empleado_id int,
-		ingreso_fecha datetime NOT NULL,
+		ingreso_fecha date NOT NULL,
 		egreso_empleado_id int,
-		egreso_fecha datetime NOT  NULL,
+		egreso_fecha date NOT  NULL,
 
 		CONSTRAINT FK_reserva_id FOREIGN KEY (reserva_id) REFERENCES WHERE_EN_EL_DELETE_FROM.reservas (reserva_id),
 		CONSTRAINT FK_ingreso_empleado_id FOREIGN KEY (ingreso_empleado_id) REFERENCES WHERE_EN_EL_DELETE_FROM.empleados (empleado_id),
@@ -372,7 +372,7 @@ SET @FechaActual = GETDATE();
 		estadia_id int,
 		cliente_id int,
 		numero int NOT NULL,
-		fecha datetime NOT NULL,
+		fecha date NOT NULL,
 		total real NOT NULL,
 		documento_tipo NVARCHAR(255) NOT NULL,
 		documento_nro NVARCHAR(255) NOT NULL,
@@ -869,5 +869,10 @@ SET @FechaActual = GETDATE();
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones h ON
 			h.habitacion_id = co.habitacion_id
 			AND h.numero = m.Habitacion_Numero
-
+			
+INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios VALUES ('admin',HASHBYTES('SHA2_256','w23e'),1,0)
+INSERT INTO WHERE_EN_EL_DELETE_FROM.roles VALUES('Administrador General', 1, 0)
+INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios_roles (usuario_id, rol_id)
+select u.usuario_id, r.rol_id from WHERE_EN_EL_DELETE_FROM.usuarios u, WHERE_EN_EL_DELETE_FROM.roles r
+where u.usuario='admin' and r.nombre='Administrador General'
 /* +++ END +++ Fill data */

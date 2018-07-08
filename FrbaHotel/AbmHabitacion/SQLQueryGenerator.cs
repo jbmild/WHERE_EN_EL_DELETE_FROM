@@ -53,5 +53,22 @@ namespace FrbaHotel.AbmHabitacion
              return sql.ExecuteNonQuery();
 
         }
+
+        internal object GetEstadia(int habitacion, string fecha, int hotelID)
+        {
+           
+            ConexionSQL c = new ConexionSQL();
+            string query = "select top 1  e.estadia_id  from WHERE_EN_EL_DELETE_FROM.estadias e" +
+                " join WHERE_EN_EL_DELETE_FROM.reservas r on r.reserva_id=e.reserva_id" + 
+				 " join WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh on rh.reserva_id=r.reserva_id" +
+                "  join WHERE_EN_EL_DELETE_FROM.habitaciones h on rh.habitacion_id=h.habitacion_id where h.habitacion_id=" + habitacion + 
+                " and rh.habitacion_id=" + habitacion +
+				" and h.hotel_id=" +  hotelID + 
+				" and e.ingreso_fecha>=convert(DateTime,'" + fecha + " ')" + 
+				" order by e.ingreso_fecha asc"
+;
+            DataTable estadia = c.cargarTablaSQL(query);
+           return estadia.Rows[0].ItemArray[0].ToString();
+        }
     }
 }

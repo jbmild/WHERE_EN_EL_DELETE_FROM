@@ -5,7 +5,17 @@ using System.Text;
 
 namespace FrbaHotel
 {
-    class AbmHoteles
+   public  class AbmHoteles
     {
+        private int ventanaModificacionAbierta = 0;
+        public void SetVentanaAbierta()
+        {
+
+            this.ventanaModificacionAbierta = 1;
+        }
+        public int GetVentanaAbierta()
+        {
+            return this.ventanaModificacionAbierta;
+        }
     }
 }

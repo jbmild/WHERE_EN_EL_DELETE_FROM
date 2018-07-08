@@ -42,6 +42,7 @@
             this.textBoxCiudad = new System.Windows.Forms.TextBox();
             this.textBoxPais = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -164,11 +165,22 @@
             this.label5.Text = "Para comenzar, seleccione un hotel. Puede utilizar los filtros para agilizar su b" +
     "úsqueda";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(643, 161);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(160, 47);
+            this.button3.TabIndex = 16;
+            this.button3.Text = "Dar de alta hotel";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // modificarHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1558, 405);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxPais);
             this.Controls.Add(this.textBoxCiudad);
@@ -205,5 +217,6 @@
         private System.Windows.Forms.TextBox textBoxPais;
         private System.Windows.Forms.DataGridViewButtonColumn Seleccionar;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button3;
     }
 }

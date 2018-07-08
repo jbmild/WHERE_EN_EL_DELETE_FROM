@@ -8,13 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace FrbaHotel.AbmHotel
 {
     public partial class modificarHotel : Form
+
+        
     {
+        AbmHoteles abm = new AbmHoteles();
         public modificarHotel()
         {
             InitializeComponent();
+            
+
         }
 
         private void modificarHotel_Load(object sender, EventArgs e)
@@ -88,6 +94,7 @@ namespace FrbaHotel.AbmHotel
         {
             if (e.ColumnIndex.Equals(0))
             {
+                abm.SetVentanaAbierta();
                 this.Hide();
                 int row = e.RowIndex;
                 
@@ -117,6 +124,19 @@ namespace FrbaHotel.AbmHotel
 
 
               
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (abm.GetVentanaAbierta().Equals(1)) 
+            {
+                MessageBox.Show("No se puede dar de alta un hotel mientras la ventana de edición está abierta");
+            }
+            else
+            {
+                altaHotel alta = new altaHotel();
+                alta.Show();
             }
         }
 
