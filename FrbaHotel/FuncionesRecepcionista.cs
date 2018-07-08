@@ -29,5 +29,12 @@ namespace FrbaHotel
         {
             this.labelhotel.Text = this.hotelnombre;
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            RegistrarConsumible.registrarConsumible r = new RegistrarConsumible.registrarConsumible();
+            r.RecibirHotel(this.hotelnombre, this.hotelid);
+            r.Show();
+        }
     }
 }

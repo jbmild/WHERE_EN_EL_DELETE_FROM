@@ -96,14 +96,20 @@ namespace FrbaHotel.Login.View
                             string rol = dt2.Rows[0][0].ToString();
                         if (rol == "Administrador General")
                         {
+                            usuarioForm.SetRol("Administrador General");
                             FuncionesAdmin f = new FuncionesAdmin();
                             f.Show();
                             //ingresa de una! * JCARUCCI *
                         }
                         if (rol=="Recepcionista")
                         {
-                            FuncionesRecepcionista r = new FuncionesRecepcionista();
-                            r.Show();
+                            usuarioForm.SetRol("Recepcionista");
+                            
+                            HotelSesionActual h = new HotelSesionActual();
+                            h.RecibirDatosUsuario(usuarioForm);
+                            h.Show();
+                            //FuncionesRecepcionista r = new FuncionesRecepcionista();
+                            //r.Show();
                             //MessageBox.Show("El usuario no tiene roles habilitados", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }}
                         

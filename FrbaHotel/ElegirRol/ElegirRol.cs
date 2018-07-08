@@ -123,9 +123,12 @@ namespace FrbaHotel.ElegirRol
         private void button1_Click_1(object sender, EventArgs e)
         {
             user.SetRol(comboBoxRolesUsuario.SelectedValue.ToString());
-            HotelSesionActual hotelForm = new HotelSesionActual();
-            hotelForm.RecibirDatosUsuario(this.user);
-            hotelForm.Show();
+            if (user.GetRol().Equals("Recepcionista"))
+            {
+                HotelSesionActual hotelForm = new HotelSesionActual();
+                hotelForm.RecibirDatosUsuario(this.user);
+                hotelForm.Show();
+            }
         }
     }
 }

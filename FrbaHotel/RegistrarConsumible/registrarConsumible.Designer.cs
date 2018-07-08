@@ -42,12 +42,13 @@
             this.labelHabitacion = new System.Windows.Forms.Label();
             this.labelConsumible = new System.Windows.Forms.Label();
             this.labelPrecio = new System.Windows.Forms.Label();
+            this.labelHotel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(78, 19);
+            this.label1.Location = new System.Drawing.Point(153, 125);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 17);
             this.label1.TabIndex = 0;
@@ -56,7 +57,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(78, 62);
+            this.label2.Location = new System.Drawing.Point(153, 168);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(85, 17);
             this.label2.TabIndex = 1;
@@ -65,7 +66,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(78, 102);
+            this.label3.Location = new System.Drawing.Point(153, 208);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(111, 17);
             this.label3.TabIndex = 2;
@@ -74,7 +75,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(78, 182);
+            this.label4.Location = new System.Drawing.Point(153, 288);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(115, 17);
             this.label4.TabIndex = 3;
@@ -83,7 +84,7 @@
             // comboBoxHabitaciones
             // 
             this.comboBoxHabitaciones.FormattingEnabled = true;
-            this.comboBoxHabitaciones.Location = new System.Drawing.Point(173, 12);
+            this.comboBoxHabitaciones.Location = new System.Drawing.Point(248, 118);
             this.comboBoxHabitaciones.Name = "comboBoxHabitaciones";
             this.comboBoxHabitaciones.Size = new System.Drawing.Size(121, 24);
             this.comboBoxHabitaciones.TabIndex = 4;
@@ -91,7 +92,7 @@
             // comboBoxConsumible
             // 
             this.comboBoxConsumible.FormattingEnabled = true;
-            this.comboBoxConsumible.Location = new System.Drawing.Point(173, 55);
+            this.comboBoxConsumible.Location = new System.Drawing.Point(248, 161);
             this.comboBoxConsumible.Name = "comboBoxConsumible";
             this.comboBoxConsumible.Size = new System.Drawing.Size(121, 24);
             this.comboBoxConsumible.TabIndex = 5;
@@ -100,7 +101,7 @@
             // labelPrecioSugerido
             // 
             this.labelPrecioSugerido.AutoSize = true;
-            this.labelPrecioSugerido.Location = new System.Drawing.Point(195, 102);
+            this.labelPrecioSugerido.Location = new System.Drawing.Point(270, 208);
             this.labelPrecioSugerido.Name = "labelPrecioSugerido";
             this.labelPrecioSugerido.Size = new System.Drawing.Size(114, 17);
             this.labelPrecioSugerido.TabIndex = 6;
@@ -108,7 +109,7 @@
             // 
             // textBoxPrecioSugerido
             // 
-            this.textBoxPrecioSugerido.Location = new System.Drawing.Point(199, 179);
+            this.textBoxPrecioSugerido.Location = new System.Drawing.Point(274, 285);
             this.textBoxPrecioSugerido.Name = "textBoxPrecioSugerido";
             this.textBoxPrecioSugerido.Size = new System.Drawing.Size(100, 22);
             this.textBoxPrecioSugerido.TabIndex = 7;
@@ -116,7 +117,7 @@
             // checkBoxMantenerPrecioSugerido
             // 
             this.checkBoxMantenerPrecioSugerido.AutoSize = true;
-            this.checkBoxMantenerPrecioSugerido.Location = new System.Drawing.Point(122, 140);
+            this.checkBoxMantenerPrecioSugerido.Location = new System.Drawing.Point(197, 246);
             this.checkBoxMantenerPrecioSugerido.Name = "checkBoxMantenerPrecioSugerido";
             this.checkBoxMantenerPrecioSugerido.Size = new System.Drawing.Size(192, 21);
             this.checkBoxMantenerPrecioSugerido.TabIndex = 8;
@@ -126,7 +127,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(358, 205);
+            this.button1.Location = new System.Drawing.Point(433, 311);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(123, 55);
             this.button1.TabIndex = 9;
@@ -136,7 +137,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(510, 205);
+            this.button2.Location = new System.Drawing.Point(585, 311);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(123, 55);
             this.button2.TabIndex = 10;
@@ -148,7 +149,7 @@
             this.labelHabitacion.AutoSize = true;
             this.labelHabitacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHabitacion.ForeColor = System.Drawing.Color.Red;
-            this.labelHabitacion.Location = new System.Drawing.Point(312, 15);
+            this.labelHabitacion.Location = new System.Drawing.Point(387, 121);
             this.labelHabitacion.Name = "labelHabitacion";
             this.labelHabitacion.Size = new System.Drawing.Size(253, 20);
             this.labelHabitacion.TabIndex = 11;
@@ -160,7 +161,7 @@
             this.labelConsumible.AutoSize = true;
             this.labelConsumible.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelConsumible.ForeColor = System.Drawing.Color.Red;
-            this.labelConsumible.Location = new System.Drawing.Point(312, 55);
+            this.labelConsumible.Location = new System.Drawing.Point(387, 161);
             this.labelConsumible.Name = "labelConsumible";
             this.labelConsumible.Size = new System.Drawing.Size(253, 20);
             this.labelConsumible.TabIndex = 12;
@@ -172,18 +173,29 @@
             this.labelPrecio.AutoSize = true;
             this.labelPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPrecio.ForeColor = System.Drawing.Color.Red;
-            this.labelPrecio.Location = new System.Drawing.Point(329, 161);
+            this.labelPrecio.Location = new System.Drawing.Point(404, 267);
             this.labelPrecio.Name = "labelPrecio";
             this.labelPrecio.Size = new System.Drawing.Size(170, 20);
             this.labelPrecio.TabIndex = 13;
             this.labelPrecio.Text = "Precio final pendiente";
             this.labelPrecio.Visible = false;
             // 
+            // labelHotel
+            // 
+            this.labelHotel.AutoSize = true;
+            this.labelHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHotel.Location = new System.Drawing.Point(375, 40);
+            this.labelHotel.Name = "labelHotel";
+            this.labelHotel.Size = new System.Drawing.Size(75, 25);
+            this.labelHotel.TabIndex = 14;
+            this.labelHotel.Text = "{hotel}";
+            // 
             // registrarConsumible
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(672, 291);
+            this.ClientSize = new System.Drawing.Size(865, 416);
+            this.Controls.Add(this.labelHotel);
             this.Controls.Add(this.labelPrecio);
             this.Controls.Add(this.labelConsumible);
             this.Controls.Add(this.labelHabitacion);
@@ -222,5 +234,6 @@
         private System.Windows.Forms.Label labelHabitacion;
         private System.Windows.Forms.Label labelConsumible;
         private System.Windows.Forms.Label labelPrecio;
+        private System.Windows.Forms.Label labelHotel;
     }
 }

@@ -137,6 +137,13 @@ namespace FrbaHotel.AbmHabitacion
             this.labelNoSePuede.Visible = false;
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            modificarHabitacion m = new modificarHabitacion();
+            this.Hide();
+            m.Show();
+        }
+
   
     }
 }

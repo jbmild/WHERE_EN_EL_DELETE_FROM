@@ -50,6 +50,7 @@
             this.labelVistaPendiente = new System.Windows.Forms.Label();
             this.radioButtonVistaExteriorSI = new System.Windows.Forms.RadioButton();
             this.radioButtonVistaExteriorNO = new System.Windows.Forms.RadioButton();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -119,7 +120,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(940, 278);
+            this.button1.Location = new System.Drawing.Point(923, 312);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 56);
             this.button1.TabIndex = 9;
@@ -204,7 +205,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(773, 278);
+            this.button2.Location = new System.Drawing.Point(781, 312);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(117, 56);
             this.button2.TabIndex = 19;
@@ -255,11 +256,22 @@
             this.radioButtonVistaExteriorNO.Text = "No";
             this.radioButtonVistaExteriorNO.UseVisualStyleBackColor = true;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(640, 312);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(117, 56);
+            this.button3.TabIndex = 25;
+            this.button3.Text = "Volver";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // altaHabitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1307, 423);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.radioButtonVistaExteriorNO);
             this.Controls.Add(this.radioButtonVistaExteriorSI);
             this.Controls.Add(this.labelVistaPendiente);
@@ -311,5 +323,6 @@
         private System.Windows.Forms.Label labelVistaPendiente;
         private System.Windows.Forms.RadioButton radioButtonVistaExteriorSI;
         private System.Windows.Forms.RadioButton radioButtonVistaExteriorNO;
+        private System.Windows.Forms.Button button3;
     }
 }
