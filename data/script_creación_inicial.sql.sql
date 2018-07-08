@@ -875,4 +875,46 @@ INSERT INTO WHERE_EN_EL_DELETE_FROM.roles VALUES('Administrador General', 1, 0)
 INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios_roles (usuario_id, rol_id)
 select u.usuario_id, r.rol_id from WHERE_EN_EL_DELETE_FROM.usuarios u, WHERE_EN_EL_DELETE_FROM.roles r
 where u.usuario='admin' and r.nombre='Administrador General'
+
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'ABM de Rol'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'ABM de Usuario'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'ABM de Cliente'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'ABM de Hotel'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'ABM de Habitación'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'ABM de Regimen de Estadía'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'Generar o Modificar una Reserva'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'Cancelar Reserva'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'Registrar Estadía (check-in/check-out)'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'Rgistrar Consumibles'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'Facturar Estadía'
+
+insert into WHERE_EN_EL_DELETE_FROM.permisos
+SELECT 'Listado Estadístico'
+
+
+insert into WHERE_EN_EL_DELETE_FROM.roles_permisos
+select 1, nombre from WHERE_EN_EL_DELETE_FROM.permisos
+
 /* +++ END +++ Fill data */
