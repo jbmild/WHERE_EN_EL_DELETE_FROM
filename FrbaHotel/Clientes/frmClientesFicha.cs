@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using FrbaHotel.Modelo;
 using FrbaHotel.Tools;
 
-namespace FrbaHotel.AbmCliente
+namespace FrbaHotel.Clientes
 {
-    public partial class ClienteFicha : Form
+    public partial class frmClientesFicha : Form
     {
         private Reserva _res;
         //private int _idCliente;
@@ -22,33 +22,33 @@ namespace FrbaHotel.AbmCliente
         private string _email;
         private bool _returnToCheckInFunctionality = false;
 
-        public ClienteFicha(bool returnToCheckInFunctionality) {
+        public frmClientesFicha(bool returnToCheckInFunctionality) {
             _returnToCheckInFunctionality = returnToCheckInFunctionality;
             _cli = new Cliente(0);
             InitializeComponent();
         }
 
 
-        public ClienteFicha(Cliente cli) {
+        public frmClientesFicha(Cliente cli) {
             _cli = cli;
             InitializeComponent();
         }
 
-        public ClienteFicha()
+        public frmClientesFicha()
         {
             _cli = new Cliente(0);
             InitializeComponent();
 
         }
 
-        public ClienteFicha(int idCliente)
+        public frmClientesFicha(int idCliente)
         {
             _cli = new Cliente(idCliente);
             InitializeComponent();
             
         }
 
-        public ClienteFicha(Reserva reserva, string idTipoDocumento, string nroDocumento, string email)
+        public frmClientesFicha(Reserva reserva, string idTipoDocumento, string nroDocumento, string email)
         {
             InitializeComponent();
             _cli = new Cliente();
@@ -91,13 +91,13 @@ namespace FrbaHotel.AbmCliente
                 txtTelefono.Text = _cli.telefono;
                 txtLocalidad.Text = _cli.direccion_localidad;
                 txtPaisVivienda.Text = _cli.direccion_pais;
-                chkRehabilitar.Checked = _cli.habilitado;
+                chkHabilitado.Checked = _cli.habilitado;
 
                 if (!_cli.habilitado)
                 {
                     lblMensajeLoginORegister.Text = "El cliente está inhabilitado. Puede rehabilitarlo haciendo click en el checkbox. ";
                     lblMensajeLoginORegister.ForeColor = Color.Red;
-                    chkRehabilitar.Visible = true;
+                    chkHabilitado.Visible = true;
                     habilitarCampos(false);
                 }
 
@@ -130,7 +130,7 @@ namespace FrbaHotel.AbmCliente
             {
                 if (isValidEmail)
                 {
-                    _cli.habilitado = chkRehabilitar.Checked;
+                    _cli.habilitado = chkHabilitado.Checked;
                     _cli.tipoDocumento = cmbTiposDocumentos.Text;
                     _cli.nrodocumento = txtNroDocumento.Text;
                     _cli.nombre = txtNombre.Text;
@@ -216,7 +216,7 @@ namespace FrbaHotel.AbmCliente
 
         private void chkRehabilitar_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkRehabilitar.Checked)
+            if (chkHabilitado.Checked)
             {
                 habilitarCampos(true);
             }
