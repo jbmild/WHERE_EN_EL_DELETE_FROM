@@ -147,33 +147,12 @@
       <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHotel\RegimenElegido.cs" />
-    <Compile Include="AbmRegimen\ABM_regimen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRegimen\.Designer.cs">
-      <DependentUpon>ABM_regimen.cs</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRegimen\altaRegimen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRegimen\altaRegimen.Designer.cs">
-      <DependentUpon>altaRegimen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmRegimen\bajaRegimen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRegimen\bajaRegimen.Designer.cs">
-      <DependentUpon>bajaRegimen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmRegimen\Regimenes.cs" />
     <Compile Include="Bienvenido.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Bienvenido.Designer.cs">
       <DependentUpon>Bienvenido.cs</DependentUpon>
     </Compile>
-    <Compile Include="BuscarHotelesInicioSesion.cs" />
     <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,12 +341,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHotel\pantallaPrincipalHotel.resx">
       <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmRegimen\.Designer.resx">
-      <DependentUpon>.Designer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmRegimen\bajaRegimen.resx">
-      <DependentUpon>bajaRegimen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bienvenido.resx">
       <DependentUpon>Bienvenido.cs</DependentUpon>
