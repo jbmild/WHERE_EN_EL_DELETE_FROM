@@ -74,6 +74,7 @@ namespace FrbaHotel.Login
                     throw new Exception("No se pudo seleccionar un hotel valido. No es posible loguearse.");
                 }
 
+                MessageBox.Show("Se logueo correctamente. Bienvenido " + Sesion.usuario.NombreUsuario, this.Text, MessageBoxButtons.OK, MessageBoxIcon.None);
                 this.Close();
             }
             catch (Exception er)
