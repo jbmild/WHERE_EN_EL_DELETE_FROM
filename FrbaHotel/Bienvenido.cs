@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Login;
 using FrbaHotel.Tools;
 
 namespace FrbaHotel
@@ -43,7 +44,7 @@ namespace FrbaHotel
             }
             else
             {
-                lblHotel.Text = "Hotel: " + Sesion.hotel.nombre;
+                lblHotel.Text = "Hotel: " + Sesion.hotel.Nombre;
                 lblHotel.Show();
             }
 
@@ -59,13 +60,118 @@ namespace FrbaHotel
                 btnHabitaciones.Enabled = false;
                 btnEstadisticas.Enabled = false;
                 btnRoles.Enabled = false;
+                //btnGenerarModificarReserva.Enabled = false;
+                //btnCancelarReserva.Enabled = false;
             }
             else
             {
                 lblRol.Text = "Rol: " + Sesion.rol.Nombre;
                 lblRol.Show();
-                //TODO mostrar los botones disponibles
+
+                List<Roles.Modelo.Permiso> permisos = Sesion.rol.PermisosDados;
+                if (permisos.Count > 0)
+                {
+                    foreach (Roles.Modelo.Permiso permiso in permisos)
+                    {
+                        switch (permiso.Nombre)
+                        {
+                            case "Roles":
+                                btnRoles.Enabled = true;
+                                break;
+                            case "Clientes":
+                                btnClientes.Enabled = true;
+                                break;
+	                        case "Usuarios":
+                                btnUsuarios.Enabled = true;
+                                break;
+	                        case "Hoteles":
+                                btnHoteles.Enabled = true;
+                                break;
+	                        case "Habitaciones":
+                                btnHabitaciones.Enabled = true;
+                                break;
+	                        //case "Generar o Modificar Reserva":
+                                //btnGenerarModificarReserva.Enabled = true;
+                                //break;
+	                        //case "Cancelar Reserva":
+                                //btnCancelarReserva.Enabled = true;
+                                //break;
+	                        case "Estadias":
+                                btnEstadias.Enabled = true;
+                                break;
+	                        case "Consumibles":
+                                btnConsumibles.Enabled = true;
+                                break;
+	                        case "Facturacion":
+                                btnFacturacion.Enabled = true;
+                                break;
+                            case "Estadisticas":
+                                btnEstadisticas.Enabled = true;
+                                break;
+                        }
+                    }
+                }
             }
+        }
+
+        private void btnRoles_Click(object sender, EventArgs e)
+        {
+            Roles.frmRolesListado frmListado = new Roles.frmRolesListado();
+            frmListado.ShowDialog(this);
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (Sesion.usuario == null)
+            {
+                frmLogin login = new frmLogin();
+                login.ShowDialog(this);
+            }
+            else
+            {
+                Sesion.usuario = null;
+                Sesion.rol = null;
+                Sesion.hotel = null;
+            }
+
+            this.cargarFormulario();
+        }
+
+        private void btnConsumibles_Click(object sender, EventArgs e)
+        {
+            RegistrarConsumible.registrarConsumible r = new RegistrarConsumible.registrarConsumible();
+            r.RecibirHotel(Sesion.hotel.Nombre, Sesion.hotel.HotelId);
+            r.ShowDialog(this);
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            AbmCliente.frmClientesListado listadoClientes = new AbmCliente.frmClientesListado();
+            listadoClientes.ShowDialog(this);
+        }
+
+        private void btnHabitaciones_Click(object sender, EventArgs e)
+        {
+            AbmHabitacion.abmHabitacionBotones formHabitacion = new AbmHabitacion.abmHabitacionBotones();
+            formHabitacion.ShowDialog(this);
+        }
+
+        private void btnHoteles_Click(object sender, EventArgs e)
+        {
+            AbmHotel.pantallaPrincipalHotel alta = new AbmHotel.pantallaPrincipalHotel();
+            alta.ShowDialog(this);
+        }
+
+        private void btnEstadias_Click(object sender, EventArgs e)
+        {
+            RegistrarEstadia.RegistrarEstadia registrarEstadia = new RegistrarEstadia.RegistrarEstadia();
+            registrarEstadia.ShowDialog(this);
+        }
+
+        private void btnGenerarModificarReserva_Click(object sender, EventArgs e)
+        {
+            GenerarModificacionReserva.MenuCRUDReserva formMenu = new GenerarModificacionReserva.MenuCRUDReserva();
+            formMenu.ShowDialog(this);
         }
     }
 }

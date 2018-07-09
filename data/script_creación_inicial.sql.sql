@@ -415,7 +415,7 @@ SET @FechaActual = GETDATE();
 		fecha_creacion
 	)
 	SELECT DISTINCT
-		NULL,
+		concat(Hotel_calle,' ',convert(NVARCHAR(255), Hotel_Nro_Calle)),
 		NULL,
 		NULL,
 		concat(Hotel_calle,' ',convert(NVARCHAR(255), Hotel_Nro_Calle)),
@@ -508,20 +508,42 @@ SET @FechaActual = GETDATE();
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios (
 		usuario, 
 		contrasena, 
-		habilitado
-	) VALUES (
-		'guest', 
-		convert(varbinary, ''), 
-		1
-	)
+		habilitado,
+		cant_intentos
+	) VALUES 
+	('guest', convert(varbinary, ''), 1, 0),
+	('admin',HASHBYTES('SHA2_256',CONVERT(VARCHAR(255),'w23e')),1,0)
 
 	/* Permisos */
+	insert into WHERE_EN_EL_DELETE_FROM.permisos (nombre) VALUES 
+	('Roles'), 
+	('Clientes'), 
+	('Usuarios'),
+	('Hoteles'), 
+	('Habitaciones'), 
+	('Generar o Modificar Reserva'),
+	('Cancelar Reserva'),
+	('Estadias'),
+	('Consumibles'),
+	('Facturacion'),
+	('Estadisticas')
 
 	/* Roles */
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.roles (nombre, habilitado, esDefault) VALUES
+	('Administrador General', 1, 0),
+	('Guest', 1, 1)
 
 	/* Roles Permisos*/
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.roles_permisos (rol_id, permiso_id)
+	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Administrador General'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos
+
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.roles_permisos (rol_id, permiso_id)
+	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Guest'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE nombre in ('Generar o Modificar Reserva', 'Cancelar Reserva')
 
 	/* Usuarios Roles */
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios_roles (usuario_id, rol_id) VALUES
+	((SELECT TOP 1 usuario_id FROM WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario='admin'), (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Administrador General')),
+	((SELECT TOP 1 usuario_id FROM WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario='guest'), (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Guest'))
 
 	/* Clientes */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.clientes (
@@ -648,8 +670,12 @@ SET @FechaActual = GETDATE();
 			m.Reserva_Codigo = r.codigo
 
 	/* Empleados */
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.empleados (usuario_id, mail, nombre, apellido) VALUES
+	((SELECT TOP 1 usuario_id FROM WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario='admin'), 'admin@hotel.com', 'Administrador', 'General')
 
 	/* Empleados Hoteles */
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.empleados_hoteles(empleado_id, hotel_id)
+	SELECT (SELECT TOP 1 empleado_id FROM WHERE_EN_EL_DELETE_FROM.empleados WHERE nombre='Administrador' AND apellido='General'), hotel_id FROM WHERE_EN_EL_DELETE_FROM.hoteles
 
 	/* Estadias */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.estadias (
@@ -869,52 +895,4 @@ SET @FechaActual = GETDATE();
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones h ON
 			h.habitacion_id = co.habitacion_id
 			AND h.numero = m.Habitacion_Numero
-			
-INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios VALUES ('admin',HASHBYTES('SHA2_256','w23e'),1,0)
-INSERT INTO WHERE_EN_EL_DELETE_FROM.roles VALUES('Administrador General', 1, 0)
-INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios_roles (usuario_id, rol_id)
-select u.usuario_id, r.rol_id from WHERE_EN_EL_DELETE_FROM.usuarios u, WHERE_EN_EL_DELETE_FROM.roles r
-where u.usuario='admin' and r.nombre='Administrador General'
-
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'ABM de Rol'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'ABM de Usuario'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'ABM de Cliente'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'ABM de Hotel'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'ABM de Habitación'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'ABM de Regimen de Estadía'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'Generar o Modificar una Reserva'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'Cancelar Reserva'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'Registrar Estadía (check-in/check-out)'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'Rgistrar Consumibles'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'Facturar Estadía'
-
-insert into WHERE_EN_EL_DELETE_FROM.permisos
-SELECT 'Listado Estadístico'
-
-
-insert into WHERE_EN_EL_DELETE_FROM.roles_permisos
-select 1, permiso_id from WHERE_EN_EL_DELETE_FROM.permisos
-
 /* +++ END +++ Fill data */

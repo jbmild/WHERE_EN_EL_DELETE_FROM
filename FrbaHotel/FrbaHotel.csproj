@@ -147,52 +147,15 @@
       <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHotel\RegimenElegido.cs" />
-    <Compile Include="AbmRegimen\ABM_regimen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRegimen\.Designer.cs">
-      <DependentUpon>ABM_regimen.cs</DependentUpon>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRegimen\altaRegimen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRegimen\altaRegimen.Designer.cs">
-      <DependentUpon>altaRegimen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmRegimen\bajaRegimen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmRegimen\bajaRegimen.Designer.cs">
-      <DependentUpon>bajaRegimen.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmRegimen\Regimenes.cs" />
     <Compile Include="Bienvenido.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Bienvenido.Designer.cs">
       <DependentUpon>Bienvenido.cs</DependentUpon>
     </Compile>
-    <Compile Include="BuscarHotelesInicioSesion.cs" />
-    <Compile Include="FuncionesAdmin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FuncionesAdmin.Designer.cs">
-      <DependentUpon>FuncionesAdmin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FuncionesRecepcionista.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FuncionesRecepcionista.Designer.cs">
-      <DependentUpon>FuncionesRecepcionista.cs</DependentUpon>
-    </Compile>
     <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ElegirRol\ElegirRol.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ElegirRol\ElegirRol.Designer.cs" />
     <Compile Include="GenerarModificacionReserva\frmMotivoCancelacion.Designer.cs">
       <DependentUpon>frmMotivoCancelacion.cs</DependentUpon>
     </Compile>
@@ -208,13 +171,28 @@
     <Compile Include="GenerarModificacionReserva\ModificarCancelarReserva.Designer.cs">
       <DependentUpon>ModificarCancelarReserva.cs</DependentUpon>
     </Compile>
-    <Compile Include="HotelSesionActual.cs">
+    <Compile Include="Login\frmSeleccionHotel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HotelSesionActual.Designer.cs">
-      <DependentUpon>HotelSesionActual.cs</DependentUpon>
+    <Compile Include="Login\frmSeleccionHotel.Designer.cs">
+      <DependentUpon>frmSeleccionHotel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\View\Encripter.cs" />
+    <Compile Include="Login\frmSeleccionRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login\frmSeleccionRol.Designer.cs">
+      <DependentUpon>frmSeleccionRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Modelo\Empleado.cs" />
+    <Compile Include="Login\Modelo\EmpleadoHotel.cs" />
+    <Compile Include="Login\Modelo\Empleados.cs" />
+    <Compile Include="Login\Modelo\EmpleadosHoteles.cs" />
+    <Compile Include="Login\Modelo\Hotel.cs" />
+    <Compile Include="Login\Modelo\Hoteles.cs" />
+    <Compile Include="Login\Modelo\Usuario.cs" />
+    <Compile Include="Login\Modelo\UsuarioRol.cs" />
+    <Compile Include="Login\Modelo\Usuarios.cs" />
+    <Compile Include="Login\Modelo\UsuariosRoles.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Roles\frmRolesFicha.cs">
       <SubType>Form</SubType>
@@ -235,12 +213,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ConexionSQL.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="GenerarModificacionReserva\GenerarReservaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,23 +249,11 @@
     <Compile Include="ListadoEstadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\View\Access_user.cs">
+    <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\View\Access_user.Designer.cs">
-      <DependentUpon>Access_user.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\View\Form2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\View\Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Login\View\Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Login\View\Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="Login\frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelo\TipoRegimen.cs" />
     <Compile Include="Modelo\Hotel.cs" />
@@ -382,24 +342,8 @@
     <EmbeddedResource Include="AbmHotel\pantallaPrincipalHotel.resx">
       <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmRegimen\.Designer.resx">
-      <DependentUpon>.Designer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmRegimen\bajaRegimen.resx">
-      <DependentUpon>bajaRegimen.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Bienvenido.resx">
       <DependentUpon>Bienvenido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ElegirRol\ElegirRol.resx" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FuncionesAdmin.resx">
-      <DependentUpon>FuncionesAdmin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FuncionesRecepcionista.resx">
-      <DependentUpon>FuncionesRecepcionista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GenerarModificacionReserva\ConfirmarReserva.resx">
       <DependentUpon>ConfirmarReserva.cs</DependentUpon>
@@ -425,17 +369,14 @@
     <EmbeddedResource Include="GenerarModificacionReserva\ModificarCancelarReserva.resx">
       <DependentUpon>ModificarCancelarReserva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HotelSesionActual.resx">
-      <DependentUpon>HotelSesionActual.cs</DependentUpon>
+    <EmbeddedResource Include="Login\frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\View\Access_user.resx">
-      <DependentUpon>Access_user.cs</DependentUpon>
+    <EmbeddedResource Include="Login\frmSeleccionHotel.resx">
+      <DependentUpon>frmSeleccionHotel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login\View\Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Login\View\Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="Login\frmSeleccionRol.resx">
+      <DependentUpon>frmSeleccionRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

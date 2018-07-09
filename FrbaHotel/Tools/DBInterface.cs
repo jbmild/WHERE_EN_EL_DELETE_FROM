@@ -257,7 +257,7 @@ namespace FrbaHotel.Tools
 
                 return comando.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 throw new Exception("No puede actualizarse el registro en este momento.");
             }

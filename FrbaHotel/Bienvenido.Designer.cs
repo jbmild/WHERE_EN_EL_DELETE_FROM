@@ -82,6 +82,7 @@
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lblUsuario
             // 
@@ -113,6 +114,7 @@
             this.btnGenerarModificarReserva.TabIndex = 16;
             this.btnGenerarModificarReserva.Text = "Generar o modificar Reserva";
             this.btnGenerarModificarReserva.UseVisualStyleBackColor = true;
+            this.btnGenerarModificarReserva.Click += new System.EventHandler(this.btnGenerarModificarReserva_Click);
             // 
             // btnClientes
             // 
@@ -124,6 +126,7 @@
             this.btnClientes.TabIndex = 18;
             this.btnClientes.Text = "Clientes";
             this.btnClientes.UseVisualStyleBackColor = true;
+            this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // btnRoles
             // 
@@ -135,6 +138,7 @@
             this.btnRoles.TabIndex = 19;
             this.btnRoles.Text = "Roles";
             this.btnRoles.UseVisualStyleBackColor = true;
+            this.btnRoles.Click += new System.EventHandler(this.btnRoles_Click);
             // 
             // btnUsuarios
             // 
@@ -157,6 +161,7 @@
             this.btnHoteles.TabIndex = 21;
             this.btnHoteles.Text = "Hoteles";
             this.btnHoteles.UseVisualStyleBackColor = true;
+            this.btnHoteles.Click += new System.EventHandler(this.btnHoteles_Click);
             // 
             // btnHabitaciones
             // 
@@ -168,6 +173,7 @@
             this.btnHabitaciones.TabIndex = 22;
             this.btnHabitaciones.Text = "Habitaciones";
             this.btnHabitaciones.UseVisualStyleBackColor = true;
+            this.btnHabitaciones.Click += new System.EventHandler(this.btnHabitaciones_Click);
             // 
             // btnEstadias
             // 
@@ -179,6 +185,7 @@
             this.btnEstadias.TabIndex = 23;
             this.btnEstadias.Text = "Estadias";
             this.btnEstadias.UseVisualStyleBackColor = true;
+            this.btnEstadias.Click += new System.EventHandler(this.btnEstadias_Click);
             // 
             // btnConsumibles
             // 
@@ -190,6 +197,7 @@
             this.btnConsumibles.TabIndex = 24;
             this.btnConsumibles.Text = "Consumibles";
             this.btnConsumibles.UseVisualStyleBackColor = true;
+            this.btnConsumibles.Click += new System.EventHandler(this.btnConsumibles_Click);
             // 
             // btnFacturacion
             // 
