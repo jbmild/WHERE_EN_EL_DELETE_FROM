@@ -26,16 +26,16 @@ namespace FrbaHotel.RegistrarEstadia
         {
             //Si
             GenerarModificacionReserva.GenerarReservaPrincipal generarReservaPrincipal = new GenerarModificacionReserva.GenerarReservaPrincipal();
-            this.Hide();
-            generarReservaPrincipal.Show();            
+            generarReservaPrincipal.Show();
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             //No
-            FuncionesAdmin funcionesAdmin = new FuncionesAdmin();
+            Bienvenido bienvenido = new Bienvenido();
             this.Hide();
-            funcionesAdmin.Show();
+            bienvenido.Show();
         }
     }
 }
