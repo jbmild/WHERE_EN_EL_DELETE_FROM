@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Estadisticas;
 using FrbaHotel.Login;
 using FrbaHotel.Tools;
 
@@ -146,7 +147,7 @@ namespace FrbaHotel
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            AbmCliente.frmClientesListado listadoClientes = new AbmCliente.frmClientesListado();
+            Clientes.frmClientesListado listadoClientes = new Clientes.frmClientesListado();
             listadoClientes.ShowDialog(this);
         }
 
@@ -174,10 +175,17 @@ namespace FrbaHotel
             formMenu.ShowDialog(this);
         }
 
+
         private void btnCancelarReserva_Click(object sender, EventArgs e)
         {
             Reservas.ModificarCancelarReserva frm = new Reservas.ModificarCancelarReserva(true);
             frm.Show();
+        }
+
+        private void btnEstadisticas_Click(object sender, EventArgs e)
+        {
+            frmEstadisticas estadisticas = new frmEstadisticas();
+            estadisticas.ShowDialog(this);
         }
     }
 }

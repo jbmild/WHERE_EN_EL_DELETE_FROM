@@ -181,7 +181,7 @@ SET @FechaActual = GETDATE();
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.usuarios (
 		usuario_id int identity(1,1) PRIMARY KEY, 
 		usuario NVARCHAR(255), 
-		contrasena NVARCHAR(50),
+		contrasena varbinary(32),
 		habilitado bit DEFAULT 1, 
 		cant_intentos char DEFAULT 0
 	)
@@ -512,7 +512,7 @@ SET @FechaActual = GETDATE();
 		cant_intentos
 	) VALUES 
 	('guest', convert(varbinary, ''), 1, 0),
-	('admin',HASHBYTES('SHA2_256',CONVERT(VARCHAR(255),'w23e')),1,0)
+	('admin',HASHBYTES('SHA2_256',CONVERT(VARCHAR(32),'w23e')),1,0)
 
 	/* Permisos */
 	insert into WHERE_EN_EL_DELETE_FROM.permisos (nombre) VALUES 

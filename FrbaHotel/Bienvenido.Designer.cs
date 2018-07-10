@@ -215,6 +215,7 @@
             this.btnEstadisticas.TabIndex = 26;
             this.btnEstadisticas.Text = "Estadisticas";
             this.btnEstadisticas.UseVisualStyleBackColor = true;
+            this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
             // 
             // Bienvenido
             // 

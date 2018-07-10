@@ -86,7 +86,7 @@ namespace FrbaHotel.Login.Modelo
             parametro.DbType = DbType.String;
             parametros.Add(parametro);
 
-            string sql = "SELECT usuario_id, usuario, habilitado, cant_intentos FROM WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario=@usuario AND contrasena=HASHBYTES('SHA2_256', CONVERT(VARCHAR(255),@password)) AND habilitado=1";
+            string sql = "SELECT usuario_id, usuario, habilitado, cant_intentos FROM WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario=@usuario AND contrasena=HASHBYTES('SHA2_256', CONVERT(VARCHAR(32),@password)) AND habilitado=1";
             DataTable data = DBInterface.seleccionar(sql, parametros);
 
             if (data.Rows.Count == 1)

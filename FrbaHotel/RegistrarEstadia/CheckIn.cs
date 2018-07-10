@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Modelo;
+using System.Data.SqlClient;
+
 
 namespace FrbaHotel.RegistrarEstadia
 {
@@ -14,6 +17,7 @@ namespace FrbaHotel.RegistrarEstadia
     {
         String numeroDeReserva;
         DateTime fechaDesde;
+        Reserva res;
         public CheckIn()
         {
             InitializeComponent();
@@ -54,7 +58,59 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void Aceptar_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dgvReservas.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                {
+                    if (Convert.ToInt32(row.Cells[0].Value) >= 1)
+                    {
+                        
+                        Reserva res = new Reserva();
+                        res.fecha_desde = Convert.ToDateTime(row.Cells[2].Value);
+                        res.fecha_hasta = Convert.ToDateTime(row.Cells[3].Value);
+                        res.codigo = Convert.ToInt32(row.Cells[1].Value);
+                        res.hotel_id = Convert.ToInt32(row.Cells[6].Value);
+                        res.regimen_id = Convert.ToInt32(row.Cells[7].Value);
+                        res.cliente_id = Convert.ToInt32(row.Cells[9].Value);
+                        res.id = Convert.ToInt32(row.Cells[10].Value);
 
+                        if (DateTime.Compare(res.fecha_desde, DateTime.Today) == 0)//si estamos en la fecha de hoy.
+                        {
+
+                        }
+                        else if (DateTime.Compare(res.fecha_desde, DateTime.Today) < 0)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Solo se puede realizar el día de la reserva, no antes");
+                        }
+                        else
+                        {
+                            //el dia es posterior y se perdió la reserva - se cancela.
+                            //ir a form de pregunta si se quiere reservar de vuelta o no. 
+                            res.motivoCancelacion = "El cliente no ingresó a tiempo";
+                            try
+                            {
+                                int exito = res.cancelarReserva();
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Windows.Forms.MessageBox.Show(ex.Message);
+                            }
+
+                            //PreguntaNuevaRerva preguntaNuevaRerva = new PreguntaNuevaRerva();
+                            //preguntaNuevaRerva.Show();
+
+
+                        }
+                        //FormGenerarModificarReserva form = new FormGenerarModificarReserva(res, Convert.ToInt32(row.Cells[8].Value));
+                        //form.Owner = this;
+                        //form.Show();
+                    }
+                    //else
+                    //{
+                    //    System.Windows.Forms.MessageBox.Show("No es posible modificar su reserva a menos de un día de que comience. ");
+                    //}
+                }
+            }
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

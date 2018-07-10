@@ -32,6 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -45,16 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbmCliente\ClienteFicha.cs">
+    <Compile Include="Clientes\frmClientesFicha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmCliente\ClienteFicha.Designer.cs">
-      <DependentUpon>ClienteFicha.cs</DependentUpon>
+    <Compile Include="Clientes\frmClientesFicha.Designer.cs">
+      <DependentUpon>frmClientesFicha.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmCliente\frmClientesListado.cs">
+    <Compile Include="Clientes\frmClientesListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmCliente\frmClientesListado.Designer.cs">
+    <Compile Include="Clientes\frmClientesListado.Designer.cs">
       <DependentUpon>frmClientesListado.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmHabitacion\abmHabitacionBotones.cs">
@@ -153,6 +155,9 @@
     <Compile Include="Bienvenido.Designer.cs">
       <DependentUpon>Bienvenido.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estadisticas\frmEstadisticas.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Login\frmSeleccionHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +182,19 @@
     <Compile Include="Login\Modelo\UsuariosRoles.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="Reservas\ConfirmarReserva.cs">
+    <Compile Include="RegistrarEstadia\IngresoHuespedes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\IngresoHuespedes.Designer.cs">
+      <DependentUpon>IngresoHuespedes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEstadia\PreguntaNuevaRerva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\PreguntaNuevaRerva.Designer.cs">
+      <DependentUpon>PreguntaNuevaRerva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Roles\frmRolesFicha.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reservas\ConfirmarReserva.Designer.cs" >
@@ -303,10 +321,10 @@
     <Compile Include="Tools\RegexUtilities.cs" />
     <Compile Include="Tools\Option.cs" />
     <Compile Include="Tools\Sesion.cs" />
-    <EmbeddedResource Include="AbmCliente\ClienteFicha.resx">
-      <DependentUpon>ClienteFicha.cs</DependentUpon>
+    <EmbeddedResource Include="Clientes\frmClientesFicha.resx">
+      <DependentUpon>frmClientesFicha.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmCliente\frmClientesListado.resx">
+    <EmbeddedResource Include="Clientes\frmClientesListado.resx">
       <DependentUpon>frmClientesListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmHabitacion\abmHabitacionBotones.resx">
@@ -351,6 +369,9 @@
     <EmbeddedResource Include="Bienvenido.resx">
       <DependentUpon>Bienvenido.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Estadisticas\frmEstadisticas.resx">
+      <DependentUpon>frmEstadisticas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -374,6 +395,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\CheckIn.resx">
       <DependentUpon>CheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\IngresoHuespedes.resx">
+      <DependentUpon>IngresoHuespedes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\PreguntaNuevaRerva.resx">
+      <DependentUpon>PreguntaNuevaRerva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\RegistrarEstadia.resx">
       <DependentUpon>RegistrarEstadia.cs</DependentUpon>
