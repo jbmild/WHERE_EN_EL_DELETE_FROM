@@ -153,14 +153,14 @@ namespace FrbaHotel
 
         private void btnHabitaciones_Click(object sender, EventArgs e)
         {
-            AbmHabitacion.abmHabitacionBotones formHabitacion = new AbmHabitacion.abmHabitacionBotones();
+            AbmHabitacion.modificarHabitacion formHabitacion = new AbmHabitacion.modificarHabitacion();
             formHabitacion.ShowDialog(this);
         }
 
         private void btnHoteles_Click(object sender, EventArgs e)
         {
-            AbmHotel.pantallaPrincipalHotel alta = new AbmHotel.pantallaPrincipalHotel();
-            alta.ShowDialog(this);
+            AbmHotel.modificarHotel hotelPantalla = new AbmHotel.modificarHotel();
+            hotelPantalla.ShowDialog(this);
         }
 
         private void btnEstadias_Click(object sender, EventArgs e)
