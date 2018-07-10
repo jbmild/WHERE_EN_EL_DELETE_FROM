@@ -35,9 +35,10 @@
             // 
             // btnAltaHabitacion
             // 
-            this.btnAltaHabitacion.Location = new System.Drawing.Point(47, 154);
+            this.btnAltaHabitacion.Location = new System.Drawing.Point(35, 125);
+            this.btnAltaHabitacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAltaHabitacion.Name = "btnAltaHabitacion";
-            this.btnAltaHabitacion.Size = new System.Drawing.Size(115, 53);
+            this.btnAltaHabitacion.Size = new System.Drawing.Size(86, 43);
             this.btnAltaHabitacion.TabIndex = 0;
             this.btnAltaHabitacion.Text = "Dar alta habitación";
             this.btnAltaHabitacion.UseVisualStyleBackColor = true;
@@ -45,9 +46,10 @@
             // 
             // btnBajaHabitacion
             // 
-            this.btnBajaHabitacion.Location = new System.Drawing.Point(181, 154);
+            this.btnBajaHabitacion.Location = new System.Drawing.Point(136, 125);
+            this.btnBajaHabitacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnBajaHabitacion.Name = "btnBajaHabitacion";
-            this.btnBajaHabitacion.Size = new System.Drawing.Size(115, 53);
+            this.btnBajaHabitacion.Size = new System.Drawing.Size(86, 43);
             this.btnBajaHabitacion.TabIndex = 1;
             this.btnBajaHabitacion.Text = "Dar baja habitación";
             this.btnBajaHabitacion.UseVisualStyleBackColor = true;
@@ -55,9 +57,10 @@
             // 
             // btnEditarHabitacion
             // 
-            this.btnEditarHabitacion.Location = new System.Drawing.Point(317, 154);
+            this.btnEditarHabitacion.Location = new System.Drawing.Point(238, 125);
+            this.btnEditarHabitacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnEditarHabitacion.Name = "btnEditarHabitacion";
-            this.btnEditarHabitacion.Size = new System.Drawing.Size(115, 53);
+            this.btnEditarHabitacion.Size = new System.Drawing.Size(86, 43);
             this.btnEditarHabitacion.TabIndex = 2;
             this.btnEditarHabitacion.Text = "Editar habitación";
             this.btnEditarHabitacion.UseVisualStyleBackColor = true;
@@ -65,14 +68,16 @@
             // 
             // abmHabitacionBotones
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 253);
+            this.ClientSize = new System.Drawing.Size(373, 206);
             this.Controls.Add(this.btnEditarHabitacion);
             this.Controls.Add(this.btnBajaHabitacion);
             this.Controls.Add(this.btnAltaHabitacion);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "abmHabitacionBotones";
             this.Text = "Selección acción Habitación";
+            this.Load += new System.EventHandler(this.abmHabitacionBotones_Load);
             this.ResumeLayout(false);
 
         }

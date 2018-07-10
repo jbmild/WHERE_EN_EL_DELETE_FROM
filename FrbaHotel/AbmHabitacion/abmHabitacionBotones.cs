@@ -34,5 +34,10 @@ namespace FrbaHotel.AbmHabitacion
             modificarHabitacion mHab = new modificarHabitacion();
             mHab.Show();
         }
+
+        private void abmHabitacionBotones_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

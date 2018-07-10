@@ -138,5 +138,10 @@ namespace FrbaHotel.RegistrarEstadia
 
             }
         }
+
+        private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

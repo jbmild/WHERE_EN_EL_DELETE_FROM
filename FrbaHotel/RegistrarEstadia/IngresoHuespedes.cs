@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -96,13 +97,44 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             if (e.ColumnIndex.Equals(0))
             {
-                //int row = e.RowIndex;
-                //int tieneVista = 0;
-                //int estaHabilitado = 0;
+                int row = e.RowIndex;
+                int numero_cliente;
+                //obtener el numero de reserva desde el otro form. 
+                DataGridViewRow selectedRow = dgwRoles.Rows[row];
+                numero_cliente = Int32.Parse(selectedRow.Cells[1].Value.ToString());
+                int cod_reserva = 1;//cambiarlo!.
 
-                //DataGridViewRow selectedRow = dgwRoles.Rows[row];
+                ConexionSQL conexionSQL = new ConexionSQL();
+                String sqlQuery = "SELECT * FROM ESTADIAS WHERE RESERVA_ID = '"+ cod_reserva + "'";
+
+                DataTable dt = conexionSQL.cargarTablaSQL(sqlQuery);
+                if(dt.Rows[0] != null)
+                {
+                    //ya existe la estadía.
+                    string estadia = dt.Rows[0][0].ToString();
+                    string insert_estadia = "INSERT INTO WHERE_EN_EL_DELETE_FROM.huespedes (estadia_id, cliente_id) VALUES('" + estadia +  "', '" + numero_cliente + "')";
+                    SqlCommand sql = new SqlCommand(insert_estadia);
+                }
+                else
+                {
+                    //no existe la estadia.
+                    //string insert_estadia2 = "INSERT INTO WHERE_EN_EL_DELETE_FROM.huespedes (estadia_id, cliente_id) VALUES('" + estadia + "', '" + numero_cliente + "')";
+                    //SqlCommand sql = new SqlCommand(insert_estadia2);
+                }
+
+
+                //string query = "INSERT INTO WHERE_EN_EL_DELETE_FROM.huespedes (nombre, mail, telefono, direccion, ciudad, pais, estrellas_cant, fecha_creacion)";
+                //query += " VALUES (@nombre, @mail ,@telefono, @direccion, @ciudad, @pais, @estrellas, @fecha" + ")";
+                ////SqlCommand sql = new SqlCommand(query);
+                //sql.Connection = con;
+                //sql.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = textBoxNombreNuevoHotel.Text;
+                //int result = sql.ExecuteNonQuery();
+
+
+
                 //int piso = this.mapearPiso(selectedRow);
                 //HabitacionElegida habitacion = new HabitacionElegida();
                 ////System.Windows.Forms.MessageBox.Show(dataGridView1.Columns.Count.ToString());
@@ -139,6 +171,11 @@ namespace FrbaHotel.RegistrarEstadia
                 //modifDatos.RecibirHabitacion(habitacion);
                 //modifDatos.Show();
             }
+        }
+
+        private void btnAlta_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

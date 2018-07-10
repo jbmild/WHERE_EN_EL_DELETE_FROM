@@ -166,6 +166,7 @@
             this.btnAlta.TabIndex = 12;
             this.btnAlta.Text = "Alta";
             this.btnAlta.UseVisualStyleBackColor = true;
+            this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
             // btnBuscar
             // 
