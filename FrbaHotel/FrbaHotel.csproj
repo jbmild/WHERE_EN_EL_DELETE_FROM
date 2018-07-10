@@ -158,6 +158,11 @@
     <Compile Include="Estadisticas\frmEstadisticas.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Estadisticas\frmEstadisticas.Designer.cs">
+      <DependentUpon>frmEstadisticas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Estadisticas\Modelo\Estadistica.cs" />
+    <Compile Include="Estadisticas\Modelo\Estadisticas.cs" />
     <Compile Include="Login\frmSeleccionHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,7 +186,6 @@
     <Compile Include="Login\Modelo\Usuarios.cs" />
     <Compile Include="Login\Modelo\UsuariosRoles.cs" />
     <Compile Include="Modelo\Usuario.cs" />
-    <Compile Include="Reservas\ConfirmarReserva.cs">
     <Compile Include="RegistrarEstadia\IngresoHuespedes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,58 +198,52 @@
     <Compile Include="RegistrarEstadia\PreguntaNuevaRerva.Designer.cs">
       <DependentUpon>PreguntaNuevaRerva.cs</DependentUpon>
     </Compile>
-    <Compile Include="Roles\frmRolesFicha.cs">
+    <Compile Include="Reservas\ConfirmarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reservas\ConfirmarReserva.Designer.cs" >
+    <Compile Include="Reservas\ConfirmarReserva.designer.cs">
       <DependentUpon>ConfirmarReserva.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reservas\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reservas\Form1.Designer.cs" >
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Reservas\FormSeleccionarHabitaciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reservas\FormSeleccionarHabitaciones.Designer.cs" >
+    <Compile Include="Reservas\FormSeleccionarHabitaciones.Designer.cs">
       <DependentUpon>FormSeleccionarHabitaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Reservas\frmMotivoCancelacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reservas\frmMotivoCancelacion.Designer.cs" >
+    <Compile Include="Reservas\frmMotivoCancelacion.Designer.cs">
       <DependentUpon>frmMotivoCancelacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Reservas\GenerarReservaPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reservas\GenerarReservaPrincipal.Designer.cs" >
+    <Compile Include="Reservas\GenerarReservaPrincipal.Designer.cs">
       <DependentUpon>GenerarReservaPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Reservas\IdentificarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reservas\IdentificarUsuario.Designer.cs" >
+    <Compile Include="Reservas\IdentificarUsuario.Designer.cs">
       <DependentUpon>IdentificarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="Reservas\IdentificarUsuarioExtendido.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reservas\IdentificarUsuarioExtendido.Designer.cs" >
+    <Compile Include="Reservas\IdentificarUsuarioExtendido.Designer.cs">
       <DependentUpon>IdentificarUsuarioExtendido.cs</DependentUpon>
     </Compile>
     <Compile Include="Reservas\MenuGenerarModificarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reservas\MenuGenerarModificarReserva.Designer.cs" >
-         <DependentUpon>MenuGenerarModificarReserva.cs</DependentUpon>
+    <Compile Include="Reservas\MenuGenerarModificarReserva.Designer.cs">
+      <DependentUpon>MenuGenerarModificarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="Reservas\ModificarCancelarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reservas\ModificarCancelarReserva.Designer.cs" >
+    <Compile Include="Reservas\ModificarCancelarReserva.Designer.cs">
       <DependentUpon>ModificarCancelarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="Roles\frmRolesFicha.cs">
@@ -267,12 +265,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="ConexionSQL.cs" />
-    <Compile Include="ListadoEstadistico\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ListadoEstadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -405,32 +397,26 @@
     <EmbeddedResource Include="RegistrarEstadia\RegistrarEstadia.resx">
       <DependentUpon>RegistrarEstadia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reservas\ConfirmarReserva.resx" >
+    <EmbeddedResource Include="Reservas\ConfirmarReserva.resx">
       <DependentUpon>ConfirmarReserva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reservas\Form1.resx" >
-    <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Reservas\frmMotivoCancelacion.resx">
+      <DependentUpon>frmMotivoCancelacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reservas\FormSeleccionarHabitaciones.resx" >
-    <DependentUpon>FormSeleccionarHabitaciones.cs</DependentUpon>
+    <EmbeddedResource Include="Reservas\GenerarReservaPrincipal.resx">
+      <DependentUpon>GenerarReservaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reservas\frmMotivoCancelacion.resx" >
-    <DependentUpon>frmMotivoCancelacion.cs</DependentUpon>
+    <EmbeddedResource Include="Reservas\IdentificarUsuario.resx">
+      <DependentUpon>IdentificarUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reservas\GenerarReservaPrincipal.resx" >
-    <DependentUpon>GenerarReservaPrincipal.cs</DependentUpon>
+    <EmbeddedResource Include="Reservas\IdentificarUsuarioExtendido.resx">
+      <DependentUpon>IdentificarUsuarioExtendido.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reservas\IdentificarUsuario.resx" >
-    <DependentUpon>IdentificarUsuario.cs</DependentUpon>
+    <EmbeddedResource Include="Reservas\MenuGenerarModificarReserva.resx">
+      <DependentUpon>MenuGenerarModificarReserva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reservas\IdentificarUsuarioExtendido.resx" >
-    <DependentUpon>IdentificarUsuarioExtendido.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reservas\MenuGenerarModificarReserva.resx" >
-    <DependentUpon>MenuGenerarModificarReserva.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reservas\ModificarCancelarReserva.resx" >
-    <DependentUpon>ModificarCancelarReserva.cs</DependentUpon>
+    <EmbeddedResource Include="Reservas\ModificarCancelarReserva.resx">
+      <DependentUpon>ModificarCancelarReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Roles\frmRolesFicha.resx">
       <DependentUpon>frmRolesFicha.cs</DependentUpon>

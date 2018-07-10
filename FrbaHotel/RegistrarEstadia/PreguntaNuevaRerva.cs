@@ -25,7 +25,7 @@ namespace FrbaHotel.RegistrarEstadia
         private void button1_Click(object sender, EventArgs e)
         {
             //Si
-            GenerarModificacionReserva.GenerarReservaPrincipal generarReservaPrincipal = new GenerarModificacionReserva.GenerarReservaPrincipal();
+            Reservas.GenerarReservaPrincipal generarReservaPrincipal = new Reservas.GenerarReservaPrincipal();
             generarReservaPrincipal.Show();
             this.Close();
         }

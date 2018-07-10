@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.GenerarModificacionReserva
+namespace FrbaHotel.Reservas
 {
     public partial class ReservaOK : Form
     {
