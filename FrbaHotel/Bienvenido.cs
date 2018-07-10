@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Estadisticas;
 using FrbaHotel.Login;
 using FrbaHotel.Tools;
 
@@ -172,6 +173,12 @@ namespace FrbaHotel
         {
             GenerarModificacionReserva.MenuCRUDReserva formMenu = new GenerarModificacionReserva.MenuCRUDReserva();
             formMenu.ShowDialog(this);
+        }
+
+        private void btnEstadisticas_Click(object sender, EventArgs e)
+        {
+            frmEstadisticas estadisticas = new frmEstadisticas();
+            estadisticas.ShowDialog(this);
         }
     }
 }
