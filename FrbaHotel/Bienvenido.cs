@@ -146,7 +146,7 @@ namespace FrbaHotel
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            AbmCliente.frmClientesListado listadoClientes = new AbmCliente.frmClientesListado();
+            Clientes.frmClientesListado listadoClientes = new Clientes.frmClientesListado();
             listadoClientes.ShowDialog(this);
         }
 

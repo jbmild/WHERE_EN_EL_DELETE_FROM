@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Modelo;
 
-namespace FrbaHotel.AbmCliente
+namespace FrbaHotel.Clientes
 {
     public partial class frmClientesListado : Form
     {
@@ -128,7 +128,7 @@ namespace FrbaHotel.AbmCliente
         private void modificarCliente(int clienteId)
         {
             Cliente cli = new Cliente(clienteId);
-            AbmCliente.ClienteFicha frmFicha = new ClienteFicha(cli);
+            Clientes.frmClientesFicha frmFicha = new frmClientesFicha(cli);
             frmFicha.FormClosed += new FormClosedEventHandler(frmClientesFicha_Closed);
             frmFicha.Show();
         }
@@ -168,7 +168,7 @@ namespace FrbaHotel.AbmCliente
         private void btnAlta_Click(object sender, EventArgs e)
         {
             Cliente cli = new Cliente(0);
-            ClienteFicha frmFicha = new ClienteFicha(cli);
+            frmClientesFicha frmFicha = new frmClientesFicha(cli);
             frmFicha.FormClosed += new FormClosedEventHandler(frmClientesFicha_Closed);
             frmFicha.Show();
                         

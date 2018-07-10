@@ -96,8 +96,8 @@ namespace FrbaHotel.RegistrarEstadia
                                 System.Windows.Forms.MessageBox.Show(ex.Message);
                             }
 
-                            PreguntaNuevaRerva preguntaNuevaRerva = new PreguntaNuevaRerva();
-                            preguntaNuevaRerva.Show();
+                            //PreguntaNuevaRerva preguntaNuevaRerva = new PreguntaNuevaRerva();
+                            //preguntaNuevaRerva.Show();
 
 
                         }
