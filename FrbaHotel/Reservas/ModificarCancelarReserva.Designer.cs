@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.GenerarModificacionReserva
+﻿namespace FrbaHotel.Reservas
 {
     partial class ModificarCancelarReserva
     {
@@ -136,7 +136,6 @@
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.groupBox1);
             this.Name = "ModificarCancelarReserva";
-            this.Text = "ModificarCancelarReserva";
             this.Load += new System.EventHandler(this.ModificarCancelarReserva_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

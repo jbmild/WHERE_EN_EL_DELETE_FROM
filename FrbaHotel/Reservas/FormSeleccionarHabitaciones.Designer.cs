@@ -1,6 +1,6 @@
-﻿namespace FrbaHotel.GenerarModificacionReserva
+﻿namespace FrbaHotel.Reservas
 {
-    partial class FormGenerarModificarReserva
+    partial class FormSeleccionarHabitaciones
     {
         /// <summary>
         /// Required designer variable.
@@ -46,8 +46,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.cmbTipoHab = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cmbTipoRegimen = new System.Windows.Forms.ComboBox();
+            this.dtgRegimenesHoteles = new System.Windows.Forms.DataGridView();
+            this.lblRegimenId = new System.Windows.Forms.Label();
+            this.lblPrecioRegimen = new System.Windows.Forms.Label();
+            this.lblSubTotalReserva = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRegimenesHoteles)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -83,7 +87,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 117);
+            this.label4.Location = new System.Drawing.Point(9, 117);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(88, 13);
             this.label4.TabIndex = 5;
@@ -101,7 +105,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(265, 153);
+            this.label7.Location = new System.Drawing.Point(9, 144);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 8;
@@ -109,7 +113,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(377, 211);
+            this.btnBuscar.Location = new System.Drawing.Point(415, 228);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(97, 31);
             this.btnBuscar.TabIndex = 12;
@@ -119,7 +123,7 @@
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(377, 477);
+            this.btnSeleccionar.Location = new System.Drawing.Point(377, 494);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(97, 31);
             this.btnSeleccionar.TabIndex = 13;
@@ -129,7 +133,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(528, 477);
+            this.button3.Location = new System.Drawing.Point(528, 494);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(97, 31);
             this.button3.TabIndex = 14;
@@ -139,12 +143,13 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(487, 211);
+            this.button4.Location = new System.Drawing.Point(12, 228);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(97, 31);
             this.button4.TabIndex = 15;
             this.button4.Text = "Limpiar";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // dtpFechaCheckin
             // 
@@ -152,16 +157,17 @@
             this.dtpFechaCheckin.Location = new System.Drawing.Point(110, 118);
             this.dtpFechaCheckin.MinDate = new System.DateTime(2018, 6, 25, 0, 0, 0, 0);
             this.dtpFechaCheckin.Name = "dtpFechaCheckin";
-            this.dtpFechaCheckin.Size = new System.Drawing.Size(124, 20);
+            this.dtpFechaCheckin.Size = new System.Drawing.Size(99, 20);
             this.dtpFechaCheckin.TabIndex = 16;
             this.dtpFechaCheckin.Value = new System.DateTime(2018, 7, 1, 0, 0, 0, 0);
+            this.dtpFechaCheckin.ValueChanged += new System.EventHandler(this.dtpFechaCheckin_ValueChanged);
             // 
             // dtpFechaCheckout
             // 
             this.dtpFechaCheckout.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFechaCheckout.Location = new System.Drawing.Point(357, 117);
             this.dtpFechaCheckout.Name = "dtpFechaCheckout";
-            this.dtpFechaCheckout.Size = new System.Drawing.Size(155, 20);
+            this.dtpFechaCheckout.Size = new System.Drawing.Size(97, 20);
             this.dtpFechaCheckout.TabIndex = 17;
             this.dtpFechaCheckout.Value = new System.DateTime(2018, 7, 1, 0, 0, 0, 0);
             this.dtpFechaCheckout.ValueChanged += new System.EventHandler(this.dtpFechaCheckout_ValueChanged);
@@ -169,11 +175,12 @@
             // cmbHotel
             // 
             this.cmbHotel.FormattingEnabled = true;
-            this.cmbHotel.Location = new System.Drawing.Point(359, 152);
+            this.cmbHotel.Location = new System.Drawing.Point(66, 144);
             this.cmbHotel.Name = "cmbHotel";
             this.cmbHotel.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmbHotel.Size = new System.Drawing.Size(153, 21);
             this.cmbHotel.TabIndex = 20;
+            this.cmbHotel.SelectedIndexChanged += new System.EventHandler(this.cmbHotel_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
@@ -185,7 +192,7 @@
             this.clnSeleccion});
             this.dataGridView1.Location = new System.Drawing.Point(12, 265);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(850, 192);
+            this.dataGridView1.Size = new System.Drawing.Size(875, 192);
             this.dataGridView1.TabIndex = 11;
             // 
             // clnSeleccion
@@ -199,7 +206,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 155);
+            this.label6.Location = new System.Drawing.Point(240, 144);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(85, 13);
             this.label6.TabIndex = 7;
@@ -208,7 +215,7 @@
             // cmbTipoHab
             // 
             this.cmbTipoHab.FormattingEnabled = true;
-            this.cmbTipoHab.Location = new System.Drawing.Point(111, 153);
+            this.cmbTipoHab.Location = new System.Drawing.Point(331, 141);
             this.cmbTipoHab.Name = "cmbTipoHab";
             this.cmbTipoHab.Size = new System.Drawing.Size(123, 21);
             this.cmbTipoHab.TabIndex = 18;
@@ -216,26 +223,59 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 197);
+            this.label3.Location = new System.Drawing.Point(486, 118);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(94, 13);
             this.label3.TabIndex = 21;
             this.label3.Text = "Tipo de Regimen: ";
             // 
-            // cmbTipoRegimen
+            // dtgRegimenesHoteles
             // 
-            this.cmbTipoRegimen.FormattingEnabled = true;
-            this.cmbTipoRegimen.Location = new System.Drawing.Point(111, 189);
-            this.cmbTipoRegimen.Name = "cmbTipoRegimen";
-            this.cmbTipoRegimen.Size = new System.Drawing.Size(123, 21);
-            this.cmbTipoRegimen.TabIndex = 22;
+            this.dtgRegimenesHoteles.AllowUserToAddRows = false;
+            this.dtgRegimenesHoteles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dtgRegimenesHoteles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgRegimenesHoteles.Location = new System.Drawing.Point(586, 118);
+            this.dtgRegimenesHoteles.Name = "dtgRegimenesHoteles";
+            this.dtgRegimenesHoteles.ReadOnly = true;
+            this.dtgRegimenesHoteles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtgRegimenesHoteles.Size = new System.Drawing.Size(301, 121);
+            this.dtgRegimenesHoteles.TabIndex = 23;
+            this.dtgRegimenesHoteles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRegimenesHoteles_CellDoubleClick);
             // 
-            // FormGenerarModificarReserva
+            // lblRegimenId
+            // 
+            this.lblRegimenId.AutoSize = true;
+            this.lblRegimenId.Location = new System.Drawing.Point(512, 145);
+            this.lblRegimenId.Name = "lblRegimenId";
+            this.lblRegimenId.Size = new System.Drawing.Size(0, 13);
+            this.lblRegimenId.TabIndex = 24;
+            // 
+            // lblPrecioRegimen
+            // 
+            this.lblPrecioRegimen.AutoSize = true;
+            this.lblPrecioRegimen.Location = new System.Drawing.Point(503, 178);
+            this.lblPrecioRegimen.Name = "lblPrecioRegimen";
+            this.lblPrecioRegimen.Size = new System.Drawing.Size(0, 13);
+            this.lblPrecioRegimen.TabIndex = 26;
+            this.lblPrecioRegimen.Visible = false;
+            // 
+            // lblSubTotalReserva
+            // 
+            this.lblSubTotalReserva.AutoSize = true;
+            this.lblSubTotalReserva.Location = new System.Drawing.Point(198, 477);
+            this.lblSubTotalReserva.Name = "lblSubTotalReserva";
+            this.lblSubTotalReserva.Size = new System.Drawing.Size(0, 13);
+            this.lblSubTotalReserva.TabIndex = 28;
+            // 
+            // FormSeleccionarHabitaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(945, 537);
-            this.Controls.Add(this.cmbTipoRegimen);
+            this.Controls.Add(this.lblSubTotalReserva);
+            this.Controls.Add(this.lblPrecioRegimen);
+            this.Controls.Add(this.lblRegimenId);
+            this.Controls.Add(this.dtgRegimenesHoteles);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbHotel);
             this.Controls.Add(this.cmbTipoHab);
@@ -253,10 +293,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label1);
-            this.Name = "FormGenerarModificarReserva";
+            this.Name = "FormSeleccionarHabitaciones";
             this.Text = "Buscar Habitación";
             this.Load += new System.EventHandler(this.FormGenerarModificarReserva_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgRegimenesHoteles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,6 +323,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cmbTipoHab;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cmbTipoRegimen;
+        private System.Windows.Forms.DataGridView dtgRegimenesHoteles;
+        private System.Windows.Forms.Label lblRegimenId;
+        private System.Windows.Forms.Label lblPrecioRegimen;
+        private System.Windows.Forms.Label lblSubTotalReserva;
     }
 }

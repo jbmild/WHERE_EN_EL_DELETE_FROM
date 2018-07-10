@@ -11,7 +11,7 @@ using FrbaHotel.Modelo;
 using FrbaHotel.Tools;
 
 
-namespace FrbaHotel.GenerarModificacionReserva
+namespace FrbaHotel.Reservas
 {
     public partial class GenerarReservaPrincipal: Form
     {
@@ -33,17 +33,24 @@ namespace FrbaHotel.GenerarModificacionReserva
             cmbTiposDocumentos.Items.Add("Pasaporte");
 
             if (_reserva != null) {
+                this.lblHotel.Text +=  (new Hotel()).getNombreById(_reserva.hotel_id);
+                this.lblFechaDesde.Text +=_reserva.fecha_desde.ToShortDateString();
+                this.lblFechaHasta.Text += _reserva.fecha_hasta.ToShortDateString();
+                this.lblTipoRegimen.Text += (new TipoRegimen()).getDescripcionById(_reserva.regimen_id);
+                this.lblPrecioTotal.Text = _reserva.total.ToString();
+                /*
                 this.lblHotel.Text = this.lblHotel.Text.Replace("{hotel}", (new Hotel()).getNombreById(_reserva.hotel_id));
                 this.lblFechaDesde.Text = this.lblFechaDesde.Text.Replace("{checkin}", _reserva.fecha_desde.ToShortDateString());
                 this.lblFechaHasta.Text = this.lblFechaHasta.Text.Replace("{checkout}", _reserva.fecha_hasta.ToShortDateString());
                 this.lblTipoRegimen.Text = this.lblTipoRegimen.Text.Replace("{regimen}", (new TipoRegimen()).getDescripcionById(_reserva.regimen_id));
-                
+                this.lblPrecioTotal.Text =  _reserva.total.ToString();
+                */
+
                 String strHabitaciones = String.Empty;
                 foreach (Habitacion hab in _reserva.habitaciones) {
                     strHabitaciones += hab.numero.ToString() + ", ";
                 }
                 txtNrosHabitaciones.Text = strHabitaciones.Substring(0, strHabitaciones.Length - 2);
-                
             }
             
             
@@ -66,19 +73,19 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void btnBuscarHabitaciones_Click(object sender, EventArgs e)
         {
-            FormGenerarModificarReserva f2 = null;
+            FormSeleccionarHabitaciones f2 = null;
 
             for (int i = 0; i < Application.OpenForms.Count; i++)
             {
-                if (Application.OpenForms[i] is FormGenerarModificarReserva)
+                if (Application.OpenForms[i] is FormSeleccionarHabitaciones)
                 {
-                    f2 = (FormGenerarModificarReserva) Application.OpenForms[i];
+                    f2 = (FormSeleccionarHabitaciones) Application.OpenForms[i];
                     break;
                 }
             }
 
             if (f2 == null)
-                f2 = new FormGenerarModificarReserva();
+                f2 = new FormSeleccionarHabitaciones();
             f2.Owner = this;
             f2.Show();
         }

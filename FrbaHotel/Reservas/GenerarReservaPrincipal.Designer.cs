@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.GenerarModificacionReserva
+﻿namespace FrbaHotel.Reservas
 {
     partial class GenerarReservaPrincipal
     {
@@ -32,6 +32,8 @@
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblPrecioTotal = new System.Windows.Forms.Label();
             this.lblHotel = new System.Windows.Forms.Label();
             this.lblTipoRegimen = new System.Windows.Forms.Label();
             this.lblFechaHasta = new System.Windows.Forms.Label();
@@ -86,6 +88,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.lblPrecioTotal);
             this.groupBox1.Controls.Add(this.lblHotel);
             this.groupBox1.Controls.Add(this.lblTipoRegimen);
             this.groupBox1.Controls.Add(this.lblFechaHasta);
@@ -95,48 +99,69 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(11, 114);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(492, 144);
+            this.groupBox1.Size = new System.Drawing.Size(492, 169);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reserva";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(14, 135);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 13);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Total: USD";
+            // 
+            // lblPrecioTotal
+            // 
+            this.lblPrecioTotal.Location = new System.Drawing.Point(82, 135);
+            this.lblPrecioTotal.Name = "lblPrecioTotal";
+            this.lblPrecioTotal.Size = new System.Drawing.Size(64, 18);
+            this.lblPrecioTotal.TabIndex = 11;
+            // 
             // lblHotel
             // 
             this.lblHotel.AutoSize = true;
+            this.lblHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHotel.Location = new System.Drawing.Point(14, 102);
             this.lblHotel.Name = "lblHotel";
-            this.lblHotel.Size = new System.Drawing.Size(69, 13);
+            this.lblHotel.Size = new System.Drawing.Size(45, 13);
             this.lblHotel.TabIndex = 10;
-            this.lblHotel.Text = "Hotel: {hotel}";
+            this.lblHotel.Text = "Hotel: ";
             // 
             // lblTipoRegimen
             // 
             this.lblTipoRegimen.AutoSize = true;
-            this.lblTipoRegimen.Location = new System.Drawing.Point(290, 102);
+            this.lblTipoRegimen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTipoRegimen.Location = new System.Drawing.Point(320, 102);
             this.lblTipoRegimen.Name = "lblTipoRegimen";
-            this.lblTipoRegimen.Size = new System.Drawing.Size(137, 13);
+            this.lblTipoRegimen.Size = new System.Drawing.Size(106, 13);
             this.lblTipoRegimen.TabIndex = 7;
-            this.lblTipoRegimen.Text = "Tipo de regimen: {regimen} ";
+            this.lblTipoRegimen.Text = "Tipo de regimen: ";
             // 
             // lblFechaHasta
             // 
             this.lblFechaHasta.AutoSize = true;
-            this.lblFechaHasta.Location = new System.Drawing.Point(290, 70);
+            this.lblFechaHasta.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaHasta.Location = new System.Drawing.Point(191, 70);
             this.lblFechaHasta.Name = "lblFechaHasta";
-            this.lblFechaHasta.Size = new System.Drawing.Size(127, 13);
+            this.lblFechaHasta.Size = new System.Drawing.Size(87, 13);
             this.lblFechaHasta.TabIndex = 5;
-            this.lblFechaHasta.Text = "Fecha Hasta: {checkout}";
+            this.lblFechaHasta.Text = "Fecha Hasta: ";
             this.lblFechaHasta.Click += new System.EventHandler(this.label6_Click);
             // 
             // lblFechaDesde
             // 
             this.lblFechaDesde.AutoSize = true;
+            this.lblFechaDesde.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaDesde.Location = new System.Drawing.Point(14, 70);
             this.lblFechaDesde.Name = "lblFechaDesde";
-            this.lblFechaDesde.Size = new System.Drawing.Size(123, 13);
+            this.lblFechaDesde.Size = new System.Drawing.Size(90, 13);
             this.lblFechaDesde.TabIndex = 3;
-            this.lblFechaDesde.Text = "Fecha Desde: {checkin}";
+            this.lblFechaDesde.Text = "Fecha Desde: ";
             // 
             // btnBuscarHabitaciones
             // 
@@ -172,9 +197,9 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.lbEmail);
             this.groupBox2.Controls.Add(this.lblNroDoc);
-            this.groupBox2.Location = new System.Drawing.Point(15, 264);
+            this.groupBox2.Location = new System.Drawing.Point(11, 289);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(367, 167);
+            this.groupBox2.Size = new System.Drawing.Size(371, 155);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del cliente";
@@ -306,5 +331,7 @@
         private System.Windows.Forms.ComboBox cmbTiposDocumentos;
         private System.Windows.Forms.Label lblHotel;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Label lblPrecioTotal;
+        private System.Windows.Forms.Label label4;
     }
 }

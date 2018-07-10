@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Modelo; 
 
-namespace FrbaHotel.GenerarModificacionReserva
+namespace FrbaHotel.Reservas
 {
     public partial class IdentificarUsuario : Form
     {

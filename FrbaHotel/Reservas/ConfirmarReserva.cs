@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Modelo;
 
-namespace FrbaHotel.GenerarModificacionReserva
+namespace FrbaHotel.Reservas
 {
     public partial class frmConfirmarReserva : Form
     {
@@ -49,6 +49,7 @@ namespace FrbaHotel.GenerarModificacionReserva
             strDatosReserva = strDatosReserva.Replace("{hotel}", hotel.getNombreById(_reserva.hotel_id));
             strDatosReserva = strDatosReserva.Replace("{regimen}", tipoRegimen.getDescripcionById(_reserva.regimen_id));
             lblDatosReserva.Text = strDatosReserva;
+            lblPrecioTotal.Text = "USD " + _reserva.total.ToString();
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)

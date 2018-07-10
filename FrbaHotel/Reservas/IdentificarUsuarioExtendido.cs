@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using FrbaHotel.Modelo;
 using FrbaHotel.Tools;
 
-namespace FrbaHotel.GenerarModificacionReserva
+namespace FrbaHotel.Reservas
 {
     public partial class IdentificarUsuarioExtendido : Form
     {

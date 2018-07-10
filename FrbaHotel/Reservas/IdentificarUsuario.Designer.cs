@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.GenerarModificacionReserva
+﻿namespace FrbaHotel.Reservas
 {
     partial class IdentificarUsuario
     {

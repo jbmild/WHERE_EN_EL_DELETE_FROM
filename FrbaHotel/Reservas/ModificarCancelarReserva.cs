@@ -11,15 +11,17 @@ using FrbaHotel.Modelo;
 using System.Data.SqlClient;
 
 
-namespace FrbaHotel.GenerarModificacionReserva
+namespace FrbaHotel.Reservas
 {
     public partial class ModificarCancelarReserva : Form
     {
         int usuario = 1;
         Reserva res;
+        bool _cancelarReserva;
 
-        public ModificarCancelarReserva()
+        public ModificarCancelarReserva(bool cancelarReserva)
         {
+            _cancelarReserva = cancelarReserva;
             InitializeComponent();
         }
 
@@ -69,7 +71,7 @@ namespace FrbaHotel.GenerarModificacionReserva
                         res.cliente_id = Convert.ToInt32(row.Cells[9].Value);
                         res.id = Convert.ToInt32(row.Cells[10].Value);
 
-                        FormGenerarModificarReserva form = new FormGenerarModificarReserva(res, Convert.ToInt32(row.Cells[8].Value));
+                        FormSeleccionarHabitaciones form = new FormSeleccionarHabitaciones(res, Convert.ToInt32(row.Cells[8].Value));
                         form.Owner = this;
                         form.Show();
                     }
@@ -110,6 +112,17 @@ namespace FrbaHotel.GenerarModificacionReserva
         {
             txtCodigo.Text = "";
             dgvReservas.Rows.Clear();
+            if (_cancelarReserva)
+            {
+                btnEliminar.Visible = true;
+                btnModificar.Visible = false;
+                this.Text = "Cancelar Reserva";
+            }
+            else {
+                btnEliminar.Visible = false;
+                btnModificar.Visible = true;
+                this.Text = "Modificar Reserva";
+            }
         }
     }
 

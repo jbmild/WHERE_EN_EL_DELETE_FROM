@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.GenerarModificacionReserva
+namespace FrbaHotel.Reservas
 {
-    public partial class MenuCRUDReserva : Form
+    public partial class MenuGenerarModificarReserva : Form
     {
-        public MenuCRUDReserva()
+        public MenuGenerarModificarReserva()
         {
             InitializeComponent();
         }
@@ -25,7 +25,7 @@ namespace FrbaHotel.GenerarModificacionReserva
 
         private void btnModificarCancelar_Click(object sender, EventArgs e)
         {
-            ModificarCancelarReserva form = new ModificarCancelarReserva();
+            ModificarCancelarReserva form = new ModificarCancelarReserva(false);
             form.Show();
         }
     }

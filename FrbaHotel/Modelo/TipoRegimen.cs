@@ -34,5 +34,15 @@ namespace FrbaHotel.Modelo
             return dt.Rows[0].ItemArray[0].ToString();
 
         }
+
+        public DataTable getRegimenesByHotel(int hotelId) {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = conexion.cargarTablaSQL(@"SELECT reg.regimen_id AS ID, reg.descripcion, reg.precio FROM WHERE_EN_EL_DELETE_FROM.regimenes reg 
+                                                    INNER JOIN WHERE_EN_EL_DELETE_FROM.regimenes_hoteles reghot
+                                                    on reghot.regimen_id = reg.regimen_id
+                                                    WHERE reg.habilitado = 1 AND reghot.hotel_id=" + hotelId
+                                                    + " ORDER BY reg.precio" );
+            return dt;
+        }
     }
 }

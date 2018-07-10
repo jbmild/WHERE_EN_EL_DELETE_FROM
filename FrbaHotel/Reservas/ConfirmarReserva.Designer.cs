@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.GenerarModificacionReserva
+﻿namespace FrbaHotel.Reservas
 {
     partial class frmConfirmarReserva
     {
@@ -35,6 +35,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.btnAtras = new System.Windows.Forms.Button();
+            this.lblPrecioTotal = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDatosCliente
@@ -107,12 +108,21 @@
             this.btnAtras.UseVisualStyleBackColor = true;
             this.btnAtras.Click += new System.EventHandler(this.btnAtras_Click);
             // 
+            // lblPrecioTotal
+            // 
+            this.lblPrecioTotal.AutoSize = true;
+            this.lblPrecioTotal.Location = new System.Drawing.Point(99, 160);
+            this.lblPrecioTotal.Name = "lblPrecioTotal";
+            this.lblPrecioTotal.Size = new System.Drawing.Size(0, 13);
+            this.lblPrecioTotal.TabIndex = 12;
+            // 
             // frmConfirmarReserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(516, 346);
+            this.Controls.Add(this.lblPrecioTotal);
             this.Controls.Add(this.btnAtras);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCancelar);
@@ -137,5 +147,6 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnAtras;
+        private System.Windows.Forms.Label lblPrecioTotal;
     }
 }

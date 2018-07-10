@@ -170,8 +170,14 @@ namespace FrbaHotel
 
         private void btnGenerarModificarReserva_Click(object sender, EventArgs e)
         {
-            GenerarModificacionReserva.MenuCRUDReserva formMenu = new GenerarModificacionReserva.MenuCRUDReserva();
+            Reservas.MenuGenerarModificarReserva formMenu = new Reservas.MenuGenerarModificarReserva();
             formMenu.ShowDialog(this);
+        }
+
+        private void btnCancelarReserva_Click(object sender, EventArgs e)
+        {
+            Reservas.ModificarCancelarReserva frm = new Reservas.ModificarCancelarReserva(true);
+            frm.Show();
         }
     }
 }
