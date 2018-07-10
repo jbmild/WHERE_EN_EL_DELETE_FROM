@@ -194,6 +194,18 @@
     <Compile Include="Login\Modelo\Usuarios.cs" />
     <Compile Include="Login\Modelo\UsuariosRoles.cs" />
     <Compile Include="Modelo\Usuario.cs" />
+    <Compile Include="RegistrarEstadia\IngresoHuespedes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\IngresoHuespedes.Designer.cs">
+      <DependentUpon>IngresoHuespedes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrarEstadia\PreguntaNuevaRerva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarEstadia\PreguntaNuevaRerva.Designer.cs">
+      <DependentUpon>PreguntaNuevaRerva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Roles\frmRolesFicha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -392,6 +404,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\CheckIn.resx">
       <DependentUpon>CheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\IngresoHuespedes.resx">
+      <DependentUpon>IngresoHuespedes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\PreguntaNuevaRerva.resx">
+      <DependentUpon>PreguntaNuevaRerva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\RegistrarEstadia.resx">
       <DependentUpon>RegistrarEstadia.cs</DependentUpon>
