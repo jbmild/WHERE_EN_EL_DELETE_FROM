@@ -32,21 +32,22 @@
             this.lblAnio = new System.Windows.Forms.Label();
             this.lblTrimestre = new System.Windows.Forms.Label();
             this.lblTipo = new System.Windows.Forms.Label();
-            this.cmbAnio = new System.Windows.Forms.ComboBox();
             this.cmbTipo = new System.Windows.Forms.ComboBox();
             this.cmbTrimestre = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.numAnio = new System.Windows.Forms.NumericUpDown();
             this.gpbFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAnio)).BeginInit();
             this.SuspendLayout();
             // 
             // gpbFiltros
             // 
+            this.gpbFiltros.Controls.Add(this.numAnio);
             this.gpbFiltros.Controls.Add(this.cmbTrimestre);
             this.gpbFiltros.Controls.Add(this.cmbTipo);
-            this.gpbFiltros.Controls.Add(this.cmbAnio);
             this.gpbFiltros.Controls.Add(this.lblTipo);
             this.gpbFiltros.Controls.Add(this.lblTrimestre);
             this.gpbFiltros.Controls.Add(this.lblAnio);
@@ -84,20 +85,12 @@
             this.lblTipo.TabIndex = 2;
             this.lblTipo.Text = "Tipo de listado:";
             // 
-            // cmbAnio
-            // 
-            this.cmbAnio.FormattingEnabled = true;
-            this.cmbAnio.Location = new System.Drawing.Point(140, 32);
-            this.cmbAnio.Name = "cmbAnio";
-            this.cmbAnio.Size = new System.Drawing.Size(234, 28);
-            this.cmbAnio.TabIndex = 3;
-            // 
             // cmbTipo
             // 
             this.cmbTipo.FormattingEnabled = true;
             this.cmbTipo.Location = new System.Drawing.Point(140, 110);
             this.cmbTipo.Name = "cmbTipo";
-            this.cmbTipo.Size = new System.Drawing.Size(234, 28);
+            this.cmbTipo.Size = new System.Drawing.Size(616, 28);
             this.cmbTipo.TabIndex = 4;
             // 
             // cmbTrimestre
@@ -105,7 +98,7 @@
             this.cmbTrimestre.FormattingEnabled = true;
             this.cmbTrimestre.Location = new System.Drawing.Point(140, 71);
             this.cmbTrimestre.Name = "cmbTrimestre";
-            this.cmbTrimestre.Size = new System.Drawing.Size(234, 28);
+            this.cmbTrimestre.Size = new System.Drawing.Size(616, 28);
             this.cmbTrimestre.TabIndex = 5;
             // 
             // dataGridView1
@@ -125,6 +118,7 @@
             this.btnBuscar.TabIndex = 2;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // btnLimpiar
             // 
@@ -134,6 +128,29 @@
             this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // numAnio
+            // 
+            this.numAnio.Location = new System.Drawing.Point(140, 33);
+            this.numAnio.Maximum = new decimal(new int[] {
+            2100,
+            0,
+            0,
+            0});
+            this.numAnio.Minimum = new decimal(new int[] {
+            1970,
+            0,
+            0,
+            0});
+            this.numAnio.Name = "numAnio";
+            this.numAnio.Size = new System.Drawing.Size(616, 26);
+            this.numAnio.TabIndex = 7;
+            this.numAnio.Value = new decimal(new int[] {
+            1970,
+            0,
+            0,
+            0});
             // 
             // frmEstadisticas
             // 
@@ -146,9 +163,11 @@
             this.Controls.Add(this.gpbFiltros);
             this.Name = "frmEstadisticas";
             this.Text = "frmEstadisticas";
+            this.Load += new System.EventHandler(this.frmEstadisticas_Load);
             this.gpbFiltros.ResumeLayout(false);
             this.gpbFiltros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numAnio)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -158,12 +177,12 @@
         private System.Windows.Forms.GroupBox gpbFiltros;
         private System.Windows.Forms.ComboBox cmbTrimestre;
         private System.Windows.Forms.ComboBox cmbTipo;
-        private System.Windows.Forms.ComboBox cmbAnio;
         private System.Windows.Forms.Label lblTipo;
         private System.Windows.Forms.Label lblTrimestre;
         private System.Windows.Forms.Label lblAnio;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.NumericUpDown numAnio;
     }
 }
