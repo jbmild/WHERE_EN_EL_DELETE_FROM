@@ -29,12 +29,11 @@ namespace FrbaHotel.Reservas
 
         public void GenerarReservaPrincipal_Load(object sender, EventArgs e)
         {
-            cmbTiposDocumentos.Items.Add("DNI");
-            cmbTiposDocumentos.Items.Add("Pasaporte");
 
-            if (_reserva != null) {
-                this.lblHotel.Text +=  (new Hotel()).getNombreById(_reserva.hotel_id);
-                this.lblFechaDesde.Text +=_reserva.fecha_desde.ToShortDateString();
+            if (_reserva != null)
+            {
+                this.lblHotel.Text += (new Hotel()).getNombreById(_reserva.hotel_id);
+                this.lblFechaDesde.Text += _reserva.fecha_desde.ToShortDateString();
                 this.lblFechaHasta.Text += _reserva.fecha_hasta.ToShortDateString();
                 this.lblTipoRegimen.Text += (new TipoRegimen()).getDescripcionById(_reserva.regimen_id);
                 this.lblPrecioTotal.Text = _reserva.total.ToString();
@@ -47,10 +46,16 @@ namespace FrbaHotel.Reservas
                 */
 
                 String strHabitaciones = String.Empty;
-                foreach (Habitacion hab in _reserva.habitaciones) {
+                foreach (Habitacion hab in _reserva.habitaciones)
+                {
                     strHabitaciones += hab.numero.ToString() + ", ";
                 }
                 txtNrosHabitaciones.Text = strHabitaciones.Substring(0, strHabitaciones.Length - 2);
+            }
+            else { 
+                //apenas entra al form
+                cmbTiposDocumentos.Items.Add("DNI");
+                cmbTiposDocumentos.Items.Add("Pasaporte");
             }
             
             
