@@ -10,6 +10,6 @@ namespace FrbaHotel.RegistrarEstadia
     {
         private int reservaID;
 
-        public int ReservaID { get => reservaID; set => reservaID = value; }
+        //public int ReservaID { get => reservaID; set => reservaID = value; }
     }
 }
