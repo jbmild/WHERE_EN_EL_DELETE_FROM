@@ -42,40 +42,55 @@ namespace FrbaHotel.Estadisticas
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            int anio = 0;
-            int trimestre = 0;
-            string tipo = "";
-            try
+            if (cmbTrimestre.SelectedIndex != -1 && cmbTipo.SelectedIndex != -1)
             {
-                Estadistica estadistica = Estadisticas.Modelo.Estadisticas.obtener(anio, trimestre, tipo);
-
-                this.dgvEstadistica.AutoGenerateColumns = false;
-                this.dgvEstadistica.Columns.Clear();
-
-                if (estadistica != null)
+                int anio = Convert.ToInt32(numAnio.Value);
+                int trimestre = Convert.ToInt32(((Option)cmbTrimestre.Items[cmbTrimestre.SelectedIndex]).Value);
+                string tipo = ((Option)cmbTipo.Items[cmbTipo.SelectedIndex]).Value;
+                try
                 {
-                    if (estadistica.columnas != null && estadistica.columnas.Count > 0)
-                    {
-                        foreach (DataGridViewTextBoxColumn columna in estadistica.columnas)
-                        {
-                            this.dgvEstadistica.Columns.Add(columna);
-                        }
+                    Estadistica estadistica = Estadisticas.Modelo.Estadisticas.obtener(anio, trimestre, tipo);
 
-                        this.dgvEstadistica.DataSource = estadistica.data;
+                    this.dgvEstadistica.AutoGenerateColumns = false;
+                    this.dgvEstadistica.Columns.Clear();
+
+                    if (estadistica != null)
+                    {
+                        if (estadistica.columnas != null && estadistica.columnas.Count > 0)
+                        {
+                            foreach (DataGridViewTextBoxColumn columna in estadistica.columnas)
+                            {
+                                this.dgvEstadistica.Columns.Add(columna);
+                            }
+
+                            this.dgvEstadistica.DataSource = estadistica.data;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ocurrio un error al procesar su solicitud.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                     else
                     {
                         MessageBox.Show("Ocurrio un error al procesar su solicitud.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-                else
+                catch (Exception er)
                 {
-                    MessageBox.Show("Ocurrio un error al procesar su solicitud.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(er.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
-            catch (Exception er)
+            else if (cmbTrimestre.SelectedIndex == -1 && cmbTipo.SelectedIndex == -1)
             {
-                MessageBox.Show(er.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar un trimestre y un tipo de estadistica.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (cmbTrimestre.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un trimestre.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (cmbTipo.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un tipo de estadistica.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

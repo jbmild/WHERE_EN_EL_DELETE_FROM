@@ -125,6 +125,7 @@
             // 
             // dgvEstadistica
             // 
+            this.dgvEstadistica.AllowUserToAddRows = false;
             this.dgvEstadistica.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEstadistica.Location = new System.Drawing.Point(12, 214);
             this.dgvEstadistica.Name = "dgvEstadistica";
