@@ -124,6 +124,11 @@ namespace FrbaHotel.Reservas
                 this.Text = "Modificar Reserva";
             }
         }
+
+        private void dgvReservas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
     

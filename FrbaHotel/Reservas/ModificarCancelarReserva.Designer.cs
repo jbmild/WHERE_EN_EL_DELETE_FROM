@@ -98,6 +98,7 @@
             this.dgvReservas.Name = "dgvReservas";
             this.dgvReservas.Size = new System.Drawing.Size(397, 64);
             this.dgvReservas.TabIndex = 3;
+            this.dgvReservas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservas_CellContentClick);
             // 
             // chkSeleccionar
             // 

@@ -180,5 +180,10 @@ namespace FrbaHotel.Clientes
             Cliente cli = new Cliente();
             this.LoadGrid(cli.getClientes("", "", "", "", ""));
         }
+
+        private void cmbTipoDoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
