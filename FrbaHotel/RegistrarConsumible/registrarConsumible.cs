@@ -111,5 +111,21 @@ namespace FrbaHotel.RegistrarConsumible
             this.hotel_id = hotelid;
             this.nombrehotel = hotelnombre;
         }
+
+        private void textBoxCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar))//Si es número
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == (char)Keys.Back)//si es tecla borrar
+            {
+                e.Handled = false;
+            }
+            else //Si es otra tecla cancelamos
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
