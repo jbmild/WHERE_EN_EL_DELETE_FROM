@@ -100,7 +100,67 @@ namespace FrbaHotel.Estadisticas.Modelo
 
         public static Estadistica obtenerTop5CantConsumiblesFacturados(List<SqlParameter> parametros)
         {
-            return null;
+            try
+            {
+                Estadistica estadistica = new Estadistica();
+
+                DataGridViewTextBoxColumn cantidad = new DataGridViewTextBoxColumn();
+                cantidad.HeaderText = "Cantidad Items Facturados";
+                cantidad.DataPropertyName = "cantidad";
+                cantidad.ReadOnly = true;
+                cantidad.Visible = true;
+                estadistica.columnas.Add(cantidad);
+
+                DataGridViewTextBoxColumn nombre = new DataGridViewTextBoxColumn();
+                nombre.HeaderText = "Nombre";
+                nombre.DataPropertyName = "nombre";
+                nombre.ReadOnly = true;
+                nombre.Visible = true;
+                estadistica.columnas.Add(nombre);
+
+                DataGridViewTextBoxColumn mail = new DataGridViewTextBoxColumn();
+                mail.HeaderText = "E-mail";
+                mail.DataPropertyName = "mail";
+                mail.ReadOnly = true;
+                mail.Visible = true;
+                estadistica.columnas.Add(mail);
+
+                DataGridViewTextBoxColumn telefono = new DataGridViewTextBoxColumn();
+                telefono.HeaderText = "Telefono";
+                telefono.DataPropertyName = "telefono";
+                telefono.ReadOnly = true;
+                telefono.Visible = true;
+                estadistica.columnas.Add(telefono);
+
+                string sql = @"SELECT
+	                                TOP 5
+	                                count(*) as cantidad,
+	                                h.nombre, 
+	                                h.mail, 
+	                                h.telefono
+                                FROM
+	                                WHERE_EN_EL_DELETE_FROM.hoteles h
+	                                INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas r ON
+		                                r.hotel_id = h.hotel_id
+	                                INNER JOIN WHERE_EN_EL_DELETE_FROM.estadias e ON
+		                                e.reserva_id = r.reserva_id
+	                                INNER JOIN WHERE_EN_EL_DELETE_FROM.facturas f ON
+		                                f.estadia_id = e.estadia_id
+		                                AND fecha BETWEEN convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)
+	                                INNER JOIN WHERE_EN_EL_DELETE_FROM.items i ON
+		                                i.factura_id = f.factura_id
+	                                INNER JOIN WHERE_EN_EL_DELETE_FROM.consumos c ON
+		                                c.consumo_id = i.consumo_id
+                                GROUP BY h.nombre, h.mail, h.telefono, h.direccion, h.ciudad, h.pais
+                                ORDER BY cantidad DESC";
+                estadistica.data = DBInterface.seleccionar(sql, parametros);
+
+                return estadistica;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurrio un error al procesar su consulta.");
+            }
         }
 
         public static Estadistica obtenerTop5CantDiasFueraServicio(List<SqlParameter> parametros)
