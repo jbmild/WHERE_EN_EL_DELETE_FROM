@@ -41,7 +41,7 @@ namespace FrbaHotel.AbmHotel
             int ciudadNoVacio=0;
             
             ConexionSQL c = new ConexionSQL();
-            string consulta = "select hotel_id, isNull(nombre, 'hotel ' + direccion) as 'nombre', mail, telefono, direccion, ciudad, pais, estrellas_cant, estrellas_recargo, fecha_creacion  from WHERE_EN_EL_DELETE_FROM.hoteles";
+            string consulta = "select hotel_id, isNull(nombre, 'hotel ' + direccion) as 'nombre', mail, telefono, direccion, ciudad, pais, estrellas_cant, estrellas_recargo, convert(varchar(10), fecha_creacion, 110) from WHERE_EN_EL_DELETE_FROM.hoteles";
             if(textBoxHotelNombre.Text.Equals("")){}else{nombreNoVacio=1; consulta+=" where nombre like '%" + textBoxHotelNombre.Text + "%'";}
             if(comboBoxEstrellas.Text.Equals("")){}else
             {

@@ -105,7 +105,7 @@ namespace FrbaHotel.AbmHabitacion
 
         private void EditarHabitacionDentroDelHotel(int habilitado, int vista)
         {
-            SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+            SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018");
             con1.Open();
             string update = "update WHERE_EN_EL_DELETE_FROM.Habitaciones set piso=@piso, descripcion=@descripcion";// where hotel_id=@hotel_id and " +
                 //"numero=" + Int32.Parse(textBoxNumeroHabitacionNuevo.Text.ToString());
@@ -161,7 +161,7 @@ namespace FrbaHotel.AbmHabitacion
             if (resultadoDeBuscar.Rows.Count.Equals(0))
             {
 
-                SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+                SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018");
                 con1.Open();
                 string update = "update WHERE_EN_EL_DELETE_FROM.Habitaciones set hotel_id=@hotel_id, numero=@numero, piso=@piso, descripcion=@descripcion";// where habitacion_id=" + this.habitacionID;
                 if (habilitado.Equals(0)) { } else { update+=", habilitado=@habilitado"; }

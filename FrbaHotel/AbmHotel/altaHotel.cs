@@ -76,7 +76,7 @@ namespace FrbaHotel.AbmHotel
         {
             if (this.TodosLosCamposEstanCompletados()) 
             {
-                SqlConnection con = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+                SqlConnection con = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018");
                 con.Open();
                 string query = "INSERT INTO WHERE_EN_EL_DELETE_FROM.hoteles (nombre, mail, telefono, direccion, ciudad, pais, estrellas_cant, fecha_creacion)";
                 query+=" VALUES (@nombre, @mail ,@telefono, @direccion, @ciudad, @pais, @estrellas, @fecha" +")";
@@ -107,7 +107,7 @@ namespace FrbaHotel.AbmHotel
                     int id_hotel = Int32.Parse(resultados_.Rows[0].ItemArray[0].ToString());
 
 
-                    SqlConnection con2 = ConexionSQL.obtenerConexion();//"Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gd2018");
+                    SqlConnection con2 = ConexionSQL.obtenerConexion();//"Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018");
                     //con2.Open();
                     string query2 = "INSERT INTO [GD1C2018].[WHERE_EN_EL_DELETE_FROM].[regimenes_hoteles] (hotel_id, regimen_id) values(@hotel, @regimen)";
                     SqlCommand sql2 = new SqlCommand(query2);
@@ -115,7 +115,7 @@ namespace FrbaHotel.AbmHotel
                     sql2.Parameters.Add("@hotel", SqlDbType.Int).Value = id_hotel;
                     sql2.Parameters.Add("@regimen", SqlDbType.Int).Value = id_regimen;
                     int result2 = sql2.ExecuteNonQuery();
-                    if (result2.Equals(1)) { System.Windows.Forms.MessageBox.Show("¡Habitación agregada con éxito!"); } else { System.Windows.Forms.MessageBox.Show("Error!"); }
+                    if (result2.Equals(1)) { System.Windows.Forms.MessageBox.Show("¡Hotel agregado con éxito!"); } else { System.Windows.Forms.MessageBox.Show("Error!"); }
                     //labelAgregado.Visible = true;
                     
 
