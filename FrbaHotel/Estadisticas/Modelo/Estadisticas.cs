@@ -158,14 +158,76 @@ namespace FrbaHotel.Estadisticas.Modelo
                 return estadistica;
             }
             catch (Exception)
-            {
+            { 
                 throw new Exception("Ocurrio un error al procesar su consulta.");
             }
         }
 
         public static Estadistica obtenerTop5CantDiasFueraServicio(List<SqlParameter> parametros)
         {
-            return null;
+            try
+            {
+                Estadistica estadistica = new Estadistica();
+
+                DataGridViewTextBoxColumn cantidad = new DataGridViewTextBoxColumn();
+                cantidad.HeaderText = "Cantidad Dias Fuera de Servicio";
+                cantidad.DataPropertyName = "cantidad";
+                cantidad.ReadOnly = true;
+                cantidad.Visible = true;
+                estadistica.columnas.Add(cantidad);
+
+                DataGridViewTextBoxColumn nombre = new DataGridViewTextBoxColumn();
+                nombre.HeaderText = "Nombre";
+                nombre.DataPropertyName = "nombre";
+                nombre.ReadOnly = true;
+                nombre.Visible = true;
+                estadistica.columnas.Add(nombre);
+
+                DataGridViewTextBoxColumn mail = new DataGridViewTextBoxColumn();
+                mail.HeaderText = "E-mail";
+                mail.DataPropertyName = "mail";
+                mail.ReadOnly = true;
+                mail.Visible = true;
+                estadistica.columnas.Add(mail);
+
+                DataGridViewTextBoxColumn telefono = new DataGridViewTextBoxColumn();
+                telefono.HeaderText = "Telefono";
+                telefono.DataPropertyName = "telefono";
+                telefono.ReadOnly = true;
+                telefono.Visible = true;
+                estadistica.columnas.Add(telefono);
+
+                string sql = @"SELECT
+	                                TOP 5
+	                                SUM(c.cantidad) as cantidad,
+	                                h.nombre, 
+	                                h.mail, 
+	                                h.telefono
+                                FROM
+	                                WHERE_EN_EL_DELETE_FROM.hoteles h
+	                                INNER JOIN (
+		                                SELECT
+			                                (CASE
+				                                WHEN convert(date, @fechaDesde, 110)<cc.fecha_inicio AND cc.fecha_fin<convert(date, @fechaHasta, 110) THEN DATEDIFF(day, cc.fecha_inicio, cc.fecha_fin)
+				                                WHEN cc.fecha_inicio<convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)<cc.fecha_fin THEN DATEDIFF(day, convert(date, @fechaDesde, 110), convert(date, @fechaHasta, 110))
+				                                WHEN cc.fecha_inicio>convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)<cc.fecha_fin THEN DATEDIFF(day, cc.fecha_inicio, convert(date, @fechaHasta, 110))
+				                                WHEN cc.fecha_inicio<convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)>cc.fecha_fin THEN DATEDIFF(day, convert(date, @fechaDesde, 110), cc.fecha_fin)
+			                                END) as cantidad,
+			                                cc.hotel_id
+		                                FROM WHERE_EN_EL_DELETE_FROM.cese_actividades cc 
+	                                ) c ON
+		                                c.hotel_id = h.hotel_id
+                                GROUP BY h.nombre, h.mail, h.telefono, h.direccion, h.ciudad, h.pais
+                                ORDER BY cantidad DESC";
+
+                estadistica.data = DBInterface.seleccionar(sql, parametros);
+
+                return estadistica;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurrio un error al procesar su consulta.");
+            }
         }
 
         public static Estadistica obtenerTop5HabitacionMayorOcupacion(List<SqlParameter> parametros)
