@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Estadisticas.Modelo;
 using FrbaHotel.Tools;
 
 namespace FrbaHotel.Estadisticas
@@ -41,7 +42,41 @@ namespace FrbaHotel.Estadisticas
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
+            int anio = 0;
+            int trimestre = 0;
+            string tipo = "";
+            try
+            {
+                Estadistica estadistica = Estadisticas.Modelo.Estadisticas.obtener(anio, trimestre, tipo);
 
+                this.dgvEstadistica.AutoGenerateColumns = false;
+                this.dgvEstadistica.Columns.Clear();
+
+                if (estadistica != null)
+                {
+                    if (estadistica.columnas != null && estadistica.columnas.Count > 0)
+                    {
+                        foreach (DataGridViewTextBoxColumn columna in estadistica.columnas)
+                        {
+                            this.dgvEstadistica.Columns.Add(columna);
+                        }
+
+                        this.dgvEstadistica.DataSource = estadistica.data;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio un error al procesar su solicitud.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrio un error al procesar su solicitud.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }
