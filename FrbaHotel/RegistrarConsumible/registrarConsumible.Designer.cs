@@ -70,9 +70,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(153, 208);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(111, 17);
+            this.label3.Size = new System.Drawing.Size(144, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Precio sugerido:";
+            this.label3.Text = "Precio sugerido: USD";
             // 
             // label4
             // 
@@ -103,7 +103,7 @@
             // labelPrecioSugerido
             // 
             this.labelPrecioSugerido.AutoSize = true;
-            this.labelPrecioSugerido.Location = new System.Drawing.Point(270, 208);
+            this.labelPrecioSugerido.Location = new System.Drawing.Point(303, 208);
             this.labelPrecioSugerido.Name = "labelPrecioSugerido";
             this.labelPrecioSugerido.Size = new System.Drawing.Size(114, 17);
             this.labelPrecioSugerido.TabIndex = 6;
@@ -115,6 +115,7 @@
             this.textBoxPrecioSugerido.Name = "textBoxPrecioSugerido";
             this.textBoxPrecioSugerido.Size = new System.Drawing.Size(100, 22);
             this.textBoxPrecioSugerido.TabIndex = 7;
+            
             // 
             // checkBoxMantenerPrecioSugerido
             // 
