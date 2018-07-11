@@ -8,13 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace FrbaHotel.AbmHotel
 {
     public partial class bajaHotel : Form
     {
-        public bajaHotel()
+        private int _hotel_id;
+
+        public bajaHotel(int hotel_id)
         {
+            _hotel_id = hotel_id;
             InitializeComponent();
         }
 
@@ -27,6 +31,7 @@ namespace FrbaHotel.AbmHotel
             
             comboBoxHoteles.DisplayMember = "nombre";
             comboBoxHoteles.ValueMember = "hotel_id";
+            comboBoxHoteles.SelectedValue = _hotel_id;
 
             DataTable estrellas = c.cargarTablaSQL("select distinct estrellas_cant from WHERE_EN_EL_DELETE_FROM.hoteles");
             estrellas.Rows.InsertAt(estrellas.NewRow(), 0);
@@ -69,8 +74,8 @@ namespace FrbaHotel.AbmHotel
                 else
                 {
                     this.labelErrorFechas.Visible = false;
-                    if (this.NoHayReservasEnEsePeriodo(this.monthCalendar1.SelectionEnd, this.monthCalendar2.SelectionEnd) &&
-                        this.NoHayAlojamientosEnEsePeriodo(this.monthCalendar1.SelectionEnd, this.monthCalendar2.SelectionEnd))
+                    if (this.NoHayAlojamientosEnEsePeriodo(this.monthCalendar1.SelectionEnd, this.monthCalendar2.SelectionEnd) &&
+                        this.NoHayReservasEnEsePeriodo(this.monthCalendar1.SelectionEnd, this.monthCalendar2.SelectionEnd))
                     {
                         this.Hide();
                         this.DarDeBajaHotel(this.monthCalendar1.SelectionEnd, this.monthCalendar2.SelectionEnd);
@@ -98,22 +103,41 @@ namespace FrbaHotel.AbmHotel
 
         private bool NoHayAlojamientosEnEsePeriodo(DateTime dateTime1, DateTime dateTime2)
         {
+            string strDatetime1 = dateTime1.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+            string strDatetime2 = dateTime2.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+
             ConexionSQL c = new ConexionSQL();
-            DataTable estadias= c.cargarTablaSQL("select e.estadia_id from WHERE_EN_EL_DELETE_FROM.estadias e" + 
+            DataTable estadias= c.cargarTablaSQL(@"select e.estadia_id from WHERE_EN_EL_DELETE_FROM.estadias e" + 
                 " join WHERE_EN_EL_DELETE_FROM.reservas r on r.reserva_id=e.reserva_id " + 
                 " join WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh on rh.reserva_id=r.reserva_id " + 
                 " join WHERE_EN_EL_DELETE_FROM.habitaciones h on rh.habitacion_id=h.habitacion_id" + 
-                " where h.hotel_id=" + comboBoxHoteles.SelectedValue.ToString() + " and e.ingreso_fecha >='" + dateTime1.ToString() + "' and e.egreso_fecha<='" + dateTime2.ToString() + "'");
+                " where h.hotel_id=" + comboBoxHoteles.SelectedValue.ToString() +
+                " and (e.ingreso_fecha between convert(date, '" + strDatetime1 + "', 110) and convert(date,'" + strDatetime2 + "', 110) " +
+                " OR e.egreso_fecha between convert(date, '" + strDatetime1 + "', 110) and convert(date,'" + strDatetime2 + "', 110) " +
+                " OR (e.ingreso_fecha < convert(date, '" + strDatetime1 + "', 110) and e.egreso_fecha > convert(date, '" + strDatetime2 + "', 110)))");
+                
+                
+                //+ " and e.ingreso_fecha >='" + dateTime1.ToString() +
+                //"' and e.egreso_fecha<='" + dateTime2.ToString() + "'");
             return estadias.Rows.Count.Equals(0);
         }
 
         private bool NoHayReservasEnEsePeriodo(DateTime dateTime1, DateTime dateTime2)
         {
             ConexionSQL c = new ConexionSQL();
+
+            string strDatetime1 = dateTime1.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+            string strDatetime2 = dateTime2.ToString("MM-dd-yyyy", CultureInfo.InvariantCulture);
+
             string query = "select r.reserva_id from WHERE_EN_EL_DELETE_FROM.reservas r";
-            query += " join WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh on r.reserva_id=rh.reserva_id ";
-            query += " join WHERE_EN_EL_DELETE_FROM.habitaciones h on h.habitacion_id= rh.habitacion_id" + " where r.fecha_desde>='" + dateTime1.ToString() + "' and  r.fecha_hasta<='" + dateTime2.ToString() + "'";
-            query+= " and h.hotel_id=" + comboBoxHoteles.SelectedValue.ToString();
+            query += @" join WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh on r.reserva_id=rh.reserva_id " +
+                " join WHERE_EN_EL_DELETE_FROM.habitaciones h on h.habitacion_id= rh.habitacion_id" + " where " +
+                " h.hotel_id=" + comboBoxHoteles.SelectedValue.ToString()+
+                " and (r.fecha_desde between convert(date, '" + strDatetime1 + "', 110) and convert(date,'" + strDatetime2 + "', 110) " +
+                " OR r.fecha_hasta between convert(date, '" + strDatetime1 + "', 110) and convert(date,'" + strDatetime2 + "', 110) " +
+                " OR (r.fecha_desde < convert(date, '" + strDatetime1 + "', 110) and r.fecha_hasta > convert(date, '" + strDatetime2 + "', 110)))" + 
+                " AND r.estado in ('correcta', 'modificada')";
+            
             DataTable reservas=c.cargarTablaSQL(query);
                 
             return reservas.Rows.Count.Equals(0);
@@ -123,7 +147,7 @@ namespace FrbaHotel.AbmHotel
         {
             ConexionSQL c = new ConexionSQL();
             DataTable hotelesFiltrados;
-            int hayCiudad = 0; int hayPais = 0; int hayEstrella = 0;
+            int hayCiudad = 0; int hayPais = 0; 
             string queryHotelesFiltrados = "select hotel_id, isNull(nombre, 'hotel ' + direccion) as 'nombre' from WHERE_EN_EL_DELETE_FROM.hoteles";
             if (textBoxCiudad.Text.Equals("")) { } else { hayCiudad = 1;
             queryHotelesFiltrados += " where ciudad like '%" + this.textBoxCiudad.Text + "%'";
