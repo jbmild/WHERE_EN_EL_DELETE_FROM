@@ -36,7 +36,7 @@ namespace FrbaHotel.AbmHotel
 
         private void button3_Click(object sender, EventArgs e)
         {
-            AbmHotel.bajaHotel b = new AbmHotel.bajaHotel();
+            AbmHotel.bajaHotel b = new AbmHotel.bajaHotel(1);
             b.Show();
         }
     }

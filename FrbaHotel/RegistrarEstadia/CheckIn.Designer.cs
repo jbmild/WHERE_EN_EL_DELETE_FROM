@@ -32,11 +32,11 @@
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.dgvReservas = new System.Windows.Forms.DataGridView();
+            this.dgvReservas2 = new System.Windows.Forms.DataGridView();
             this.chkSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Aceptar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservas2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -77,17 +77,18 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // dgvReservas
+            // dgvReservas2
             // 
-            this.dgvReservas.AllowUserToAddRows = false;
-            this.dgvReservas.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.dgvReservas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReservas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvReservas2.AllowUserToAddRows = false;
+            this.dgvReservas2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvReservas2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservas2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.chkSeleccionar});
-            this.dgvReservas.Location = new System.Drawing.Point(23, 112);
-            this.dgvReservas.Name = "dgvReservas";
-            this.dgvReservas.Size = new System.Drawing.Size(397, 64);
-            this.dgvReservas.TabIndex = 6;
+            this.dgvReservas2.Location = new System.Drawing.Point(23, 112);
+            this.dgvReservas2.Name = "dgvReservas2";
+            this.dgvReservas2.Size = new System.Drawing.Size(397, 64);
+            this.dgvReservas2.TabIndex = 6;
+            this.dgvReservas2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservas2_CellContentClick);
             // 
             // chkSeleccionar
             // 
@@ -110,7 +111,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(436, 223);
             this.Controls.Add(this.Aceptar);
-            this.Controls.Add(this.dgvReservas);
+            this.Controls.Add(this.dgvReservas2);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.groupBox1);
             this.Name = "CheckIn";
@@ -118,7 +119,7 @@
             this.Load += new System.EventHandler(this.CheckIn_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvReservas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservas2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -128,7 +129,7 @@
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.DataGridView dgvReservas;
+        private System.Windows.Forms.DataGridView dgvReservas2;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkSeleccionar;
         private System.Windows.Forms.Button Aceptar;
     }

@@ -61,18 +61,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 21);
+            this.label1.Location = new System.Drawing.Point(31, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 17);
+            this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Hotel";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 99);
+            this.label2.Location = new System.Drawing.Point(31, 80);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 17);
+            this.label2.Size = new System.Drawing.Size(111, 13);
             this.label2.TabIndex = 2;
             this.label2.Text = "Número de habitación";
             // 
@@ -80,19 +82,19 @@
             // 
             this.comboBoxNumeroHabitacion.Enabled = false;
             this.comboBoxNumeroHabitacion.FormattingEnabled = true;
-            this.comboBoxNumeroHabitacion.Location = new System.Drawing.Point(253, 99);
-            this.comboBoxNumeroHabitacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.comboBoxNumeroHabitacion.Location = new System.Drawing.Point(190, 80);
+            this.comboBoxNumeroHabitacion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxNumeroHabitacion.Name = "comboBoxNumeroHabitacion";
-            this.comboBoxNumeroHabitacion.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxNumeroHabitacion.Size = new System.Drawing.Size(92, 21);
             this.comboBoxNumeroHabitacion.TabIndex = 3;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1166, 51);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(874, 41);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(153, 40);
+            this.button1.Size = new System.Drawing.Size(115, 32);
             this.button1.TabIndex = 4;
             this.button1.Text = "Buscar ";
             this.button1.UseVisualStyleBackColor = true;
@@ -104,12 +106,12 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
             this.dataGridView1.Enabled = false;
-            this.dataGridView1.Location = new System.Drawing.Point(44, 152);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(33, 124);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1312, 338);
+            this.dataGridView1.Size = new System.Drawing.Size(984, 275);
             this.dataGridView1.TabIndex = 11;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -128,10 +130,9 @@
             // comboBoxHoteles
             // 
             this.comboBoxHoteles.FormattingEnabled = true;
-            this.comboBoxHoteles.Location = new System.Drawing.Point(144, 23);
-            this.comboBoxHoteles.Margin = new System.Windows.Forms.Padding(4);
+            this.comboBoxHoteles.Location = new System.Drawing.Point(108, 19);
             this.comboBoxHoteles.Name = "comboBoxHoteles";
-            this.comboBoxHoteles.Size = new System.Drawing.Size(228, 24);
+            this.comboBoxHoteles.Size = new System.Drawing.Size(172, 21);
             this.comboBoxHoteles.TabIndex = 13;
             this.comboBoxHoteles.SelectedIndexChanged += new System.EventHandler(this.comboBoxHoteles_SelectedIndexChanged_1);
             this.comboBoxHoteles.SelectionChangeCommitted += new System.EventHandler(this.comboBoxHoteles_SelectedIndexChanged);
@@ -139,9 +140,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(44, 61);
+            this.label3.Location = new System.Drawing.Point(33, 50);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 17);
+            this.label3.Size = new System.Drawing.Size(27, 13);
             this.label3.TabIndex = 20;
             this.label3.Text = "Piso";
             // 
@@ -149,36 +151,40 @@
             // 
             this.comboBoxPiso.Enabled = false;
             this.comboBoxPiso.FormattingEnabled = true;
-            this.comboBoxPiso.Location = new System.Drawing.Point(252, 60);
+            this.comboBoxPiso.Location = new System.Drawing.Point(189, 49);
+            this.comboBoxPiso.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxPiso.Name = "comboBoxPiso";
-            this.comboBoxPiso.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxPiso.Size = new System.Drawing.Size(92, 21);
             this.comboBoxPiso.TabIndex = 21;
             this.comboBoxPiso.SelectionChangeCommitted += new System.EventHandler(this.comboBoxPiso_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 16);
+            this.label4.Location = new System.Drawing.Point(4, 13);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(126, 17);
+            this.label4.Size = new System.Drawing.Size(94, 13);
             this.label4.TabIndex = 25;
             this.label4.Text = "*¿Vista al exterior?";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 20);
+            this.label5.Location = new System.Drawing.Point(4, 16);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 17);
+            this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 27;
             this.label5.Text = "*¿Habilitado?";
             // 
             // radioButtonExteriorSI
             // 
             this.radioButtonExteriorSI.AutoSize = true;
-            this.radioButtonExteriorSI.Location = new System.Drawing.Point(146, 16);
+            this.radioButtonExteriorSI.Location = new System.Drawing.Point(110, 13);
+            this.radioButtonExteriorSI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonExteriorSI.Name = "radioButtonExteriorSI";
-            this.radioButtonExteriorSI.Size = new System.Drawing.Size(41, 21);
+            this.radioButtonExteriorSI.Size = new System.Drawing.Size(36, 17);
             this.radioButtonExteriorSI.TabIndex = 30;
             this.radioButtonExteriorSI.TabStop = true;
             this.radioButtonExteriorSI.Text = "Sí";
@@ -187,9 +193,10 @@
             // radioButtonExteriorNO
             // 
             this.radioButtonExteriorNO.AutoSize = true;
-            this.radioButtonExteriorNO.Location = new System.Drawing.Point(193, 16);
+            this.radioButtonExteriorNO.Location = new System.Drawing.Point(145, 13);
+            this.radioButtonExteriorNO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonExteriorNO.Name = "radioButtonExteriorNO";
-            this.radioButtonExteriorNO.Size = new System.Drawing.Size(47, 21);
+            this.radioButtonExteriorNO.Size = new System.Drawing.Size(39, 17);
             this.radioButtonExteriorNO.TabIndex = 31;
             this.radioButtonExteriorNO.TabStop = true;
             this.radioButtonExteriorNO.Text = "No";
@@ -198,9 +205,10 @@
             // radioButtonExteriorNA
             // 
             this.radioButtonExteriorNA.AutoSize = true;
-            this.radioButtonExteriorNA.Location = new System.Drawing.Point(255, 16);
+            this.radioButtonExteriorNA.Location = new System.Drawing.Point(191, 13);
+            this.radioButtonExteriorNA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonExteriorNA.Name = "radioButtonExteriorNA";
-            this.radioButtonExteriorNA.Size = new System.Drawing.Size(48, 21);
+            this.radioButtonExteriorNA.Size = new System.Drawing.Size(40, 17);
             this.radioButtonExteriorNA.TabIndex = 32;
             this.radioButtonExteriorNA.TabStop = true;
             this.radioButtonExteriorNA.Text = "NA";
@@ -209,9 +217,10 @@
             // radioButtonHabilitadoNA
             // 
             this.radioButtonHabilitadoNA.AutoSize = true;
-            this.radioButtonHabilitadoNA.Location = new System.Drawing.Point(255, 16);
+            this.radioButtonHabilitadoNA.Location = new System.Drawing.Point(191, 13);
+            this.radioButtonHabilitadoNA.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonHabilitadoNA.Name = "radioButtonHabilitadoNA";
-            this.radioButtonHabilitadoNA.Size = new System.Drawing.Size(48, 21);
+            this.radioButtonHabilitadoNA.Size = new System.Drawing.Size(40, 17);
             this.radioButtonHabilitadoNA.TabIndex = 35;
             this.radioButtonHabilitadoNA.TabStop = true;
             this.radioButtonHabilitadoNA.Text = "NA";
@@ -220,9 +229,10 @@
             // radioButtonHabilitadoNO
             // 
             this.radioButtonHabilitadoNO.AutoSize = true;
-            this.radioButtonHabilitadoNO.Location = new System.Drawing.Point(198, 17);
+            this.radioButtonHabilitadoNO.Location = new System.Drawing.Point(148, 14);
+            this.radioButtonHabilitadoNO.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonHabilitadoNO.Name = "radioButtonHabilitadoNO";
-            this.radioButtonHabilitadoNO.Size = new System.Drawing.Size(47, 21);
+            this.radioButtonHabilitadoNO.Size = new System.Drawing.Size(39, 17);
             this.radioButtonHabilitadoNO.TabIndex = 34;
             this.radioButtonHabilitadoNO.TabStop = true;
             this.radioButtonHabilitadoNO.Text = "No";
@@ -231,9 +241,10 @@
             // radioButtonHabilitadoSI
             // 
             this.radioButtonHabilitadoSI.AutoSize = true;
-            this.radioButtonHabilitadoSI.Location = new System.Drawing.Point(145, 16);
+            this.radioButtonHabilitadoSI.Location = new System.Drawing.Point(109, 13);
+            this.radioButtonHabilitadoSI.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.radioButtonHabilitadoSI.Name = "radioButtonHabilitadoSI";
-            this.radioButtonHabilitadoSI.Size = new System.Drawing.Size(41, 21);
+            this.radioButtonHabilitadoSI.Size = new System.Drawing.Size(36, 17);
             this.radioButtonHabilitadoSI.TabIndex = 33;
             this.radioButtonHabilitadoSI.TabStop = true;
             this.radioButtonHabilitadoSI.Text = "Sí";
@@ -244,9 +255,10 @@
             this.labelExteriorError.AutoSize = true;
             this.labelExteriorError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelExteriorError.ForeColor = System.Drawing.Color.Red;
-            this.labelExteriorError.Location = new System.Drawing.Point(751, 38);
+            this.labelExteriorError.Location = new System.Drawing.Point(563, 31);
+            this.labelExteriorError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelExteriorError.Name = "labelExteriorError";
-            this.labelExteriorError.Size = new System.Drawing.Size(179, 18);
+            this.labelExteriorError.Size = new System.Drawing.Size(153, 15);
             this.labelExteriorError.TabIndex = 36;
             this.labelExteriorError.Text = "Seleccione una opción";
             this.labelExteriorError.Visible = false;
@@ -256,9 +268,10 @@
             this.labelHabilitadoError.AutoSize = true;
             this.labelHabilitadoError.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHabilitadoError.ForeColor = System.Drawing.Color.Red;
-            this.labelHabilitadoError.Location = new System.Drawing.Point(752, 82);
+            this.labelHabilitadoError.Location = new System.Drawing.Point(564, 67);
+            this.labelHabilitadoError.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelHabilitadoError.Name = "labelHabilitadoError";
-            this.labelHabilitadoError.Size = new System.Drawing.Size(179, 18);
+            this.labelHabilitadoError.Size = new System.Drawing.Size(153, 15);
             this.labelHabilitadoError.TabIndex = 37;
             this.labelHabilitadoError.Text = "Seleccione una opción";
             this.labelHabilitadoError.Visible = false;
@@ -270,9 +283,11 @@
             this.groupBox1.Controls.Add(this.radioButtonExteriorNO);
             this.groupBox1.Controls.Add(this.radioButtonExteriorSI);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(436, 24);
+            this.groupBox1.Location = new System.Drawing.Point(327, 20);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(309, 43);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(232, 35);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             // 
@@ -282,17 +297,20 @@
             this.groupBox2.Controls.Add(this.radioButtonHabilitadoNO);
             this.groupBox2.Controls.Add(this.radioButtonHabilitadoNA);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Location = new System.Drawing.Point(437, 69);
+            this.groupBox2.Location = new System.Drawing.Point(328, 56);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(309, 49);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(232, 40);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1038, 54);
+            this.button2.Location = new System.Drawing.Point(778, 44);
+            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(122, 37);
+            this.button2.Size = new System.Drawing.Size(92, 30);
             this.button2.TabIndex = 40;
             this.button2.Text = "Limpiar campos";
             this.button2.UseVisualStyleBackColor = true;
@@ -301,17 +319,19 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(986, 115);
+            this.label6.Location = new System.Drawing.Point(740, 93);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(239, 17);
+            this.label6.Size = new System.Drawing.Size(178, 13);
             this.label6.TabIndex = 41;
             this.label6.Text = "Los campos con (*) son mandatorios";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1325, 50);
+            this.button3.Location = new System.Drawing.Point(994, 41);
+            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(195, 38);
+            this.button3.Size = new System.Drawing.Size(146, 31);
             this.button3.TabIndex = 42;
             this.button3.Text = "Dar de alta habitación";
             this.button3.UseVisualStyleBackColor = true;
@@ -319,9 +339,10 @@
             // 
             // modificarHabitacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1876, 514);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1028, 418);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.button2);
@@ -337,7 +358,7 @@
             this.Controls.Add(this.comboBoxNumeroHabitacion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "modificarHabitacion";
             this.Text = "Modificar habitación";
             this.Load += new System.EventHandler(this.modificarHabitacion_Load);

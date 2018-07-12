@@ -58,7 +58,7 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void Aceptar_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dgvReservas.Rows)
+            foreach (DataGridViewRow row in dgvReservas2.Rows)
             {
                 if (Convert.ToBoolean(row.Cells[0].Value))
                 {
@@ -76,7 +76,9 @@ namespace FrbaHotel.RegistrarEstadia
 
                         if (DateTime.Compare(res.fecha_desde, DateTime.Today) == 0)//si estamos en la fecha de hoy.
                         {
-
+                            IngresoHuespedes ingresoHuespedes = new IngresoHuespedes(res.id);
+                            ingresoHuespedes.Show();
+                            //this.Close();
                         }
                         else if (DateTime.Compare(res.fecha_desde, DateTime.Today) < 0)
                         {
@@ -128,18 +130,23 @@ namespace FrbaHotel.RegistrarEstadia
                 sqlQuery += "codigo = " + txtCodigo.Text.ToString();
                 sqlQuery += " AND estado not like 'cancelad%'";
                 DataTable dt = conn.cargarTablaSQL(sqlQuery);
-                dgvReservas.DataSource = dt;
+                dgvReservas2.DataSource = dt;
                 this.Cursor = Cursors.Default;
 
-                dgvReservas.Columns["regimen_id"].Visible = false;
-                dgvReservas.Columns["hotel_id"].Visible = false;
-                dgvReservas.Columns["DiasHastaLaReserva"].Visible = false;
-                dgvReservas.Columns["idTipoHabitacion"].Visible = false;
+                dgvReservas2.Columns["regimen_id"].Visible = false;
+                dgvReservas2.Columns["hotel_id"].Visible = false;
+                dgvReservas2.Columns["DiasHastaLaReserva"].Visible = false;
+                dgvReservas2.Columns["idTipoHabitacion"].Visible = false;
 
             }
         }
 
         private void txtCodigo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvReservas2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

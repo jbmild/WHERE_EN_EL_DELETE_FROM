@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtNroDoc = new System.Windows.Forms.TextBox();
@@ -43,10 +42,11 @@
             this.btnAlta = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.dgwRoles = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dgvReservas2 = new System.Windows.Forms.DataGridView();
+            this.chkSeleccionar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgwRoles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservas2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -93,6 +93,7 @@
             this.cmbTipoDoc.Name = "cmbTipoDoc";
             this.cmbTipoDoc.Size = new System.Drawing.Size(70, 21);
             this.cmbTipoDoc.TabIndex = 11;
+            this.cmbTipoDoc.SelectedIndexChanged += new System.EventHandler(this.cmbTipoDoc_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -190,48 +191,51 @@
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
-            // dgwRoles
+            // dgvReservas2
             // 
-            this.dgwRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwRoles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
-            this.dgwRoles.Enabled = false;
-            this.dgwRoles.Location = new System.Drawing.Point(11, 147);
-            this.dgwRoles.Margin = new System.Windows.Forms.Padding(2);
-            this.dgwRoles.Name = "dgwRoles";
-            this.dgwRoles.ReadOnly = true;
-            this.dgwRoles.RowTemplate.Height = 24;
-            this.dgwRoles.Size = new System.Drawing.Size(500, 197);
-            this.dgwRoles.TabIndex = 13;
-            this.dgwRoles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvReservas2.AllowUserToAddRows = false;
+            this.dgvReservas2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgvReservas2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReservas2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.chkSeleccionar});
+            this.dgvReservas2.Location = new System.Drawing.Point(11, 160);
+            this.dgvReservas2.Name = "dgvReservas2";
+            this.dgvReservas2.Size = new System.Drawing.Size(500, 183);
+            this.dgvReservas2.TabIndex = 13;
+            this.dgvReservas2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservas2_CellContentClick);
             // 
-            // Column1
+            // chkSeleccionar
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = "Seleccionar";
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column1.Text = "Seleccionar";
+            this.chkSeleccionar.HeaderText = "Seleccionar";
+            this.chkSeleccionar.Name = "chkSeleccionar";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(129, 350);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(147, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Agregar cliente a estadía";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // IngresoHuespedes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(538, 384);
-            this.Controls.Add(this.dgwRoles);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.dgvReservas2);
             this.Controls.Add(this.btnAlta);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.groupBox1);
             this.Name = "IngresoHuespedes";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.IngresoHuespedes_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgwRoles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReservas2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -252,7 +256,8 @@
         private System.Windows.Forms.Button btnAlta;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.DataGridView dgwRoles;
-        private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.DataGridView dgvReservas2;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkSeleccionar;
+        private System.Windows.Forms.Button button1;
     }
 }
