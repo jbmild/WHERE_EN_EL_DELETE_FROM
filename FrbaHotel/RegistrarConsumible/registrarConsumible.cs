@@ -101,7 +101,7 @@ namespace FrbaHotel.RegistrarConsumible
                     consumo.SetCantidad(Int32.Parse(this.textBoxCantidad.Text));
                     consumo.SetConsumible(Int32.Parse(comboBoxConsumible.SelectedValue.ToString()));
                     consumo.SetHabitacion(Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString()));
-                    consumo.SetPrecio(textBoxPrecioSugerido.Text.ToString());
+                    if (consumoGenerado.EstadiaAllInclusive(consumo, fecha, hotel_id)) { consumo.SetPrecio("0"); } else { consumo.SetPrecio(textBoxPrecioSugerido.Text.ToString()); }
 
 
                     consumoGenerado.registrarConsumible(q, sql, consumo, fecha, hotel_id);

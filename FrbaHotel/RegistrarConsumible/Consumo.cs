@@ -24,5 +24,10 @@ namespace FrbaHotel.RegistrarConsumible
         public int GetConsumible() { return this.consumible; }
         public int GetCantidad() { return this.cantidad; }
         public int GetEstadia() { return this.estadia; }
+
+        internal bool EstadiaAllInclusive()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

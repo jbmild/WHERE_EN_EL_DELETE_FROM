@@ -33,5 +33,24 @@ namespace FrbaHotel.RegistrarConsumible
                 
  
         }
+
+        internal bool EstadiaAllInclusive(Consumo c, string fecha, int hotel_id)
+        {
+            AbmHabitacion.SQLQueryGenerator q = new AbmHabitacion.SQLQueryGenerator();
+            int estadia;
+            ConexionSQL cons = new ConexionSQL();
+            string consulta = "SELECT distinct rg.descripcion from WHERE_EN_EL_DELETE_FROM.regimenes rg join"
+                + " WHERE_EN_EL_DELETE_FROM.reservas rs on rs.regimen_id=rg.regimen_id join WHERE_EN_EL_DELETE_FROM.estadias es on " +
+                " es.reserva_id=rs.reserva_id join WHERE_EN_EL_DELETE_FROM.consumos consu on consu.estadia_id = es.estadia_id "
+                + " where consu.estadia_id=" + q.GetEstadia(c.GetHabitacion(), fecha, hotel_id);
+            DataTable estadiaResult = cons.cargarTablaSQL(consulta);
+            if(estadiaResult.Rows.Count.Equals(0)){MessageBox.Show("No hay regímenes cargado para esta estadía"); return false;}
+            else{
+                string regimen=estadiaResult.Rows[0].ItemArray[0].ToString();
+                   return regimen.Equals("All inclusive");
+            }
+            
+            
+        }
     }
 }
