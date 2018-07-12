@@ -86,7 +86,7 @@ namespace FrbaHotel.Estadisticas.Modelo
 		                            AND r.cancelacion_fecha IS NOT NULL
 		                            AND r.cancelacion_usuario_id IS NOT NULL
 		                            AND r.cancelacion_fecha BETWEEN convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)
-                            GROUP BY h.nombre, h.mail, h.telefono, h.direccion, h.ciudad, h.pais
+                            GROUP BY h.nombre, h.mail, h.telefono
                             ORDER BY cantidad DESC";
                 estadistica.data = DBInterface.seleccionar(sql, parametros);
 
@@ -151,8 +151,75 @@ namespace FrbaHotel.Estadisticas.Modelo
 		                                i.factura_id = f.factura_id
 	                                INNER JOIN WHERE_EN_EL_DELETE_FROM.consumos c ON
 		                                c.consumo_id = i.consumo_id
-                                GROUP BY h.nombre, h.mail, h.telefono, h.direccion, h.ciudad, h.pais
+                                GROUP BY h.nombre, h.mail, h.telefono
                                 ORDER BY cantidad DESC";
+                estadistica.data = DBInterface.seleccionar(sql, parametros);
+
+                return estadistica;
+            }
+            catch (Exception)
+            { 
+                throw new Exception("Ocurrio un error al procesar su consulta.");
+            }
+        }
+
+        public static Estadistica obtenerTop5CantDiasFueraServicio(List<SqlParameter> parametros)
+        {
+            try
+            {
+                Estadistica estadistica = new Estadistica();
+
+                DataGridViewTextBoxColumn cantidad = new DataGridViewTextBoxColumn();
+                cantidad.HeaderText = "Cantidad Dias Fuera de Servicio";
+                cantidad.DataPropertyName = "cantidad";
+                cantidad.ReadOnly = true;
+                cantidad.Visible = true;
+                estadistica.columnas.Add(cantidad);
+
+                DataGridViewTextBoxColumn nombre = new DataGridViewTextBoxColumn();
+                nombre.HeaderText = "Nombre";
+                nombre.DataPropertyName = "nombre";
+                nombre.ReadOnly = true;
+                nombre.Visible = true;
+                estadistica.columnas.Add(nombre);
+
+                DataGridViewTextBoxColumn mail = new DataGridViewTextBoxColumn();
+                mail.HeaderText = "E-mail";
+                mail.DataPropertyName = "mail";
+                mail.ReadOnly = true;
+                mail.Visible = true;
+                estadistica.columnas.Add(mail);
+
+                DataGridViewTextBoxColumn telefono = new DataGridViewTextBoxColumn();
+                telefono.HeaderText = "Telefono";
+                telefono.DataPropertyName = "telefono";
+                telefono.ReadOnly = true;
+                telefono.Visible = true;
+                estadistica.columnas.Add(telefono);
+
+                string sql = @"SELECT
+	                                TOP 5
+	                                SUM(c.cantidad) as cantidad,
+	                                h.nombre, 
+	                                h.mail, 
+	                                h.telefono
+                                FROM
+	                                WHERE_EN_EL_DELETE_FROM.hoteles h
+	                                INNER JOIN (
+		                                SELECT
+			                                (CASE
+				                                WHEN convert(date, @fechaDesde, 110)<cc.fecha_inicio AND cc.fecha_fin<convert(date, @fechaHasta, 110) THEN DATEDIFF(day, cc.fecha_inicio, cc.fecha_fin)
+				                                WHEN cc.fecha_inicio<convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)<cc.fecha_fin THEN DATEDIFF(day, convert(date, @fechaDesde, 110), convert(date, @fechaHasta, 110))
+				                                WHEN cc.fecha_inicio>convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)<cc.fecha_fin THEN DATEDIFF(day, cc.fecha_inicio, convert(date, @fechaHasta, 110))
+				                                WHEN cc.fecha_inicio<convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)>cc.fecha_fin THEN DATEDIFF(day, convert(date, @fechaDesde, 110), cc.fecha_fin)
+			                                END) as cantidad,
+			                                cc.hotel_id
+		                                FROM WHERE_EN_EL_DELETE_FROM.cese_actividades cc 
+	                                ) c ON
+		                                c.hotel_id = h.hotel_id
+                                GROUP BY h.nombre, h.mail, h.telefono
+                                ORDER BY cantidad DESC";
+
                 estadistica.data = DBInterface.seleccionar(sql, parametros);
 
                 return estadistica;
@@ -163,14 +230,115 @@ namespace FrbaHotel.Estadisticas.Modelo
             }
         }
 
-        public static Estadistica obtenerTop5CantDiasFueraServicio(List<SqlParameter> parametros)
-        {
-            return null;
-        }
-
         public static Estadistica obtenerTop5HabitacionMayorOcupacion(List<SqlParameter> parametros)
         {
-            return null;
+            try
+            {
+                Estadistica estadistica = new Estadistica();
+
+                DataGridViewTextBoxColumn cantidadDias = new DataGridViewTextBoxColumn();
+                cantidadDias.HeaderText = "Cantidad Dias Ocupada";
+                cantidadDias.DataPropertyName = "cantidaddias";
+                cantidadDias.ReadOnly = true;
+                cantidadDias.Visible = true;
+                estadistica.columnas.Add(cantidadDias);
+
+                DataGridViewTextBoxColumn cantidadVeces = new DataGridViewTextBoxColumn();
+                cantidadVeces.HeaderText = "Cantidad Veces Ocupada";
+                cantidadVeces.DataPropertyName = "cantidadveces";
+                cantidadVeces.ReadOnly = true;
+                cantidadVeces.Visible = true;
+                estadistica.columnas.Add(cantidadVeces);
+
+                DataGridViewTextBoxColumn piso = new DataGridViewTextBoxColumn();
+                piso.HeaderText = "Piso";
+                piso.DataPropertyName = "piso";
+                piso.ReadOnly = true;
+                piso.Visible = true;
+                estadistica.columnas.Add(piso);
+
+                DataGridViewTextBoxColumn numero = new DataGridViewTextBoxColumn();
+                numero.HeaderText = "Numero";
+                numero.DataPropertyName = "numero";
+                numero.ReadOnly = true;
+                numero.Visible = true;
+                estadistica.columnas.Add(numero);
+
+                DataGridViewTextBoxColumn nombre = new DataGridViewTextBoxColumn();
+                nombre.HeaderText = "Nombre";
+                nombre.DataPropertyName = "nombre";
+                nombre.ReadOnly = true;
+                nombre.Visible = true;
+                estadistica.columnas.Add(nombre);
+
+                DataGridViewTextBoxColumn mail = new DataGridViewTextBoxColumn();
+                mail.HeaderText = "E-mail";
+                mail.DataPropertyName = "mail";
+                mail.ReadOnly = true;
+                mail.Visible = true;
+                estadistica.columnas.Add(mail);
+
+                DataGridViewTextBoxColumn telefono = new DataGridViewTextBoxColumn();
+                telefono.HeaderText = "Telefono";
+                telefono.DataPropertyName = "telefono";
+                telefono.ReadOnly = true;
+                telefono.Visible = true;
+                estadistica.columnas.Add(telefono);
+
+                string sql = @"SELECT
+	                            TOP 5
+	                            SUM(d.cantidad) as cantidaddias,
+                                COUNT(*) as cantidadveces,
+	                            ha.piso,
+	                            ha.numero,
+	                            h.nombre, 
+	                            h.mail, 
+	                            h.telefono
+                            FROM
+	                            WHERE_EN_EL_DELETE_FROM.hoteles h
+	                            INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones ha ON
+		                            ha.hotel_id = h.hotel_id
+	                            INNER JOIN (
+		                            SELECT
+			                            (CASE
+				                            WHEN e.ingreso_fecha IS NULL THEN 0
+				                            WHEN convert(date, @fechaHasta, 110)<=convert(date, @fechaActual, 110) AND e.ingreso_fecha IS NOT NULL AND e.egreso_fecha IS NULL THEN DATEDIFF(day, e.ingreso_fecha, convert(date, @fechaHasta, 110))
+                                            WHEN convert(date, @fechaHasta, 110)>=convert(date, @fechaActual, 110) AND e.ingreso_fecha IS NOT NULL AND e.egreso_fecha IS NULL THEN DATEDIFF(day, e.ingreso_fecha, convert(date, @fechaActual, 110))
+				                            WHEN convert(date, @fechaDesde, 110)<=e.ingreso_fecha AND e.egreso_fecha<=convert(date, @fechaHasta, 110) THEN DATEDIFF(day, e.ingreso_fecha, e.egreso_fecha)
+				                            WHEN e.ingreso_fecha<=convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)<=e.egreso_fecha THEN DATEDIFF(day, convert(date, @fechaDesde, 110), convert(date, @fechaHasta, 110))
+				                            WHEN e.ingreso_fecha>=convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)<=e.egreso_fecha THEN DATEDIFF(day, e.ingreso_fecha, convert(date, @fechaHasta, 110))
+				                            WHEN e.ingreso_fecha<=convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)>=e.egreso_fecha THEN DATEDIFF(day, convert(date, @fechaDesde, 110), e.egreso_fecha)
+			                            END) as cantidad,
+			                            rh.habitacion_id
+		                            FROM 
+			                            WHERE_EN_EL_DELETE_FROM.estadias e 
+			                            INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas r ON
+				                            r.reserva_id = e.reserva_id
+			                            INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh ON
+				                            rh.reserva_id = r.reserva_id
+									WHERE
+										e.ingreso_fecha BETWEEN convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)
+										OR e.egreso_fecha BETWEEN convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110) 
+										OR (e.ingreso_fecha<=convert(date, @fechaDesde, 110) AND e.egreso_fecha>=convert(date, @fechaHasta, 110))
+	                            ) d ON
+		                            d.habitacion_id = ha.habitacion_id
+							WHERE d.cantidad>0
+                            GROUP BY ha.piso, ha.numero, h.nombre, h.mail, h.telefono
+                            ORDER BY cantidaddias DESC";
+
+                SqlParameter parametro = new SqlParameter("@fechaActual", "06-12-2018"); //TODO cambiar!
+                parametro.DbType = DbType.String;
+                parametros.Add(parametro);
+
+
+                estadistica.data = DBInterface.seleccionar(sql, parametros);
+
+                return estadistica;
+            }
+            catch (Exception)
+            {
+                throw new Exception("Ocurrio un error al procesar su consulta.");
+            }
         }
 
         public static Estadistica obtenerTop5ClienteMasPuntos(List<SqlParameter> parametros)
