@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dateTimePickerFechaNacimiento = new System.Windows.Forms.DateTimePicker();
@@ -261,9 +261,9 @@
             // 
             // Seleccionar
             // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "Seleccionar";
-            this.Seleccionar.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.NullValue = "Seleccionar";
+            this.Seleccionar.DefaultCellStyle = dataGridViewCellStyle3;
             this.Seleccionar.HeaderText = "";
             this.Seleccionar.Name = "Seleccionar";
             // 
@@ -296,7 +296,7 @@
             this.groupBox2.Size = new System.Drawing.Size(576, 104);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "Domicilio";
             // 
             // label11
             // 
