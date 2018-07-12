@@ -47,7 +47,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbmUsuarios\AgregarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuarios\AgregarUsuario.Designer.cs">
+      <DependentUpon>AgregarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmUsuarios\BuscarRolesParaNuevoUsuario.cs" />
     <Compile Include="AbmUsuarios\BuscarUsuarios.cs" />
+    <Compile Include="AbmUsuarios\CrearUsuario.cs" />
+    <Compile Include="AbmUsuarios\ElegirRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuarios\ElegirRoles.Designer.cs">
+      <DependentUpon>ElegirRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmUsuarios\Usuario.cs" />
     <Compile Include="AbmUsuarios\Usuarios.cs">
       <SubType>Form</SubType>
@@ -324,6 +338,12 @@
     <Compile Include="Tools\RegexUtilities.cs" />
     <Compile Include="Tools\Option.cs" />
     <Compile Include="Tools\Sesion.cs" />
+    <EmbeddedResource Include="AbmUsuarios\AgregarUsuario.resx">
+      <DependentUpon>AgregarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuarios\ElegirRoles.resx">
+      <DependentUpon>ElegirRoles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuarios\Usuarios.resx">
       <DependentUpon>Usuarios.cs</DependentUpon>
     </EmbeddedResource>
