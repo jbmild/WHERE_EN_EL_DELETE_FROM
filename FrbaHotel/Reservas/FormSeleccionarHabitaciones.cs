@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Modelo;
+using FrbaHotel.Tools;
 using System.Data.SqlClient;
 
 namespace FrbaHotel.Reservas
@@ -64,7 +65,8 @@ namespace FrbaHotel.Reservas
 
 
                         //Se muestra por pantalla la tabla con los resultados del SELECT
-                        dataGridView1.Columns[3].Visible = dataGridView1.Columns[4].Visible = false;
+                        dataGridView1.Columns[3].Visible = dataGridView1.Columns[4].Visible =
+                            dataGridView1.Columns[7].Visible = false;
                         this.Cursor = Cursors.Default;
                     }
                 }
@@ -97,15 +99,24 @@ namespace FrbaHotel.Reservas
             cmbTipoHab.DisplayMember = "descripcion";
             cmbTipoHab.ValueMember = "tipo_id";
 
+            
+            
             dt = conexion.cargarTablaSQL("select hotel_id, 'Hotel ' + direccion AS nombre FROM WHERE_EN_EL_DELETE_FROM.hoteles");
             dt.Rows.InsertAt(dt.NewRow(), 0); //AGREGA UNA ROW VACIA EN COMBO
             cmbHotel.DataSource = dt;
             cmbHotel.DisplayMember = "nombre";
             cmbHotel.ValueMember = "hotel_id";
 
+            if (Sesion.hotel != null)
+            {
+                // Si es un usuario logueado (administrador o recepcionista), el hotel de la reserva se preselecciona
+                cmbHotel.SelectedValue = Sesion.hotel.HotelId;
+                cmbHotel.Enabled = false;
 
-            //TODO: Ocultar combo hotel si el usuario es recepcionista. 
-            //Si es admin o guest, mostrar combo hotel.
+                dtgRegimenesHoteles.DataSource = (new Modelo.TipoRegimen()).getRegimenesByHotel(Convert.ToInt32(cmbHotel.SelectedValue));
+            }
+
+
             if (_res != null)
             {
 
@@ -114,12 +125,15 @@ namespace FrbaHotel.Reservas
                     dtpFechaCheckin.Value = _res.fecha_desde;
                     dtpFechaCheckout.Value = _res.fecha_hasta;
                     lblRegimenId.Text = _res.regimen_id.ToString();
+                    lblPrecioRegimen.Text = (new TipoRegimen()).getPrecioById(_res.regimen_id).ToString();
                     cmbHotel.SelectedValue = _res.hotel_id;
                     cmbTipoHab.SelectedValue = _idTipoHabitacion;
 
 
                     dataGridView1.DataSource = _res.getHabitacionesByReserva();
                     this.Cursor = Cursors.Default;
+
+                    dtgRegimenesHoteles.DataSource = (new Modelo.TipoRegimen()).getRegimenesByHotel(Convert.ToInt32(cmbHotel.SelectedValue));
                 }
 
             }
@@ -151,8 +165,8 @@ namespace FrbaHotel.Reservas
                         habs.Add(new Habitacion(Convert.ToInt32(row.Cells[4].Value), Convert.ToInt32(row.Cells[3].Value),
                                                     Convert.ToInt32(row.Cells[1].Value)));
                         
-                        maxHuespedes = (Convert.ToDecimal(row.Cells[7].Value));
-                        recargoEstrellas = Convert.ToDecimal(row.Cells[8].Value) * (decimal)0.01;
+                        maxHuespedes = (Convert.ToDecimal(row.Cells[5].Value));
+                        recargoEstrellas = Convert.ToDecimal(row.Cells[6].Value) * (decimal)0.01;
                         precioTotal += maxHuespedes * (1 + recargoEstrellas) * precioBase;
                     }
 

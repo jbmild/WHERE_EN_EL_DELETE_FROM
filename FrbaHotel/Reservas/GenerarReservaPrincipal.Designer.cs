@@ -34,7 +34,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lblPrecioTotal = new System.Windows.Forms.Label();
-            this.lblHotel = new System.Windows.Forms.Label();
+            this.lbl = new System.Windows.Forms.Label();
             this.lblTipoRegimen = new System.Windows.Forms.Label();
             this.lblFechaHasta = new System.Windows.Forms.Label();
             this.lblFechaDesde = new System.Windows.Forms.Label();
@@ -51,6 +51,7 @@
             this.btnSiguiente = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
+            this.lblHotel = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -88,9 +89,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblHotel);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lblPrecioTotal);
-            this.groupBox1.Controls.Add(this.lblHotel);
+            this.groupBox1.Controls.Add(this.lbl);
             this.groupBox1.Controls.Add(this.lblTipoRegimen);
             this.groupBox1.Controls.Add(this.lblFechaHasta);
             this.groupBox1.Controls.Add(this.lblFechaDesde);
@@ -99,7 +101,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(11, 114);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(492, 169);
+            this.groupBox1.Size = new System.Drawing.Size(552, 169);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Reserva";
@@ -122,21 +124,21 @@
             this.lblPrecioTotal.Size = new System.Drawing.Size(64, 18);
             this.lblPrecioTotal.TabIndex = 11;
             // 
-            // lblHotel
+            // lbl
             // 
-            this.lblHotel.AutoSize = true;
-            this.lblHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHotel.Location = new System.Drawing.Point(14, 102);
-            this.lblHotel.Name = "lblHotel";
-            this.lblHotel.Size = new System.Drawing.Size(45, 13);
-            this.lblHotel.TabIndex = 10;
-            this.lblHotel.Text = "Hotel: ";
+            this.lbl.AutoSize = true;
+            this.lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl.Location = new System.Drawing.Point(14, 102);
+            this.lbl.Name = "lbl";
+            this.lbl.Size = new System.Drawing.Size(45, 13);
+            this.lbl.TabIndex = 10;
+            this.lbl.Text = "Hotel: ";
             // 
             // lblTipoRegimen
             // 
             this.lblTipoRegimen.AutoSize = true;
             this.lblTipoRegimen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTipoRegimen.Location = new System.Drawing.Point(320, 102);
+            this.lblTipoRegimen.Location = new System.Drawing.Point(308, 102);
             this.lblTipoRegimen.Name = "lblTipoRegimen";
             this.lblTipoRegimen.Size = new System.Drawing.Size(106, 13);
             this.lblTipoRegimen.TabIndex = 7;
@@ -199,7 +201,7 @@
             this.groupBox2.Controls.Add(this.lblNroDoc);
             this.groupBox2.Location = new System.Drawing.Point(11, 289);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(371, 155);
+            this.groupBox2.Size = new System.Drawing.Size(552, 155);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del cliente";
@@ -283,6 +285,14 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
+            // lblHotel
+            // 
+            this.lblHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHotel.Location = new System.Drawing.Point(65, 102);
+            this.lblHotel.Name = "lblHotel";
+            this.lblHotel.Size = new System.Drawing.Size(213, 22);
+            this.lblHotel.TabIndex = 13;
+            // 
             // GenerarReservaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -329,9 +339,10 @@
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.TextBox txtNroDocumento;
         private System.Windows.Forms.ComboBox cmbTiposDocumentos;
-        private System.Windows.Forms.Label lblHotel;
+        private System.Windows.Forms.Label lbl;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label lblPrecioTotal;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblHotel;
     }
 }

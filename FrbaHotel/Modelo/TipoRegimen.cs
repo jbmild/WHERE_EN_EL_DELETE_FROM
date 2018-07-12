@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Globalization;
+using System.Configuration;
 
 namespace FrbaHotel.Modelo
 {
@@ -43,6 +45,14 @@ namespace FrbaHotel.Modelo
                                                     WHERE reg.habilitado = 1 AND reghot.hotel_id=" + hotelId
                                                     + " ORDER BY reg.precio" );
             return dt;
+        }
+
+        public decimal getPrecioById(int tipoRegimenId) {
+            ConexionSQL conexion = new ConexionSQL();
+            DataTable dt = conexion.cargarTablaSQL(@"SELECT regimen_id AS ID, precio FROM WHERE_EN_EL_DELETE_FROM.regimenes
+                                                    WHERE regimen_id=" + tipoRegimenId.ToString());
+            
+            return Convert.ToDecimal(dt.Rows[0].ItemArray[1], new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]));
         }
     }
 }

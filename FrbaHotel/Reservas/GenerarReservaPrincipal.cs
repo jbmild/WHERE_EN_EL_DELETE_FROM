@@ -32,7 +32,8 @@ namespace FrbaHotel.Reservas
 
             if (_reserva != null)
             {
-                this.lblHotel.Text += (new Hotel()).getNombreById(_reserva.hotel_id);
+
+                this.lblHotel.Text += (new Hotel()).getNombreById(Sesion.hotel != null? Sesion.hotel.HotelId: _reserva.hotel_id);
                 this.lblFechaDesde.Text += _reserva.fecha_desde.ToShortDateString();
                 this.lblFechaHasta.Text += _reserva.fecha_hasta.ToShortDateString();
                 this.lblTipoRegimen.Text += (new TipoRegimen()).getDescripcionById(_reserva.regimen_id);
@@ -53,9 +54,13 @@ namespace FrbaHotel.Reservas
                 txtNrosHabitaciones.Text = strHabitaciones.Substring(0, strHabitaciones.Length - 2);
             }
             else { 
-                //apenas entra al form
+                
                 cmbTiposDocumentos.Items.Add("DNI");
                 cmbTiposDocumentos.Items.Add("Pasaporte");
+
+                if (Sesion.hotel != null) { 
+                    lblHotel.Text = (new Hotel()).getNombreById(Sesion.hotel.HotelId);
+                }
             }
             
             

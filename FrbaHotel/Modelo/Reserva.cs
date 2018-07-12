@@ -233,11 +233,21 @@ namespace FrbaHotel.Modelo
 
         }
 
-        public List<Habitacion> getHabitacionesByReserva() {
+        public DataTable getHabitacionesByReserva() {
 
-            string sqlQuery = @"select hab.habitacion_id, r.codigo, reshab.precio_diario, isNull(h.nombre, 'Hotel ' + h.direccion) AS Hotel, h.hotel_id, 
-                                numero, piso, habTip.max_huespedes,
-		                        reg.precio * habTip.max_huespedes * h.estrellas_recargo AS precio
+            string sqlQuery = @"SELECT
+                                    
+                                    hab.numero AS [Nro Habitacion],
+		                            h.direccion AS Hotel,
+		                            h.hotel_id,
+		                            hab.habitacion_id,
+		                            habTip.max_huespedes AS [Max Huespedes],
+                                    habTip.descripcion AS [Tipo],
+		                            habTip.max_huespedes,
+                                    h.estrellas_recargo AS [% recargo],
+                                    h.estrellas_recargo,
+                                    hab.numero,
+                                    0 AS Precio
                     from WHERE_EN_EL_DELETE_FROM.Reservas r
                     INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas_habitaciones reshab on reshab.reserva_id= r.reserva_id 
                     INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones hab on hab.habitacion_id = reshab.habitacion_id 
@@ -252,16 +262,18 @@ namespace FrbaHotel.Modelo
 
             ConexionSQL conex = new ConexionSQL();
             DataTable dt = conex.cargarTablaSQL(sqlQuery);
+            /*
             habitaciones = new List<Habitacion>();
 
-            foreach (DataRow dr in dt.Rows) { 
-                Habitacion hab = new Habitacion(Convert.ToInt32(dr["habitacion_id"]), Convert.ToInt32(dr["hotel_id"]), Convert.ToInt32(dr["numero"]), Convert.ToDecimal(dr["precio"]));
+            foreach (DataRow dr in dt.Rows) {
+                Habitacion hab = new Habitacion(Convert.ToInt32(dr["habitacion_id"]), Convert.ToInt32(dr["hotel_id"]), Convert.ToInt32(dr["numero"]), Convert.ToDecimal(dr["precio"]), Convert.ToDecimal(dr["estrellas_recargo"]));
                 hab.max_huespedes = Convert.ToInt32(dr["max_huespedes"]);
 
                 habitaciones.Add(hab);
             }
+             * */
 
-            return habitaciones;
+            return dt;
         }
 
         public int eliminarHabitaciones() {
@@ -277,5 +289,7 @@ namespace FrbaHotel.Modelo
 
             return exito;
         }
+
+
     }
 }

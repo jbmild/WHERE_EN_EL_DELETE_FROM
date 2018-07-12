@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace FrbaHotel.AbmHotel
 {
@@ -76,7 +77,7 @@ namespace FrbaHotel.AbmHotel
         {
             if (this.TodosLosCamposEstanCompletados()) 
             {
-                SqlConnection con = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018");
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
                 con.Open();
                 string query = "INSERT INTO WHERE_EN_EL_DELETE_FROM.hoteles (nombre, mail, telefono, direccion, ciudad, pais, estrellas_cant, fecha_creacion)";
                 query+=" VALUES (@nombre, @mail ,@telefono, @direccion, @ciudad, @pais, @estrellas, @fecha" +")";

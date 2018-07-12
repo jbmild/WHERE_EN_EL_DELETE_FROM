@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.AbmHabitacion
 {
@@ -22,6 +23,11 @@ namespace FrbaHotel.AbmHabitacion
             comboBoxHoteles.SelectedIndex = 0;
             comboBoxHoteles.DisplayMember = "direccion";
             comboBoxHoteles.ValueMember = "hotel_id";
+
+            if (Sesion.hotel != null) {
+                comboBoxHoteles.SelectedValue = Sesion.hotel.HotelId;
+                comboBoxHoteles.Enabled = false;
+            }
         }
     }
 }

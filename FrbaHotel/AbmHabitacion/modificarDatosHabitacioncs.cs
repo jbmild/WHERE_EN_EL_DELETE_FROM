@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.AbmHabitacion
 {
@@ -30,6 +32,19 @@ namespace FrbaHotel.AbmHabitacion
 
             MostrarHoteles mbuscar = new MostrarHoteles();
             mbuscar.CargarHoteles(this.comboBoxNuevoHotel);
+
+            if (Sesion.hotel != null) {
+                comboBoxNuevoHotel.SelectedValue = Sesion.hotel.HotelId;
+                comboBoxNuevoHotel.Enabled = false;
+            }
+
+            ConexionSQL c = new ConexionSQL();
+            DataTable dtpisos = c.cargarTablaSQL("select distinct piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" + comboBoxNuevoHotel.SelectedValue);
+            comboBoxNuevoPiso.DataSource = dtpisos;
+            dtpisos.Rows.InsertAt(dtpisos.NewRow(), 0);
+            comboBoxNuevoPiso.DisplayMember = "piso";
+            comboBoxNuevoPiso.SelectedIndex = 0;
+            comboBoxNuevoPiso.ValueMember = "piso";
 
         }
         public void  RecibirHabitacion(HabitacionElegida habitacion) 
@@ -105,7 +120,7 @@ namespace FrbaHotel.AbmHabitacion
 
         private void EditarHabitacionDentroDelHotel(int habilitado, int vista)
         {
-            SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018");
+            SqlConnection con1 = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
             con1.Open();
             string update = "update WHERE_EN_EL_DELETE_FROM.Habitaciones set piso=@piso, descripcion=@descripcion";// where hotel_id=@hotel_id and " +
                 //"numero=" + Int32.Parse(textBoxNumeroHabitacionNuevo.Text.ToString());
@@ -161,7 +176,7 @@ namespace FrbaHotel.AbmHabitacion
             if (resultadoDeBuscar.Rows.Count.Equals(0))
             {
 
-                SqlConnection con1 = new SqlConnection("Data Source=LOCALHOST\\SQLSERVER2012;Initial Catalog=GD1C2018;Persist Security Info=True;User ID=gdHotel2018;Password=gdhotel2018");
+                SqlConnection con1 = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
                 con1.Open();
                 string update = "update WHERE_EN_EL_DELETE_FROM.Habitaciones set hotel_id=@hotel_id, numero=@numero, piso=@piso, descripcion=@descripcion";// where habitacion_id=" + this.habitacionID;
                 if (habilitado.Equals(0)) { } else { update+=", habilitado=@habilitado"; }
@@ -286,7 +301,11 @@ namespace FrbaHotel.AbmHabitacion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.comboBoxNuevoHotel.SelectedIndex = comboBoxNuevoHotel.FindStringExact("");
+            if (Sesion.hotel == null)
+            {
+                //Si está logueado no puede blanquear el hotel. El hotel se toma de la sesión.
+                this.comboBoxNuevoHotel.SelectedIndex = comboBoxNuevoHotel.FindStringExact("");
+            }
             this.textBoxNumeroHabitacionNuevo.Text = "";
             this.comboBoxNuevoPiso.SelectedIndex=comboBoxNuevoPiso.FindStringExact("");
             this.textBoxNuevaDescripcion.Text = "";

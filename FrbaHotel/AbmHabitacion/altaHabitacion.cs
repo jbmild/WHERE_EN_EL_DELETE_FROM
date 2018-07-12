@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.AbmHabitacion
 {
@@ -23,6 +24,12 @@ namespace FrbaHotel.AbmHabitacion
         {
             sqlQueryGenerator = new SQLQueryGenerator();
             sqlQueryGenerator.Ejecutar(comboBoxHotel);
+
+            if (Sesion.hotel != null) {
+
+                comboBoxHotel.SelectedValue = Sesion.hotel.HotelId;
+                comboBoxHotel.Enabled = false;
+            }
            
 
 

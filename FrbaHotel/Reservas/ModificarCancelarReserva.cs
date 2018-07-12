@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Modelo;
 using System.Data.SqlClient;
+using FrbaHotel.Tools;
 
 
 namespace FrbaHotel.Reservas
@@ -39,6 +40,11 @@ namespace FrbaHotel.Reservas
             {
                 sqlQuery += "codigo = " + txtCodigo.Text.ToString();
                 sqlQuery += " AND estado in ('correcta', 'modificada') ";
+
+                if (Sesion.hotel != null) {
+                    sqlQuery += " AND h.hotel_id = " + Sesion.hotel.HotelId.ToString();
+                }
+
                 DataTable dt = conn.cargarTablaSQL(sqlQuery);
                 dgvReservas.DataSource = dt;
                 this.Cursor = Cursors.Default;

@@ -25,11 +25,12 @@ namespace FrbaHotel.Modelo
 
         public Habitacion() { }
 
-        public Habitacion(int id, int hotel_id, int numero, decimal precio){
+        public Habitacion(int id, int hotel_id, int numero, decimal precio, decimal porcentual){
             _id = id;
             _hotel_id = hotel_id;
             _numero = numero;
             _precio = precio;
+            _porcentual = porcentual;
         }
 
         public Habitacion(int id, int hotel_id, int numero)
@@ -88,10 +89,10 @@ namespace FrbaHotel.Modelo
 		                hot.direccion AS Hotel,
 		                hot.hotel_id,
 		                hab.habitacion_id,
-		                habTipos.max_huespedes AS [Cant Huespedes],
+		                habTipos.max_huespedes AS [Max Huespedes],
                         habTipos.descripcion AS [Tipo],
 		                habTipos.max_huespedes,
-                        hot.estrellas_recargo AS recargo
+                        hot.estrellas_recargo AS [% recargo]
 		                /*reg.descripcion AS TipoRegimen,
 		                reg.codigo AS CodigoRegimen*/
 	                FROM
