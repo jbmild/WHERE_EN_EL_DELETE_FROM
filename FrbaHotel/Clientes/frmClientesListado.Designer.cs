@@ -54,18 +54,19 @@
             this.dgwRoles.AllowUserToAddRows = false;
             this.dgwRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwRoles.Location = new System.Drawing.Point(8, 126);
-            this.dgwRoles.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgwRoles.Margin = new System.Windows.Forms.Padding(2);
             this.dgwRoles.MultiSelect = false;
             this.dgwRoles.Name = "dgwRoles";
             this.dgwRoles.RowTemplate.Height = 28;
             this.dgwRoles.Size = new System.Drawing.Size(566, 229);
             this.dgwRoles.TabIndex = 0;
+            this.dgwRoles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwRoles_CellContentClick);
             this.dgwRoles.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwRoles_CellMouseClick);
             // 
             // txtNombre
             // 
             this.txtNombre.Location = new System.Drawing.Point(81, 19);
-            this.txtNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(139, 20);
             this.txtNombre.TabIndex = 1;
@@ -94,9 +95,9 @@
             this.groupBox1.Controls.Add(this.lblNombre);
             this.groupBox1.Controls.Add(this.shapeContainer1);
             this.groupBox1.Location = new System.Drawing.Point(8, 8);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(566, 86);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
@@ -105,7 +106,7 @@
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(81, 60);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(139, 20);
             this.txtEmail.TabIndex = 13;
@@ -113,7 +114,7 @@
             // txtNroDoc
             // 
             this.txtNroDoc.Location = new System.Drawing.Point(397, 41);
-            this.txtNroDoc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNroDoc.Margin = new System.Windows.Forms.Padding(2);
             this.txtNroDoc.Name = "txtNroDoc";
             this.txtNroDoc.Size = new System.Drawing.Size(139, 20);
             this.txtNroDoc.TabIndex = 12;
@@ -157,7 +158,7 @@
             // txtApellido
             // 
             this.txtApellido.Location = new System.Drawing.Point(81, 40);
-            this.txtApellido.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtApellido.Margin = new System.Windows.Forms.Padding(2);
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(139, 20);
             this.txtApellido.TabIndex = 6;
@@ -195,7 +196,7 @@
             // btnLimpiar
             // 
             this.btnLimpiar.Location = new System.Drawing.Point(8, 97);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(2);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(81, 25);
             this.btnLimpiar.TabIndex = 6;
@@ -206,7 +207,7 @@
             // btnBuscar
             // 
             this.btnBuscar.Location = new System.Drawing.Point(493, 97);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(81, 25);
             this.btnBuscar.TabIndex = 7;
@@ -217,7 +218,7 @@
             // btnAlta
             // 
             this.btnAlta.Location = new System.Drawing.Point(493, 359);
-            this.btnAlta.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAlta.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlta.Name = "btnAlta";
             this.btnAlta.Size = new System.Drawing.Size(81, 25);
             this.btnAlta.TabIndex = 8;
@@ -235,7 +236,7 @@
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dgwRoles);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmClientesListado";
             this.Text = "Administracion de Clientes";
             this.Load += new System.EventHandler(this.frmRolesGrid_Load);
