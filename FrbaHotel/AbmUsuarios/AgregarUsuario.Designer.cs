@@ -66,6 +66,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.listBoxRolesElegidos = new System.Windows.Forms.ListBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.labelHotel = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -419,11 +420,22 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // labelHotel
+            // 
+            this.labelHotel.AutoSize = true;
+            this.labelHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHotel.Location = new System.Drawing.Point(901, 9);
+            this.labelHotel.Name = "labelHotel";
+            this.labelHotel.Size = new System.Drawing.Size(63, 24);
+            this.labelHotel.TabIndex = 30;
+            this.labelHotel.Text = "{hotel}";
+            // 
             // AgregarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1358, 635);
+            this.Controls.Add(this.labelHotel);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.button1);
@@ -439,6 +451,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -482,5 +495,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ListBox listBoxRolesElegidos;
+        private System.Windows.Forms.Label labelHotel;
     }
 }

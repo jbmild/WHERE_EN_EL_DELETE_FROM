@@ -11,7 +11,7 @@ namespace FrbaHotel.AbmUsuarios
 {
     class CrearUsuario
     {
-        public void Crear(ConexionSQL c, string ape, string depto, string dir, string mail, string nom, string num, string numdoc, string pais, string piso, string tel, string tipodoc, string usu, DateTime fechanac, string localidad, string pass) {
+        public void Crear(ConexionSQL c, string ape, string depto, string dir, string mail, string nom, string num, string numdoc, string pais, string piso, string tel, string tipodoc, string usu, DateTime fechanac, string localidad, string pass, ListBox roles, int hID) {
             string nacimiento= fechanac.Year.ToString() + fechanac.Month.ToString() + fechanac.Date.ToString(); 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
                 con.Open();
@@ -44,7 +44,46 @@ namespace FrbaHotel.AbmUsuarios
                     sql.Parameters.Add("@direccion_localidad", SqlDbType.NVarChar).Value = localidad;
                     sql.Parameters.Add("@direccion_pais", SqlDbType.NVarChar).Value = pais;
                     int result = sql.ExecuteNonQuery();
-                    if (result.Equals(1)) { MessageBox.Show("¡Usuario agregado con éxito!"); } else { MessageBox.Show("Error al agregar usuario"); }
+                    int resultadoParcial=0;
+                    if (result.Equals(1)) {
+                        foreach(var item in roles.Items){
+                            string rol=item.ToString();
+
+                            string addRoles = "INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios_roles values((select rol_id from WHERE_EN_EL_DELETE_FROM.roles where" +
+                                " nombre like @rol), @usu_id)";
+                            SqlCommand sql2 = new SqlCommand(addRoles);
+                            sql2.Connection = con;
+                            sql2.Parameters.Add("@rol", SqlDbType.NVarChar).Value = rol;
+                            sql2.Parameters.Add("@usu_id", SqlDbType.Int).Value = usuario_id;
+                            int resultInUsuariosRoles = sql2.ExecuteNonQuery();
+                            if (resultInUsuariosRoles.Equals(1))
+                            {
+                                resultadoParcial++;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error al intentar registrar a " + usu + "con el rol " + rol);
+                            }
+                        }
+                        if (resultadoParcial.Equals(roles.Items.Count)) {
+                            string addEmpleHotel = "INSERT INTO WHERE_EN_EL_DELETE_FROM.empleados_hoteles values ((select empleado_id from" +
+                                " WHERE_EN_EL_DELETE_FROM.empleados where usuario_id=@user_id), @hotel_id_)";
+                            SqlCommand sql3 = new SqlCommand(addEmpleHotel);
+                            sql3.Connection = con;
+                            sql3.Parameters.Add("@user_id", SqlDbType.Int).Value = usuario_id;
+                            sql3.Parameters.Add("@hotel_id_", SqlDbType.Int).Value = hID;
+                            int resultadoEmpleHotel = sql3.ExecuteNonQuery();
+                            if (resultadoEmpleHotel.Equals(1))
+                            {
+                                MessageBox.Show("¡Usuario agregado con éxito!");
+                            }
+                            else { MessageBox.Show("Error al agregar usuario"); }
+                            
+                        }
+                        else { MessageBox.Show("Error al agregar usuario"); 
+                        }
+                    }
+                        
                 }
                 else { MessageBox.Show("Error al agregar el usuario"); }
         }
