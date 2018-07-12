@@ -100,7 +100,7 @@ namespace FrbaHotel.RegistrarConsumible
                     command.Parameters.Add("@habitacion_id", SqlDbType.Int).Value = Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString());
                     command.Parameters.Add("@consumible_id", SqlDbType.Int).Value = Int32.Parse(comboBoxConsumible.SelectedValue.ToString());
                     command.Parameters.Add("@estadia_id", SqlDbType.Int).Value = q.GetEstadia(Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString()), this.fecha, this.hotel_id);
-                    command.Parameters.Add("@cantidad", SqlDbType.Int).Value = Int32.Parse(this.textBoxCantidad.Text);
+                    command.Parameters.Add("@cantidad", SqlDbType.Decimal).Value = Convert.ToDecimal(this.textBoxCantidad.Text,CultureInfo.InvariantCulture);
 
                     command.Parameters.Add("@precio_unitario", SqlDbType.NVarChar).Value = textBoxPrecioSugerido.Text.ToString();
                     command.Connection = sql;
