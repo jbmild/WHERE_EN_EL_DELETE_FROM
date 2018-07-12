@@ -186,6 +186,8 @@
     <Compile Include="Login\Modelo\Usuarios.cs" />
     <Compile Include="Login\Modelo\UsuariosRoles.cs" />
     <Compile Include="Modelo\Usuario.cs" />
+    <Compile Include="RegistrarConsumible\Consumo.cs" />
+    <Compile Include="RegistrarConsumible\GeneradorConsumo.cs" />
     <Compile Include="RegistrarEstadia\RegistrarEstadiaClass.cs" />
     <Compile Include="RegistrarEstadia\IngresoHuespedes.cs">
       <SubType>Form</SubType>

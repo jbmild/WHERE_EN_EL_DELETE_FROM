@@ -70,6 +70,7 @@ namespace FrbaHotel.RegistrarConsumible
         private void button1_Click(object sender, EventArgs e)
         {
             int completo = 0;
+            if (textBoxCantidad.Text.Equals("")) { this.labelCantidad.Visible = true; } else { this.labelCantidad.Visible = false; completo++; }
             if (comboBoxHabitaciones.SelectedIndex.Equals(0))
             {
                 this.labelHabitacion.Visible = true;
@@ -91,30 +92,20 @@ namespace FrbaHotel.RegistrarConsumible
             }
             else { completo++; this.labelPrecio.Visible = false; }
 
-            if (completo.Equals(3)) 
+            if (completo.Equals(4)) 
             {
                     SQLQueryGenerator q = new SQLQueryGenerator();
                     SqlConnection sql = ConexionSQL.obtenerConexion();
-                    string insertConsumo = "insert into WHERE_EN_EL_DELETE_FROM.consumos values (@habitacion_id, @consumible_id, @estadia_id, @cantidad, REPLACE(@precio_unitario, ',' ,'.'))";
-                    SqlCommand command = new SqlCommand(insertConsumo);
-                    command.Parameters.Add("@habitacion_id", SqlDbType.Int).Value = Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString());
-                    command.Parameters.Add("@consumible_id", SqlDbType.Int).Value = Int32.Parse(comboBoxConsumible.SelectedValue.ToString());
-                    command.Parameters.Add("@estadia_id", SqlDbType.Int).Value = q.GetEstadia(Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString()), this.fecha, this.hotel_id);
-                    command.Parameters.Add("@cantidad", SqlDbType.Decimal).Value = Convert.ToDecimal(this.textBoxCantidad.Text,CultureInfo.InvariantCulture);
+                    GeneradorConsumo consumoGenerado = new GeneradorConsumo();
+                    Consumo consumo = new Consumo();
+                    consumo.SetCantidad(Int32.Parse(this.textBoxCantidad.Text));
+                    consumo.SetConsumible(Int32.Parse(comboBoxConsumible.SelectedValue.ToString()));
+                    consumo.SetHabitacion(Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString()));
+                    consumo.SetPrecio(textBoxPrecioSugerido.Text.ToString());
 
-                    command.Parameters.Add("@precio_unitario", SqlDbType.NVarChar).Value = textBoxPrecioSugerido.Text.ToString();
-                    command.Connection = sql;
-                    int resultado = command.ExecuteNonQuery();
-                    if (resultado.Equals(1))
-                    {
-                        MessageBox.Show("¡Consumible registrado correctamente!");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error al registra consumible");
-                    }
-                
-                }
+
+                    consumoGenerado.registrarConsumible(q, sql, consumo, fecha, hotel_id);
+                                   }
         }
 
 
@@ -139,6 +130,15 @@ namespace FrbaHotel.RegistrarConsumible
             {
                 e.Handled = true;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.textBoxCantidad.Text = "";
+            this.textBoxPrecioSugerido.Text = "";
+            this.comboBoxConsumible.SelectedIndex = 0;
+            this.comboBoxHabitaciones.SelectedIndex = 0;
+            this.checkBoxMantenerPrecioSugerido.Checked = false;
         }
 
        
