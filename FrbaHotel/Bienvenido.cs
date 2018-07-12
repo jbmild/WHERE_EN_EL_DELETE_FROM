@@ -192,6 +192,7 @@ namespace FrbaHotel
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
             AbmUsuarios.Usuarios u = new AbmUsuarios.Usuarios();
+            u.RecibirHotel(Sesion.hotel.HotelId, Sesion.hotel.Nombre);
             u.Show();
         }
     }

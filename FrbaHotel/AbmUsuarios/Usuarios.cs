@@ -12,6 +12,8 @@ namespace FrbaHotel.AbmUsuarios
 {
     public partial class Usuarios : Form
     {
+        private int hotelid;
+        private string hotelnombre;
         public Usuarios()
         {
             InitializeComponent();
@@ -21,12 +23,10 @@ namespace FrbaHotel.AbmUsuarios
         {
             ConexionSQL c = new ConexionSQL();
             BuscarUsuarios b = new BuscarUsuarios();
-            DataTable resultados = b.BusquedaInicial(c);
+            DataTable resultados = b.BusquedaInicial(c, hotelid);
            //
-            DataTable hoteles = b.GetHoteles();
-            comboBoxHoteles.DataSource = hoteles;
-            comboBoxHoteles.DisplayMember = "nombre";
-            comboBoxHoteles.ValueMember = "hotel_id";
+            this.labelHotel.Text = hotelnombre;
+            
            dataGridView1.DataSource = resultados;
 
         }
@@ -35,8 +35,36 @@ namespace FrbaHotel.AbmUsuarios
         {
             ConexionSQL c = new ConexionSQL();
             BuscarUsuarios b = new BuscarUsuarios();
-            DataTable resultados = b.Buscar(c, this.textBoxApellido.Text, this.textBoxDireccion.Text, this.textBoxMail.Text, this.textBoxNombre.Text, this.textBoxNumeroDOC.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, this.dateTimePickerFechaNacimiento.Value, this.comboBoxHoteles.SelectedValue.ToString());
+            DataTable resultados = b.Buscar(c, this.textBoxApellido.Text, this.textBoxDireccion.Text, this.textBoxLocalidad.Text, this.textBoxNumero.Text, this.textBoxPais.Text, this.textBoxPiso.Text, this.textBoxMail.Text, this.textBoxNombre.Text, this.textBoxNumeroDOC.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, this.dateTimePickerFechaNacimiento.Value, this.hotelid);
             dataGridView1.DataSource = resultados;
+        }
+
+        internal void RecibirHotel(int _hotelid, string _hotelnombre)
+        {
+            this.hotelid = _hotelid;
+            this.hotelnombre = _hotelnombre;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.textBoxPiso.Text = "";
+            this.textBoxTelefono.Text = "";
+            this.textBoxPais.Text = "";
+            this.textBoxMail.Text = "";
+            this.textBoxDepto.Text = "";
+            this.textBoxApellido.Text = "";
+            this.textBoxDireccion.Text = "";
+            this.textBoxLocalidad.Text = "";
+            this.textBoxDepto.Text = "";
+            this.textBoxNombre.Text = "";
+            this.textBoxTipoDOC.Text = "";
+            this.textBoxUsuario.Text = "";
+            this.textBoxNumeroDOC.Text = "";
         }
     }
 }
