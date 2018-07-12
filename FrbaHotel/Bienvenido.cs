@@ -154,6 +154,7 @@ namespace FrbaHotel
         private void btnHabitaciones_Click(object sender, EventArgs e)
         {
             AbmHabitacion.modificarHabitacion formHabitacion = new AbmHabitacion.modificarHabitacion();
+            formHabitacion.EnviarHotel(Sesion.hotel.Nombre, Sesion.hotel.HotelId);
             formHabitacion.ShowDialog(this);
         }
 
