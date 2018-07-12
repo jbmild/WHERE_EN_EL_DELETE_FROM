@@ -188,5 +188,11 @@ namespace FrbaHotel
             frmEstadisticas estadisticas = new frmEstadisticas();
             estadisticas.ShowDialog(this);
         }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            AbmUsuarios.Usuarios u = new AbmUsuarios.Usuarios();
+            u.Show();
+        }
     }
 }
