@@ -76,6 +76,7 @@ namespace FrbaHotel.AbmUsuarios
                             if (resultadoEmpleHotel.Equals(1))
                             {
                                 MessageBox.Show("¡Usuario agregado con éxito!");
+                                
                             }
                             else { MessageBox.Show("Error al agregar usuario"); }
                             
