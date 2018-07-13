@@ -364,7 +364,94 @@ namespace FrbaHotel.Estadisticas.Modelo
 
         public static Estadistica obtenerTop5ClienteMasPuntos(List<SqlParameter> parametros)
         {
-            return null;
+            try
+            {
+                Estadistica estadistica = new Estadistica();
+
+                DataGridViewTextBoxColumn puntos = new DataGridViewTextBoxColumn();
+                puntos.HeaderText = "Puntos";
+                puntos.DataPropertyName = "puntostotales";
+                puntos.ReadOnly = true;
+                puntos.Visible = true;
+                estadistica.columnas.Add(puntos);
+
+                DataGridViewTextBoxColumn nombre = new DataGridViewTextBoxColumn();
+                nombre.HeaderText = "Nombre";
+                nombre.DataPropertyName = "nombre";
+                nombre.ReadOnly = true;
+                nombre.Visible = true;
+                estadistica.columnas.Add(nombre);
+
+                DataGridViewTextBoxColumn apellido = new DataGridViewTextBoxColumn();
+                apellido.HeaderText = "Apellido";
+                apellido.DataPropertyName = "apellido";
+                apellido.ReadOnly = true;
+                apellido.Visible = true;
+                estadistica.columnas.Add(apellido);
+
+                DataGridViewTextBoxColumn documentoTipo = new DataGridViewTextBoxColumn();
+                documentoTipo.HeaderText = "Tipo de documento";
+                documentoTipo.DataPropertyName = "documento_tipo";
+                documentoTipo.ReadOnly = true;
+                documentoTipo.Visible = true;
+                estadistica.columnas.Add(documentoTipo);
+
+                DataGridViewTextBoxColumn documentoNumero = new DataGridViewTextBoxColumn();
+                documentoNumero.HeaderText = "Numero de documento";
+                documentoNumero.DataPropertyName = "documento_nro";
+                documentoNumero.ReadOnly = true;
+                documentoNumero.Visible = true;
+                estadistica.columnas.Add(documentoNumero);
+
+                string sql = @"SELECT
+	                                TOP 5
+	                                SUM(p.puntos) as puntostotales,
+	                                c.nombre,
+	                                c.apellido,
+	                                c.documento_tipo,
+	                                c.documento_nro
+                                FROM
+	                                WHERE_EN_EL_DELETE_FROM.clientes c
+	                                INNER JOIN (
+		                                SELECT
+			                                f.cliente_id,
+			                                SUM(i.precio_unitario*i.cantidad) as monto,
+			                                SUM(i.precio_unitario*i.cantidad)/10 as puntos
+		                                FROM
+			                                WHERE_EN_EL_DELETE_FROM.facturas f
+			                                INNER JOIN WHERE_EN_EL_DELETE_FROM.items i ON
+				                                i.factura_id = f.factura_id
+			                                INNER JOIN WHERE_EN_EL_DELETE_FROM.consumos co ON
+				                                co.consumo_id = i.consumo_id
+                                        WHERE
+                                            f.fecha BETWEEN convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)
+		                                GROUP BY f.cliente_id
+		                                UNION
+		                                SELECT
+			                                f.cliente_id,
+			                                SUM(i.precio_unitario*i.cantidad) as monto,
+			                                SUM(i.precio_unitario*i.cantidad)/20 as puntos
+		                                FROM
+			                                WHERE_EN_EL_DELETE_FROM.facturas f
+			                                INNER JOIN WHERE_EN_EL_DELETE_FROM.items i ON
+				                                i.factura_id = f.factura_id
+				                                AND i.consumo_id IS NULL
+                                        WHERE
+                                            f.fecha BETWEEN convert(date, @fechaDesde, 110) AND convert(date, @fechaHasta, 110)
+		                                GROUP BY f.cliente_id
+	                                ) p ON
+		                                p.cliente_id = c.cliente_id
+                                GROUP BY c.cliente_id, c.nombre, c.apellido, c.documento_nro, c.documento_tipo
+                                ORDER BY puntostotales DESC";
+
+                estadistica.data = DBInterface.seleccionar(sql, parametros);
+
+                return estadistica;
+            }
+            catch (Exception er)
+            {
+                throw new Exception("Ocurrio un error al procesar su consulta.");
+            }
         }
 
         private static List<SqlParameter> obtenerParametrosBusqueda(int anio, int trimestre)
