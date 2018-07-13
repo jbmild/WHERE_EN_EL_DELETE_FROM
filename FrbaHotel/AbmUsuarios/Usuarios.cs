@@ -35,7 +35,7 @@ namespace FrbaHotel.AbmUsuarios
         {
             ConexionSQL c = new ConexionSQL();
             BuscarUsuarios b = new BuscarUsuarios();
-            DataTable resultados = b.Buscar(c, this.textBoxApellido.Text, this.textBoxDireccion.Text, this.textBoxLocalidad.Text, this.textBoxNumero.Text, this.textBoxPais.Text, this.textBoxPiso.Text, this.textBoxMail.Text, this.textBoxNombre.Text, this.textBoxNumeroDOC.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, this.dateTimePickerFechaNacimiento.Value, this.hotelid);
+            DataTable resultados = b.Buscar(c, this.textBoxApellido.Text, this.textBoxDireccion.Text, this.textBoxLocalidad.Text, this.textBoxNumero.Text, this.textBoxPais.Text, this.textBoxPiso.Text, this.textBoxMail.Text, this.textBoxNombre.Text, this.textBoxNumeroDOC.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, this.hotelid);
             dataGridView1.DataSource = resultados;
         }
 
@@ -67,6 +67,22 @@ namespace FrbaHotel.AbmUsuarios
             this.textBoxTipoDOC.Text = "";
             this.textBoxUsuario.Text = "";
             this.textBoxNumeroDOC.Text = "";
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex.Equals(0)) 
+            {
+                ModificarUsuario m = new ModificarUsuario();
+                int row = e.RowIndex;
+                DataGridViewRow selectedRow = dataGridView1.Rows[row];
+               // MessageBox.Show(selectedRow.Cells[5].Value.ToString());
+                m.RecibirDatosUsuario(selectedRow.Cells[2].Value.ToString(),selectedRow.Cells[3].Value.ToString(),selectedRow.Cells[4].Value.ToString(),
+                    selectedRow.Cells[5].Value.ToString(),selectedRow.Cells[6].Value.ToString(),selectedRow.Cells[7].Value.ToString(),selectedRow.Cells[8].Value.ToString(),
+                    selectedRow.Cells[9].Value.ToString(), selectedRow.Cells[10].Value.ToString(), selectedRow.Cells[11].Value.ToString(), selectedRow.Cells[12].Value.ToString(),
+                    selectedRow.Cells[13].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+                m.Show();
+            }
         }
     }
 }

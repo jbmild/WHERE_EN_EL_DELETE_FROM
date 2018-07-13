@@ -28,11 +28,18 @@ namespace FrbaHotel.AbmHotel
             this.labelPais.Text = hotel.GetPais();
             this.labelTelefono.Text = hotel.GetTelefono().ToString();
             this.idhotel = hotel.GetID();
+            this.CargarRegimenesHotel(this.idhotel);
 
             //if (labelTelefono.Text.Equals("")) { this.labelTelefono.Text = "(vacío)"; }
             //if (labelPais.Text.Equals("")) { this.labelPais.Text = "(vacío)"; }
             //if (labelMail.Text.Equals("")) { this.labelMail.Text = "(vacío)"; }
             //if (labelDireccion.Text.Equals("")) { this.labelDireccion.Text = "(vacío)"; }
+        }
+
+        private void CargarRegimenesHotel(int p)
+        {
+            CargarRegimenesHotelBuscador b = new CargarRegimenesHotelBuscador();
+            b.Cargar(p, this.listBoxRegimenesActuales);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -196,6 +203,13 @@ namespace FrbaHotel.AbmHotel
             this.Close();
             modificarHotel m = new modificarHotel();
             m.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            EditarRegimenes ventanaEdicionRegimenes = new EditarRegimenes();
+            ventanaEdicionRegimenes.EnviarRegimenes(this.listBoxRegimenesActuales);
+            ventanaEdicionRegimenes.Show();
         }
     }
 }

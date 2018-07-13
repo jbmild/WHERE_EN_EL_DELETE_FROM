@@ -8,7 +8,7 @@ namespace FrbaHotel.AbmUsuarios
 {
     class BuscarUsuarios
     {
-        internal DataTable Buscar(ConexionSQL c, string ape, string dir, string localidad, string numero, string pais, string piso, string mail, string nom, string numdoc, string tel, string tipodoc, string usu, DateTime naci, int hotelid)
+        internal DataTable Buscar(ConexionSQL c, string ape, string dir, string localidad, string numero, string pais, string piso, string mail, string nom, string numdoc, string tel, string tipodoc, string usu,  int hotelid)
         {
        // int hayfiltro=0;
         string query = "SELECT u.usuario, r.nombre, e.nombre, e.apellido, e.direccion_calle, e.direccion_nro, e.direccion_depto, e.direccion_localidad, e.direccion_pais, e.documento_tipo," +

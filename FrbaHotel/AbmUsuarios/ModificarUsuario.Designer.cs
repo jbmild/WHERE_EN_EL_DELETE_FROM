@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.AbmUsuarios
 {
-    partial class Usuarios
+    partial class ModificarUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Seleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBoxPais = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
@@ -48,9 +42,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxDireccion = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.textBoxUsuario = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxTelefono = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -63,53 +54,22 @@
             this.textBoxTipoDOC = new System.Windows.Forms.TextBox();
             this.textBoxApellido = new System.Windows.Forms.TextBox();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxUsuario = new System.Windows.Forms.TextBox();
+            this.labelContraseña = new System.Windows.Forms.Label();
+            this.textBoxPassword = new System.Windows.Forms.TextBox();
+            this.labelConfirmarPass = new System.Windows.Forms.Label();
+            this.textBoxConfirmarPass = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.labelHotel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Seleccionar,
-            this.Column1});
-            this.dataGridView1.Location = new System.Drawing.Point(71, 300);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1510, 224);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Seleccionar
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.NullValue = "Modificar";
-            this.Seleccionar.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Seleccionar.HeaderText = "";
-            this.Seleccionar.Name = "Seleccionar";
-            // 
-            // Column1
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.NullValue = "Dar de baja";
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.textBoxUsuario);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.textBoxTelefono);
             this.groupBox1.Controls.Add(this.label5);
@@ -122,22 +82,12 @@
             this.groupBox1.Controls.Add(this.textBoxTipoDOC);
             this.groupBox1.Controls.Add(this.textBoxApellido);
             this.groupBox1.Controls.Add(this.textBoxNombre);
-            this.groupBox1.Location = new System.Drawing.Point(71, 74);
+            this.groupBox1.Location = new System.Drawing.Point(43, 147);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1275, 200);
-            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filtros de búsqueda";
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(1125, 138);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 46);
-            this.button3.TabIndex = 26;
-            this.button3.Text = "Limpiar campos";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.groupBox1.Text = "Datos personales";
             // 
             // groupBox2
             // 
@@ -256,32 +206,6 @@
             this.textBoxDireccion.Size = new System.Drawing.Size(226, 22);
             this.textBoxDireccion.TabIndex = 27;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(990, 138);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 46);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(891, 18);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(57, 17);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Usuario";
-            // 
-            // textBoxUsuario
-            // 
-            this.textBoxUsuario.Location = new System.Drawing.Point(954, 13);
-            this.textBoxUsuario.Name = "textBoxUsuario";
-            this.textBoxUsuario.Size = new System.Drawing.Size(100, 22);
-            this.textBoxUsuario.TabIndex = 20;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -378,39 +302,108 @@
             this.textBoxNombre.Size = new System.Drawing.Size(226, 22);
             this.textBoxNombre.TabIndex = 2;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1316, 366);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(120, 46);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "Limpiar campos";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1180, 366);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 46);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Guardar cambios";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(50, 49);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(57, 17);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Usuario";
+            // 
+            // textBoxUsuario
+            // 
+            this.textBoxUsuario.Location = new System.Drawing.Point(164, 44);
+            this.textBoxUsuario.Name = "textBoxUsuario";
+            this.textBoxUsuario.Size = new System.Drawing.Size(100, 22);
+            this.textBoxUsuario.TabIndex = 20;
+            // 
+            // labelContraseña
+            // 
+            this.labelContraseña.AutoSize = true;
+            this.labelContraseña.Location = new System.Drawing.Point(204, 98);
+            this.labelContraseña.Name = "labelContraseña";
+            this.labelContraseña.Size = new System.Drawing.Size(69, 17);
+            this.labelContraseña.TabIndex = 27;
+            this.labelContraseña.Text = "Password";
+            this.labelContraseña.Visible = false;
+            // 
+            // textBoxPassword
+            // 
+            this.textBoxPassword.Location = new System.Drawing.Point(293, 96);
+            this.textBoxPassword.Name = "textBoxPassword";
+            this.textBoxPassword.PasswordChar = '*';
+            this.textBoxPassword.Size = new System.Drawing.Size(100, 22);
+            this.textBoxPassword.TabIndex = 28;
+            this.textBoxPassword.Visible = false;
+            this.textBoxPassword.TextChanged += new System.EventHandler(this.textBoxPassword_TextChanged);
+            // 
+            // labelConfirmarPass
+            // 
+            this.labelConfirmarPass.AutoSize = true;
+            this.labelConfirmarPass.Location = new System.Drawing.Point(430, 101);
+            this.labelConfirmarPass.Name = "labelConfirmarPass";
+            this.labelConfirmarPass.Size = new System.Drawing.Size(137, 17);
+            this.labelConfirmarPass.TabIndex = 29;
+            this.labelConfirmarPass.Text = "Confirmar password:";
+            this.labelConfirmarPass.Visible = false;
+            // 
+            // textBoxConfirmarPass
+            // 
+            this.textBoxConfirmarPass.Location = new System.Drawing.Point(580, 96);
+            this.textBoxConfirmarPass.Name = "textBoxConfirmarPass";
+            this.textBoxConfirmarPass.PasswordChar = '*';
+            this.textBoxConfirmarPass.Size = new System.Drawing.Size(100, 22);
+            this.textBoxConfirmarPass.TabIndex = 30;
+            this.textBoxConfirmarPass.Visible = false;
+            // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1226, 22);
+            this.button2.Location = new System.Drawing.Point(53, 84);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 46);
-            this.button2.TabIndex = 23;
-            this.button2.Text = "Agregar usuario";
+            this.button2.TabIndex = 31;
+            this.button2.Text = "Cambiar contraseña";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // labelHotel
-            // 
-            this.labelHotel.AutoSize = true;
-            this.labelHotel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHotel.Location = new System.Drawing.Point(64, 9);
-            this.labelHotel.Name = "labelHotel";
-            this.labelHotel.Size = new System.Drawing.Size(70, 24);
-            this.labelHotel.TabIndex = 24;
-            this.labelHotel.Text = "{hotel}";
-            // 
-            // Usuarios
+            // ModificarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1692, 565);
-            this.Controls.Add(this.labelHotel);
+            this.ClientSize = new System.Drawing.Size(1539, 492);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.textBoxConfirmarPass);
+            this.Controls.Add(this.labelConfirmarPass);
+            this.Controls.Add(this.textBoxPassword);
+            this.Controls.Add(this.labelContraseña);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBoxUsuario);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dataGridView1);
-            this.Name = "Usuarios";
-            this.Text = "Usuarios";
-            this.Load += new System.EventHandler(this.Usuarios_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Controls.Add(this.button1);
+            this.Name = "ModificarUsuario";
+            this.Text = "ModificarUsuario";
+            this.Load += new System.EventHandler(this.ModificarUsuario_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -422,25 +415,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBoxUsuario;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBoxTelefono;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxMail;
-        private System.Windows.Forms.TextBox textBoxNumeroDOC;
-        private System.Windows.Forms.TextBox textBoxTipoDOC;
-        private System.Windows.Forms.TextBox textBoxApellido;
-        private System.Windows.Forms.TextBox textBoxNombre;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label labelHotel;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBoxPais;
         private System.Windows.Forms.Label label14;
@@ -454,8 +429,26 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxDireccion;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBoxTelefono;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxMail;
+        private System.Windows.Forms.TextBox textBoxNumeroDOC;
+        private System.Windows.Forms.TextBox textBoxTipoDOC;
+        private System.Windows.Forms.TextBox textBoxApellido;
+        private System.Windows.Forms.TextBox textBoxNombre;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.DataGridViewButtonColumn Seleccionar;
-        private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxUsuario;
+        private System.Windows.Forms.Label labelContraseña;
+        private System.Windows.Forms.TextBox textBoxPassword;
+        private System.Windows.Forms.Label labelConfirmarPass;
+        private System.Windows.Forms.TextBox textBoxConfirmarPass;
+        private System.Windows.Forms.Button button2;
     }
 }
