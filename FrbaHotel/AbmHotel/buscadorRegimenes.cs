@@ -95,19 +95,23 @@ namespace FrbaHotel.AbmHotel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (listBoxRegimenesDisponibles.Items.Count.Equals(0)) 
-            {
-                System.Windows.Forms.MessageBox.Show("No hay más regímenes para seleccionar");
-            }
+            if (listBoxRegimenesDisponibles.SelectedIndex == -1) { MessageBox.Show("No hay ningún regimen seleccionado para agregar"); }
             else
             {
-                listBoxRegimenesElegidos.Items.Add(listBoxRegimenesDisponibles.Text);
-                if (listBoxRegimenesDisponibles.Text.ToString().Equals("")) { }
+                if (listBoxRegimenesDisponibles.Items.Count.Equals(0))
+                {
+                    System.Windows.Forms.MessageBox.Show("No hay más regímenes para seleccionar");
+                }
                 else
                 {
-                    int n = listBoxRegimenesDisponibles.FindString(listBoxRegimenesDisponibles.Text);
-                    //t.Rows.RemoveAt(n);
-                    listBoxRegimenesDisponibles.Items.RemoveAt(n); 
+                    listBoxRegimenesElegidos.Items.Add(listBoxRegimenesDisponibles.Text);
+                    if (listBoxRegimenesDisponibles.Text.ToString().Equals("")) { }
+                    else
+                    {
+                        int n = listBoxRegimenesDisponibles.FindString(listBoxRegimenesDisponibles.Text);
+                        //t.Rows.RemoveAt(n);
+                        listBoxRegimenesDisponibles.Items.RemoveAt(n);
+                    }
                 }
             }
         }
@@ -132,9 +136,33 @@ namespace FrbaHotel.AbmHotel
 
         internal void Enviarme(ListBox listBox, altaHotel altaHotel, buscadorRegimenes b)
         {
+            foreach (var item in listBox.Items) 
+            {
+                listBoxRegimenesElegidos.Items.Add(item);
+            }
             list = listBox;
             ventana = altaHotel;
             buscador = b;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (listBoxRegimenesElegidos.SelectedIndex == -1)
+            {
+                MessageBox.Show("No hay regimen elegido para quitar");
+            }
+            else
+            {
+                if (listBoxRegimenesElegidos.Items.Count.Equals(0))
+                {
+                    MessageBox.Show("No hay regímenes para eliminar");
+                }
+                else
+                {
+                    listBoxRegimenesDisponibles.Items.Add(listBoxRegimenesElegidos.SelectedItem);
+                    listBoxRegimenesElegidos.Items.Remove(listBoxRegimenesElegidos.SelectedItem);
+                }
+            }
         }
     }
 }

@@ -102,7 +102,7 @@ namespace FrbaHotel.AbmHabitacion
                 this.ChequearRadioButtons(consulta, busqueda);
 
                 System.Diagnostics.Debug.WriteLine(consulta);
-
+                consulta.ConcatToQuery("order by ha.numero asc");
                 DataTable resultados = con2.cargarTablaSQL(consulta.GetQuery());
                 dataGridView1.DataSource = resultados;
 
