@@ -21,7 +21,6 @@ namespace FrbaHotel.RegistrarEstadia
         String numeroDeReserva;
         DateTime fechaDesde;
         Reserva res;
-        DateTime _fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]));
 
         public CheckIn()
         {
@@ -79,13 +78,13 @@ namespace FrbaHotel.RegistrarEstadia
                         res.cliente_id = Convert.ToInt32(row.Cells[9].Value);
                         res.id = Convert.ToInt32(row.Cells[10].Value);
 
-                        if (DateTime.Compare(res.fecha_desde, _fechaSistema) == 0)//si estamos en la fecha de hoy.
+                        if (DateTime.Compare(res.fecha_desde, Tools.Sesion.obtenerFechaSistema()) == 0)//si estamos en la fecha de hoy.
                         {
                             IngresoHuespedes ingresoHuespedes = new IngresoHuespedes(res.id);
                             ingresoHuespedes.Show();
                             //this.Close();
                         }
-                        else if (DateTime.Compare(res.fecha_desde, _fechaSistema) > 0)
+                        else if (DateTime.Compare(res.fecha_desde, Tools.Sesion.obtenerFechaSistema()) > 0)
                         {
                             System.Windows.Forms.MessageBox.Show("Solo se puede realizar el día de la reserva, no antes");
                         }

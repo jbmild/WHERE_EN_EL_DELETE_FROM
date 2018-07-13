@@ -55,7 +55,7 @@ namespace FrbaHotel.RegistrarEstadia
 
                         }
                         //se redirige.
-                        Facturar.Facturacion facturacion = new Facturar.Facturacion(estadia_id);
+                        Facturar.frmFacturasFicha facturacion = new Facturar.frmFacturasFicha(estadia_id);
                         facturacion.ShowDialog();
                     }
                 }
