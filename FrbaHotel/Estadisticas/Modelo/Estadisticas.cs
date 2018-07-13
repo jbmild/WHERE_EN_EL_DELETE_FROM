@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -326,7 +328,19 @@ namespace FrbaHotel.Estadisticas.Modelo
                             GROUP BY ha.piso, ha.numero, h.nombre, h.mail, h.telefono
                             ORDER BY cantidaddias DESC";
 
-                SqlParameter parametro = new SqlParameter("@fechaActual", "06-12-2018"); //TODO cambiar!
+                string fecha;
+                try
+                {
+                    CultureInfo culture = new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]);
+                    fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], culture).ToString("MM/dd/yyyy");
+                }
+                catch (Exception)
+                {
+                    throw new Exception("date_error");
+                }
+
+
+                SqlParameter parametro = new SqlParameter("@fechaActual", fecha); //TODO cambiar!
                 parametro.DbType = DbType.String;
                 parametros.Add(parametro);
 
@@ -335,9 +349,16 @@ namespace FrbaHotel.Estadisticas.Modelo
 
                 return estadistica;
             }
-            catch (Exception)
+            catch (Exception er)
             {
-                throw new Exception("Ocurrio un error al procesar su consulta.");
+                if (er.Message == "date_error")
+                {
+                    throw new Exception("La fecha ingresada en la configuracion no corresponde a su formato o esta incompleto.");
+                }
+                else
+                {
+                    throw new Exception("Ocurrio un error al procesar su consulta.");
+                }
             }
         }
 
