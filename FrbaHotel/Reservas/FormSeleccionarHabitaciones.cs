@@ -19,7 +19,6 @@ namespace FrbaHotel.Reservas
     {
         Reserva _res = null;
         int _idTipoHabitacion;
-        int _usuarioLogueado = 1;
         DateTime _fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]));
         decimal subTotalReserva = 0;
 
@@ -39,7 +38,11 @@ namespace FrbaHotel.Reservas
        
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            Form form1 = new Form();
+            refrescarListado();
+            
+        }
+
+        private void refrescarListado() {
             this.Cursor = Cursors.WaitCursor;
 
             try
@@ -48,7 +51,8 @@ namespace FrbaHotel.Reservas
                 {
                     System.Windows.Forms.MessageBox.Show("Debe seleccionar un hotel y un tipo de habitación");
                 }
-                else {
+                else
+                {
                     if ((dtpFechaCheckout.Value <= dtpFechaCheckin.Value) ||
                     ((dtpFechaCheckout.Value - dtpFechaCheckin.Value).Days < 1))
                     {
@@ -61,7 +65,8 @@ namespace FrbaHotel.Reservas
                         dataGridView1.DataSource = hab.obtenerHabitacionesDisponibles(dtpFechaCheckin.Value, dtpFechaCheckout.Value,
                                                         (lblRegimenId.Text == "" ? -1 : Convert.ToInt32(lblRegimenId.Text)),
                                                         Convert.ToInt32(cmbHotel.SelectedValue),
-                                                        (cmbTipoHab.SelectedIndex == 0 || cmbTipoHab.SelectedIndex == -1) ? -1 : Convert.ToInt32(cmbTipoHab.SelectedValue));
+                                                        (cmbTipoHab.SelectedIndex == 0 || cmbTipoHab.SelectedIndex == -1) ? -1 : Convert.ToInt32(cmbTipoHab.SelectedValue),
+                                                        _res!= null? _res.codigo: 0);
 
 
                         //Se muestra por pantalla la tabla con los resultados del SELECT
@@ -71,13 +76,13 @@ namespace FrbaHotel.Reservas
                     }
                 }
                 this.Cursor = Cursors.Default;
-                
+
             }
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
-            
+        
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -129,8 +134,13 @@ namespace FrbaHotel.Reservas
                     cmbHotel.SelectedValue = _res.hotel_id;
                     cmbTipoHab.SelectedValue = _idTipoHabitacion;
 
+                    cmbHotel.Enabled = false; // Si se está modificando reserva, el hotel no debe poder modificarse.
 
                     dataGridView1.DataSource = _res.getHabitacionesByReserva();
+                    dataGridView1.Columns[3].Visible = dataGridView1.Columns[4].Visible =
+                            dataGridView1.Columns[7].Visible = dataGridView1.Columns[9].Visible =
+                            dataGridView1.Columns[10].Visible = dataGridView1.Columns[11].Visible = false;
+
                     this.Cursor = Cursors.Default;
 
                     dtgRegimenesHoteles.DataSource = (new Modelo.TipoRegimen()).getRegimenesByHotel(Convert.ToInt32(cmbHotel.SelectedValue));
@@ -166,7 +176,7 @@ namespace FrbaHotel.Reservas
                                                     Convert.ToInt32(row.Cells[1].Value)));
                         
                         maxHuespedes = (Convert.ToDecimal(row.Cells[5].Value));
-                        recargoEstrellas = Convert.ToDecimal(row.Cells[6].Value) * (decimal)0.01;
+                        recargoEstrellas = Convert.ToDecimal(row.Cells[8].Value) * (decimal)0.01;
                         precioTotal += maxHuespedes * (1 + recargoEstrellas) * precioBase;
                     }
 
@@ -214,7 +224,7 @@ namespace FrbaHotel.Reservas
                         _res.regimen_id = Convert.ToInt32(lblRegimenId.Text);
                         _res.hotel_id = Convert.ToInt32(cmbHotel.SelectedValue);
                         _res.total = precioTotal;
-                        _res.usuario_modificacion_id = _usuarioLogueado;
+                        _res.usuario_modificacion_id = 1; //Sesion.usuario.UsuarioId;
                         _res.total = precioTotal;
 
 
@@ -225,16 +235,6 @@ namespace FrbaHotel.Reservas
                     }
                 }
             }
-
-        }
-
-        private void dtpFechaCheckout_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpFechaCheckin_ValueChanged(object sender, EventArgs e)
-        {
 
         }
 
@@ -264,6 +264,49 @@ namespace FrbaHotel.Reservas
             dt.Rows.Clear();
             dtpFechaCheckin.Value = _fechaSistema;
             dtpFechaCheckout.Value = _fechaSistema.AddDays(1);
+        }
+
+        private void cmbTipoHab_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTipoHab.Focused) {
+                refrescarListado();
+            }
+        }
+        
+        private void dtpFechaCheckin_Leave(object sender, EventArgs e)
+        {
+            // Vuelvo a refrescar listado para ver disponibilidad.
+            if (dtpFechaCheckin.Focused)
+            {
+                refrescarListado();
+            }
+        }
+
+        private void dtpFechaCheckout_Leave(object sender, EventArgs e)
+        {
+            // Vuelvo a refrescar listado para ver disponibilidad.
+            if (dtpFechaCheckout.Focused)
+            {
+                refrescarListado();
+            }
+        }
+
+        private void dtpFechaCheckin_ValueChanged(object sender, EventArgs e)
+        {
+            // Vuelvo a refrescar listado para ver disponibilidad.
+            if (dtpFechaCheckin.Focused)
+            {
+                refrescarListado();
+            }
+        }
+
+        private void dtpFechaCheckout_ValueChanged(object sender, EventArgs e)
+        {
+            // Vuelvo a refrescar listado para ver disponibilidad.
+            if (dtpFechaCheckout.Focused)
+            {
+                refrescarListado();
+            }
         }
         /*
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

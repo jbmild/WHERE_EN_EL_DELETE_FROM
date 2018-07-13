@@ -96,7 +96,7 @@
             this.chkSeleccionar});
             this.dgvReservas.Location = new System.Drawing.Point(22, 132);
             this.dgvReservas.Name = "dgvReservas";
-            this.dgvReservas.Size = new System.Drawing.Size(397, 64);
+            this.dgvReservas.Size = new System.Drawing.Size(513, 64);
             this.dgvReservas.TabIndex = 3;
             this.dgvReservas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReservas_CellContentClick);
             // 
@@ -129,7 +129,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 256);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(574, 256);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnModificar);
             this.Controls.Add(this.dgvReservas);

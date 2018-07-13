@@ -72,7 +72,7 @@ namespace FrbaHotel.Modelo
 
         // Devuelve las habitaciones que estan disponibles para cierta fecha en un hotel.
         public DataTable obtenerHabitacionesDisponibles(DateTime fechaDesde, DateTime fechaHasta, int regimen_id,
-                                                                int hotel_id, int tipoHabitacion_id) {
+                                                                int hotel_id, int tipoHabitacion_id, int idReserva) {
 
             ConexionSQL conexion = new ConexionSQL();
 
@@ -102,13 +102,6 @@ namespace FrbaHotel.Modelo
 		                hot.hotel_id = hab.hotel_id
 		                and (hab.hotel_id = @hotel_id or @hotel_id is null)
 		                and (hab.tipos_id = @tipoHabitacion_id or @tipoHabitacion_id is null or @tipoHabitacion_id = -1)
-	                /*INNER JOIN
-		                WHERE_EN_EL_DELETE_FROM.regimenes_hoteles regHot on
-		                regHot.hotel_id = hot.hotel_id
-		                and (regHot.regimen_id = @regimen_id or @regimen_id is null or @regimen_id = -1)
-	                INNER JOIN
-		                WHERE_EN_EL_DELETE_FROM.regimenes reg on
-		                reg.regimen_id = regHot.regimen_id*/
 	                INNER JOIN
 		                WHERE_EN_EL_DELETE_FROM.habitaciones_tipos habTipos on
 		                habTipos.tipo_id = hab.tipos_id
@@ -135,7 +128,7 @@ namespace FrbaHotel.Modelo
 				                )
 		                ) res on res.habitacion_id = hab.habitacion_id
 	                WHERE
-		                res.reserva_id is null
+		                (res.reserva_id is null or isNull(res.reserva_id, -1) <> @reserva_id)
                         AND hab.habilitado = 1
                         AND hot.hotel_id not in (SELECT hotel_id FROM [WHERE_EN_EL_DELETE_FROM].cese_actividades WHERE 
                                     @FechaDesde between fecha_inicio and fecha_fin
@@ -153,6 +146,7 @@ namespace FrbaHotel.Modelo
             command.Parameters.Add("@regimen_id", SqlDbType.Int).Value = regimen_id;
             command.Parameters.Add("@hotel_id", SqlDbType.Int).Value = hotel_id;
             command.Parameters.Add("@tipoHabitacion_id", SqlDbType.Int).Value = tipoHabitacion_id;
+            command.Parameters.Add("@reserva_Id", SqlDbType.Int).Value = idReserva;
             SqlDataReader reader = command.ExecuteReader();
             DataTable dt = new DataTable();
             dt.Load(reader);

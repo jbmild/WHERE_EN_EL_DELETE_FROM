@@ -30,11 +30,12 @@ namespace FrbaHotel.Reservas
         {
             ConexionSQL conn = new ConexionSQL();
 
-            string sqlQuery = @"select codigo, fecha_desde, fecha_hasta, isNull(h.nombre, 'Hotel ' + h.direccion) AS Hotel, datediff(dd, getdate(), fecha_desde) AS DiasHastaLaReserva, 
+            string sqlQuery = @"select codigo, c.nombre + ' ' + c.apellido As Cliente, fecha_desde, fecha_hasta, isNull(h.nombre, 'Hotel ' + h.direccion) AS Hotel, datediff(dd, getdate(), fecha_desde) AS DiasHastaLaReserva, 
                     r.hotel_id, r.regimen_id, (select distinct tipos_id FROM WHERE_EN_EL_DELETE_FROM.reservas_habitaciones reshab INNER JOIN WHERE_EN_EL_DELETE_FROM.habitaciones hab on hab.habitacion_id = reshab.habitacion_id AND reshab.reserva_id = r.reserva_id) AS idTipoHabitacion,
-                    r.cliente_id, r.reserva_id 
+                    r.cliente_id, r.reserva_id
                     FROM WHERE_EN_EL_DELETE_FROM.Reservas r 
-                    INNER JOIN WHERE_EN_EL_DELETE_FROM.Hoteles h on h.hotel_id = r.hotel_id WHERE ";
+                    INNER JOIN WHERE_EN_EL_DELETE_FROM.Hoteles h on h.hotel_id = r.hotel_id 
+                    INNER JOIN WHERE_EN_EL_DELETE_FROM.Clientes c on c.cliente_id = r.cliente_id WHERE ";
 
             if (txtCodigo.Text.Length > 0)
             {
@@ -53,6 +54,8 @@ namespace FrbaHotel.Reservas
                 dgvReservas.Columns["hotel_id"].Visible = false;
                 dgvReservas.Columns["DiasHastaLaReserva"].Visible = false;
                 dgvReservas.Columns["idTipoHabitacion"].Visible = false;
+                dgvReservas.Columns["reserva_id"].Visible = false;
+                dgvReservas.Columns["cliente_id"].Visible = false;
 
             }
 
@@ -69,15 +72,16 @@ namespace FrbaHotel.Reservas
                     {
                         //TODO: MUESTRO FORM PARA MODIFICAR RESERVA
                         Reserva res = new Reserva();
-                        res.fecha_desde = Convert.ToDateTime(row.Cells[2].Value);
-                        res.fecha_hasta = Convert.ToDateTime(row.Cells[3].Value);
+                        res.fecha_desde = Convert.ToDateTime(row.Cells[3].Value);
+                        res.fecha_hasta = Convert.ToDateTime(row.Cells[4].Value);
                         res.codigo = Convert.ToInt32(row.Cells[1].Value);
-                        res.hotel_id = Convert.ToInt32(row.Cells[6].Value);
-                        res.regimen_id = Convert.ToInt32(row.Cells[7].Value);
-                        res.cliente_id = Convert.ToInt32(row.Cells[9].Value);
-                        res.id = Convert.ToInt32(row.Cells[10].Value);
+                        res.hotel_id = Convert.ToInt32(row.Cells[7].Value);
+                        res.regimen_id = Convert.ToInt32(row.Cells[8].Value);
+                        res.cliente_id = Convert.ToInt32(row.Cells[10].Value);
+                        res.id = Convert.ToInt32(row.Cells[11].Value);
 
-                        FormSeleccionarHabitaciones form = new FormSeleccionarHabitaciones(res, Convert.ToInt32(row.Cells[8].Value));
+                        int tipohabitacion_id = Convert.ToInt32(row.Cells[9].Value);
+                        FormSeleccionarHabitaciones form = new FormSeleccionarHabitaciones(res, tipohabitacion_id);
                         form.Owner = this;
                         form.Show();
                     }
@@ -101,7 +105,7 @@ namespace FrbaHotel.Reservas
                     {
                         Reserva res = new Reserva();
                         res.codigo = Convert.ToInt32(row.Cells[1].Value);
-                        res.usuarioCancelacion = usuario;
+                        res.usuarioCancelacion = Sesion.usuario.UsuarioId;
                         frmMotivoCancelacion form = new frmMotivoCancelacion(res);
                         form.Owner = this;
                         form.Show();

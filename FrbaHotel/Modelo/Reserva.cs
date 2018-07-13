@@ -152,7 +152,6 @@ namespace FrbaHotel.Modelo
                     throw (ex);
                 }
 
-                _habitaciones.Clear();
                 _habitaciones = habitacionesModificacion;
 
             }

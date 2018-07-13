@@ -219,6 +219,7 @@
             this.cmbTipoHab.Name = "cmbTipoHab";
             this.cmbTipoHab.Size = new System.Drawing.Size(123, 21);
             this.cmbTipoHab.TabIndex = 18;
+            this.cmbTipoHab.SelectedIndexChanged += new System.EventHandler(this.cmbTipoHab_SelectedIndexChanged);
             // 
             // label3
             // 
