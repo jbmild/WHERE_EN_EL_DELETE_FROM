@@ -185,6 +185,12 @@
     </Compile>
     <Compile Include="Estadisticas\Modelo\Estadistica.cs" />
     <Compile Include="Estadisticas\Modelo\Estadisticas.cs" />
+    <Compile Include="Facturar\Facturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturar\Facturacion.Designer.cs">
+      <DependentUpon>Facturacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frmSeleccionHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,9 @@
     <EmbeddedResource Include="Estadisticas\frmEstadisticas.resx">
       <DependentUpon>frmEstadisticas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Facturar\Facturacion.resx">
+      <DependentUpon>Facturacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -421,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\CheckIn.resx">
       <DependentUpon>CheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\CheckOut.resx">
+      <DependentUpon>CheckOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\IngresoHuespedes.resx">
       <DependentUpon>IngresoHuespedes.cs</DependentUpon>
