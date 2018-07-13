@@ -59,6 +59,7 @@ namespace FrbaHotel.AbmHotel
 
         internal void RecibirListBox(ListBox list, int regimenCompleto)
         {
+            this.listBoxRegimenes.Items.Clear();
             for (int i=0; i < list.Items.Count; i++) 
             {
                 this.listBoxRegimenes.Items.Add(list.Items[i].ToString());

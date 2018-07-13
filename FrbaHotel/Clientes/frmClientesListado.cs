@@ -185,5 +185,10 @@ namespace FrbaHotel.Clientes
         {
 
         }
+
+        private void dgwRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

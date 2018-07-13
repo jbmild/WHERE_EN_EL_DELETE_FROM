@@ -45,6 +45,7 @@
             this.labelHotel = new System.Windows.Forms.Label();
             this.textBoxCantidad = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.labelCantidad = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -115,7 +116,6 @@
             this.textBoxPrecioSugerido.Name = "textBoxPrecioSugerido";
             this.textBoxPrecioSugerido.Size = new System.Drawing.Size(100, 22);
             this.textBoxPrecioSugerido.TabIndex = 7;
-            
             // 
             // checkBoxMantenerPrecioSugerido
             // 
@@ -146,6 +146,7 @@
             this.button2.TabIndex = 10;
             this.button2.Text = "Limpiar campos";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // labelHabitacion
             // 
@@ -210,11 +211,24 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Cantidad:";
             // 
+            // labelCantidad
+            // 
+            this.labelCantidad.AutoSize = true;
+            this.labelCantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCantidad.ForeColor = System.Drawing.Color.Red;
+            this.labelCantidad.Location = new System.Drawing.Point(404, 322);
+            this.labelCantidad.Name = "labelCantidad";
+            this.labelCantidad.Size = new System.Drawing.Size(152, 20);
+            this.labelCantidad.TabIndex = 17;
+            this.labelCantidad.Text = "Cantidad pendiente";
+            this.labelCantidad.Visible = false;
+            // 
             // registrarConsumible
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1111, 507);
+            this.Controls.Add(this.labelCantidad);
             this.Controls.Add(this.textBoxCantidad);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.labelHotel);
@@ -259,5 +273,6 @@
         private System.Windows.Forms.Label labelHotel;
         private System.Windows.Forms.TextBox textBoxCantidad;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelCantidad;
     }
 }

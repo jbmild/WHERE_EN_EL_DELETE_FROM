@@ -47,6 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbmUsuarios\AgregarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuarios\AgregarUsuario.Designer.cs">
+      <DependentUpon>AgregarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmUsuarios\BuscarRolesParaNuevoUsuario.cs" />
+    <Compile Include="AbmUsuarios\BuscarUsuarios.cs" />
+    <Compile Include="AbmUsuarios\CrearUsuario.cs" />
+    <Compile Include="AbmUsuarios\ElegirRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuarios\ElegirRoles.Designer.cs">
+      <DependentUpon>ElegirRoles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmUsuarios\Usuario.cs" />
+    <Compile Include="AbmUsuarios\Usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuarios\Usuarios.Designer.cs">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Clientes\frmClientesFicha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,6 +185,12 @@
     </Compile>
     <Compile Include="Estadisticas\Modelo\Estadistica.cs" />
     <Compile Include="Estadisticas\Modelo\Estadisticas.cs" />
+    <Compile Include="Facturar\Facturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturar\Facturacion.Designer.cs">
+      <DependentUpon>Facturacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frmSeleccionHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +214,8 @@
     <Compile Include="Login\Modelo\Usuarios.cs" />
     <Compile Include="Login\Modelo\UsuariosRoles.cs" />
     <Compile Include="Modelo\Usuario.cs" />
+    <Compile Include="RegistrarConsumible\Consumo.cs" />
+    <Compile Include="RegistrarConsumible\GeneradorConsumo.cs" />
     <Compile Include="RegistrarEstadia\RegistrarEstadiaClass.cs" />
     <Compile Include="RegistrarEstadia\IngresoHuespedes.cs">
       <SubType>Form</SubType>
@@ -314,6 +344,15 @@
     <Compile Include="Tools\RegexUtilities.cs" />
     <Compile Include="Tools\Option.cs" />
     <Compile Include="Tools\Sesion.cs" />
+    <EmbeddedResource Include="AbmUsuarios\AgregarUsuario.resx">
+      <DependentUpon>AgregarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuarios\ElegirRoles.resx">
+      <DependentUpon>ElegirRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuarios\Usuarios.resx">
+      <DependentUpon>Usuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Clientes\frmClientesFicha.resx">
       <DependentUpon>frmClientesFicha.cs</DependentUpon>
     </EmbeddedResource>
@@ -365,6 +404,9 @@
     <EmbeddedResource Include="Estadisticas\frmEstadisticas.resx">
       <DependentUpon>frmEstadisticas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Facturar\Facturacion.resx">
+      <DependentUpon>Facturacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -388,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\CheckIn.resx">
       <DependentUpon>CheckIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\CheckOut.resx">
+      <DependentUpon>CheckOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\IngresoHuespedes.resx">
       <DependentUpon>IngresoHuespedes.cs</DependentUpon>

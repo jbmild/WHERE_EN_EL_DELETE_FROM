@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -25,6 +26,17 @@ namespace FrbaHotel.AbmHabitacion
                 b.SetHabitacion(false);
             }
             
+        }
+
+        internal void Cargar(ConexionSQL con, System.Windows.Forms.ComboBox comboBox, int hotelid)
+        {
+            DataTable result = con.cargarTablaSQL("SELECT habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" + hotelid + "order by numero asc");
+            result.Rows.InsertAt(result.NewRow(), 0);
+            comboBox.DataSource = result;
+            comboBox.SelectedIndex = 0;
+            comboBox.DisplayMember = "numero";
+            comboBox.ValueMember = "habitacion_id";
+
         }
     }
 }

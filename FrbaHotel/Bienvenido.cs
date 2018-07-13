@@ -154,6 +154,7 @@ namespace FrbaHotel
         private void btnHabitaciones_Click(object sender, EventArgs e)
         {
             AbmHabitacion.modificarHabitacion formHabitacion = new AbmHabitacion.modificarHabitacion();
+            formHabitacion.EnviarHotel(Sesion.hotel.Nombre, Sesion.hotel.HotelId);
             formHabitacion.ShowDialog(this);
         }
 
@@ -186,6 +187,13 @@ namespace FrbaHotel
         {
             frmEstadisticas estadisticas = new frmEstadisticas();
             estadisticas.ShowDialog(this);
+        }
+
+        private void btnUsuarios_Click(object sender, EventArgs e)
+        {
+            AbmUsuarios.Usuarios u = new AbmUsuarios.Usuarios();
+            u.RecibirHotel(Sesion.hotel.HotelId, Sesion.hotel.Nombre);
+            u.Show();
         }
     }
 }
