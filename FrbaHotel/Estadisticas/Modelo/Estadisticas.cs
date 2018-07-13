@@ -328,16 +328,7 @@ namespace FrbaHotel.Estadisticas.Modelo
                             GROUP BY ha.piso, ha.numero, h.nombre, h.mail, h.telefono
                             ORDER BY cantidaddias DESC";
 
-                string fecha;
-                try
-                {
-                    CultureInfo culture = new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]);
-                    fecha = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], culture).ToString("MM/dd/yyyy");
-                }
-                catch (Exception)
-                {
-                    throw new Exception("date_error");
-                }
+                string fecha = Sesion.obtenerFechaSistema().ToString("MM/dd/yyyy");
 
 
                 SqlParameter parametro = new SqlParameter("@fechaActual", fecha); //TODO cambiar!
@@ -351,7 +342,7 @@ namespace FrbaHotel.Estadisticas.Modelo
             }
             catch (Exception er)
             {
-                if (er.Message == "date_error")
+                if (er.Message == "La fecha ingresada en la configuracion no corresponde a su formato o esta incompleto.")
                 {
                     throw new Exception("La fecha ingresada en la configuracion no corresponde a su formato o esta incompleto.");
                 }
