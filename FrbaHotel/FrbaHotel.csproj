@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbmHotel\BuscarRegimenes.cs" />
     <Compile Include="AbmHotel\CargarRegimenesHotelBuscador.cs" />
     <Compile Include="AbmHotel\EditarRegimenes.cs">
       <SubType>Form</SubType>
