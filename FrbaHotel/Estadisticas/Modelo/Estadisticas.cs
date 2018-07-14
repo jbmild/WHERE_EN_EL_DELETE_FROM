@@ -328,7 +328,7 @@ namespace FrbaHotel.Estadisticas.Modelo
                             GROUP BY ha.piso, ha.numero, h.nombre, h.mail, h.telefono
                             ORDER BY cantidaddias DESC";
 
-                string fecha = Sesion.obtenerFechaSistema().ToString("MM/dd/yyyy");
+                string fecha = Sesion.obtenerFechaSistema().ToString("MM-dd-yyyy");
 
 
                 SqlParameter parametro = new SqlParameter("@fechaActual", fecha); //TODO cambiar!

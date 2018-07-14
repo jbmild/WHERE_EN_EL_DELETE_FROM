@@ -8,8 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Modelo;
+using FrbaHotel.Tools;
 
-namespace FrbaHotel.Clientes
+namespace FrbaHotel.Facturar
 {
     public partial class frmFacturasListado : Form
     {
@@ -24,7 +25,7 @@ namespace FrbaHotel.Clientes
             cmbTipoDoc.Items.Add("Pasaporte");
 
             Cliente cli = new Cliente();
-            this.LoadGrid(cli.getClientes("", "", "", "", ""));
+            this.LoadGrid(Estadias.getEstadiasAFacturar(cmbTipoDoc.Text, txtNroDoc.Text, txtEmail.Text, txtNombre.Text, txtApellido.Text, txtCodigoReserva.Text.Length <= 0 ? 0 : Convert.ToInt32(txtCodigoReserva.Text), 0, Sesion.hotel.HotelId));
             
         }
 
@@ -37,8 +38,8 @@ namespace FrbaHotel.Clientes
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            Cliente cli = new Cliente();
-            this.LoadGrid(cli.getClientes(cmbTipoDoc.Text, txtNroDoc.Text, txtEmail.Text, txtNombre.Text, txtApellido.Text));
+            this.LoadGrid(Estadias.getEstadiasAFacturar(cmbTipoDoc.Text, txtNroDoc.Text, txtEmail.Text, txtNombre.Text, txtApellido.Text, txtCodigoReserva.Text.Length <= 0? 0: Convert.ToInt32(txtCodigoReserva.Text), 0, Sesion.hotel.HotelId));
+            
         }
 
         public void LoadGrid(DataTable dt)
@@ -48,60 +49,61 @@ namespace FrbaHotel.Clientes
             {
                 this.dgwRoles.AutoGenerateColumns = false;
                 this.dgwRoles.Columns.Clear();
+                //r.codigo, r.fecha_desde, r.fecha_hasta, cli.nombre + ' ' + cli.apellido As Cliente
+                DataGridViewTextBoxColumn codigo = new DataGridViewTextBoxColumn();
+                codigo.HeaderText = "Codigo Reserva";
+                codigo.DataPropertyName = "codigo";
+                codigo.Visible = false;
+                this.dgwRoles.Columns.Add(codigo);
 
-                DataGridViewTextBoxColumn id = new DataGridViewTextBoxColumn();
-                id.HeaderText = "ID";
-                id.DataPropertyName = "cliente_id";
-                id.Visible = false;
-                this.dgwRoles.Columns.Add(id);
+                DataGridViewTextBoxColumn fdesde = new DataGridViewTextBoxColumn();
+                fdesde.HeaderText = "Desde";
+                fdesde.DataPropertyName = "fecha_desde";
+                fdesde.ReadOnly = true;
+                this.dgwRoles.Columns.Add(fdesde);
 
-                DataGridViewTextBoxColumn habilitado = new DataGridViewTextBoxColumn();
-                habilitado.HeaderText = "Habilitado";
-                habilitado.DataPropertyName = "EstaHabilitado";
-                habilitado.ReadOnly = true;
-                this.dgwRoles.Columns.Add(habilitado);
+                DataGridViewTextBoxColumn fhasta = new DataGridViewTextBoxColumn();
+                fhasta.HeaderText = "Hasta";
+                fhasta.DataPropertyName = "fecha_hasta";
+                fhasta.ReadOnly = true;
+                this.dgwRoles.Columns.Add(fhasta);
 
-                DataGridViewTextBoxColumn nombre = new DataGridViewTextBoxColumn();
-                nombre.HeaderText = "Nombre";
-                nombre.DataPropertyName = "nombre";
-                nombre.ReadOnly = true;
-                this.dgwRoles.Columns.Add(nombre);
+                DataGridViewTextBoxColumn cliente = new DataGridViewTextBoxColumn();
+                cliente.HeaderText = "Cliente";
+                cliente.DataPropertyName = "Cliente";
+                cliente.ReadOnly = true;
+                this.dgwRoles.Columns.Add(cliente);
 
-                DataGridViewTextBoxColumn apellido = new DataGridViewTextBoxColumn();
-                apellido.HeaderText = "Apellido";
-                apellido.DataPropertyName = "apellido";
-                apellido.ReadOnly = true;
-                this.dgwRoles.Columns.Add(apellido);
+                DataGridViewTextBoxColumn domicilio = new DataGridViewTextBoxColumn();
+                domicilio.DataPropertyName = "domicilio";
+                domicilio.ReadOnly = true;
+                domicilio.Visible = false;
+                this.dgwRoles.Columns.Add(domicilio);
 
-                DataGridViewTextBoxColumn tipoDoc = new DataGridViewTextBoxColumn();
-                tipoDoc.HeaderText = "Tipo Identificación";
-                tipoDoc.DataPropertyName = "documento_tipo";
-                tipoDoc.ReadOnly = true;
-                this.dgwRoles.Columns.Add(tipoDoc);
+                DataGridViewTextBoxColumn localidad = new DataGridViewTextBoxColumn();
+                localidad.DataPropertyName = "direccion_localidad";
+                localidad.ReadOnly = true;
+                localidad.Visible = false;
+                this.dgwRoles.Columns.Add(localidad);
 
-                DataGridViewTextBoxColumn nroDoc = new DataGridViewTextBoxColumn();
-                nroDoc.HeaderText = "Nro Identificación";
-                nroDoc.DataPropertyName = "documento_nro";
-                nroDoc.ReadOnly = true;
-                this.dgwRoles.Columns.Add(nroDoc);
+                DataGridViewTextBoxColumn estadia_id = new DataGridViewTextBoxColumn();
+                estadia_id.DataPropertyName = "estadia_id";
+                estadia_id.ReadOnly = true;
+                estadia_id.Visible = false;
+                this.dgwRoles.Columns.Add(estadia_id);
 
-                DataGridViewTextBoxColumn email = new DataGridViewTextBoxColumn();
-                email.HeaderText = "Email";
-                email.DataPropertyName = "mail";
-                email.ReadOnly = true;
-                this.dgwRoles.Columns.Add(email);
+                DataGridViewTextBoxColumn Facturar = new DataGridViewTextBoxColumn();
+                Facturar.HeaderText = "Facturar";
+                Facturar.ReadOnly = true;
+                this.dgwRoles.Columns.Add(Facturar);
 
-                DataGridViewTextBoxColumn modificar = new DataGridViewTextBoxColumn();
-                modificar.HeaderText = "Modificar";
-                modificar.ReadOnly = true;
-                this.dgwRoles.Columns.Add(modificar);
-
+                /*
                 DataGridViewTextBoxColumn eliminar = new DataGridViewTextBoxColumn();
                 eliminar.HeaderText = "Eliminar";
                 eliminar.ReadOnly = true;
                 eliminar.DefaultCellStyle.ForeColor = Color.Aqua;
                 this.dgwRoles.Columns.Add(eliminar);
-
+                */
                 this.dgwRoles.DataSource = dt;
             }
         }
@@ -113,7 +115,11 @@ namespace FrbaHotel.Clientes
                 switch (this.dgwRoles.CurrentCell.ColumnIndex)
                 {
                     case 7:
-                        this.modificarCliente((int)this.dgwRoles.Rows[e.RowIndex].Cells[0].Value);
+
+                        string apYNomCliente = this.dgwRoles.Rows[e.RowIndex].Cells[3].Value.ToString();
+                        string DomicilioCliente = this.dgwRoles.Rows[e.RowIndex].Cells[4].Value.ToString();
+                        string localidadCliente = this.dgwRoles.Rows[e.RowIndex].Cells[5].Value.ToString();
+                        this.irAFacturar((int)this.dgwRoles.Rows[e.RowIndex].Cells[6].Value);
                         break;
                     case 8:
                         this.deleteCliente((int)this.dgwRoles.Rows[e.RowIndex].Cells[0].Value, 
@@ -125,12 +131,14 @@ namespace FrbaHotel.Clientes
             }
         }
 
-        private void modificarCliente(int clienteId)
+        private void irAFacturar(int estadia_id)
         {
-            Cliente cli = new Cliente(clienteId);
-            Clientes.frmClientesFicha frmFicha = new frmClientesFicha(cli);
+            frmFacturasFicha frm = new frmFacturasFicha(estadia_id);
+            frm.Show();
+            /*Clientes.frmClientesFicha frmFicha = new frmClientesFicha(cli);
             frmFicha.FormClosed += new FormClosedEventHandler(frmClientesFicha_Closed);
             frmFicha.Show();
+             * */
         }
 
         private void deleteCliente(int clienteId, string name)
@@ -168,9 +176,10 @@ namespace FrbaHotel.Clientes
         private void btnAlta_Click(object sender, EventArgs e)
         {
             Cliente cli = new Cliente(0);
-            frmClientesFicha frmFicha = new frmClientesFicha(cli);
+            /*frmClientesFicha frmFicha = new frmClientesFicha(cli);
             frmFicha.FormClosed += new FormClosedEventHandler(frmClientesFicha_Closed);
             frmFicha.Show();
+             * */
                         
         }
 
@@ -188,7 +197,8 @@ namespace FrbaHotel.Clientes
 
         private void dgwRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            //HOLa
+            int a;
         }
     }
 }

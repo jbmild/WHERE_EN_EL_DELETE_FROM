@@ -206,6 +206,18 @@
     </Compile>
     <Compile Include="Estadisticas\Modelo\Estadistica.cs" />
     <Compile Include="Estadisticas\Modelo\Estadisticas.cs" />
+    <Compile Include="Facturar\frmFacturasFicha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturar\frmFacturasFicha.Designer.cs" >
+      <DependentUpon>frmFacturasFicha.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Facturar\frmFacturasListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Facturar\frmFacturasListado.Designer.cs">
+      <DependentUpon>frmFacturasListado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\frmSeleccionHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -228,6 +240,7 @@
     <Compile Include="Login\Modelo\UsuarioRol.cs" />
     <Compile Include="Login\Modelo\Usuarios.cs" />
     <Compile Include="Login\Modelo\UsuariosRoles.cs" />
+    <Compile Include="Modelo\Estadias.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="RegistrarConsumible\Consumo.cs" />
     <Compile Include="RegistrarConsumible\GeneradorConsumo.cs" />
@@ -428,6 +441,12 @@
     <EmbeddedResource Include="Estadisticas\frmEstadisticas.resx">
       <DependentUpon>frmEstadisticas.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Facturar\frmFacturasFicha.resx" >
+      <DependentUpon>frmFacturasFicha.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturar\frmFacturasListado.resx" >
+      <DependentUpon>frmFacturasListado.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -452,6 +471,9 @@
     <EmbeddedResource Include="RegistrarEstadia\CheckIn.resx">
       <DependentUpon>CheckIn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RegistrarEstadia\CheckOut.resx">
+      <DependentUpon>CheckOut.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegistrarEstadia\IngresoHuespedes.resx">
       <DependentUpon>IngresoHuespedes.cs</DependentUpon>
     </EmbeddedResource>
@@ -463,6 +485,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reservas\ConfirmarReserva.resx">
       <DependentUpon>ConfirmarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reservas\FormSeleccionarHabitaciones.resx">
+      <DependentUpon>FormSeleccionarHabitaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reservas\frmMotivoCancelacion.resx">
       <DependentUpon>frmMotivoCancelacion.cs</DependentUpon>

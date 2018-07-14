@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Estadisticas;
 using FrbaHotel.Login;
+using FrbaHotel.Login.Modelo;
+using FrbaHotel.Roles.Modelo;
 using FrbaHotel.Tools;
 
 namespace FrbaHotel
@@ -22,20 +24,49 @@ namespace FrbaHotel
 
         private void Bienvenido_Load(object sender, EventArgs e)
         {
+            try
+            {
+                DBInterface.conectar();
+                Sesion.obtenerFechaSistema();
+            }
+            catch (Exception er)
+            {
+                MessageBox.Show(er.Message);
+                this.Close();
+                return;
+            }
+
+            Sesion.usuario = new Usuario("guest");
+            Sesion.rol = null;
+
+            if (Sesion.usuario.NombreUsuario.Equals(""))
+            {
+                Sesion.usuario = null;
+            }
+
+            List<Rol> roles =  Sesion.usuario.obtenerRolesHabilitados();
+            foreach (Rol rol in roles)
+            {
+                if (rol.EsDefault)
+                {
+                    Sesion.rol = rol;
+                }
+            }
+
+
             cargarFormulario();
         }
 
         private void cargarFormulario()
         {
-            if (Sesion.usuario == null)
+            lblUsuario.Text = Sesion.usuario.NombreUsuario;
+
+            if (Sesion.usuario == null || Sesion.usuario.NombreUsuario.Equals("guest"))
             {
-                lblUsuario.Hide();
                 btnLogin.Text = "Ingresar";
             }
             else
             {
-                lblUsuario.Text = Sesion.usuario.NombreUsuario;
-                lblUsuario.Show();
                 btnLogin.Text = "Salir";
             }
 
@@ -49,26 +80,25 @@ namespace FrbaHotel
                 lblHotel.Show();
             }
 
-            if (Sesion.rol == null)
-            {
-                lblRol.Hide();
-                btnClientes.Enabled = false;
-                btnConsumibles.Enabled = false;
-                btnFacturacion.Enabled = false;
-                btnEstadias.Enabled = false;
-                btnHoteles.Enabled = false;
-                btnUsuarios.Enabled = false;
-                btnHabitaciones.Enabled = false;
-                btnEstadisticas.Enabled = false;
-                btnRoles.Enabled = false;
-                //btnGenerarModificarReserva.Enabled = false;
-                //btnCancelarReserva.Enabled = false;
-            }
-            else
-            {
-                lblRol.Text = "Rol: " + Sesion.rol.Nombre;
-                lblRol.Show();
+            lblRol.Hide();
+            btnClientes.Enabled = false;
+            btnConsumibles.Enabled = false;
+            btnFacturacion.Enabled = false;
+            btnEstadias.Enabled = false;
+            btnHoteles.Enabled = false;
+            btnUsuarios.Enabled = false;
+            btnHabitaciones.Enabled = false;
+            btnEstadisticas.Enabled = false;
+            btnRoles.Enabled = false;
+            btnGenerarModificarReserva.Enabled = false;
+            btnCancelarReserva.Enabled = false;
+            btnRegimenes.Enabled = false;
 
+            lblRol.Text = "Rol: " + Sesion.rol.Nombre;
+            lblRol.Show();
+
+            if (Sesion.rol != null)
+            {
                 List<Roles.Modelo.Permiso> permisos = Sesion.rol.PermisosDados;
                 if (permisos.Count > 0)
                 {
@@ -82,32 +112,35 @@ namespace FrbaHotel
                             case "Clientes":
                                 btnClientes.Enabled = true;
                                 break;
-	                        case "Usuarios":
+                            case "Usuarios":
                                 btnUsuarios.Enabled = true;
                                 break;
-	                        case "Hoteles":
+                            case "Hoteles":
                                 btnHoteles.Enabled = true;
                                 break;
-	                        case "Habitaciones":
+                            case "Habitaciones":
                                 btnHabitaciones.Enabled = true;
                                 break;
-	                        //case "Generar o Modificar Reserva":
-                                //btnGenerarModificarReserva.Enabled = true;
-                                //break;
-	                        //case "Cancelar Reserva":
-                                //btnCancelarReserva.Enabled = true;
-                                //break;
-	                        case "Estadias":
+                            case "Generar o Modificar Reserva":
+                                btnGenerarModificarReserva.Enabled = true;
+                                break;
+                            case "Cancelar Reserva":
+                                btnCancelarReserva.Enabled = true;
+                                break;
+                            case "Estadias":
                                 btnEstadias.Enabled = true;
                                 break;
-	                        case "Consumibles":
+                            case "Consumibles":
                                 btnConsumibles.Enabled = true;
                                 break;
-	                        case "Facturacion":
+                            case "Facturacion":
                                 btnFacturacion.Enabled = true;
                                 break;
                             case "Estadisticas":
                                 btnEstadisticas.Enabled = true;
+                                break;
+                            case "Regimenes":
+                                btnRegimenes.Enabled = true;
                                 break;
                         }
                     }
@@ -123,16 +156,33 @@ namespace FrbaHotel
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if (Sesion.usuario == null)
+            if (Sesion.usuario == null || Sesion.usuario.NombreUsuario.Equals("guest"))
             {
                 frmLogin login = new frmLogin();
                 login.ShowDialog(this);
             }
             else
             {
-                Sesion.usuario = null;
+                Sesion.usuario = new Usuario("guest");
                 Sesion.rol = null;
                 Sesion.hotel = null;
+
+                if (Sesion.usuario.NombreUsuario.Equals(""))
+                {
+                    Sesion.usuario = null;
+                }
+
+                if (Sesion.usuario != null)
+                {
+                    List<Rol> roles = Sesion.usuario.obtenerRolesHabilitados();
+                    foreach (Rol rol in roles)
+                    {
+                        if (rol.EsDefault)
+                        {
+                            Sesion.rol = rol;
+                        }
+                    }
+                }
             }
 
             this.cargarFormulario();
@@ -147,7 +197,7 @@ namespace FrbaHotel
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            Clientes.frmClientesListado listadoClientes = new Clientes.frmClientesListado();
+            Clientes.frmFacturasListado listadoClientes = new Clientes.frmFacturasListado();
             listadoClientes.ShowDialog(this);
         }
 
@@ -194,6 +244,28 @@ namespace FrbaHotel
             AbmUsuarios.Usuarios u = new AbmUsuarios.Usuarios();
             u.RecibirHotel(Sesion.hotel.HotelId, Sesion.hotel.Nombre);
             u.Show();
+        }
+
+        private void btnFacturacion_Click(object sender, EventArgs e)
+        {
+            Facturar.frmFacturasListado frm = new Facturar.frmFacturasListado();
+            frm.Show();
+        }
+
+        private void Bienvenido_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                DBInterface.desconectar();
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void btnRegimenes_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta funcionalidad no esta disponible desde esta aplicacion. Contactese con su supervisor para obtener acceso a la misma.");
         }
     }
 }

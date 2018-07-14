@@ -44,42 +44,42 @@
             this.btnConsumibles = new System.Windows.Forms.Button();
             this.btnFacturacion = new System.Windows.Forms.Button();
             this.btnEstadisticas = new System.Windows.Forms.Button();
+            this.btnRegimenes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblBienvenido
             // 
             this.lblBienvenido.AutoSize = true;
             this.lblBienvenido.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBienvenido.Location = new System.Drawing.Point(265, 23);
+            this.lblBienvenido.Location = new System.Drawing.Point(298, 29);
             this.lblBienvenido.Name = "lblBienvenido";
-            this.lblBienvenido.Size = new System.Drawing.Size(502, 29);
+            this.lblBienvenido.Size = new System.Drawing.Size(584, 32);
             this.lblBienvenido.TabIndex = 0;
             this.lblBienvenido.Text = "Bienvenido al sistema de gestion hotelera";
             // 
             // lblHotel
             // 
             this.lblHotel.AutoSize = true;
-            this.lblHotel.Location = new System.Drawing.Point(11, 7);
+            this.lblHotel.Location = new System.Drawing.Point(12, 9);
             this.lblHotel.Name = "lblHotel";
-            this.lblHotel.Size = new System.Drawing.Size(45, 17);
+            this.lblHotel.Size = new System.Drawing.Size(51, 20);
             this.lblHotel.TabIndex = 1;
             this.lblHotel.Text = "Hotel:";
             // 
             // lblRol
             // 
             this.lblRol.AutoSize = true;
-            this.lblRol.Location = new System.Drawing.Point(11, 23);
+            this.lblRol.Location = new System.Drawing.Point(12, 29);
             this.lblRol.Name = "lblRol";
-            this.lblRol.Size = new System.Drawing.Size(33, 17);
+            this.lblRol.Size = new System.Drawing.Size(37, 20);
             this.lblRol.TabIndex = 2;
             this.lblRol.Text = "Rol:";
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(917, 26);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLogin.Location = new System.Drawing.Point(1032, 32);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(103, 31);
+            this.btnLogin.Size = new System.Drawing.Size(116, 38);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -88,19 +88,19 @@
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(943, 6);
+            this.lblUsuario.Location = new System.Drawing.Point(1060, 8);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(57, 17);
+            this.lblUsuario.Size = new System.Drawing.Size(64, 20);
             this.lblUsuario.TabIndex = 4;
             this.lblUsuario.Text = "Usuario";
             // 
             // btnCancelarReserva
             // 
             this.btnCancelarReserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarReserva.Location = new System.Drawing.Point(569, 92);
-            this.btnCancelarReserva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelarReserva.Location = new System.Drawing.Point(640, 115);
+            this.btnCancelarReserva.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelarReserva.Name = "btnCancelarReserva";
-            this.btnCancelarReserva.Size = new System.Drawing.Size(185, 46);
+            this.btnCancelarReserva.Size = new System.Drawing.Size(208, 57);
             this.btnCancelarReserva.TabIndex = 17;
             this.btnCancelarReserva.Text = "Cancelar Reserva";
             this.btnCancelarReserva.UseVisualStyleBackColor = true;
@@ -109,10 +109,10 @@
             // btnGenerarModificarReserva
             // 
             this.btnGenerarModificarReserva.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarModificarReserva.Location = new System.Drawing.Point(296, 92);
-            this.btnGenerarModificarReserva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGenerarModificarReserva.Location = new System.Drawing.Point(333, 115);
+            this.btnGenerarModificarReserva.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnGenerarModificarReserva.Name = "btnGenerarModificarReserva";
-            this.btnGenerarModificarReserva.Size = new System.Drawing.Size(267, 46);
+            this.btnGenerarModificarReserva.Size = new System.Drawing.Size(300, 57);
             this.btnGenerarModificarReserva.TabIndex = 16;
             this.btnGenerarModificarReserva.Text = "Generar o modificar Reserva";
             this.btnGenerarModificarReserva.UseVisualStyleBackColor = true;
@@ -121,10 +121,10 @@
             // btnClientes
             // 
             this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClientes.Location = new System.Drawing.Point(168, 145);
-            this.btnClientes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClientes.Location = new System.Drawing.Point(87, 182);
+            this.btnClientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(173, 46);
+            this.btnClientes.Size = new System.Drawing.Size(195, 57);
             this.btnClientes.TabIndex = 18;
             this.btnClientes.Text = "Clientes";
             this.btnClientes.UseVisualStyleBackColor = true;
@@ -133,10 +133,10 @@
             // btnRoles
             // 
             this.btnRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRoles.Location = new System.Drawing.Point(785, 199);
-            this.btnRoles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRoles.Location = new System.Drawing.Point(884, 249);
+            this.btnRoles.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRoles.Name = "btnRoles";
-            this.btnRoles.Size = new System.Drawing.Size(164, 46);
+            this.btnRoles.Size = new System.Drawing.Size(184, 57);
             this.btnRoles.TabIndex = 19;
             this.btnRoles.Text = "Roles";
             this.btnRoles.UseVisualStyleBackColor = true;
@@ -145,10 +145,10 @@
             // btnUsuarios
             // 
             this.btnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.Location = new System.Drawing.Point(273, 199);
-            this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUsuarios.Location = new System.Drawing.Point(308, 249);
+            this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(164, 46);
+            this.btnUsuarios.Size = new System.Drawing.Size(184, 57);
             this.btnUsuarios.TabIndex = 20;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = true;
@@ -157,10 +157,10 @@
             // btnHoteles
             // 
             this.btnHoteles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHoteles.Location = new System.Drawing.Point(103, 199);
-            this.btnHoteles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHoteles.Location = new System.Drawing.Point(116, 249);
+            this.btnHoteles.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnHoteles.Name = "btnHoteles";
-            this.btnHoteles.Size = new System.Drawing.Size(164, 46);
+            this.btnHoteles.Size = new System.Drawing.Size(184, 57);
             this.btnHoteles.TabIndex = 21;
             this.btnHoteles.Text = "Hoteles";
             this.btnHoteles.UseVisualStyleBackColor = true;
@@ -169,10 +169,10 @@
             // btnHabitaciones
             // 
             this.btnHabitaciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHabitaciones.Location = new System.Drawing.Point(444, 199);
-            this.btnHabitaciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHabitaciones.Location = new System.Drawing.Point(500, 249);
+            this.btnHabitaciones.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnHabitaciones.Name = "btnHabitaciones";
-            this.btnHabitaciones.Size = new System.Drawing.Size(164, 46);
+            this.btnHabitaciones.Size = new System.Drawing.Size(184, 57);
             this.btnHabitaciones.TabIndex = 22;
             this.btnHabitaciones.Text = "Habitaciones";
             this.btnHabitaciones.UseVisualStyleBackColor = true;
@@ -181,10 +181,10 @@
             // btnEstadias
             // 
             this.btnEstadias.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEstadias.Location = new System.Drawing.Point(709, 145);
-            this.btnEstadias.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEstadias.Location = new System.Drawing.Point(696, 182);
+            this.btnEstadias.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEstadias.Name = "btnEstadias";
-            this.btnEstadias.Size = new System.Drawing.Size(173, 46);
+            this.btnEstadias.Size = new System.Drawing.Size(195, 57);
             this.btnEstadias.TabIndex = 23;
             this.btnEstadias.Text = "Estadias";
             this.btnEstadias.UseVisualStyleBackColor = true;
@@ -193,10 +193,10 @@
             // btnConsumibles
             // 
             this.btnConsumibles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsumibles.Location = new System.Drawing.Point(348, 145);
-            this.btnConsumibles.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConsumibles.Location = new System.Drawing.Point(290, 182);
+            this.btnConsumibles.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConsumibles.Name = "btnConsumibles";
-            this.btnConsumibles.Size = new System.Drawing.Size(173, 46);
+            this.btnConsumibles.Size = new System.Drawing.Size(195, 57);
             this.btnConsumibles.TabIndex = 24;
             this.btnConsumibles.Text = "Consumibles";
             this.btnConsumibles.UseVisualStyleBackColor = true;
@@ -205,31 +205,45 @@
             // btnFacturacion
             // 
             this.btnFacturacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFacturacion.Location = new System.Drawing.Point(529, 145);
-            this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFacturacion.Location = new System.Drawing.Point(494, 182);
+            this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnFacturacion.Name = "btnFacturacion";
-            this.btnFacturacion.Size = new System.Drawing.Size(173, 46);
+            this.btnFacturacion.Size = new System.Drawing.Size(195, 57);
             this.btnFacturacion.TabIndex = 25;
             this.btnFacturacion.Text = "Facturacion";
             this.btnFacturacion.UseVisualStyleBackColor = true;
+            this.btnFacturacion.Click += new System.EventHandler(this.btnFacturacion_Click);
             // 
             // btnEstadisticas
             // 
             this.btnEstadisticas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEstadisticas.Location = new System.Drawing.Point(615, 199);
-            this.btnEstadisticas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEstadisticas.Location = new System.Drawing.Point(692, 249);
+            this.btnEstadisticas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEstadisticas.Name = "btnEstadisticas";
-            this.btnEstadisticas.Size = new System.Drawing.Size(164, 46);
+            this.btnEstadisticas.Size = new System.Drawing.Size(184, 57);
             this.btnEstadisticas.TabIndex = 26;
             this.btnEstadisticas.Text = "Estadisticas";
             this.btnEstadisticas.UseVisualStyleBackColor = true;
             this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
             // 
+            // btnRegimenes
+            // 
+            this.btnRegimenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegimenes.Location = new System.Drawing.Point(899, 182);
+            this.btnRegimenes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRegimenes.Name = "btnRegimenes";
+            this.btnRegimenes.Size = new System.Drawing.Size(195, 57);
+            this.btnRegimenes.TabIndex = 27;
+            this.btnRegimenes.Text = "Regimenes";
+            this.btnRegimenes.UseVisualStyleBackColor = true;
+            this.btnRegimenes.Click += new System.EventHandler(this.btnRegimenes_Click);
+            // 
             // Bienvenido
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1031, 303);
+            this.ClientSize = new System.Drawing.Size(1160, 378);
+            this.Controls.Add(this.btnRegimenes);
             this.Controls.Add(this.btnEstadisticas);
             this.Controls.Add(this.btnFacturacion);
             this.Controls.Add(this.btnConsumibles);
@@ -246,9 +260,9 @@
             this.Controls.Add(this.lblRol);
             this.Controls.Add(this.lblHotel);
             this.Controls.Add(this.lblBienvenido);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Bienvenido";
             this.Text = "Bienvenido";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Bienvenido_FormClosing);
             this.Load += new System.EventHandler(this.Bienvenido_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -273,5 +287,6 @@
         private System.Windows.Forms.Button btnConsumibles;
         private System.Windows.Forms.Button btnFacturacion;
         private System.Windows.Forms.Button btnEstadisticas;
+        private System.Windows.Forms.Button btnRegimenes;
     }
 }

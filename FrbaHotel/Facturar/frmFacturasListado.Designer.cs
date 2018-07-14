@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.Clientes
+﻿namespace FrbaHotel.Facturar
 {
     partial class frmFacturasListado
     {
@@ -45,6 +45,8 @@
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnAlta = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtCodigoReserva = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRoles)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +85,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtCodigoReserva);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtEmail);
             this.groupBox1.Controls.Add(this.txtNroDoc);
             this.groupBox1.Controls.Add(this.cmbTipoDoc);
@@ -151,7 +155,7 @@
             this.label2.Location = new System.Drawing.Point(283, 21);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 19);
+            this.label2.Size = new System.Drawing.Size(128, 19);
             this.label2.TabIndex = 8;
             this.label2.Text = "Tipo de identificación: ";
             // 
@@ -226,6 +230,23 @@
             this.btnAlta.UseVisualStyleBackColor = true;
             this.btnAlta.Click += new System.EventHandler(this.btnAlta_Click);
             // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(283, 62);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(109, 15);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Codigo Reserva: ";
+            // 
+            // txtCodigoReserva
+            // 
+            this.txtCodigoReserva.Location = new System.Drawing.Point(396, 59);
+            this.txtCodigoReserva.Margin = new System.Windows.Forms.Padding(2);
+            this.txtCodigoReserva.Name = "txtCodigoReserva";
+            this.txtCodigoReserva.Size = new System.Drawing.Size(94, 20);
+            this.txtCodigoReserva.TabIndex = 16;
+            // 
             // frmFacturasListado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -266,5 +287,7 @@
         private System.Windows.Forms.Label label1;
         private Microsoft.VisualBasic.PowerPacks.ShapeContainer shapeContainer1;
         private Microsoft.VisualBasic.PowerPacks.LineShape lineShape1;
+        private System.Windows.Forms.TextBox txtCodigoReserva;
+        private System.Windows.Forms.Label label5;
     }
 }
