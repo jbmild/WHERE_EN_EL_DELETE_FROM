@@ -51,10 +51,34 @@ namespace FrbaHotel.Hoteles
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (this.CamposValidados()) {
+            
+            int regimenesActualizados = 0;
+            
                 SqlConnection sql = ConexionSQL.obtenerConexion();
                 string update = "update WHERE_EN_EL_DELETE_FROM.hoteles set nombre=@nombre, direccion=@direccion, telefono=@telefono, ciudad=@ciudad, pais=@pais, mail=@mail where";
                 update += " hotel_id=" + this.idhotel;
+                
+                
+                string deleteRegimenes = " delete from WHERE_EN_EL_DELETE_FROM.regimenes_hoteles where hotel_id=@hotel_id";
+                 SqlCommand deleteCommand = new SqlCommand(deleteRegimenes);
+                deleteCommand.Connection = sql;
+                deleteCommand.Parameters.Add("@hotel_id", SqlDbType.Int).Value = this.idhotel;
+                int deleted= deleteCommand.ExecuteNonQuery();
+
+                foreach(var regimen in listBoxRegimenesActuales.Items)
+                {
+                    ConexionSQL c= new ConexionSQL();
+                    string updateRegimenes = "";
+                    DataTable regimenRow=c.cargarTablaSQL("select regimen_id from WHERE_EN_EL_DELETE_FROM.regimenes where descripcion like'" + regimen.ToString() + "'");
+                    updateRegimenes += " insert into WHERE_EN_EL_DELETE_FROM.regimenes_hoteles values (@hotel, @regimen)";
+                    regimenesActualizados++;
+                    SqlCommand insertCommand = new SqlCommand(updateRegimenes);
+                    insertCommand.Connection = sql;
+                    insertCommand.Parameters.Add("@hotel", SqlDbType.Int).Value = this.idhotel;
+                    int regimenValue=Int32.Parse(regimenRow.Rows[0].ItemArray[0].ToString());
+                    insertCommand.Parameters.Add("@regimen", SqlDbType.Int).Value = regimenValue;
+                    int r= insertCommand.ExecuteNonQuery();   
+                }
                 SqlCommand com = new SqlCommand(update);
                 com.Connection = sql;
                 if (this.textBoxHotel.Enabled.Equals(true) && textBoxHotel.Text != "")
@@ -111,7 +135,7 @@ namespace FrbaHotel.Hoteles
                 int result = com.ExecuteNonQuery();
                 if (result.Equals(1)) { System.Windows.Forms.MessageBox.Show("¡Hotel modificado con éxito!"); this.Hide(); } else { System.Windows.Forms.MessageBox.Show("ERROR!"); }
             
-            }
+            
             
 
 
