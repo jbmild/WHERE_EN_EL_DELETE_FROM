@@ -70,7 +70,7 @@ namespace FrbaHotel.AbmHabitacion
         }
 
         
-        private void button1_Click(object sender, EventArgs e)
+        public void button1_Click(object sender, EventArgs e)
         {
             
                 labelHabilitadoError.Visible = false;
@@ -107,7 +107,7 @@ namespace FrbaHotel.AbmHabitacion
                 dataGridView1.DataSource = resultados;
 
                 dataGridView1.Columns[0].Width = 120;
-                dataGridView1.Columns[1].Width = 30;
+                dataGridView1.Columns[1].Width = 120;
                 dataGridView1.Columns[4].Width = 130;
                 dataGridView1.AllowUserToAddRows = false;
                 dataGridView1.Enabled = true;
@@ -272,6 +272,17 @@ namespace FrbaHotel.AbmHabitacion
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex.Equals(1)) {
+                int row = e.RowIndex;
+                DataGridViewRow selectedRow = dataGridView1.Rows[row];
+                darBajaHabitacion baja = new darBajaHabitacion();
+                HabitacionElegida habitacion = new HabitacionElegida();
+                habitacion.SetHabiID(Int32.Parse(selectedRow.Cells[9].Value.ToString()));
+                habitacion.SetNumero(Int32.Parse(selectedRow.Cells[2].Value.ToString()));
+                baja.EnviarNumeroHabitacion(habitacion.GetHabiID(),habitacion.GetNumero(), this);
+                baja.ShowDialog();
+
+            }
             if (e.ColumnIndex.Equals(0)) {
                 this.Hide();
                 int row = e.RowIndex;
@@ -284,28 +295,28 @@ namespace FrbaHotel.AbmHabitacion
                 //System.Windows.Forms.MessageBox.Show(dataGridView1.Columns.Count.ToString());
 
 
-                habitacion.SetNumero(Int32.Parse(selectedRow.Cells[1].Value.ToString()));
+                habitacion.SetNumero(Int32.Parse(selectedRow.Cells[2].Value.ToString()));
                 if (piso.Equals(0))
                 {
-                    habitacion.SetPiso(Int32.Parse(selectedRow.Cells[2].Value.ToString()));
+                    habitacion.SetPiso(Int32.Parse(selectedRow.Cells[3].Value.ToString()));
                 }
                 else
                 {
                     habitacion.SetPiso(piso);
                 }
 
-                habitacion.SetDescripcion(selectedRow.Cells[3].Value.ToString());
-                habitacion.SetTipo(selectedRow.Cells[4].Value.ToString());
-                habitacion.SetDireccion(selectedRow.Cells[7].Value.ToString());
-                habitacion.SetHabiID(Int32.Parse(selectedRow.Cells[8].Value.ToString()));
+                habitacion.SetDescripcion(selectedRow.Cells[4].Value.ToString());
+                habitacion.SetTipo(selectedRow.Cells[5].Value.ToString());
+                habitacion.SetDireccion(selectedRow.Cells[6].Value.ToString());
+                habitacion.SetHabiID(Int32.Parse(selectedRow.Cells[9].Value.ToString()));
                 habitacion.SetHotelID(this.ObtenerHotelID(habitacion));
 
 
-                if (selectedRow.Cells[5].Value.Equals(true))
+                if (selectedRow.Cells[6].Value.Equals(true))
                 {
                     tieneVista = 1;
                 }
-                if (selectedRow.Cells[6].Value.Equals(true))
+                if (selectedRow.Cells[7].Value.Equals(true))
                 {
                     estaHabilitado = 1;
                 }
@@ -313,7 +324,7 @@ namespace FrbaHotel.AbmHabitacion
                 habitacion.SetHabilitado(estaHabilitado);
                 modificarDatosHabitacioncs modifDatos = new modificarDatosHabitacioncs();
                 modifDatos.RecibirHabitacion(habitacion);
-                modifDatos.Show();
+                modifDatos.ShowDialog();
             }
             
             
@@ -323,12 +334,12 @@ namespace FrbaHotel.AbmHabitacion
         private int mapearPiso(DataGridViewRow d)
         {
             
-           if(d.Cells[2].Value.ToString().Equals(""))
+           if(d.Cells[3].Value.ToString().Equals(""))
            {
                return -1;
            }
             
-            else { return Int32.Parse(d.Cells[2].Value.ToString()); }
+            else { return Int32.Parse(d.Cells[3].Value.ToString()); }
             
         }
 

@@ -41,21 +41,22 @@
             this.label8 = new System.Windows.Forms.Label();
             this.labelNumeroHabiPendiente = new System.Windows.Forms.Label();
             this.labelHotelPendiente = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.labelExito = new System.Windows.Forms.Label();
             this.textBoxNumeroHabitacionNuevo = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.labelHotelNuevo = new System.Windows.Forms.Label();
             this.labelNotificarError = new System.Windows.Forms.Label();
             this.comboBoxNuevoHotel = new System.Windows.Forms.ComboBox();
-            this.buttonGuardarCambios = new System.Windows.Forms.Button();
             this.labelPisoNuevo = new System.Windows.Forms.Label();
             this.comboBoxNuevoPiso = new System.Windows.Forms.ComboBox();
             this.labelDescripcionNueva = new System.Windows.Forms.Label();
             this.textBoxNuevaDescripcion = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.buttonGuardarCambios = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.labelHotelActual = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
             this.labelHabilitadoActualmente = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.labelNumeroHabitacionActual = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.groupBoxModificarHabitacion.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -73,30 +73,28 @@
             // 
             // groupBoxModificarHabitacion
             // 
-            this.groupBoxModificarHabitacion.Controls.Add(this.button2);
             this.groupBoxModificarHabitacion.Controls.Add(this.groupBox2);
             this.groupBoxModificarHabitacion.Controls.Add(this.groupBox1);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelPisoPendiente);
             this.groupBoxModificarHabitacion.Controls.Add(this.label8);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelNumeroHabiPendiente);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelHotelPendiente);
-            this.groupBoxModificarHabitacion.Controls.Add(this.button1);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelExito);
             this.groupBoxModificarHabitacion.Controls.Add(this.textBoxNumeroHabitacionNuevo);
             this.groupBoxModificarHabitacion.Controls.Add(this.label7);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelHotelNuevo);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelNotificarError);
             this.groupBoxModificarHabitacion.Controls.Add(this.comboBoxNuevoHotel);
-            this.groupBoxModificarHabitacion.Controls.Add(this.buttonGuardarCambios);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelPisoNuevo);
             this.groupBoxModificarHabitacion.Controls.Add(this.comboBoxNuevoPiso);
             this.groupBoxModificarHabitacion.Controls.Add(this.labelDescripcionNueva);
             this.groupBoxModificarHabitacion.Controls.Add(this.textBoxNuevaDescripcion);
-            this.groupBoxModificarHabitacion.Location = new System.Drawing.Point(627, 12);
+            this.groupBoxModificarHabitacion.Location = new System.Drawing.Point(32, 12);
             this.groupBoxModificarHabitacion.Name = "groupBoxModificarHabitacion";
-            this.groupBoxModificarHabitacion.Size = new System.Drawing.Size(1111, 357);
+            this.groupBoxModificarHabitacion.Size = new System.Drawing.Size(1706, 357);
             this.groupBoxModificarHabitacion.TabIndex = 20;
             this.groupBoxModificarHabitacion.TabStop = false;
+            this.groupBoxModificarHabitacion.Enter += new System.EventHandler(this.groupBoxModificarHabitacion_Enter);
             // 
             // groupBox2
             // 
@@ -105,23 +103,24 @@
             this.groupBox2.Controls.Add(this.radioButtonHabilitadoSI);
             this.groupBox2.Location = new System.Drawing.Point(23, 272);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(256, 38);
+            this.groupBox2.Size = new System.Drawing.Size(327, 38);
             this.groupBox2.TabIndex = 28;
             this.groupBox2.TabStop = false;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(5, 13);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(101, 17);
+            this.label10.Size = new System.Drawing.Size(116, 17);
             this.label10.TabIndex = 2;
             this.label10.Text = "Está habilitado";
             // 
             // radioButtonHabilitadoNO
             // 
             this.radioButtonHabilitadoNO.AutoSize = true;
-            this.radioButtonHabilitadoNO.Location = new System.Drawing.Point(203, 12);
+            this.radioButtonHabilitadoNO.Location = new System.Drawing.Point(266, 11);
             this.radioButtonHabilitadoNO.Name = "radioButtonHabilitadoNO";
             this.radioButtonHabilitadoNO.Size = new System.Drawing.Size(47, 21);
             this.radioButtonHabilitadoNO.TabIndex = 1;
@@ -132,7 +131,7 @@
             // radioButtonHabilitadoSI
             // 
             this.radioButtonHabilitadoSI.AutoSize = true;
-            this.radioButtonHabilitadoSI.Location = new System.Drawing.Point(156, 12);
+            this.radioButtonHabilitadoSI.Location = new System.Drawing.Point(203, 11);
             this.radioButtonHabilitadoSI.Name = "radioButtonHabilitadoSI";
             this.radioButtonHabilitadoSI.Size = new System.Drawing.Size(41, 21);
             this.radioButtonHabilitadoSI.TabIndex = 0;
@@ -147,23 +146,24 @@
             this.groupBox1.Controls.Add(this.radioButtonVistaSI);
             this.groupBox1.Location = new System.Drawing.Point(23, 228);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 38);
+            this.groupBox1.Size = new System.Drawing.Size(327, 38);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(5, 13);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(143, 17);
+            this.label9.Size = new System.Drawing.Size(166, 17);
             this.label9.TabIndex = 2;
             this.label9.Text = "Tiene vista al exterior";
             // 
             // radioButtonVistaNO
             // 
             this.radioButtonVistaNO.AutoSize = true;
-            this.radioButtonVistaNO.Location = new System.Drawing.Point(203, 12);
+            this.radioButtonVistaNO.Location = new System.Drawing.Point(266, 12);
             this.radioButtonVistaNO.Name = "radioButtonVistaNO";
             this.radioButtonVistaNO.Size = new System.Drawing.Size(47, 21);
             this.radioButtonVistaNO.TabIndex = 1;
@@ -174,7 +174,7 @@
             // radioButtonVistaSI
             // 
             this.radioButtonVistaSI.AutoSize = true;
-            this.radioButtonVistaSI.Location = new System.Drawing.Point(156, 12);
+            this.radioButtonVistaSI.Location = new System.Drawing.Point(203, 13);
             this.radioButtonVistaSI.Name = "radioButtonVistaSI";
             this.radioButtonVistaSI.Size = new System.Drawing.Size(41, 21);
             this.radioButtonVistaSI.TabIndex = 0;
@@ -187,7 +187,7 @@
             this.labelPisoPendiente.AutoSize = true;
             this.labelPisoPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPisoPendiente.ForeColor = System.Drawing.Color.Red;
-            this.labelPisoPendiente.Location = new System.Drawing.Point(381, 80);
+            this.labelPisoPendiente.Location = new System.Drawing.Point(420, 79);
             this.labelPisoPendiente.Name = "labelPisoPendiente";
             this.labelPisoPendiente.Size = new System.Drawing.Size(337, 25);
             this.labelPisoPendiente.TabIndex = 26;
@@ -209,7 +209,7 @@
             this.labelNumeroHabiPendiente.AutoSize = true;
             this.labelNumeroHabiPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNumeroHabiPendiente.ForeColor = System.Drawing.Color.Red;
-            this.labelNumeroHabiPendiente.Location = new System.Drawing.Point(377, 45);
+            this.labelNumeroHabiPendiente.Location = new System.Drawing.Point(416, 44);
             this.labelNumeroHabiPendiente.Name = "labelNumeroHabiPendiente";
             this.labelNumeroHabiPendiente.Size = new System.Drawing.Size(330, 25);
             this.labelNumeroHabiPendiente.TabIndex = 24;
@@ -221,22 +221,12 @@
             this.labelHotelPendiente.AutoSize = true;
             this.labelHotelPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHotelPendiente.ForeColor = System.Drawing.Color.Red;
-            this.labelHotelPendiente.Location = new System.Drawing.Point(377, 12);
+            this.labelHotelPendiente.Location = new System.Drawing.Point(416, 11);
             this.labelHotelPendiente.Name = "labelHotelPendiente";
             this.labelHotelPendiente.Size = new System.Drawing.Size(185, 25);
             this.labelHotelPendiente.TabIndex = 23;
             this.labelHotelPendiente.Text = "Debe elegir un hotel";
             this.labelHotelPendiente.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(511, 302);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 36);
-            this.button1.TabIndex = 22;
-            this.button1.Text = "Limpiar campos";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // labelExito
             // 
@@ -252,7 +242,7 @@
             // 
             // textBoxNumeroHabitacionNuevo
             // 
-            this.textBoxNumeroHabitacionNuevo.Location = new System.Drawing.Point(275, 47);
+            this.textBoxNumeroHabitacionNuevo.Location = new System.Drawing.Point(310, 44);
             this.textBoxNumeroHabitacionNuevo.Name = "textBoxNumeroHabitacionNuevo";
             this.textBoxNumeroHabitacionNuevo.Size = new System.Drawing.Size(100, 22);
             this.textBoxNumeroHabitacionNuevo.TabIndex = 20;
@@ -260,20 +250,22 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(42, 51);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(199, 17);
+            this.label7.Size = new System.Drawing.Size(178, 17);
             this.label7.TabIndex = 19;
-            this.label7.Text = "*Número de habitación nuevo:";
+            this.label7.Text = "*Número de habitación:";
             // 
             // labelHotelNuevo
             // 
             this.labelHotelNuevo.AutoSize = true;
+            this.labelHotelNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelHotelNuevo.Location = new System.Drawing.Point(42, 17);
             this.labelHotelNuevo.Name = "labelHotelNuevo";
-            this.labelHotelNuevo.Size = new System.Drawing.Size(89, 17);
+            this.labelHotelNuevo.Size = new System.Drawing.Size(46, 17);
             this.labelHotelNuevo.TabIndex = 5;
-            this.labelHotelNuevo.Text = "*Hotel nuevo";
+            this.labelHotelNuevo.Text = "Hotel";
             // 
             // labelNotificarError
             // 
@@ -293,34 +285,24 @@
             this.comboBoxNuevoHotel.Location = new System.Drawing.Point(143, 13);
             this.comboBoxNuevoHotel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxNuevoHotel.Name = "comboBoxNuevoHotel";
-            this.comboBoxNuevoHotel.Size = new System.Drawing.Size(232, 24);
+            this.comboBoxNuevoHotel.Size = new System.Drawing.Size(267, 24);
             this.comboBoxNuevoHotel.TabIndex = 6;
             this.comboBoxNuevoHotel.SelectionChangeCommitted += new System.EventHandler(this.comboBoxNuevoHotel_SelectionChangeCommitted);
-            // 
-            // buttonGuardarCambios
-            // 
-            this.buttonGuardarCambios.Location = new System.Drawing.Point(650, 302);
-            this.buttonGuardarCambios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonGuardarCambios.Name = "buttonGuardarCambios";
-            this.buttonGuardarCambios.Size = new System.Drawing.Size(169, 36);
-            this.buttonGuardarCambios.TabIndex = 12;
-            this.buttonGuardarCambios.Text = "Guardar cambios";
-            this.buttonGuardarCambios.UseVisualStyleBackColor = true;
-            this.buttonGuardarCambios.Click += new System.EventHandler(this.buttonGuardarCambios_Click);
             // 
             // labelPisoNuevo
             // 
             this.labelPisoNuevo.AutoSize = true;
+            this.labelPisoNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPisoNuevo.Location = new System.Drawing.Point(42, 80);
             this.labelPisoNuevo.Name = "labelPisoNuevo";
-            this.labelPisoNuevo.Size = new System.Drawing.Size(148, 17);
+            this.labelPisoNuevo.Size = new System.Drawing.Size(45, 17);
             this.labelPisoNuevo.TabIndex = 7;
-            this.labelPisoNuevo.Text = "Piso en el hotel nuevo";
+            this.labelPisoNuevo.Text = "*Piso";
             // 
             // comboBoxNuevoPiso
             // 
             this.comboBoxNuevoPiso.FormattingEnabled = true;
-            this.comboBoxNuevoPiso.Location = new System.Drawing.Point(254, 80);
+            this.comboBoxNuevoPiso.Location = new System.Drawing.Point(289, 77);
             this.comboBoxNuevoPiso.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBoxNuevoPiso.Name = "comboBoxNuevoPiso";
             this.comboBoxNuevoPiso.Size = new System.Drawing.Size(121, 24);
@@ -329,9 +311,10 @@
             // labelDescripcionNueva
             // 
             this.labelDescripcionNueva.AutoSize = true;
+            this.labelDescripcionNueva.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDescripcionNueva.Location = new System.Drawing.Point(44, 125);
             this.labelDescripcionNueva.Name = "labelDescripcionNueva";
-            this.labelDescripcionNueva.Size = new System.Drawing.Size(82, 17);
+            this.labelDescripcionNueva.Size = new System.Drawing.Size(93, 17);
             this.labelDescripcionNueva.TabIndex = 9;
             this.labelDescripcionNueva.Text = "Descripcion";
             // 
@@ -344,50 +327,82 @@
             this.textBoxNuevaDescripcion.Size = new System.Drawing.Size(199, 90);
             this.textBoxNuevaDescripcion.TabIndex = 10;
             // 
-            // label1
+            // button2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(43, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 17);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Hotel actual:";
+            this.button2.Location = new System.Drawing.Point(518, 421);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(106, 36);
+            this.button2.TabIndex = 29;
+            this.button2.Text = "Volver";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label2
+            // button1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(43, 79);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(151, 17);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Piso en el hotel actual:";
+            this.button1.Location = new System.Drawing.Point(655, 421);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(140, 36);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Limpiar campos";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonGuardarCambios
+            // 
+            this.buttonGuardarCambios.Location = new System.Drawing.Point(828, 421);
+            this.buttonGuardarCambios.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.buttonGuardarCambios.Name = "buttonGuardarCambios";
+            this.buttonGuardarCambios.Size = new System.Drawing.Size(169, 36);
+            this.buttonGuardarCambios.TabIndex = 12;
+            this.buttonGuardarCambios.Text = "Guardar cambios";
+            this.buttonGuardarCambios.UseVisualStyleBackColor = true;
+            this.buttonGuardarCambios.Click += new System.EventHandler(this.buttonGuardarCambios_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(43, 123);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(128, 17);
+            this.label3.Size = new System.Drawing.Size(0, 17);
             this.label3.TabIndex = 21;
-            this.label3.Text = "Descripcion actual:";
+            this.label3.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(43, 79);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 17);
+            this.label2.TabIndex = 20;
+            this.label2.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(43, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 17);
+            this.label1.TabIndex = 19;
+            this.label1.Visible = false;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(46, 206);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(213, 17);
+            this.label4.Size = new System.Drawing.Size(0, 17);
             this.label4.TabIndex = 27;
-            this.label4.Text = "Tiene vista exterior actualmente:";
+            this.label4.Visible = false;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(46, 246);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(186, 17);
+            this.label5.Size = new System.Drawing.Size(0, 17);
             this.label5.TabIndex = 28;
-            this.label5.Text = "Está habilitado actualmente:";
+            this.label5.Visible = false;
             // 
             // labelHotelActual
             // 
@@ -398,6 +413,7 @@
             this.labelHotelActual.Name = "labelHotelActual";
             this.labelHotelActual.Size = new System.Drawing.Size(0, 17);
             this.labelHotelActual.TabIndex = 29;
+            this.labelHotelActual.Visible = false;
             // 
             // labelPisoEnHotel
             // 
@@ -407,6 +423,7 @@
             this.labelPisoEnHotel.Name = "labelPisoEnHotel";
             this.labelPisoEnHotel.Size = new System.Drawing.Size(0, 17);
             this.labelPisoEnHotel.TabIndex = 30;
+            this.labelPisoEnHotel.Visible = false;
             // 
             // labelDescripcionActual
             // 
@@ -416,6 +433,7 @@
             this.labelDescripcionActual.Name = "labelDescripcionActual";
             this.labelDescripcionActual.Size = new System.Drawing.Size(0, 17);
             this.labelDescripcionActual.TabIndex = 31;
+            this.labelDescripcionActual.Visible = false;
             // 
             // labelTieneVistaExterior
             // 
@@ -424,6 +442,7 @@
             this.labelTieneVistaExterior.Name = "labelTieneVistaExterior";
             this.labelTieneVistaExterior.Size = new System.Drawing.Size(0, 17);
             this.labelTieneVistaExterior.TabIndex = 32;
+            this.labelTieneVistaExterior.Visible = false;
             // 
             // labelHabilitadoActualmente
             // 
@@ -432,15 +451,16 @@
             this.labelHabilitadoActualmente.Name = "labelHabilitadoActualmente";
             this.labelHabilitadoActualmente.Size = new System.Drawing.Size(0, 17);
             this.labelHabilitadoActualmente.TabIndex = 33;
+            this.labelHabilitadoActualmente.Visible = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(46, 169);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(151, 17);
+            this.label6.Size = new System.Drawing.Size(0, 17);
             this.label6.TabIndex = 34;
-            this.label6.Text = "Número de habitación:";
+            this.label6.Visible = false;
             // 
             // labelNumeroHabitacionActual
             // 
@@ -450,32 +470,26 @@
             this.labelNumeroHabitacionActual.Name = "labelNumeroHabitacionActual";
             this.labelNumeroHabitacionActual.Size = new System.Drawing.Size(0, 17);
             this.labelNumeroHabitacionActual.TabIndex = 35;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(362, 303);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 36);
-            this.button2.TabIndex = 29;
-            this.button2.Text = "Volver";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.labelNumeroHabitacionActual.Visible = false;
             // 
             // modificarDatosHabitacioncs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1750, 609);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.labelNumeroHabitacionActual);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.labelHabilitadoActualmente);
             this.Controls.Add(this.labelTieneVistaExterior);
             this.Controls.Add(this.labelDescripcionActual);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelPisoEnHotel);
             this.Controls.Add(this.labelHotelActual);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonGuardarCambios);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.groupBoxModificarHabitacion);
             this.Controls.Add(this.label3);
@@ -504,18 +518,6 @@
         private System.Windows.Forms.ComboBox comboBoxNuevoPiso;
         private System.Windows.Forms.Label labelDescripcionNueva;
         private System.Windows.Forms.TextBox textBoxNuevaDescripcion;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label labelHotelActual;
-        private System.Windows.Forms.Label labelPisoEnHotel;
-        private System.Windows.Forms.Label labelDescripcionActual;
-        private System.Windows.Forms.Label labelTieneVistaExterior;
-        private System.Windows.Forms.Label labelHabilitadoActualmente;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label labelNumeroHabitacionActual;
         private System.Windows.Forms.TextBox textBoxNumeroHabitacionNuevo;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label labelExito;
@@ -533,5 +535,17 @@
         private System.Windows.Forms.RadioButton radioButtonVistaNO;
         private System.Windows.Forms.RadioButton radioButtonVistaSI;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label labelHotelActual;
+        private System.Windows.Forms.Label labelPisoEnHotel;
+        private System.Windows.Forms.Label labelDescripcionActual;
+        private System.Windows.Forms.Label labelTieneVistaExterior;
+        private System.Windows.Forms.Label labelHabilitadoActualmente;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelNumeroHabitacionActual;
     }
 }

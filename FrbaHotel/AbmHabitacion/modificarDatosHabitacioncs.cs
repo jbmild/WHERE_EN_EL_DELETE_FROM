@@ -17,6 +17,8 @@ namespace FrbaHotel.AbmHabitacion
     {
         private int habitacionID;
         private int hotel_ID;
+        private int piso;
+        private string descripcion;
         public modificarDatosHabitacioncs()
         {
             InitializeComponent();
@@ -39,46 +41,64 @@ namespace FrbaHotel.AbmHabitacion
             }
 
             ConexionSQL c = new ConexionSQL();
-            DataTable dtpisos = c.cargarTablaSQL("select distinct piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" + comboBoxNuevoHotel.SelectedValue);
+            DataTable dtpisos = c.cargarTablaSQL("select distinct piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" + Sesion.hotel.HotelId);
             comboBoxNuevoPiso.DataSource = dtpisos;
             dtpisos.Rows.InsertAt(dtpisos.NewRow(), 0);
             comboBoxNuevoPiso.DisplayMember = "piso";
-            comboBoxNuevoPiso.SelectedIndex = 0;
-            comboBoxNuevoPiso.ValueMember = "piso";
+            comboBoxNuevoPiso.ValueMember= "piso";
+            comboBoxNuevoPiso.SelectedValue = this.piso.ToString();
+            this.textBoxNuevaDescripcion.Text = this.descripcion;
+            this.textBoxNumeroHabitacionNuevo.Text = labelNumeroHabitacionActual.Text;
 
+        }
+
+        private int GetIndexByHotelID(int habitacionID)
+        {
+            ConexionSQL c = new ConexionSQL();
+            DataTable index = c.cargarTablaSQL("select piso from WHERE_EN_EL_DELETE_FROM.habitaciones where habitacion_id=" + habitacionID);
+            return Int32.Parse(index.Rows[0].ItemArray[0].ToString());
         }
         public void  RecibirHabitacion(HabitacionElegida habitacion) 
         {
             this.habitacionID = habitacion.GetHabiID();
             this.hotel_ID = habitacion.GetHotelID();
+            this.habitacionNumero = habitacion.GetNumero();
             this.labelHotelActual.Text = habitacion.GetDireccion().ToString();
             this.labelPisoEnHotel.Text = habitacion.GetPiso().ToString();
+            this.piso = Int32.Parse(habitacion.GetPiso().ToString());
             if (habitacion.GetDescripcion().ToString().Equals(""))
             {
                 this.labelDescripcionActual.Text = "(vacio)";
+                this.descripcion = "";
             }
             else 
             {
+                this.descripcion = habitacion.GetDescripcion().ToString();
                 this.labelDescripcionActual.Text = habitacion.GetDescripcion().ToString();
             }
             
             if (habitacion.GetHabilitado().Equals(1))
             {
+                this.radioButtonHabilitadoSI.Checked = true;
                 this.labelHabilitadoActualmente.Text="Sí";
             }
             else 
             {
+                this.radioButtonHabilitadoNO.Checked = true;
                 this.labelHabilitadoActualmente.Text="No";
             }
             if (habitacion.GetVista().Equals(1))
             {
+                this.radioButtonVistaSI.Checked = true;
                 this.labelTieneVistaExterior.Text="Sí";
             }
             else 
             {
+                this.radioButtonVistaNO.Checked = true;
                 this.labelTieneVistaExterior.Text = "No";
             }
             this.labelNumeroHabitacionActual.Text = habitacion.GetNumero().ToString();
+            this.numeroHabitacion = Int32.Parse(habitacion.GetNumero().ToString());
             }
 
         private void buttonGuardarCambios_Click(object sender, EventArgs e)
@@ -97,15 +117,15 @@ namespace FrbaHotel.AbmHabitacion
                 this.labelHotelPendiente.Visible = false;
                 this.labelNumeroHabiPendiente.Visible = false;
 
-                if (labelHotelActual.Text.Equals(comboBoxNuevoHotel.Text.ToString()) && labelNumeroHabitacionActual.Text.Equals(textBoxNumeroHabitacionNuevo.Text))
-                {   /* Edición de una misma habitación en ese hotel*/
-                    // this.EditarHabitacion(  habilitado,  vista);
-                    this.EditarHabitacionDentroDelHotel(habilitado, vista);
-                }
-                else 
-                {
-                    this.EditarHabitacion(habilitado, vista);
-                }    
+                //if (labelHotelActual.Text.Equals(comboBoxNuevoHotel.Text.ToString()) && labelNumeroHabitacionActual.Text.Equals(textBoxNumeroHabitacionNuevo.Text))
+                //{   /* Edición de una misma habitación en ese hotel*/
+                //    // this.EditarHabitacion(  habilitado,  vista);
+                //    this.EditarHabitacionDentroDelHotel(habilitado, vista);
+                //}
+                //else 
+                //{
+                    this.EditarHabitacion(habilitado, vista, this.habitacionNumero);
+             //   }    
             }
             else 
             {
@@ -167,61 +187,114 @@ namespace FrbaHotel.AbmHabitacion
             }
         }
 
-        private void EditarHabitacion( int habilitado,  int vista)
+        private void EditarHabitacion( int habilitado,  int vista, int habitacionNumero)
         {
-         
-            ConexionSQL conexion = new ConexionSQL();
-            DataTable resultadoDeBuscar = conexion.cargarTablaSQL("select ho.hotel_id from WHERE_EN_EL_DELETE_FROM.Hoteles ho join WHERE_EN_EL_DELETE_FROM.Habitaciones ha"
-                + " on ha.hotel_id=ho.hotel_id " + " where ho.direccion='" + this.labelHotelActual.Text + "' and ha.numero=" + this.textBoxNumeroHabitacionNuevo.Text);
-            if (resultadoDeBuscar.Rows.Count.Equals(0))
-            {
-
-                SqlConnection con1 = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
-                con1.Open();
-                string update = "update WHERE_EN_EL_DELETE_FROM.Habitaciones set hotel_id=@hotel_id, numero=@numero, piso=@piso, descripcion=@descripcion";// where habitacion_id=" + this.habitacionID;
-                if (habilitado.Equals(0)) { } else { update+=", habilitado=@habilitado"; }
-                if (vista.Equals(0)) { } else { update += ", frente=@frente"; }
-                update+= " where habitacion_id=" + this.habitacionID;
-                SqlCommand sqlQuery = new SqlCommand(update);
-                sqlQuery.Connection = con1;
-                sqlQuery.Parameters.Add("@hotel_id", SqlDbType.Int).Value = this.comboBoxNuevoHotel.SelectedValue;
-                sqlQuery.Parameters.Add("@numero", SqlDbType.Int).Value = this.textBoxNumeroHabitacionNuevo.Text;
-                sqlQuery.Parameters.Add("@piso", SqlDbType.Int).Value = this.comboBoxNuevoPiso.SelectedValue;
-                if (habilitado.Equals(1))
-                {
-                    
-                    sqlQuery.Parameters.Add("@habilitado", SqlDbType.Bit).Value = 1;
-
-                }
-                else if (habilitado.Equals(2))
-                {
-                    sqlQuery.Parameters.Add("@habilitado", SqlDbType.Bit).Value = 0;
-                }
-                if (vista.Equals(1))
-                {
-                    sqlQuery.Parameters.Add("@frente", SqlDbType.Bit).Value = 1;
-                }
-                else if (vista.Equals(2))
-                {
-                    sqlQuery.Parameters.Add("@frente", SqlDbType.Bit).Value = 0;
-                }
-                sqlQuery.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = this.textBoxNuevaDescripcion.Text;
-
-                int result = sqlQuery.ExecuteNonQuery();
-
-
-                if (result.Equals(1))
-                {
-                    this.labelNotificarError.Visible = false;
-                    System.Windows.Forms.MessageBox.Show("¡Habitación modificada con éxito!");
-                    this.Hide();
-                    //this.labelExito.Visible = true;
-                }
-            }
+            if (this.comboBoxNuevoPiso.SelectedIndex < 0) {this.labelPisoPendiente.Visible=true; }
             else
             {
-                this.labelNotificarError.Visible = true;
-                
+                if (Int32.Parse(this.textBoxNumeroHabitacionNuevo.Text).Equals(habitacionNumero)) 
+                {
+                    SqlConnection con1 = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
+                    con1.Open();
+                    string update = "update WHERE_EN_EL_DELETE_FROM.Habitaciones set numero=@numero, piso=@piso, descripcion=@descripcion";// where habitacion_id=" + this.habitacionID;
+                    if (habilitado.Equals(0)) { } else { update += ", habilitado=@habilitado"; }
+                    if (vista.Equals(0)) { } else { update += ", frente=@frente"; }
+                    update += " where habitacion_id=" + this.habitacionID;
+                    SqlCommand sqlQuery = new SqlCommand(update);
+                    sqlQuery.Connection = con1;
+
+                    sqlQuery.Parameters.Add("@numero", SqlDbType.Int).Value = this.textBoxNumeroHabitacionNuevo.Text;
+                    sqlQuery.Parameters.Add("@piso", SqlDbType.Int).Value = this.comboBoxNuevoPiso.SelectedValue;
+                    if (habilitado.Equals(1))
+                    {
+
+                        sqlQuery.Parameters.Add("@habilitado", SqlDbType.Bit).Value = 1;
+
+                    }
+                    else if (habilitado.Equals(2))
+                    {
+                        sqlQuery.Parameters.Add("@habilitado", SqlDbType.Bit).Value = 0;
+                    }
+                    if (vista.Equals(1))
+                    {
+                        sqlQuery.Parameters.Add("@frente", SqlDbType.Bit).Value = 1;
+                    }
+                    else if (vista.Equals(2))
+                    {
+                        sqlQuery.Parameters.Add("@frente", SqlDbType.Bit).Value = 0;
+                    }
+                    sqlQuery.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = this.textBoxNuevaDescripcion.Text;
+
+                    int result = sqlQuery.ExecuteNonQuery();
+
+
+                    if (result.Equals(1))
+                    {
+                        this.labelNotificarError.Visible = false;
+                        System.Windows.Forms.MessageBox.Show("¡Habitación modificada con éxito!");
+                        this.Hide();
+                        //this.labelExito.Visible = true;
+                    }
+                }
+                else
+                {
+
+                    ConexionSQL conexion = new ConexionSQL();
+                    string query = "select ha.numero from  WHERE_EN_EL_DELETE_FROM.Habitaciones ha"
+                        + " where ha.numero=" + this.textBoxNumeroHabitacionNuevo.Text + " or ha.numero not in (select hab.numero from WHERE_EN_EL_DELETE_FROM.Habitaciones hab " +
+                    " ) and ha.hotel_id=" + Sesion.hotel.HotelId;
+                    DataTable resultadoDeBuscar = conexion.cargarTablaSQL(query);
+                    if (resultadoDeBuscar.Rows.Count.Equals(0))
+                    {
+
+                        SqlConnection con1 = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
+                        con1.Open();
+                        string update = "update WHERE_EN_EL_DELETE_FROM.Habitaciones set numero=@numero, piso=@piso, descripcion=@descripcion";// where habitacion_id=" + this.habitacionID;
+                        if (habilitado.Equals(0)) { } else { update += ", habilitado=@habilitado"; }
+                        if (vista.Equals(0)) { } else { update += ", frente=@frente"; }
+                        update += " where habitacion_id=" + this.habitacionID;
+                        SqlCommand sqlQuery = new SqlCommand(update);
+                        sqlQuery.Connection = con1;
+
+                        sqlQuery.Parameters.Add("@numero", SqlDbType.Int).Value = this.textBoxNumeroHabitacionNuevo.Text;
+                        sqlQuery.Parameters.Add("@piso", SqlDbType.Int).Value = this.comboBoxNuevoPiso.SelectedValue;
+                        if (habilitado.Equals(1))
+                        {
+
+                            sqlQuery.Parameters.Add("@habilitado", SqlDbType.Bit).Value = 1;
+
+                        }
+                        else if (habilitado.Equals(2))
+                        {
+                            sqlQuery.Parameters.Add("@habilitado", SqlDbType.Bit).Value = 0;
+                        }
+                        if (vista.Equals(1))
+                        {
+                            sqlQuery.Parameters.Add("@frente", SqlDbType.Bit).Value = 1;
+                        }
+                        else if (vista.Equals(2))
+                        {
+                            sqlQuery.Parameters.Add("@frente", SqlDbType.Bit).Value = 0;
+                        }
+                        sqlQuery.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = this.textBoxNuevaDescripcion.Text;
+
+                        int result = sqlQuery.ExecuteNonQuery();
+
+
+                        if (result.Equals(1))
+                        {
+                            this.labelNotificarError.Visible = false;
+                            System.Windows.Forms.MessageBox.Show("¡Habitación modificada con éxito!");
+                            this.Hide();
+                            //this.labelExito.Visible = true;
+                        }
+                    }
+                    else
+                    {
+                        this.labelNotificarError.Visible = true;
+
+                    }
+                }
             }
         }
 
@@ -322,6 +395,20 @@ namespace FrbaHotel.AbmHabitacion
             m.Show();
         }
 
-      
+
+
+        public int numeroHabitacion { get; set; }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public int habitacionNumero { get; set; }
+
+        private void groupBoxModificarHabitacion_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

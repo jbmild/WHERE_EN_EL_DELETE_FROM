@@ -13,6 +13,9 @@ namespace FrbaHotel.AbmHabitacion
 {
     public partial class darBajaHabitacion : Form
     {
+        private modificarHabitacion pantallita;
+        private int habitacion_Id;
+        private int habitacionNum;
         public darBajaHabitacion()
         {
             InitializeComponent();
@@ -21,49 +24,49 @@ namespace FrbaHotel.AbmHabitacion
         private void darBajaHabitacion_Load(object sender, EventArgs e)
         {
             ConexionSQL c = new ConexionSQL();
-            DataTable dtHoteles = c.cargarTablaSQL("select direccion, hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles ");
-            dtHoteles.Rows.InsertAt(dtHoteles.NewRow(), 0);
-            comboBoxHoteles.DataSource = dtHoteles;
-            comboBoxHoteles.SelectedIndex = 0;
-            comboBoxHoteles.DisplayMember = "direccion";
-            comboBoxHoteles.ValueMember = "hotel_id";
+            //DataTable dtHoteles = c.cargarTablaSQL("select direccion, hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles ");
+            //dtHoteles.Rows.InsertAt(dtHoteles.NewRow(), 0);
+            //comboBoxHoteles.DataSource = dtHoteles;
+            //comboBoxHoteles.SelectedIndex = 0;
+            //comboBoxHoteles.DisplayMember = "direccion";
+            //comboBoxHoteles.ValueMember = "hotel_id";
+            this.labelInhabilitar.Text = "¿Desea inhabilitar la habitación '" + this.habitacionNum + "'?";
 
-
-            DataTable dtHabitaciones = c.cargarTablaSQL("select numero, habitacion_id from WHERE_EN_EL_DELETE_FROM.habitaciones ha" +
-                " JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id and ho.hotel_id='" + comboBoxHoteles.SelectedValue + "'" +
-                " order by 1 asc");
-            comboBoxNumeroHabitacion.DataSource = dtHabitaciones;
-            comboBoxNumeroHabitacion.DisplayMember = "numero";
-            comboBoxNumeroHabitacion.ValueMember = "habitacion_id";
+            //DataTable dtHabitaciones = c.cargarTablaSQL("select numero, habitacion_id from WHERE_EN_EL_DELETE_FROM.habitaciones ha" +
+            //    " JOIN WHERE_EN_EL_DELETE_FROM.hoteles ho on ha.hotel_id=ho.hotel_id and ho.hotel_id='" + comboBoxHoteles.SelectedValue + "'" +
+            //    " order by 1 asc");
+            //comboBoxNumeroHabitacion.DataSource = dtHabitaciones;
+            //comboBoxNumeroHabitacion.DisplayMember = "numero";
+            //comboBoxNumeroHabitacion.ValueMember = "habitacion_id";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            bool habi = false; bool hotel = false;
-            if (this.comboBoxNumeroHabitacion.Text.Equals(""))
-            {
-                this.labelNumeroVacio.Visible = true;
-            }
-            else 
-            {
-                this.labelNumeroVacio.Visible = false;
-                habi = true; }
-            if(this.comboBoxHoteles.Text.Equals(""))
-            {
-                this.labelHotelVacio.Visible = true;
-            }else{
-                hotel=true;
-                this.labelHotelVacio.Visible = false;
-            }
-            if (habi.Equals(true) && hotel.Equals(true))
-            {
-                this.labelHotelVacio.Visible = false;
-                this.labelNumeroVacio.Visible = false;
+            //bool habi = false; bool hotel = false;
+            //if (this.comboBoxNumeroHabitacion.Text.Equals(""))
+            //{
+            //    this.labelNumeroVacio.Visible = true;
+            //}
+            //else 
+            //{
+            //    this.labelNumeroVacio.Visible = false;
+            //    habi = true; }
+            //if(this.comboBoxHoteles.Text.Equals(""))
+            //{
+            //    this.labelHotelVacio.Visible = true;
+            //}else{
+            //    hotel=true;
+            //    this.labelHotelVacio.Visible = false;
+            //}
+            //if (habi.Equals(true) && hotel.Equals(true))
+            //{
+            //    this.labelHotelVacio.Visible = false;
+            //    this.labelNumeroVacio.Visible = false;
                 SqlConnection con1 = ConexionSQL.obtenerConexion();
                 string up = "UPDATE WHERE_EN_EL_DELETE_FROM.habitaciones set habilitado=@value where habitacion_id=@habitacion";
                 SqlCommand sqlQuery = new SqlCommand(up);
                 sqlQuery.Connection = con1;
-                sqlQuery.Parameters.Add("@habitacion", SqlDbType.Int).Value = comboBoxNumeroHabitacion.SelectedValue;
+                sqlQuery.Parameters.Add("@habitacion", SqlDbType.Int).Value = this.habitacion_Id;
                 sqlQuery.Parameters.Add("@value", SqlDbType.Bit).Value = 0;
                 //sqlQuery.Parameters.Add("@hotel", SqlDbType.Int).Value = comboBoxHoteles.SelectedValue;
                 int busqueda = sqlQuery.ExecuteNonQuery();
@@ -72,13 +75,14 @@ namespace FrbaHotel.AbmHabitacion
                   //  labelInhabilitada.Visible = true;
                     System.Windows.Forms.MessageBox.Show("¡Habitación inhabilitada con éxito!");
                     this.Hide();
+                    pantallita.button1_Click(new object(), new EventArgs());
                 }
                 else
                 {
                     labelErrorInhabilitar.Visible = true;
                 }
 
-            }  
+             
             
         }
 
@@ -102,6 +106,18 @@ namespace FrbaHotel.AbmHabitacion
         private void comboBoxNumeroHabitacion_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        internal void EnviarNumeroHabitacion(int habiID, int habiNumero, modificarHabitacion pantallaHabitaciones)
+        {
+            this.habitacion_Id = habiID;
+            this.habitacionNum = habiNumero;
+            this.pantallita = pantallaHabitaciones;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
         }
     }
 }
