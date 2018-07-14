@@ -71,6 +71,35 @@ namespace FrbaHotel.Login.Modelo
                 this.cant_intentos = 0;
             }
         }
+        public Usuario(string username)
+        {
+            if (username.Length>0)
+            {
+                List<SqlParameter> parametros = new List<SqlParameter>();
+
+                SqlParameter parametro = new SqlParameter("@username", username);
+                parametro.DbType = DbType.String;
+                parametros.Add(parametro);
+
+                string sql = "SELECT usuario_id, usuario, habilitado, cant_intentos FROM WHERE_EN_EL_DELETE_FROM.usuarios WHERE usuario=@username";
+                DataTable data = DBInterface.seleccionar(sql, parametros);
+
+                if (data.Rows.Count == 1)
+                {
+                    this.usuario_id = Convert.ToInt32(data.Rows[0][0]);
+                    this.usuario = data.Rows[0][1].ToString();
+                    this.habilitado = Convert.ToBoolean(data.Rows[0][2]);
+                    this.cant_intentos = Convert.ToInt32(data.Rows[0][3]);
+                }
+            }
+            else
+            {
+                this.usuario_id = 0;
+                this.usuario = "";
+                this.habilitado = false;
+                this.cant_intentos = 0;
+            }
+        }
 
         public bool Login(string username, string password)
         {
