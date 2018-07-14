@@ -272,7 +272,7 @@ namespace FrbaHotel.Modelo
                                                     row[13].ToString(), // direccion_localidad
                                                     row[14].ToString(), // direccion_pais
                                                     row[15].ToString(), // nacionalidad
-                                                    row[16].ToString());
+                                                    row[16].ToString()); // fecha nacimiento
 
             }
             else {
@@ -363,7 +363,7 @@ namespace FrbaHotel.Modelo
             command.Parameters.Add("@direccion_pais", SqlDbType.NVarChar).Value = cli.direccion_pais;
             command.Parameters.Add("@nacionalidad", SqlDbType.NVarChar).Value = cli.nacionalidad;
             command.Parameters.Add("@cliente_id", SqlDbType.NVarChar).Value = cli.idCliente;
-            command.Parameters.Add("@fecha_nacimiento", SqlDbType.Date).Value = cli.fecha_nacimiento;
+            command.Parameters.Add("@fecha_nacimiento", SqlDbType.Date).Value = Convert.ToDateTime(cli.fecha_nacimiento);
             _idCliente = Convert.ToInt32(command.ExecuteScalar());
 
             return _idCliente; 

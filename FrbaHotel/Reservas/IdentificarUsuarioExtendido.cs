@@ -81,6 +81,7 @@ namespace FrbaHotel.Reservas
                 txtTelefono.Text = _cli.telefono;
                 txtLocalidad.Text = _cli.direccion_localidad;
                 txtPaisVivienda.Text = _cli.direccion_pais;
+                dtpFechaNac.Value = Convert.ToDateTime(_cli.fecha_nacimiento);
                 _res.cliente_id = _cli.idCliente;
 
             }
@@ -117,6 +118,7 @@ namespace FrbaHotel.Reservas
                     _cli.telefono = txtTelefono.Text;
                     _cli.direccion_localidad = txtLocalidad.Text;
                     _cli.direccion_pais = txtPaisVivienda.Text;
+                    _cli.fecha_nacimiento = dtpFechaNac.Value.ToString();
 
                     bool datosDuplicados = _cli.existeClientePorDatosUnicos();
                     if (!datosDuplicados)
