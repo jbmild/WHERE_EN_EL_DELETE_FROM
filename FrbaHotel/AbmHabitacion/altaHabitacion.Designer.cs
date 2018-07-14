@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxHotel = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.comboBoxPisoEnHotel = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.textBoxDescripcionHabitacion = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -51,6 +49,9 @@
             this.radioButtonVistaExteriorSI = new System.Windows.Forms.RadioButton();
             this.radioButtonVistaExteriorNO = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.comboBoxTipoHabitacion = new System.Windows.Forms.ComboBox();
+            this.labelTipoPendiente = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -85,7 +86,7 @@
             // comboBoxPisoEnHotel
             // 
             this.comboBoxPisoEnHotel.FormattingEnabled = true;
-            this.comboBoxPisoEnHotel.Location = new System.Drawing.Point(229, 72);
+            this.comboBoxPisoEnHotel.Location = new System.Drawing.Point(307, 73);
             this.comboBoxPisoEnHotel.Name = "comboBoxPisoEnHotel";
             this.comboBoxPisoEnHotel.Size = new System.Drawing.Size(121, 24);
             this.comboBoxPisoEnHotel.TabIndex = 3;
@@ -99,11 +100,6 @@
             this.label3.Size = new System.Drawing.Size(173, 18);
             this.label3.TabIndex = 4;
             this.label3.Text = "Número de habitación";
-            // 
-            // notifyIcon1
-            // 
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
             // 
             // textBoxDescripcionHabitacion
             // 
@@ -126,7 +122,7 @@
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(923, 312);
+            this.button1.Location = new System.Drawing.Point(1047, 390);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 56);
             this.button1.TabIndex = 9;
@@ -136,7 +132,7 @@
             // 
             // textBoxNumeroHabitacion
             // 
-            this.textBoxNumeroHabitacion.Location = new System.Drawing.Point(231, 111);
+            this.textBoxNumeroHabitacion.Location = new System.Drawing.Point(307, 107);
             this.textBoxNumeroHabitacion.Name = "textBoxNumeroHabitacion";
             this.textBoxNumeroHabitacion.Size = new System.Drawing.Size(100, 22);
             this.textBoxNumeroHabitacion.TabIndex = 10;
@@ -146,7 +142,7 @@
             this.labelNroVacio.AutoSize = true;
             this.labelNroVacio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNroVacio.ForeColor = System.Drawing.Color.Red;
-            this.labelNroVacio.Location = new System.Drawing.Point(333, 111);
+            this.labelNroVacio.Location = new System.Drawing.Point(458, 111);
             this.labelNroVacio.Name = "labelNroVacio";
             this.labelNroVacio.Size = new System.Drawing.Size(409, 25);
             this.labelNroVacio.TabIndex = 11;
@@ -178,7 +174,7 @@
             this.labelAgregado.AutoSize = true;
             this.labelAgregado.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelAgregado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.labelAgregado.Location = new System.Drawing.Point(104, 303);
+            this.labelAgregado.Location = new System.Drawing.Point(827, 187);
             this.labelAgregado.Name = "labelAgregado";
             this.labelAgregado.Size = new System.Drawing.Size(395, 31);
             this.labelAgregado.TabIndex = 16;
@@ -190,7 +186,7 @@
             this.labelNoSePuede.AutoSize = true;
             this.labelNoSePuede.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNoSePuede.ForeColor = System.Drawing.Color.Red;
-            this.labelNoSePuede.Location = new System.Drawing.Point(86, 334);
+            this.labelNoSePuede.Location = new System.Drawing.Point(438, 106);
             this.labelNoSePuede.Name = "labelNoSePuede";
             this.labelNoSePuede.Size = new System.Drawing.Size(311, 25);
             this.labelNoSePuede.TabIndex = 17;
@@ -211,7 +207,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(781, 312);
+            this.button2.Location = new System.Drawing.Point(905, 390);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(117, 56);
             this.button2.TabIndex = 19;
@@ -267,17 +263,50 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(79, 437);
+            this.label7.Location = new System.Drawing.Point(35, 472);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(302, 24);
             this.label7.TabIndex = 26;
             this.label7.Text = "Todos los campos son obligatorios";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(57, 302);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(146, 18);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Tipo de habitación";
+            // 
+            // comboBoxTipoHabitacion
+            // 
+            this.comboBoxTipoHabitacion.FormattingEnabled = true;
+            this.comboBoxTipoHabitacion.Location = new System.Drawing.Point(229, 301);
+            this.comboBoxTipoHabitacion.Name = "comboBoxTipoHabitacion";
+            this.comboBoxTipoHabitacion.Size = new System.Drawing.Size(222, 24);
+            this.comboBoxTipoHabitacion.TabIndex = 28;
+            // 
+            // labelTipoPendiente
+            // 
+            this.labelTipoPendiente.AutoSize = true;
+            this.labelTipoPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTipoPendiente.ForeColor = System.Drawing.Color.Red;
+            this.labelTipoPendiente.Location = new System.Drawing.Point(473, 300);
+            this.labelTipoPendiente.Name = "labelTipoPendiente";
+            this.labelTipoPendiente.Size = new System.Drawing.Size(295, 25);
+            this.labelTipoPendiente.TabIndex = 29;
+            this.labelTipoPendiente.Text = "Debe elegir un tipo de habitación";
+            this.labelTipoPendiente.Visible = false;
             // 
             // altaHabitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1282, 516);
+            this.Controls.Add(this.labelTipoPendiente);
+            this.Controls.Add(this.comboBoxTipoHabitacion);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.radioButtonVistaExteriorNO);
             this.Controls.Add(this.radioButtonVistaExteriorSI);
@@ -314,7 +343,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBoxPisoEnHotel;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.TextBox textBoxDescripcionHabitacion;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
@@ -331,5 +359,8 @@
         private System.Windows.Forms.RadioButton radioButtonVistaExteriorSI;
         private System.Windows.Forms.RadioButton radioButtonVistaExteriorNO;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox comboBoxTipoHabitacion;
+        private System.Windows.Forms.Label labelTipoPendiente;
     }
 }

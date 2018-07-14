@@ -109,7 +109,7 @@ namespace FrbaHotel.RegistrarConsumible
                     if (consumoGenerado.EstadiaAllInclusive(consumo, fecha, hotel_id)) { consumo.SetPrecio("0"); } else { consumo.SetPrecio(textBoxPrecioSugerido.Text.ToString()); }
 
 
-                    consumoGenerado.registrarConsumible(q, sql, consumo, fecha, hotel_id);
+                    consumoGenerado.registrarConsumible(q, sql, consumo, fecha, hotel_id, this);
                                    }
         }
 

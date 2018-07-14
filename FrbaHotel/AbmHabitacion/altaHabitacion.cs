@@ -32,8 +32,8 @@ namespace FrbaHotel.AbmHabitacion
                 sqlQueryGenerator = new SQLQueryGenerator();
                 sqlQueryGenerator.HotelCambioEnAltaHabitacion(comboBoxPisoEnHotel, comboBoxHotel);
             }
-           
 
+            sqlQueryGenerator.CargarTiposHabitacion(comboBoxTipoHabitacion);
 
            
             /*Buscar numero de habitacion en el piso elegido del hotel*/
@@ -52,8 +52,19 @@ namespace FrbaHotel.AbmHabitacion
         {
             int r;
             if (String.IsNullOrWhiteSpace(textBoxDescripcionHabitacion.Text) || String.IsNullOrWhiteSpace(textBoxNumeroHabitacion.Text) ||
-                !Int32.TryParse(textBoxNumeroHabitacion.Text, out r) || this.comboBoxHotel.Text.Equals("") || this.VistaPendiente())
+                !Int32.TryParse(textBoxNumeroHabitacion.Text, out r) || this.comboBoxHotel.Text.Equals("") || this.VistaPendiente()
+                || this.comboBoxTipoHabitacion.Text.Equals(""))
             {
+                if (this.comboBoxTipoHabitacion.Text.Equals(""))
+                {
+                    labelTipoPendiente.Visible = true;
+                }
+                else
+                {
+                    labelTipoPendiente.Visible = false;
+                }
+
+
                 if (this.comboBoxHotel.Text.Equals(""))
                 {
                     labelHotelPendiente.Visible = true;
@@ -105,7 +116,7 @@ namespace FrbaHotel.AbmHabitacion
                 if (resultado.Rows.Count.Equals(0)) 
                 {
                     SqlConnection con = ConexionSQL.obtenerConexion();
-                    int result = sqlQueryGenerator.InsertIntoHabitacionesNuevaHabitacion(con, comboBoxHotel, textBoxNumeroHabitacion, comboBoxPisoEnHotel, vista, textBoxDescripcionHabitacion);
+                    int result = sqlQueryGenerator.InsertIntoHabitacionesNuevaHabitacion(con, comboBoxHotel, textBoxNumeroHabitacion, comboBoxPisoEnHotel, vista, textBoxDescripcionHabitacion, comboBoxTipoHabitacion);
 
 
                     if (result.Equals(1))

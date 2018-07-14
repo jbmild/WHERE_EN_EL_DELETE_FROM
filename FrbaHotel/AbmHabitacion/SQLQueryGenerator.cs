@@ -40,9 +40,9 @@ namespace FrbaHotel.AbmHabitacion
 
 
 
-        internal int InsertIntoHabitacionesNuevaHabitacion(System.Data.SqlClient.SqlConnection con, ComboBox comboBoxHotel, TextBox textBoxNumeroHabitacion, ComboBox comboBoxPisoEnHotel, bool vista, TextBox textBoxDescripcionHabitacion )
+        internal int InsertIntoHabitacionesNuevaHabitacion(System.Data.SqlClient.SqlConnection con, ComboBox comboBoxHotel, TextBox textBoxNumeroHabitacion, ComboBox comboBoxPisoEnHotel, bool vista, TextBox textBoxDescripcionHabitacion, ComboBox tipoHabi )
         {
-            string query = String.Concat("INSERT INTO WHERE_EN_EL_DELETE_FROM.habitaciones (hotel_id, numero, piso, frente, descripcion, habilitado, tipos_id)", " VALUES ( " + "@hotel" + ", " + "@numeroHabitacion" + ", " + "@piso" + ", " + "@vista" + ", " + "@descripcion" + ", " + 1 + ", " + 1 + ")");
+            string query = String.Concat("INSERT INTO WHERE_EN_EL_DELETE_FROM.habitaciones (hotel_id, numero, piso, frente, descripcion, habilitado, tipos_id)", " VALUES ( " + "@hotel" + ", " + "@numeroHabitacion" + ", " + "@piso" + ", " + "@vista" + ", " + "@descripcion" + ", " + 1 + ",@tipoHabi)");
             SqlCommand sql = new SqlCommand(query);
             sql.Connection = con;
             sql.Parameters.Add("@hotel", SqlDbType.Int).Value = comboBoxHotel.SelectedValue;
@@ -50,6 +50,7 @@ namespace FrbaHotel.AbmHabitacion
             sql.Parameters.Add("@piso", SqlDbType.Int).Value = comboBoxPisoEnHotel.SelectedValue;
             sql.Parameters.Add("@vista", SqlDbType.Bit).Value = vista;
             sql.Parameters.Add("@descripcion", SqlDbType.NVarChar).Value = textBoxDescripcionHabitacion.Text;
+            sql.Parameters.Add("@tipoHabi", SqlDbType.Int).Value = tipoHabi.SelectedValue;
              return sql.ExecuteNonQuery();
 
         }
@@ -69,6 +70,17 @@ namespace FrbaHotel.AbmHabitacion
 ;
             DataTable estadia = c.cargarTablaSQL(query);
            return estadia.Rows[0].ItemArray[0].ToString();
+        }
+
+        internal void CargarTiposHabitacion(ComboBox comboBoxTipoHabitacion)
+        {
+            ConexionSQL c = new ConexionSQL();
+            DataTable tipos = c.cargarTablaSQL("select tipo_id, descripcion from WHERE_EN_EL_DELETE_FROM.habitaciones_tipos");
+            tipos.Rows.InsertAt(tipos.NewRow(), 0);
+            comboBoxTipoHabitacion.DataSource = tipos;
+            comboBoxTipoHabitacion.SelectedIndex = 0;
+            comboBoxTipoHabitacion.DisplayMember = "descripcion";
+            comboBoxTipoHabitacion.ValueMember = "tipo_id";
         }
     }
 }

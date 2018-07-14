@@ -8,10 +8,14 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.RegistrarConsumible
 {
+   
     class GeneradorConsumo
+        
     {
-        internal void registrarConsumible(AbmHabitacion.SQLQueryGenerator q, System.Data.SqlClient.SqlConnection sql, Consumo consumo, string fecha, int hotel_id)
+        private registrarConsumible pantallita;
+        internal void registrarConsumible(AbmHabitacion.SQLQueryGenerator q, System.Data.SqlClient.SqlConnection sql, Consumo consumo, string fecha, int hotel_id, registrarConsumible pantalla)
         {
+            this.pantallita = pantalla;
             string insertConsumo = "insert into WHERE_EN_EL_DELETE_FROM.consumos values (@habitacion_id, @consumible_id, @estadia_id, @cantidad, REPLACE(@precio_unitario, ',' ,'.'))";
             SqlCommand command = new SqlCommand(insertConsumo);
             command.Parameters.Add("@habitacion_id", SqlDbType.Int).Value = consumo.GetHabitacion();
@@ -25,6 +29,7 @@ namespace FrbaHotel.RegistrarConsumible
             if (resultado.Equals(1))
             {
                 MessageBox.Show("¡Consumible registrado correctamente!");
+                pantallita.Hide();
             }
             else
             {
