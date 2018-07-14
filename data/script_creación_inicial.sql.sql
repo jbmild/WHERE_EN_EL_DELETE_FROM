@@ -349,7 +349,6 @@ SET @FechaActual = GETDATE();
 		codigo int NOT NULL,
 		descripcion NVARCHAR(50) NOT NULL,
 		precio real NOT NULL
-		--orden int NOT NULL
 	)
 
 	/* Consumos */
