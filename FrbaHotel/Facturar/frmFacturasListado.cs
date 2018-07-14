@@ -21,6 +21,8 @@ namespace FrbaHotel.Facturar
 
         private void frmRolesGrid_Load(object sender, EventArgs e)
         {
+
+            cmbTipoDoc.Items.Add(" ");//no figura pero tiene que apretar limpiar.
             cmbTipoDoc.Items.Add("DNI");
             cmbTipoDoc.Items.Add("Pasaporte");
 

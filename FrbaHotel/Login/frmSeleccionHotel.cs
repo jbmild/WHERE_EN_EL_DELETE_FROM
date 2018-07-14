@@ -66,5 +66,10 @@ namespace FrbaHotel.Login
                 MessageBox.Show("Debe seleccionar un hotel con el que desea continuar.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void lblSeleccionHotel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

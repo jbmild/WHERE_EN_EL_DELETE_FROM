@@ -237,11 +237,11 @@ namespace FrbaHotel.Modelo
             }
 
             if(nroDoc.Length > 0){
-                sqlQuery+= " AND documento_nro='" + nroDoc + "' ";
+                sqlQuery+= " AND documento_nro like '" + nroDoc + "%' ";
             }
 
             if(email.Length > 0){
-                sqlQuery += " AND mail='" + email + "' ";
+                sqlQuery += " AND mail like '" + email + "%' ";
             }
 
             if (nombre.Length > 0) {
@@ -294,12 +294,12 @@ namespace FrbaHotel.Modelo
 
             if (nroDoc.Length > 0)
             {
-                sqlQuery += " AND documento_nro='" + nroDoc + "' ";
+                sqlQuery += " AND documento_nro like '" + nroDoc + "%' ";
             }
 
             if (email.Length > 0)
             {
-                sqlQuery += " AND mail='" + email + "' ";
+                sqlQuery += " AND mail like '" + email + "%' ";
             }
 
             if (nombre.Length > 0)
