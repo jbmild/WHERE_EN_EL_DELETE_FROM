@@ -286,7 +286,7 @@ namespace FrbaHotel.AbmHabitacion
 
             }
             if (e.ColumnIndex.Equals(0)) {
-                this.Hide();
+                //this.Hide();
                 int row = e.RowIndex;
                 int tieneVista = 0;
                 int estaHabilitado = 0;
@@ -372,9 +372,9 @@ namespace FrbaHotel.AbmHabitacion
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            //this.Hide();
             altaHabitacion alta = new altaHabitacion();
-            alta.Show();
+            alta.ShowDialog();
 
         }
 

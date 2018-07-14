@@ -240,6 +240,7 @@
     <Compile Include="Modelo\Estadias.cs" />
     <Compile Include="Modelo\Facturas.cs" />
     <Compile Include="Modelo\FormasPago.cs" />
+    <Compile Include="Modelo\Item_factura.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="RegistrarConsumible\Consumo.cs" />
     <Compile Include="RegistrarConsumible\GeneradorConsumo.cs" />

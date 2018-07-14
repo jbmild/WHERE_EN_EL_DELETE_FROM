@@ -58,10 +58,17 @@ namespace FrbaHotel.RegistrarConsumible
 
         private void comboBoxConsumible_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            ConexionSQL c = new ConexionSQL();
-            DataTable precio = c.cargarTablaSQL("select precio from WHERE_EN_EL_DELETE_FROM.consumibles where consumible_id=" + comboBoxConsumible.SelectedValue);
-            this.labelPrecioSugerido.Text = precio.Rows[0].ItemArray[0].ToString();
-            this.labelPrecioSugerido.Visible = true;
+            if (comboBoxConsumible.SelectedIndex.Equals(0)) 
+            {
+                this.labelPrecioSugerido.Text = "";
+            } else
+            {
+                ConexionSQL c = new ConexionSQL();
+                DataTable precio = c.cargarTablaSQL("select precio from WHERE_EN_EL_DELETE_FROM.consumibles where consumible_id=" + comboBoxConsumible.SelectedValue);
+                this.labelPrecioSugerido.Text = precio.Rows[0].ItemArray[0].ToString();
+                this.labelPrecioSugerido.Visible = true;
+            }
+            
         }
 
         private void checkBoxMantenerPrecioSugerido_CheckedChanged(object sender, EventArgs e)
