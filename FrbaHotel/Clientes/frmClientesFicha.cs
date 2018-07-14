@@ -92,6 +92,7 @@ namespace FrbaHotel.Clientes
                 txtLocalidad.Text = _cli.direccion_localidad;
                 txtPaisVivienda.Text = _cli.direccion_pais;
                 chkHabilitado.Checked = _cli.habilitado;
+                dateTimePicker1.Text = _cli.fecha_nacimiento;//jcarucci
 
                 if (!_cli.habilitado)
                 {
@@ -145,6 +146,12 @@ namespace FrbaHotel.Clientes
                     _cli.direccion_localidad = txtLocalidad.Text;
                     _cli.direccion_pais = txtPaisVivienda.Text;
 
+                    DateTime dtF1 = new DateTime(dateTimePicker1.Value.Year, dateTimePicker1.Value.Month, dateTimePicker1.Value.Day);
+
+                    string stringf1 = dtF1.ToString("dd-MMM-yyyy");
+
+                    _cli.fecha_nacimiento = stringf1;//dateTimePicker1.Value();
+
                     bool datosDuplicados = _cli.existeClientePorDatosUnicos();
                     if (!datosDuplicados)
                     {
@@ -154,8 +161,10 @@ namespace FrbaHotel.Clientes
                         {
                             System.Windows.Forms.MessageBox.Show("El cliente ha sido guardado exitosamente. ");
                             this.Close();
-                            if (_returnToCheckInFunctionality) { 
+                            if (_returnToCheckInFunctionality) {
                                 //TODO: @Juanma: volver a pantalla de checkin, devolver variable idCliente
+                                RegistrarEstadia.CheckIn checkIn = new RegistrarEstadia.CheckIn();
+                                checkIn.ShowDialog();
                             }
                         }
                         else
@@ -261,6 +270,21 @@ namespace FrbaHotel.Clientes
             {
                 e.Handled = true;
             }
+        }
+
+        private void txtPaisVivienda_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fecha_nacimiento_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
