@@ -35,9 +35,9 @@ namespace FrbaHotel.RegistrarEstadia
             //this.LoadGrid(cli.getClientes(cmbTipoDoc.Text, txtNroDoc.Text, txtEmail.Text, txtNombre.Text, txtApellido.Text));
             //cli.getClientes(cmbTipoDoc.Text, txtNroDoc.Text, txtEmail.Text, txtNombre.Text, txtApellido.Text);
             string sqlQuery;
-            if(txtNroDoc.Text != null)
+            if(txtNroDoc.Text != "")
             {
-            sqlQuery = " select * from WHERE_EN_EL_DELETE_FROM.clientes where documento_nro =" + txtNroDoc.Text;
+            sqlQuery = " select * from WHERE_EN_EL_DELETE_FROM.clientes where documento_nro ='" + txtNroDoc.Text + "'";
             }
             else
             {

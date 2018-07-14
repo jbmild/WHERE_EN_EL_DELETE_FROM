@@ -49,7 +49,11 @@ namespace FrbaHotel.RegistrarEstadia
                         if((estadia_id).ToString() != null)
                         {
 
-                        string queryUpdate = "UPDATE [WHERE_EN_EL_DELETE_FROM].[estadias] SET egreso_empleado_id = " + Tools.Sesion.usuario.UsuarioId + ", egreso_fecha = '"
+                            string query2 = "SELECT EMPLEADO_ID FROM [WHERE_EN_EL_DELETE_FROM].[empleados] where usuario_id = " + Tools.Sesion.usuario.UsuarioId;
+                            DataTable dt = conn.cargarTablaSQL(query2);
+                            int empleado_id = Int32.Parse(dt.Rows[0][0].ToString());
+
+                            string queryUpdate = "UPDATE [WHERE_EN_EL_DELETE_FROM].[estadias] SET egreso_empleado_id = " + empleado_id + ", egreso_fecha = '"
                             + Tools.Sesion.obtenerFechaSistema() + "' WHERE estadia_id = " + estadia_id;
                         conn.ejecutarComandoSQL(queryUpdate);
 
@@ -71,8 +75,10 @@ namespace FrbaHotel.RegistrarEstadia
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
             //Boton de buscar la estadia con el numero de habitación para luego facturar.
+            if (nro_hab.Text != "")
+            {
             string query = "select E.estadia_id, H.habitacion_id, c.apellido, c.documento_nro from WHERE_EN_EL_DELETE_FROM.estadias E JOIN WHERE_EN_EL_DELETE_FROM.reservas R ON r.reserva_id = e.reserva_id" +
                                                         " JOIN WHERE_EN_EL_DELETE_FROM.reservas_habitaciones RH ON RH.reserva_id = r.reserva_id" +
                                                         " JOIN WHERE_EN_EL_DELETE_FROM.habitaciones H ON RH.habitacion_id = H.habitacion_id" +
@@ -82,7 +88,11 @@ namespace FrbaHotel.RegistrarEstadia
                 DataTable dt = conn.cargarTablaSQL(query);
                 dataGridView1.DataSource = dt;
                 this.Cursor = Cursors.Default;
-  
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Ingrese un numero de habitación válido");
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
