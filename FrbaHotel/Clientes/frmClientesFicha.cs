@@ -126,8 +126,8 @@ namespace FrbaHotel.Clientes
             }
 
             if (txtNroDocumento.Text.Length > 0 && txtMail.Text.Length > 0 && txtNombre.Text.Length > 0 && txtApellido.Text.Length > 0
-                        && txtDireccionCalle.Text.Length > 0 && txtDireccionNro.Text.Length > 0 
-                        && txtDireccionPiso.Text.Length > 0 && txtDireccionDepto.Text.Length > 0)
+                        && txtDireccionCalle.Text.Length > 0 && txtDireccionNro.Text.Length > 0)
+                        //&& txtDireccionPiso.Text.Length > 0 && txtDireccionDepto.Text.Length > 0)//JCARUCCI - SE COMENTA PARA NO VALIDAR ESTO
             {
                 if (isValidEmail)
                 {
@@ -283,6 +283,11 @@ namespace FrbaHotel.Clientes
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDireccionPiso_TextChanged(object sender, EventArgs e)
         {
 
         }
