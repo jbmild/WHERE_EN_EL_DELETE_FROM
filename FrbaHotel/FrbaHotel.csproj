@@ -141,57 +141,54 @@
     <Compile Include="AbmHabitacion\MostrarHabitaciones.cs" />
     <Compile Include="AbmHabitacion\MostrarHoteles.cs" />
     <Compile Include="AbmHabitacion\SQLQueryGenerator.cs" />
-    <Compile Include="AbmHotel\AbmHoteles.cs" />
-    <Compile Include="AbmHotel\altaHotel.cs">
+    <Compile Include="Hoteles\AbmHoteles.cs" />
+    <Compile Include="Hoteles\altaHotel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHotel\altaHotel.Designer.cs">
+    <Compile Include="Hoteles\altaHotel.Designer.cs">
       <DependentUpon>altaHotel.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHotel\bajaHotel.cs">
+    <Compile Include="Hoteles\bajaHotel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHotel\bajaHotel.Designer.cs">
+    <Compile Include="Hoteles\bajaHotel.Designer.cs">
       <DependentUpon>bajaHotel.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHotel\buscadorRegimenes.cs">
+    <Compile Include="Hoteles\buscadorRegimenes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHotel\buscadorRegimenes.Designer.cs">
+    <Compile Include="Hoteles\buscadorRegimenes.Designer.cs">
       <DependentUpon>buscadorRegimenes.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHotel\darBajaHotel.cs">
+    <Compile Include="Hoteles\HotelElegido.cs" />
+    <Compile Include="Hoteles\Modelo\Estrellas.cs" />
+    <Compile Include="Hoteles\Modelo\Hotel.cs" />
+    <Compile Include="Hoteles\Modelo\Hoteles.cs" />
+    <Compile Include="Hoteles\modificarDatosHotel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHotel\darBajaHotel.Designer.cs">
-      <DependentUpon>darBajaHotel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="AbmHotel\HotelElegido.cs" />
-    <Compile Include="AbmHotel\modificarDatosHotel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="AbmHotel\modificarDatosHotel.Designer.cs">
+    <Compile Include="Hoteles\modificarDatosHotel.Designer.cs">
       <DependentUpon>modificarDatosHotel.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHotel\modificarHotel.cs">
+    <Compile Include="Hoteles\frmHotelesListado.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHotel\modificarHotel.Designer.cs">
-      <DependentUpon>modificarHotel.cs</DependentUpon>
+    <Compile Include="Hoteles\frmHotelesListado.Designer.cs">
+      <DependentUpon>frmHotelesListado.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHotel\motivoBajaHotel.cs">
+    <Compile Include="Hoteles\motivoBajaHotel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHotel\motivoBajaHotel.Designer.cs">
+    <Compile Include="Hoteles\motivoBajaHotel.Designer.cs">
       <DependentUpon>motivoBajaHotel.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHotel\pantallaPrincipalHotel.cs">
+    <Compile Include="Hoteles\pantallaPrincipalHotel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHotel\pantallaPrincipalHotel.Designer.cs">
+    <Compile Include="Hoteles\pantallaPrincipalHotel.Designer.cs">
       <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
     </Compile>
-    <Compile Include="AbmHotel\RegimenElegido.cs" />
+    <Compile Include="Hoteles\RegimenElegido.cs" />
     <Compile Include="Bienvenido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,7 +206,7 @@
     <Compile Include="Facturar\frmFacturasFicha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Facturar\frmFacturasFicha.Designer.cs" >
+    <Compile Include="Facturar\frmFacturasFicha.Designer.cs">
       <DependentUpon>frmFacturasFicha.cs</DependentUpon>
     </Compile>
     <Compile Include="Facturar\frmFacturasListado.cs">
@@ -234,13 +231,14 @@
     <Compile Include="Login\Modelo\EmpleadoHotel.cs" />
     <Compile Include="Login\Modelo\Empleados.cs" />
     <Compile Include="Login\Modelo\EmpleadosHoteles.cs" />
-    <Compile Include="Login\Modelo\Hotel.cs" />
-    <Compile Include="Login\Modelo\Hoteles.cs" />
     <Compile Include="Login\Modelo\Usuario.cs" />
     <Compile Include="Login\Modelo\UsuarioRol.cs" />
     <Compile Include="Login\Modelo\Usuarios.cs" />
     <Compile Include="Login\Modelo\UsuariosRoles.cs" />
+    <Compile Include="Modelo\Factura.cs" />
     <Compile Include="Modelo\Estadias.cs" />
+    <Compile Include="Modelo\Facturas.cs" />
+    <Compile Include="Modelo\FormasPago.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="RegistrarConsumible\Consumo.cs" />
     <Compile Include="RegistrarConsumible\GeneradorConsumo.cs" />
@@ -411,28 +409,25 @@
     <EmbeddedResource Include="AbmHabitacion\modificarHabitacion.resx">
       <DependentUpon>modificarHabitacion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\altaHotel.resx">
+    <EmbeddedResource Include="Hoteles\altaHotel.resx">
       <DependentUpon>altaHotel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\bajaHotel.resx">
+    <EmbeddedResource Include="Hoteles\bajaHotel.resx">
       <DependentUpon>bajaHotel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\buscadorRegimenes.resx">
+    <EmbeddedResource Include="Hoteles\buscadorRegimenes.resx">
       <DependentUpon>buscadorRegimenes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\darBajaHotel.resx">
-      <DependentUpon>darBajaHotel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\modificarDatosHotel.resx">
+    <EmbeddedResource Include="Hoteles\modificarDatosHotel.resx">
       <DependentUpon>modificarDatosHotel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\modificarHotel.resx">
-      <DependentUpon>modificarHotel.cs</DependentUpon>
+    <EmbeddedResource Include="Hoteles\frmHotelesListado.resx">
+      <DependentUpon>frmHotelesListado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\motivoBajaHotel.resx">
+    <EmbeddedResource Include="Hoteles\motivoBajaHotel.resx">
       <DependentUpon>motivoBajaHotel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AbmHotel\pantallaPrincipalHotel.resx">
+    <EmbeddedResource Include="Hoteles\pantallaPrincipalHotel.resx">
       <DependentUpon>pantallaPrincipalHotel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Bienvenido.resx">
@@ -441,10 +436,10 @@
     <EmbeddedResource Include="Estadisticas\frmEstadisticas.resx">
       <DependentUpon>frmEstadisticas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Facturar\frmFacturasFicha.resx" >
+    <EmbeddedResource Include="Facturar\frmFacturasFicha.resx">
       <DependentUpon>frmFacturasFicha.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Facturar\frmFacturasListado.resx" >
+    <EmbeddedResource Include="Facturar\frmFacturasListado.resx">
       <DependentUpon>frmFacturasListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\frmLogin.resx">

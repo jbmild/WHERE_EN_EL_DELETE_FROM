@@ -35,7 +35,7 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.Agregar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +55,7 @@
             // 
             // txtNroDoc
             // 
-            this.txtNroDoc.Location = new System.Drawing.Point(88, 44);
+            this.txtNroDoc.Location = new System.Drawing.Point(148, 34);
             this.txtNroDoc.Margin = new System.Windows.Forms.Padding(2);
             this.txtNroDoc.Name = "txtNroDoc";
             this.txtNroDoc.Size = new System.Drawing.Size(68, 20);
@@ -63,12 +63,12 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(10, 38);
+            this.label3.Location = new System.Drawing.Point(10, 34);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(74, 26);
+            this.label3.Size = new System.Drawing.Size(114, 40);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Nro de identificación: ";
+            this.label3.Text = "Nro de identificación:  (DNI / PASAPORTE)";
             // 
             // btnAlta
             // 
@@ -108,7 +108,7 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1});
+            this.Agregar});
             this.dataGridView1.Location = new System.Drawing.Point(11, 148);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -116,12 +116,12 @@
             this.dataGridView1.TabIndex = 15;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // Column1
+            // Agregar
             // 
-            this.Column1.HeaderText = "";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Text = "Agregar";
+            this.Agregar.HeaderText = "Agregar";
+            this.Agregar.Name = "Agregar";
+            this.Agregar.ReadOnly = true;
+            this.Agregar.Text = "Agregar";
             // 
             // IngresoHuespedes
             // 
@@ -153,6 +153,6 @@
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.DataGridViewButtonColumn agregar_cliente;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.DataGridViewButtonColumn Agregar;
     }
 }

@@ -26,7 +26,9 @@ namespace FrbaHotel.Modelo
                                     r.reserva_id = e.reserva_id
                                     INNER JOIN WHERE_EN_EL_DELETE_FROM.clientes cli on
                                     cli.cliente_id = r.cliente_id
-                                    WHERE 1=1 ";
+                                    LEFT JOIN WHERE_EN_EL_DELETE_FROM.facturas f on 
+                                    f.estadia_id = e.estadia_id
+                                    WHERE 1=1 AND f.factura_id is null ";
 
             if (hotel_id != 0) {
                 sqlQuery += " AND r.hotel_id=" + hotel_id;

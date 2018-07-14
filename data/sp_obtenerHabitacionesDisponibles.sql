@@ -33,22 +33,47 @@ BEGIN
 		@fhasta varchar(30),
 		@hotel_id int,
 		@regimen_id int,
-		@tipoHabitacion_id int
+		@tipoHabitacion_id int,
+		@codigo int
 
 
-		SELECT @fdesde = '01/07/2018 12:00:00 a.m.',
-		@fhasta = '03/07/2018 12:00:00 a.m.',
+		SELECT @fdesde = '01/08/2018 12:00:00 a.m.',
+		@fhasta = '03/08/2018 12:00:00 a.m.',
 		@hotel_id = 1,
-		@regimen_id = 1,
-		@tipoHabitacion_id = 4
-		
+		@regimen_id = 2,
+		@tipoHabitacion_id = 2,
+		@codigo = 48486
+	
 	
 	
 	DECLARE @FechaDesde datetime
 	                                DECLARE @FechaHasta datetime
 	
 	                                SELECT @FechaDesde = convert(datetime, SUBSTRING(@fdesde, 0, 11), 103)
-	                                SELECT @FechaHasta = convert(datetime, SUBSTRING(@fhasta, 0, 11) + ' 23:59:59', 103)
+	                                SELECT @FechaHasta = convert(datetime, SUBSTRING(@fhasta, 0, 11), 103)
+
+	SELECT
+		res.reserva_id,
+		resHab.habitacion_id,
+		res.codigo
+	FROM
+		WHERE_EN_EL_DELETE_FROM.reservas_habitaciones resHab
+	INNER JOIN
+		WHERE_EN_EL_DELETE_FROM.reservas res on
+		res.reserva_id = resHab.reserva_id
+		and res.estado not in ('cancelada_recepcion', 'cancelada_cliente', 'cancelada_noshow', 'efectivizada')
+		and (
+				@FechaDesde is null 
+				OR 
+				@FechaHasta is null
+				OR
+				@FechaDesde between res.fecha_desde and res.fecha_hasta
+				OR
+				@FechaDesde between res.fecha_desde and res.fecha_hasta
+				OR
+				(@FechaDesde < res.fecha_desde and @FechaHasta > res.fecha_hasta)
+			)
+		and res.codigo <> @codigo
 
 	                                SET NOCOUNT ON;
 
@@ -81,7 +106,8 @@ BEGIN
 	                                LEFT JOIN(
 		                                SELECT
 			                                res.reserva_id,
-			                                resHab.habitacion_id
+			                                resHab.habitacion_id,
+											res.codigo
 		                                FROM
 			                                WHERE_EN_EL_DELETE_FROM.reservas_habitaciones resHab
 		                                INNER JOIN
@@ -99,10 +125,18 @@ BEGIN
 					                                OR
 					                                (@FechaDesde < res.fecha_desde and @FechaHasta > res.fecha_hasta)
 				                                )
+											and res.codigo <> @codigo
 		                                ) res on res.habitacion_id = hab.habitacion_id
 		
 	                                WHERE
-		                                res.reserva_id is null
+		                                (res.reserva_id is null)
+										AND hab.habilitado = 1
+										AND hot.hotel_id not in (SELECT hotel_id FROM [WHERE_EN_EL_DELETE_FROM].cese_actividades WHERE 
+										@FechaDesde between fecha_inicio and fecha_fin
+										OR
+										@FechaHasta between fecha_inicio and fecha_fin
+										OR
+										(@FechaDesde < fecha_inicio and @FechaHasta > fecha_fin) )
                                         
 
 	

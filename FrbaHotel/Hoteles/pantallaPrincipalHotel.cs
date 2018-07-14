@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.AbmHotel
+namespace FrbaHotel.Hoteles
 {
     public partial class pantallaPrincipalHotel : Form
     {
@@ -24,19 +24,19 @@ namespace FrbaHotel.AbmHotel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AbmHotel.altaHotel alta = new AbmHotel.altaHotel();
+            Hoteles.altaHotel alta = new Hoteles.altaHotel();
             alta.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AbmHotel.modificarHotel m = new AbmHotel.modificarHotel();
+            Hoteles.frmHotelesListado m = new Hoteles.frmHotelesListado();
             m.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            AbmHotel.bajaHotel b = new AbmHotel.bajaHotel(1);
+            Hoteles.bajaHotel b = new Hoteles.bajaHotel(1);
             b.Show();
         }
     }

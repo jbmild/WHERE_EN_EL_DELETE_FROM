@@ -194,11 +194,5 @@ namespace FrbaHotel.Facturar
         {
 
         }
-
-        private void dgwRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //HOLa
-            int a;
-        }
     }
 }

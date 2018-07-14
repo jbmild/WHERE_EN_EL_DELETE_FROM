@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using FrbaHotel.Tools;
 
-namespace FrbaHotel.AbmHotel
+namespace FrbaHotel.Hoteles
 {
     public partial class bajaHotel : Form
     {
@@ -92,7 +92,7 @@ namespace FrbaHotel.AbmHotel
 
         private void DarDeBajaHotel(DateTime dateTime1, DateTime dateTime2)
         {
-            AbmHotel.motivoBajaHotel motivo = new AbmHotel.motivoBajaHotel();
+            Hoteles.motivoBajaHotel motivo = new Hoteles.motivoBajaHotel();
             motivo.RecibirDatosBaja(dateTime1, dateTime2, _hotel_id.ToString());
             motivo.Show();
             

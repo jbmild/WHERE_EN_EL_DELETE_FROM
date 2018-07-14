@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrbaHotel.Login.Modelo
+namespace FrbaHotel.Modelo
 {
-    class Hoteles
+    class Factura
     {
+        
+
     }
 }

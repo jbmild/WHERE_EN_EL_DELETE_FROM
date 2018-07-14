@@ -23,7 +23,7 @@ namespace FrbaHotel.Roles.Modelo
         {
             List<SqlParameter> parametros = new List<SqlParameter>();
 
-            string sql = "SELECT rol_id, nombre, habilitado FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE 1=1";
+            string sql = "SELECT rol_id, nombre, habilitado FROM WHERE_EN_EL_DELETE_FROM.Roles WHERE nombre<>'Guest'";
 
             SqlParameter parametro;
 

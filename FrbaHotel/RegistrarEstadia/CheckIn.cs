@@ -69,7 +69,7 @@ namespace FrbaHotel.RegistrarEstadia
                 {
                     if (Convert.ToInt32(row.Cells[0].Value) >= 1)
                     {
-                        int empleado_user = 1;//se hardcodea el empleado_id
+
                         Reserva res = new Reserva();
                         res.fecha_desde = Convert.ToDateTime(row.Cells[2].Value);
                         res.fecha_hasta = Convert.ToDateTime(row.Cells[3].Value);
@@ -80,13 +80,21 @@ namespace FrbaHotel.RegistrarEstadia
                         res.id = Convert.ToInt32(row.Cells[10].Value);
                         res.usuarioCancelacion = Tools.Sesion.usuario.UsuarioId;
 
-                        //string query = "INSERT INTO [WHERE_EN_EL_DELETE_FROM].[estadias]([reserva_id], [ingreso_empleado_id], [ingreso_fecha])"
-                        //                + "VALUES(" + res.id + "," + empleado_user + ",'" + Sesion.obtenerFechaSistema() + "'";
-                        //conn.ejecutarComandoSQL(query);
+                        string query2 = "SELECT EMPLEADO_ID FROM [WHERE_EN_EL_DELETE_FROM].[empleados] where usuario_id = " + Tools.Sesion.usuario.UsuarioId;
+                        DataTable dt = conn.cargarTablaSQL(query2);
+                        int empleado_id = Int32.Parse(dt.Rows[0][0].ToString());
+
+                        string query = "INSERT INTO [WHERE_EN_EL_DELETE_FROM].[estadias]([reserva_id], [ingreso_empleado_id], [ingreso_fecha], [egreso_fecha])"
+                                        + "VALUES(" + res.id + "," + empleado_id + ",'" + Sesion.obtenerFechaSistema() + "', '" + Tools.Sesion.obtenerFechaSistema() + "')";
+                        conn.ejecutarComandoSQL(query);
+
+                        string query3 = "SELECT ESTADIA_ID FROM [WHERE_EN_EL_DELETE_FROM].[estadias] where reserva_id = " + res.id;
+                        DataTable dt2 = conn.cargarTablaSQL(query3);
+                        int estadia_id = Int32.Parse(dt2.Rows[0][0].ToString());
 
                         if (DateTime.Compare(res.fecha_desde, Tools.Sesion.obtenerFechaSistema()) == 0)//si estamos en la fecha de hoy.
                         {
-                            IngresoHuespedes ingresoHuespedes = new IngresoHuespedes(res.id);
+                            IngresoHuespedes ingresoHuespedes = new IngresoHuespedes(estadia_id);
                             ingresoHuespedes.Show();
                             //this.Close();
                         }

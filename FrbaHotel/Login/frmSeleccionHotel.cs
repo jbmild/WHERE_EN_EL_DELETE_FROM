@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using FrbaHotel.Hoteles.Modelo;
 using FrbaHotel.Login.Modelo;
 using FrbaHotel.Tools;
 

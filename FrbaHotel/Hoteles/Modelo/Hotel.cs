@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FrbaHotel.Tools;
 
-namespace FrbaHotel.Login.Modelo
+namespace FrbaHotel.Hoteles.Modelo
 {
     public class Hotel
     {

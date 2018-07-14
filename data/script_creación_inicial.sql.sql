@@ -15,6 +15,11 @@ GO
 		DROP TABLE WHERE_EN_EL_DELETE_FROM.facturas;
 	GO
 
+	/* FormasPago */
+	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.formaspago', 'U') IS NOT NULL
+		DROP TABLE WHERE_EN_EL_DELETE_FROM.formaspago;
+	GO
+
 	/* Consumos */
 	IF OBJECT_ID('WHERE_EN_EL_DELETE_FROM.consumos','U') IS NOT NULL
 		DROP TABLE WHERE_EN_EL_DELETE_FROM.consumos;
@@ -365,6 +370,13 @@ SET @FechaActual = GETDATE();
 		CONSTRAINT FK_consumos_habitaciones FOREIGN KEY (habitacion_id) REFERENCES WHERE_EN_EL_DELETE_FROM.habitaciones (habitacion_id)
 	)
 
+	/* FormasPago */
+	CREATE TABLE WHERE_EN_EL_DELETE_FROM.formaspago(
+		formapago_id int identity(1,1) PRIMARY KEY,
+		nombre NVARCHAR(255) NOT NULL,
+		habilitado bit default 1
+	)
+
 	/* Facturas */
 	CREATE TABLE WHERE_EN_EL_DELETE_FROM.facturas(
 		factura_id int identity(1,1) PRIMARY KEY,
@@ -379,9 +391,11 @@ SET @FechaActual = GETDATE();
 		direccion NVARCHAR(255) NOT NULL,
 		nombre NVARCHAR(255) NOT NULL,
 		apellido NVARCHAR(255) NOT NULL,
+		formapago_id int,
 
 		CONSTRAINT FK_facturas_estadias FOREIGN KEY (estadia_id) REFERENCES WHERE_EN_EL_DELETE_FROM.estadias (estadia_id),
-		CONSTRAINT FK_facturas_clientes FOREIGN KEY (cliente_id) REFERENCES WHERE_EN_EL_DELETE_FROM.clientes (cliente_id)
+		CONSTRAINT FK_facturas_clientes FOREIGN KEY (cliente_id) REFERENCES WHERE_EN_EL_DELETE_FROM.clientes (cliente_id),
+		CONSTRAINT FK_facturas_formaspago FOREIGN KEY (formapago_id) REFERENCES WHERE_EN_EL_DELETE_FROM.formaspago (formapago_id)
 	)
 
 	/* Items */
@@ -538,7 +552,7 @@ SET @FechaActual = GETDATE();
 	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Administrador General'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos
 
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.roles_permisos (rol_id, permiso_id)
-	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Guest'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE nombre in ('Generar o Modificar Reserva', 'Cancelar Reserva')
+	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Guest'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE nombre in ('Generar o Modificar Reserva')
 
 	/* Usuarios Roles */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios_roles (usuario_id, rol_id) VALUES
@@ -792,6 +806,15 @@ SET @FechaActual = GETDATE();
 			e.reserva_id = r.reserva_id
 		INNER JOIN WHERE_EN_EL_DELETE_FROM.Clientes c ON
 			c.cliente_id = r.cliente_id
+
+	/* Formas de pago */
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.FormasPago(nombre)
+	VALUES ('Efectivo')
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.FormasPago(nombre)
+	VALUES ('Tarjeta de Credito')
+	INSERT INTO WHERE_EN_EL_DELETE_FROM.FormasPago(nombre)
+	VALUES ('Cheque')
+
 
 	/* Facturas */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.facturas(
