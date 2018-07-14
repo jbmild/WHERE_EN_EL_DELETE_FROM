@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.AbmHotel
 {
@@ -24,26 +25,24 @@ namespace FrbaHotel.AbmHotel
 
         private void bajaHotel_Load(object sender, EventArgs e)
         {
-            ConexionSQL c = new ConexionSQL();
-            DataTable hoteles = c.cargarTablaSQL("select hotel_id, isNull(nombre, 'hotel ' + direccion) as 'nombre' from WHERE_EN_EL_DELETE_FROM.hoteles");
-            
-            comboBoxHoteles.DataSource = hoteles;
-            
-            comboBoxHoteles.DisplayMember = "nombre";
-            comboBoxHoteles.ValueMember = "hotel_id";
-            comboBoxHoteles.SelectedValue = _hotel_id;
+            List<SqlParameter> parametros = new List<SqlParameter>();
 
-            DataTable estrellas = c.cargarTablaSQL("select distinct estrellas_cant from WHERE_EN_EL_DELETE_FROM.hoteles");
-            estrellas.Rows.InsertAt(estrellas.NewRow(), 0);
-            comboBoxEstrellas.DataSource = estrellas;
-            comboBoxEstrellas.SelectedIndex = 0;
-            comboBoxEstrellas.DisplayMember = "estrellas_cant";
-            comboBoxEstrellas.ValueMember = "estrellas_cant";
-        }
+            SqlParameter parametro = new SqlParameter("@hotelId", _hotel_id);
+            parametro.DbType = DbType.Int32;
+            parametros.Add(parametro);
 
-        private void label7_Click(object sender, EventArgs e)
-        {
+            string sql = "SELECT nombre FROM WHERE_EN_EL_DELETE_FROM.hoteles WHERE hotel_id=@hotelId";
+            DataTable data = DBInterface.seleccionar(sql, parametros);
 
+            if (data.Rows.Count == 1)
+            {
+                lblTitulo.Text = "Registrar cese de actividades para '" + data.Rows[0][0].ToString() + "'";
+            }
+            else
+            {
+                MessageBox.Show("No se selecciono ningun hotel disponible.");
+                this.Close();
+            }
         }
 
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
@@ -94,7 +93,7 @@ namespace FrbaHotel.AbmHotel
         private void DarDeBajaHotel(DateTime dateTime1, DateTime dateTime2)
         {
             AbmHotel.motivoBajaHotel motivo = new AbmHotel.motivoBajaHotel();
-            motivo.RecibirDatosBaja(dateTime1, dateTime2, comboBoxHoteles.SelectedValue.ToString());
+            motivo.RecibirDatosBaja(dateTime1, dateTime2, _hotel_id.ToString());
             motivo.Show();
             
 
@@ -110,15 +109,11 @@ namespace FrbaHotel.AbmHotel
             DataTable estadias= c.cargarTablaSQL(@"select e.estadia_id from WHERE_EN_EL_DELETE_FROM.estadias e" + 
                 " join WHERE_EN_EL_DELETE_FROM.reservas r on r.reserva_id=e.reserva_id " + 
                 " join WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh on rh.reserva_id=r.reserva_id " + 
-                " join WHERE_EN_EL_DELETE_FROM.habitaciones h on rh.habitacion_id=h.habitacion_id" + 
-                " where h.hotel_id=" + comboBoxHoteles.SelectedValue.ToString() +
+                " join WHERE_EN_EL_DELETE_FROM.habitaciones h on rh.habitacion_id=h.habitacion_id" +
+                " where h.hotel_id=" + _hotel_id.ToString() +
                 " and (e.ingreso_fecha between convert(date, '" + strDatetime1 + "', 110) and convert(date,'" + strDatetime2 + "', 110) " +
                 " OR e.egreso_fecha between convert(date, '" + strDatetime1 + "', 110) and convert(date,'" + strDatetime2 + "', 110) " +
                 " OR (e.ingreso_fecha < convert(date, '" + strDatetime1 + "', 110) and e.egreso_fecha > convert(date, '" + strDatetime2 + "', 110)))");
-                
-                
-                //+ " and e.ingreso_fecha >='" + dateTime1.ToString() +
-                //"' and e.egreso_fecha<='" + dateTime2.ToString() + "'");
             return estadias.Rows.Count.Equals(0);
         }
 
@@ -132,7 +127,7 @@ namespace FrbaHotel.AbmHotel
             string query = "select r.reserva_id from WHERE_EN_EL_DELETE_FROM.reservas r";
             query += @" join WHERE_EN_EL_DELETE_FROM.reservas_habitaciones rh on r.reserva_id=rh.reserva_id " +
                 " join WHERE_EN_EL_DELETE_FROM.habitaciones h on h.habitacion_id= rh.habitacion_id" + " where " +
-                " h.hotel_id=" + comboBoxHoteles.SelectedValue.ToString()+
+                " h.hotel_id=" + _hotel_id.ToString() +
                 " and (r.fecha_desde between convert(date, '" + strDatetime1 + "', 110) and convert(date,'" + strDatetime2 + "', 110) " +
                 " OR r.fecha_hasta between convert(date, '" + strDatetime1 + "', 110) and convert(date,'" + strDatetime2 + "', 110) " +
                 " OR (r.fecha_desde < convert(date, '" + strDatetime1 + "', 110) and r.fecha_hasta > convert(date, '" + strDatetime2 + "', 110)))" + 
@@ -141,53 +136,6 @@ namespace FrbaHotel.AbmHotel
             DataTable reservas=c.cargarTablaSQL(query);
                 
             return reservas.Rows.Count.Equals(0);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ConexionSQL c = new ConexionSQL();
-            DataTable hotelesFiltrados;
-            int hayCiudad = 0; int hayPais = 0; 
-            string queryHotelesFiltrados = "select hotel_id, isNull(nombre, 'hotel ' + direccion) as 'nombre' from WHERE_EN_EL_DELETE_FROM.hoteles";
-            if (textBoxCiudad.Text.Equals("")) { } else { hayCiudad = 1;
-            queryHotelesFiltrados += " where ciudad like '%" + this.textBoxCiudad.Text + "%'";
-            }
-            if (textBoxPais.Text.Equals("")) {}else{
-            
-                if (hayCiudad.Equals(1))
-                {
-                    hayCiudad = 1;
-                    queryHotelesFiltrados += " and pais='%" + this.textBoxPais.Text + "%'";
-                }
-                else {
-                    hayCiudad = 1;
-                    queryHotelesFiltrados += " where pais='%" + this.textBoxPais.Text + "%'";
-                }
-            
-            
-            }
-            if (comboBoxEstrellas.SelectedValue.ToString().Equals("")) { }else
-            {
-                if (hayCiudad.Equals(1) || hayPais.Equals(1))
-                {
-                    queryHotelesFiltrados += " and estrellas_cant=" + comboBoxEstrellas.SelectedValue.ToString();
-                }
-                else 
-                {
-                    queryHotelesFiltrados += "where estrellas_cant=" + comboBoxEstrellas.SelectedValue.ToString();
-                }
-            }
-            hotelesFiltrados = c.cargarTablaSQL(queryHotelesFiltrados);
-            
-            comboBoxHoteles.DataSource = hotelesFiltrados;
-            comboBoxHoteles.ValueMember = "hotel_id";
-            comboBoxHoteles.DisplayMember = "nombre";
-
-        }
-
-        private void comboBoxHoteles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

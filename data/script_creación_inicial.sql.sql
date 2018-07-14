@@ -354,7 +354,6 @@ SET @FechaActual = GETDATE();
 		codigo int NOT NULL,
 		descripcion NVARCHAR(50) NOT NULL,
 		precio real NOT NULL
-		--orden int NOT NULL
 	)
 
 	/* Consumos */
@@ -540,7 +539,8 @@ SET @FechaActual = GETDATE();
 	('Estadias'),
 	('Consumibles'),
 	('Facturacion'),
-	('Estadisticas')
+	('Estadisticas'),
+	('Regimenes')
 
 	/* Roles */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.roles (nombre, habilitado, esDefault) VALUES
