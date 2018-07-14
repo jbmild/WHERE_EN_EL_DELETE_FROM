@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.Hoteles
 {
@@ -80,8 +81,8 @@ namespace FrbaHotel.Hoteles
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
                 con.Open();
-                string query = "INSERT INTO WHERE_EN_EL_DELETE_FROM.hoteles (nombre, mail, telefono, direccion, ciudad, pais, estrellas_cant, fecha_creacion)";
-                query+=" VALUES (@nombre, @mail ,@telefono, @direccion, @ciudad, @pais, @estrellas, @fecha" +")";
+                string query = "INSERT INTO WHERE_EN_EL_DELETE_FROM.hoteles";
+                query+=" VALUES (@nombre, @mail ,@telefono, @direccion, @ciudad, @pais, @estrellas, @estrellasRecargo, @fecha)";
                 SqlCommand sql = new SqlCommand(query);
                 sql.Connection = con;
                 sql.Parameters.Add("@nombre", SqlDbType.NVarChar).Value = textBoxNombreNuevoHotel.Text;
@@ -91,11 +92,27 @@ namespace FrbaHotel.Hoteles
                 sql.Parameters.Add("@ciudad", SqlDbType.NVarChar).Value = textBoxCiudadNuevoHotel.Text;
                 sql.Parameters.Add("@pais", SqlDbType.NVarChar).Value = textBoxPaisNuevoHotel.Text;
                 sql.Parameters.Add("@estrellas", SqlDbType.Int).Value = this.comboBoxEstrellas.SelectedItem;
+                sql.Parameters.Add("@estrellasRecargo", SqlDbType.Int).Value = Int32.Parse(this.textBoxEstrellasRecargo.Text.ToString());
                 sql.Parameters.Add("@fecha", SqlDbType.DateTime).Value = DateTime.Now;
                 int result = sql.ExecuteNonQuery();
 
+/*************HOTEL_EMPLEADO*******************/
+                SqlConnection conToEmpl = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
+                conToEmpl.Open();
+                ConexionSQL IDHOTEL= new ConexionSQL();
+                DataTable IDHOTELBusqueda= IDHOTEL.cargarTablaSQL("select top 1 hotel_id from WHERE_EN_EL_DELETE_FROM.hoteles order by hotel_id desc");
+                string insertEmpleHotel = "INSERT INTO WHERE_EN_EL_DELETE_FROM.empleados_hoteles values (@emple, @hotel)";
+                SqlCommand sql1 = new SqlCommand(insertEmpleHotel);
+                sql1.Connection = conToEmpl;
+                ConexionSQL getEmpleadoByUser= new ConexionSQL();
+                DataTable GETEMPLEADOBYUSER = getEmpleadoByUser.cargarTablaSQL("select empleado_id from WHERE_EN_EL_DELETE_FROM.empleados where usuario_id=" + Sesion.usuario.UsuarioId);
+                sql1.Parameters.Add("@emple", SqlDbType.Int).Value = GETEMPLEADOBYUSER.Rows[0].ItemArray[0];
+                sql1.Parameters.Add("@hotel", SqlDbType.Int).Value = IDHOTELBusqueda.Rows[0].ItemArray[0];
+                int resultEmpleHotel = sql1.ExecuteNonQuery();
 
-                if (result.Equals(1))
+
+
+                if (result.Equals(1) && resultEmpleHotel.Equals(1))
                 {
                     ConexionSQL getRegimen = new ConexionSQL();
                     DataTable resultados = getRegimen.cargarTablaSQL("select regimen_id from WHERE_EN_EL_DELETE_FROM.regimenes where descripcion like'" + 
@@ -130,6 +147,15 @@ namespace FrbaHotel.Hoteles
         private bool TodosLosCamposEstanCompletados()
         {
             int completo = 0;
+            if (this.textBoxEstrellasRecargo.Text.Equals(""))
+            {
+                this.labelEstrellasRecargo.Visible = true;
+            }
+            else
+            {
+                completo++;
+                this.labelEstrellasRecargo.Visible = false;
+            }
             if (this.comboBoxEstrellas.SelectedIndex.Equals(-1))
             {
                 this.labelEstrellasPendiente.Visible = true;
@@ -195,7 +221,7 @@ namespace FrbaHotel.Hoteles
                 this.labelRegimenesPendiente.Visible = false;
             }
 
-            if (completo.Equals(8)) { return true; } else { return false; }
+            if (completo.Equals(9)) { return true; } else { return false; }
         }
 
         private void textBoxTelefonoNuevo_KeyPress(object sender, KeyPressEventArgs e)
