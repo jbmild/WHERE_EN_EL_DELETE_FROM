@@ -45,14 +45,13 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblNumeroFactura = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rdbNoInscripto = new System.Windows.Forms.RadioButton();
-            this.rdbInscripto = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
             this.dtgItemsFactura = new System.Windows.Forms.DataGridView();
             this.cmbFormaPago = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.lblTotalFactura = new System.Windows.Forms.Label();
+            this.cmbTipoIva = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgItemsFactura)).BeginInit();
             this.SuspendLayout();
@@ -201,8 +200,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.rdbNoInscripto);
-            this.groupBox1.Controls.Add(this.rdbInscripto);
+            this.groupBox1.Controls.Add(this.cmbTipoIva);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
@@ -219,28 +217,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cabecera";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // rdbNoInscripto
-            // 
-            this.rdbNoInscripto.AutoSize = true;
-            this.rdbNoInscripto.Location = new System.Drawing.Point(181, 70);
-            this.rdbNoInscripto.Name = "rdbNoInscripto";
-            this.rdbNoInscripto.Size = new System.Drawing.Size(144, 17);
-            this.rdbNoInscripto.TabIndex = 33;
-            this.rdbNoInscripto.TabStop = true;
-            this.rdbNoInscripto.Text = "Responsable no inscripto";
-            this.rdbNoInscripto.UseVisualStyleBackColor = true;
-            // 
-            // rdbInscripto
-            // 
-            this.rdbInscripto.AutoSize = true;
-            this.rdbInscripto.Location = new System.Drawing.Point(46, 70);
-            this.rdbInscripto.Name = "rdbInscripto";
-            this.rdbInscripto.Size = new System.Drawing.Size(129, 17);
-            this.rdbInscripto.TabIndex = 32;
-            this.rdbInscripto.TabStop = true;
-            this.rdbInscripto.Text = "Responsable inscripto";
-            this.rdbInscripto.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -292,6 +268,14 @@
             this.lblTotalFactura.Size = new System.Drawing.Size(0, 13);
             this.lblTotalFactura.TabIndex = 41;
             // 
+            // cmbTipoIva
+            // 
+            this.cmbTipoIva.FormattingEnabled = true;
+            this.cmbTipoIva.Location = new System.Drawing.Point(66, 75);
+            this.cmbTipoIva.Name = "cmbTipoIva";
+            this.cmbTipoIva.Size = new System.Drawing.Size(126, 21);
+            this.cmbTipoIva.TabIndex = 32;
+            // 
             // frmFacturasFicha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,13 +325,12 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblNumeroFactura;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rdbNoInscripto;
-        private System.Windows.Forms.RadioButton rdbInscripto;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView dtgItemsFactura;
         private System.Windows.Forms.ComboBox cmbFormaPago;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblTotalFactura;
+        private System.Windows.Forms.ComboBox cmbTipoIva;
     }
 }

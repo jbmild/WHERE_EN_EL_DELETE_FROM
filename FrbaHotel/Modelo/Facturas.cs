@@ -50,10 +50,12 @@ namespace FrbaHotel.Modelo
 
         }
 
-        public static int guardarFactura(){
+        public static int guardarFactura(Factura f){
 
 
             return 1;
         }
+
+        
     }
 }

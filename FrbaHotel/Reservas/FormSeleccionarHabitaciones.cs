@@ -185,7 +185,9 @@ namespace FrbaHotel.Reservas
                     }
 
                 }
-                precioTotal = decimal.Round(precioTotal, 2);
+                
+                int cantDiasReserva = (dtpFechaCheckout.Value - dtpFechaCheckin.Value).Days;
+                precioTotal = decimal.Round(precioTotal, 2) * Convert.ToDecimal(cantDiasReserva);
 
                 if (habs.Count > 0)
                 {

@@ -61,6 +61,9 @@ namespace FrbaHotel.Facturar
 
             lblTotalFactura.Text = this.loadItemsFactura().ToString();
 
+            cmbTipoIva.Items.Add("Consumidor final");
+            cmbTipoIva.Items.Add("Iva inscripto");
+            cmbTipoIva.Items.Add("Exento");
 
         }
 
@@ -86,7 +89,35 @@ namespace FrbaHotel.Facturar
             }
             else{
 
+                System.Windows.Forms.MessageBox.Show("Debe completar todos los campos de la cabecera de la factura");
+
+                int clienteId = 1; //traerlo de la BD
+                List <Item_factura> items = new List<Item_factura>();
+                Factura fact = new Factura(_estadia_id, clienteId, Convert.ToInt32(lblNumeroFactura.Text),
+                    Sesion.obtenerFechaSistema(), Convert.ToDecimal(lblTotalFactura.Text), txtCuit.Text,
+                    true, txtNombreCliente.Text, Convert.ToInt32(cmbFormaPago.SelectedValue), items);
+
+                foreach (DataGridViewRow row in dtgItemsFactura.Rows){
+                    
+                }
+
+
+                try
+                {
+                    //TODO: Pedir confirmacion
+                    var confirmResult = MessageBox.Show(String.Concat("¿Confirma que desea crear la factura?", MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        Facturas.guardarFactura(fact);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+                
                 //Guardar factura
+
             
             }
             
