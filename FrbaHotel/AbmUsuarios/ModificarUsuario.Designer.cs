@@ -63,6 +63,8 @@
             this.labelConfirmarPass = new System.Windows.Forms.Label();
             this.textBoxConfirmarPass = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.listBoxRolesFinales = new System.Windows.Forms.ListBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -164,6 +166,7 @@
             this.textBoxPiso.Name = "textBoxPiso";
             this.textBoxPiso.Size = new System.Drawing.Size(58, 22);
             this.textBoxPiso.TabIndex = 33;
+            this.textBoxPiso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPiso_KeyPress);
             // 
             // label12
             // 
@@ -180,6 +183,7 @@
             this.textBoxNumero.Name = "textBoxNumero";
             this.textBoxNumero.Size = new System.Drawing.Size(58, 22);
             this.textBoxNumero.TabIndex = 30;
+            this.textBoxNumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumero_KeyPress);
             // 
             // label11
             // 
@@ -280,6 +284,7 @@
             this.textBoxNumeroDOC.Name = "textBoxNumeroDOC";
             this.textBoxNumeroDOC.Size = new System.Drawing.Size(226, 22);
             this.textBoxNumeroDOC.TabIndex = 5;
+            this.textBoxNumeroDOC.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxNumeroDOC_KeyPress);
             // 
             // textBoxTipoDOC
             // 
@@ -389,11 +394,32 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // listBoxRolesFinales
+            // 
+            this.listBoxRolesFinales.FormattingEnabled = true;
+            this.listBoxRolesFinales.ItemHeight = 16;
+            this.listBoxRolesFinales.Location = new System.Drawing.Point(43, 366);
+            this.listBoxRolesFinales.Name = "listBoxRolesFinales";
+            this.listBoxRolesFinales.Size = new System.Drawing.Size(196, 84);
+            this.listBoxRolesFinales.TabIndex = 32;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(122, 472);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(117, 56);
+            this.button4.TabIndex = 33;
+            this.button4.Text = "Modificar roles";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // ModificarUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1539, 492);
+            this.ClientSize = new System.Drawing.Size(1539, 643);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.listBoxRolesFinales);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBoxConfirmarPass);
             this.Controls.Add(this.labelConfirmarPass);
@@ -453,5 +479,7 @@
         private System.Windows.Forms.Label labelConfirmarPass;
         private System.Windows.Forms.TextBox textBoxConfirmarPass;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ListBox listBoxRolesFinales;
+        private System.Windows.Forms.Button button4;
     }
 }

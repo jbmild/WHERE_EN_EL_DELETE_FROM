@@ -25,7 +25,8 @@ namespace FrbaHotel.Modelo
         private string _direccion_localidad;
         private string _direccion_pais;
         private string _nacionalidad;
-        
+        private string _fecha_nacimiento;
+
 
 
         //Getters y setters
@@ -107,6 +108,11 @@ namespace FrbaHotel.Modelo
             get { return _nacionalidad; }
             set { _nacionalidad = value; }
         }
+        public string fecha_nacimiento
+        {
+            get { return _fecha_nacimiento; }
+            set { _fecha_nacimiento = value; }
+        }
 
 
         //Constructores
@@ -137,6 +143,7 @@ namespace FrbaHotel.Modelo
                     _direccion_localidad = row[13].ToString();
                     _direccion_pais = row[14].ToString();
                     _nacionalidad = row[15].ToString();
+                    _fecha_nacimiento = row[16].ToString();
                 }
             }
             else {
@@ -155,13 +162,14 @@ namespace FrbaHotel.Modelo
                 _direccion_localidad = "";
                 _direccion_pais = "";
                 _nacionalidad = "";
+                _fecha_nacimiento = "";
             }
             
         }
 
         public Cliente(int id, bool habilitado, string email, string nombre, string apellido, string telefono, string tipoDoc, string nro_documento, 
                 string direccion_calle, string direccion_numero, string direccion_piso, string direccion_depto, 
-            string direccion_localidad, string direccion_pais, string nacionalidad)
+            string direccion_localidad, string direccion_pais, string nacionalidad, string fecha_nacimiento)
         {
             _idCliente = id;
             _habilitado = habilitado;
@@ -178,6 +186,7 @@ namespace FrbaHotel.Modelo
             _direccion_localidad = direccion_localidad;
             _direccion_pais = direccion_pais;
             _nacionalidad = nacionalidad;
+            _fecha_nacimiento = fecha_nacimiento;
         }
 
         public Cliente() { 
@@ -207,8 +216,8 @@ namespace FrbaHotel.Modelo
                                                     row[12].ToString(), // direccion_depto
                                                     row[13].ToString(), // direccion_localidad
                                                     row[14].ToString(), // direccion_pais
-                                                    row[15].ToString()); // nacionalidad
-
+                                                    row[15].ToString(), // nacionalidad
+                                                    row[16].ToString());//fecha de nacimiento
             }
             else
             {
@@ -228,11 +237,11 @@ namespace FrbaHotel.Modelo
             }
 
             if(nroDoc.Length > 0){
-                sqlQuery+= " AND documento_nro='" + nroDoc + "' ";
+                sqlQuery+= " AND documento_nro like '" + nroDoc + "%' ";
             }
 
             if(email.Length > 0){
-                sqlQuery += " AND mail='" + email + "' ";
+                sqlQuery += " AND mail like '" + email + "%' ";
             }
 
             if (nombre.Length > 0) {
@@ -248,7 +257,7 @@ namespace FrbaHotel.Modelo
             if (dt.Rows.Count > 0)
             {
                 object[] row = dt.Rows[0].ItemArray;
-                return new Cliente(Convert.ToInt32(row[0]), 
+                return new Cliente(Convert.ToInt32(row[0]),
                                                     Convert.ToBoolean(row[2]), //habilitado
                                                     row[3].ToString(), // mail
                                                     row[4].ToString(), // nombre
@@ -262,7 +271,8 @@ namespace FrbaHotel.Modelo
                                                     row[12].ToString(), // direccion_depto
                                                     row[13].ToString(), // direccion_localidad
                                                     row[14].ToString(), // direccion_pais
-                                                    row[15].ToString()); // nacionalidad
+                                                    row[15].ToString(), // nacionalidad
+                                                    row[16].ToString());
 
             }
             else {
@@ -284,12 +294,12 @@ namespace FrbaHotel.Modelo
 
             if (nroDoc.Length > 0)
             {
-                sqlQuery += " AND documento_nro='" + nroDoc + "' ";
+                sqlQuery += " AND documento_nro like '" + nroDoc + "%' ";
             }
 
             if (email.Length > 0)
             {
-                sqlQuery += " AND mail='" + email + "' ";
+                sqlQuery += " AND mail like '" + email + "%' ";
             }
 
             if (nombre.Length > 0)
@@ -324,15 +334,15 @@ namespace FrbaHotel.Modelo
                                                 documento_nro=@nrodocumento,direccion_calle=@direccion_calle,
                                                 direccion_nro=@direccion_nro,direccion_piso=@direccion_piso,
                                                 direccion_depto=@direccion_depto,direccion_localidad=@direccion_localidad,
-                                                direccion_pais=@direccion_pais,nacionalidad=@nacionalidad,consistente=1
+                                                direccion_pais=@direccion_pais,nacionalidad=@nacionalidad,fecha_nacimiento=@fecha_nacimiento,consistente=1
                                                 WHERE cliente_id=@cliente_id
                                                 SELECT @@ROWCOUNT ");
             }
             else
             {
                 command = new SqlCommand(@"INSERT INTO WHERE_EN_EL_DELETE_FROM.Clientes 
-                                        (usuarios_id, mail, nombre, apellido, telefono, documento_tipo, documento_nro, direccion_calle, direccion_nro, direccion_piso, direccion_depto, direccion_localidad, direccion_pais, nacionalidad, consistente)
-                                        VALUES(@usuario_id, @mail, @nombre, @apellido, @telefono, @tipoDoc, @nrodocumento, @direccion_calle, @direccion_nro, @direccion_piso, @direccion_depto, @direccion_localidad, @direccion_pais, @nacionalidad, 1)
+                                        (usuarios_id, mail, nombre, apellido, telefono, documento_tipo, documento_nro, direccion_calle, direccion_nro, direccion_piso, direccion_depto, direccion_localidad, direccion_pais, nacionalidad, fecha_nacimiento, consistente)
+                                        VALUES(@usuario_id, @mail, @nombre, @apellido, @telefono, @tipoDoc, @nrodocumento, @direccion_calle, @direccion_nro, @direccion_piso, @direccion_depto, @direccion_localidad, @direccion_pais, @nacionalidad, @fecha_nacimiento, 1)
                                         SELECT SCOPE_IDENTITY() ");
             }
 
@@ -353,6 +363,7 @@ namespace FrbaHotel.Modelo
             command.Parameters.Add("@direccion_pais", SqlDbType.NVarChar).Value = cli.direccion_pais;
             command.Parameters.Add("@nacionalidad", SqlDbType.NVarChar).Value = cli.nacionalidad;
             command.Parameters.Add("@cliente_id", SqlDbType.NVarChar).Value = cli.idCliente;
+            command.Parameters.Add("@fecha_nacimiento", SqlDbType.Date).Value = cli.fecha_nacimiento;
             _idCliente = Convert.ToInt32(command.ExecuteScalar());
 
             return _idCliente; 

@@ -96,7 +96,9 @@ namespace FrbaHotel.Hoteles.Modelo
                     this.ciudad = data.Rows[0][5].ToString();
                     this.pais = data.Rows[0][6].ToString();
                     this.estrellas_cant = Convert.ToInt32(data.Rows[0][7]);
+                   
                     this.estrellas_recargo = Convert.ToInt32(data.Rows[0][8]);
+                   
                     this.fecha_creacion = Convert.ToDateTime(data.Rows[0][9]);
                 }
             }

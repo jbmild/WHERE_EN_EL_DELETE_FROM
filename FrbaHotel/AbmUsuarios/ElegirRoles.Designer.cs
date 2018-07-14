@@ -119,6 +119,7 @@
             this.Controls.Add(this.listBoxRolesDisponibles);
             this.Name = "ElegirRoles";
             this.Text = "ElegirRoles";
+            this.Load += new System.EventHandler(this.ElegirRoles_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

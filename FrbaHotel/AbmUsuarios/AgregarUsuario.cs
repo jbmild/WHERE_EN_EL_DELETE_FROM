@@ -14,6 +14,7 @@ namespace FrbaHotel.AbmUsuarios
     {
         private string hotel_nom;
         private int hotel_ID;
+        private Usuarios pantallaUsu;
         public AgregarUsuario()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace FrbaHotel.AbmUsuarios
             }
             else
             {
-                crear.Crear(c, this.textBoxApellido.Text, this.textBoxDepto.Text, this.textBoxDireccion.Text, this.textBoxMail.Text, this.textBoxNombre.Text, this.textBoxNumero.Text, this.textBoxNumeroDOC.Text, this.textBoxPais.Text, this.textBoxPiso.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, this.dateTimePickerFechaNacimiento.Value, this.textBoxLocalidad.Text, this.textBoxPassword.Text, this.listBoxRolesElegidos, this.hotel_ID);
+                crear.Crear(c, this.textBoxApellido.Text, this.textBoxDepto.Text, this.textBoxDireccion.Text, this.textBoxMail.Text, this.textBoxNombre.Text, this.textBoxNumero.Text, this.textBoxNumeroDOC.Text, this.textBoxPais.Text, this.textBoxPiso.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, this.dateTimePickerFechaNacimiento.Value, this.textBoxLocalidad.Text, this.textBoxPassword.Text, this.listBoxRolesElegidos, this.hotel_ID, this, pantallaUsu);
             }
             
         }
@@ -56,8 +57,9 @@ namespace FrbaHotel.AbmUsuarios
             }
         }
 
-        internal void RecibirHotel(string hotName, int hotID)
+        internal void RecibirHotel(string hotName, int hotID, Usuarios pUsu)
         {
+            this.pantallaUsu = pUsu;
             this.hotel_ID = hotID;
             this.hotel_nom = hotName;
             this.labelHotel.Text = hotel_nom;

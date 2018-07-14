@@ -11,8 +11,8 @@ namespace FrbaHotel.AbmUsuarios
         internal DataTable Buscar(ConexionSQL c, string ape, string dir, string localidad, string numero, string pais, string piso, string mail, string nom, string numdoc, string tel, string tipodoc, string usu,  int hotelid)
         {
        // int hayfiltro=0;
-        string query = "SELECT u.usuario, r.nombre, e.nombre, e.apellido, e.direccion_calle, e.direccion_nro, e.direccion_depto, e.direccion_localidad, e.direccion_pais, e.documento_tipo," +
-            " e.documento_nro, e.mail, e.telefono from WHERE_EN_EL_DELETE_FROM.empleados e" +
+            string query = "SELECT u.usuario as Nombre_Usuario, r.nombre as Rol, e.nombre as Nombre, e.apellido as Apellido, e.direccion_calle as Calle, e.direccion_nro as Altura, e.direccion_depto as Depto, e.direccion_localidad as Localidad, e.direccion_pais as Pais, e.documento_tipo as Tipo_DOC," +
+            " e.documento_nro as Nro_DOC, e.mail as Mail, e.telefono as Telefono from WHERE_EN_EL_DELETE_FROM.empleados e" +
             " join WHERE_EN_EL_DELETE_FROM.empleados_hoteles eh on e.empleado_id = eh.empleado_id" +
             " join WHERE_EN_EL_DELETE_FROM.usuarios u on e.usuario_id=u.usuario_id " +
             " join WHERE_EN_EL_DELETE_FROM.usuarios_roles ur on ur.usuario_id= u.usuario_id" + 

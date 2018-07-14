@@ -62,7 +62,7 @@ namespace FrbaHotel.AbmUsuarios
             ModificarUsuarioObject modificar = new ModificarUsuarioObject();
             modificar.GuardarDatos(this.textBoxApellido.Text, this.textBoxConfirmarPass.Text, this.textBoxDepto.Text, this.textBoxDireccion.Text, this.textBoxLocalidad.Text,
                 this.textBoxMail.Text, this.textBoxNombre.Text, this.textBoxNumero.Text, this.textBoxNumeroDOC.Text, this.textBoxPais.Text, this.textBoxPassword.Text,
-                 this.textBoxPiso.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, user, pantalla, usuariosPantalla);
+                 this.textBoxPiso.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, user, pantalla, usuariosPantalla, this.listBoxRolesFinales);
         }
 
         private void textBoxPassword_TextChanged(object sender, EventArgs e)
@@ -84,6 +84,8 @@ namespace FrbaHotel.AbmUsuarios
         private void ModificarUsuario_Load(object sender, EventArgs e)
         {
             this.usuario = textBoxUsuario.Text;
+            ElegirRolesModificarUsuario buscarRoles = new ElegirRolesModificarUsuario();
+            buscarRoles.BuscarRolesParaModificar(this.listBoxRolesFinales, this.usuario);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -103,6 +105,71 @@ namespace FrbaHotel.AbmUsuarios
             this.textBoxTelefono.Text = "";
             this.textBoxTipoDOC.Text = "";
             
+        }
+
+        private void textBoxNumeroDOC_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar))//Si es número
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == (char)Keys.Back)//si es tecla borrar
+            {
+                e.Handled = false;
+            }
+            else //Si es otra tecla cancelamos
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxNumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar))//Si es número
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == (char)Keys.Back)//si es tecla borrar
+            {
+                e.Handled = false;
+            }
+            else //Si es otra tecla cancelamos
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxPiso_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar))//Si es número
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == (char)Keys.Back)//si es tecla borrar
+            {
+                e.Handled = false;
+            }
+            else //Si es otra tecla cancelamos
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
+            ElegirRolesModificarUsuario elegirRoles = new ElegirRolesModificarUsuario();
+            elegirRoles.RecibirRolesActuales(this.listBoxRolesFinales, this);
+            elegirRoles.ShowDialog();
+        }
+
+        internal void RecibirRolesActualizados(ListBox listBox)
+        {
+            this.listBoxRolesFinales.Items.Clear();
+            foreach (var item in listBox.Items) 
+            {
+                this.listBoxRolesFinales.Items.Add(item);
+            }
         }
     }
 }
