@@ -37,7 +37,7 @@ namespace FrbaHotel.AbmUsuarios
             {
                 crear.Crear(c, this.textBoxApellido.Text, this.textBoxDepto.Text, this.textBoxDireccion.Text, this.textBoxMail.Text, this.textBoxNombre.Text, this.textBoxNumero.Text, this.textBoxNumeroDOC.Text, this.textBoxPais.Text, this.textBoxPiso.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, this.dateTimePickerFechaNacimiento.Value, this.textBoxLocalidad.Text, this.textBoxPassword.Text, this.listBoxRolesElegidos, this.hotel_ID);
             }
-            this.Hide();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)

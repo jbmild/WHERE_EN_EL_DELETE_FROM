@@ -310,6 +310,7 @@
             this.button3.TabIndex = 26;
             this.button3.Text = "Limpiar campos";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button1
             // 
@@ -332,6 +333,8 @@
             // 
             // textBoxUsuario
             // 
+            this.textBoxUsuario.Enabled = false;
+            this.textBoxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxUsuario.Location = new System.Drawing.Point(164, 44);
             this.textBoxUsuario.Name = "textBoxUsuario";
             this.textBoxUsuario.Size = new System.Drawing.Size(100, 22);

@@ -12,6 +12,7 @@ namespace FrbaHotel.AbmUsuarios
 {
     public partial class ModificarUsuario : Form
     {
+        Usuarios _usuariosPantalla;
         string usuario;
         public ModificarUsuario()
         {
@@ -19,7 +20,7 @@ namespace FrbaHotel.AbmUsuarios
         }
 
         internal void RecibirDatosUsuario(string usu, string rol, string nombre, string apellido, string dirCalle, string dirNro, string dirDepto, string dirLocalidad,
-            string dirPais, string docTipo, string docNro, string mail, string tel)
+            string dirPais, string docTipo, string docNro, string mail, string tel, Usuarios usuariosPantalla)
         {
             this.textBoxApellido.Text = apellido;
             this.textBoxUsuario.Text = usu;
@@ -33,6 +34,7 @@ namespace FrbaHotel.AbmUsuarios
             this.textBoxNumeroDOC.Text = docNro;
             this.textBoxMail.Text = mail;
             this.textBoxTelefono.Text = tel;
+            this._usuariosPantalla = usuariosPantalla;
             
         }
 
@@ -40,27 +42,27 @@ namespace FrbaHotel.AbmUsuarios
         {
             if (this.labelConfirmarPass.Visible.Equals(true))
             {
-                if (this.textBoxPassword.Text.Equals(this.textBoxConfirmarPass.Text))
+                if (this.textBoxPassword.Text.Equals(this.textBoxConfirmarPass.Text) && this.textBoxPassword.Text!= "")
                 {
-                    this.GuardarCambios(usuario);
+                    this.GuardarCambios(usuario, this, _usuariosPantalla);
                 }
                 else
                 {
-                    MessageBox.Show("Las contraseñas ingresadas no coinciden. Por favor, corríjalas");
+                    MessageBox.Show("Las contraseñas ingresadas no coinciden o no ha escrito ninguna");
                 }
             }
             else 
             {
-                this.GuardarCambios(usuario); 
+                this.GuardarCambios(usuario, this, _usuariosPantalla); 
             }
         }
 
-        private void GuardarCambios(string user)
+        private void GuardarCambios(string user, ModificarUsuario pantalla, Usuarios usuariosPantalla)
         {
             ModificarUsuarioObject modificar = new ModificarUsuarioObject();
             modificar.GuardarDatos(this.textBoxApellido.Text, this.textBoxConfirmarPass.Text, this.textBoxDepto.Text, this.textBoxDireccion.Text, this.textBoxLocalidad.Text,
                 this.textBoxMail.Text, this.textBoxNombre.Text, this.textBoxNumero.Text, this.textBoxNumeroDOC.Text, this.textBoxPais.Text, this.textBoxPassword.Text,
-                 this.textBoxPiso.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, user);
+                 this.textBoxPiso.Text, this.textBoxTelefono.Text, this.textBoxTipoDOC.Text, this.textBoxUsuario.Text, user, pantalla, usuariosPantalla);
         }
 
         private void textBoxPassword_TextChanged(object sender, EventArgs e)
@@ -82,6 +84,25 @@ namespace FrbaHotel.AbmUsuarios
         private void ModificarUsuario_Load(object sender, EventArgs e)
         {
             this.usuario = textBoxUsuario.Text;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.textBoxApellido.Text = "";
+            this.textBoxConfirmarPass.Text = "";
+            this.textBoxDepto.Text = "";
+            this.textBoxDireccion.Text = "";
+            this.textBoxLocalidad.Text = "";
+            this.textBoxMail.Text = "";
+            this.textBoxNombre.Text = "";
+            this.textBoxNumero.Text = "";
+            this.textBoxNumeroDOC.Text = "";
+            this.textBoxPais.Text = "";
+            this.textBoxPassword.Text = "";
+            this.textBoxPiso.Text = "";
+            this.textBoxTelefono.Text = "";
+            this.textBoxTipoDOC.Text = "";
+            
         }
     }
 }

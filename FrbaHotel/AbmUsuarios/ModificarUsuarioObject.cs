@@ -13,11 +13,11 @@ namespace FrbaHotel.AbmUsuarios
     {
         bool hayCambios;
         
-        int modificacionUsuarioClave;
+        int modificacionUsuarioClave=0;
         
         string updateUsuarioClave;
         internal void GuardarDatos(string apellido, string confirmarPass, string depto, string dir, string localidad, string mail, string nombre, string num,
-            string numdoc, string pais, string pass, string piso, string tel, string tipodoc, string usu, string currentUser)
+            string numdoc, string pais, string pass, string piso, string tel, string tipodoc, string usu, string currentUser, ModificarUsuario pantalla, Usuarios usuariosPantalla)
         {
             SqlConnection con1 = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
             con1.Open();
@@ -50,33 +50,29 @@ namespace FrbaHotel.AbmUsuarios
          {
              SqlConnection con2 = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
              con2.Open();
-             updateUsuarioClave += "UPDATE WHERE_EN_EL_DELETE_FROM.usuarios set contrasena=HASHBYTES('SHA2_256', CONVERT(VARCHAR(32),@pass)) where usuario_id='@id'";
+             updateUsuarioClave += "UPDATE WHERE_EN_EL_DELETE_FROM.usuarios set contrasena=HASHBYTES('SHA2_256', CONVERT(VARCHAR(32),@pass)) where usuario_id=@id";
              SqlCommand sqlQuery2 = new SqlCommand(updateUsuarioClave);
              sqlQuery2.Connection = con2;
 
              //if (usu != "" || pass != "" || confirmarPass != "") {  
 
-             sqlQuery2.Parameters.Add("@usu", SqlDbType.NVarChar).Value = usu;
-             sqlQuery2.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;//}
+             sqlQuery2.Parameters.Add("@pass", SqlDbType.NVarChar).Value = pass;
+             sqlQuery2.Parameters.Add("@id", SqlDbType.Int).Value = id;//}
              modificacionUsuarioClave = sqlQuery2.ExecuteNonQuery();
-            
+
          }
-         else {
-             SqlConnection con2 = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
-             con2.Open();
-             updateUsuarioClave += "UPDATE WHERE_EN_EL_DELETE_FROM.usuarios set usuario=@usu where usuario_id=@id";
-             SqlCommand sqlQuery2 = new SqlCommand(updateUsuarioClave);
-             sqlQuery2.Connection = con2;
-             sqlQuery2.Parameters.Add("@usu", SqlDbType.NVarChar).Value = usu;
-             sqlQuery2.Parameters.Add("@id", SqlDbType.NVarChar).Value = id;
-             modificacionUsuarioClave = sqlQuery2.ExecuteNonQuery();
-         }
+         else { modificacionUsuarioClave = 1; }
          
        
 
             if (modificacionUsuario.Equals(1) && modificacionUsuarioClave.Equals(1))
             {
                 MessageBox.Show("¡Usuario modificado con éxito!");
+                pantalla.Hide();
+                usuariosPantalla.Hide();
+                usuariosPantalla.Show();
+                usuariosPantalla.Usuarios_Load(new object(), new EventArgs());
+                
             }
             else 
             {

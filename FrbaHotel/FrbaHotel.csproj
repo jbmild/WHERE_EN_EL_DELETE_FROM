@@ -60,7 +60,14 @@
     <Compile Include="AbmUsuarios\AgregarUsuario.Designer.cs">
       <DependentUpon>AgregarUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmUsuarios\BajaUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuarios\BajaUsuarios.Designer.cs">
+      <DependentUpon>BajaUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmUsuarios\BuscarRolesParaNuevoUsuario.cs" />
+    <Compile Include="AbmUsuarios\BuscarUsuarioBaja.cs" />
     <Compile Include="AbmUsuarios\BuscarUsuarios.cs" />
     <Compile Include="AbmUsuarios\CrearUsuario.cs" />
     <Compile Include="AbmUsuarios\ElegirRoles.cs">
@@ -357,6 +364,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuarios\AgregarUsuario.resx">
       <DependentUpon>AgregarUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuarios\BajaUsuarios.resx">
+      <DependentUpon>BajaUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuarios\ElegirRoles.resx">
       <DependentUpon>ElegirRoles.cs</DependentUpon>

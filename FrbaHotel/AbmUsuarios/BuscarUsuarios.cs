@@ -16,7 +16,8 @@ namespace FrbaHotel.AbmUsuarios
             " join WHERE_EN_EL_DELETE_FROM.empleados_hoteles eh on e.empleado_id = eh.empleado_id" +
             " join WHERE_EN_EL_DELETE_FROM.usuarios u on e.usuario_id=u.usuario_id " +
             " join WHERE_EN_EL_DELETE_FROM.usuarios_roles ur on ur.usuario_id= u.usuario_id" + 
-            " join WHERE_EN_EL_DELETE_FROM.roles r on r.rol_id=ur.rol_id where eh.hotel_id=" + hotelid ;
+            " join WHERE_EN_EL_DELETE_FROM.roles r on r.rol_id=ur.rol_id where eh.hotel_id=" + hotelid +
+            " and r.nombre not like 'Guest'";
                     
 
             if (usu.Equals("")) { }
@@ -85,13 +86,13 @@ namespace FrbaHotel.AbmUsuarios
 
         internal DataTable BusquedaInicial(ConexionSQL c, int hotelID)
         {
-            return c.cargarTablaSQL("select u.usuario, r.nombre, e.nombre, e.apellido, e.direccion_calle, e.direccion_nro, e.direccion_depto, e.direccion_localidad, e.direccion_pais, e.documento_tipo," +
-            " e.documento_nro, e.mail, e.telefono from WHERE_EN_EL_DELETE_FROM.empleados e join "
+            return c.cargarTablaSQL("select u.usuario as Nombre_Usuario, r.nombre as Rol, e.nombre as Nombre, e.apellido as Apellido, e.direccion_calle as Calle, e.direccion_nro as Altura, e.direccion_depto as Depto, e.direccion_localidad as Localidad, e.direccion_pais as Pais, e.documento_tipo as Tipo_DOC," +
+            " e.documento_nro as Nro_DOC, e.mail as Mail, e.telefono as Telefono from WHERE_EN_EL_DELETE_FROM.empleados e join "
                 + " WHERE_EN_EL_DELETE_FROM.empleados_hoteles eh on e.empleado_id=eh.empleado_id "
                 + " join WHERE_EN_EL_DELETE_FROM.usuarios u on u.usuario_id=e.usuario_id"
                 + " join WHERE_EN_EL_DELETE_FROM.usuarios_roles ur on ur.usuario_id=u.usuario_id" +
                 " join WHERE_EN_EL_DELETE_FROM.roles r on ur.rol_id=r.rol_id " 
-                + " where eh.hotel_id=" + hotelID + " order by r.nombre asc");
+                + " where eh.hotel_id=" + hotelID + " and r.nombre not like 'Guest' order by r.nombre asc");
             
 
         }

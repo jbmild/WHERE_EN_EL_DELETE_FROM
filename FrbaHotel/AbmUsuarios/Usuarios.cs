@@ -19,7 +19,7 @@ namespace FrbaHotel.AbmUsuarios
             InitializeComponent();
         }
 
-        private void Usuarios_Load(object sender, EventArgs e)
+        public void Usuarios_Load(object sender, EventArgs e)
         {
             ConexionSQL c = new ConexionSQL();
             BuscarUsuarios b = new BuscarUsuarios();
@@ -30,6 +30,7 @@ namespace FrbaHotel.AbmUsuarios
            dataGridView1.DataSource = resultados;
 
         }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -80,8 +81,15 @@ namespace FrbaHotel.AbmUsuarios
                 m.RecibirDatosUsuario(selectedRow.Cells[2].Value.ToString(),selectedRow.Cells[3].Value.ToString(),selectedRow.Cells[4].Value.ToString(),
                     selectedRow.Cells[5].Value.ToString(),selectedRow.Cells[6].Value.ToString(),selectedRow.Cells[7].Value.ToString(),selectedRow.Cells[8].Value.ToString(),
                     selectedRow.Cells[9].Value.ToString(), selectedRow.Cells[10].Value.ToString(), selectedRow.Cells[11].Value.ToString(), selectedRow.Cells[12].Value.ToString(),
-                    selectedRow.Cells[13].Value.ToString(), selectedRow.Cells[4].Value.ToString());
+                    selectedRow.Cells[13].Value.ToString(), selectedRow.Cells[4].Value.ToString(),this);
                 m.Show();
+            }
+            if (e.ColumnIndex.Equals(1)) {
+                BajaUsuarios pantallitaBaja = new BajaUsuarios();
+                int row = e.RowIndex;
+                DataGridViewRow selected = dataGridView1.Rows[row];
+                pantallitaBaja.EnviarUsuario(selected.Cells[2].Value.ToString());
+                pantallitaBaja.Show();
             }
         }
     }
