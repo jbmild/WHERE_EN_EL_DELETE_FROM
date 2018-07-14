@@ -219,6 +219,7 @@
     <Compile Include="Login\Modelo\UsuarioRol.cs" />
     <Compile Include="Login\Modelo\Usuarios.cs" />
     <Compile Include="Login\Modelo\UsuariosRoles.cs" />
+    <Compile Include="Modelo\Factura.cs" />
     <Compile Include="Modelo\Estadias.cs" />
     <Compile Include="Modelo\Facturas.cs" />
     <Compile Include="Modelo\FormasPago.cs" />

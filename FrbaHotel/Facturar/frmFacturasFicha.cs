@@ -80,7 +80,7 @@ namespace FrbaHotel.Facturar
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if(txtNombreCliente.Text.Length == 0 || txtDomicilioCliente.Text.Length == 0 || 
-                txtLocalidadCliente.Text.Length == 0 || txtCuit.Text.Length == 0 || (!rdbInscripto.Checked && !rdbNoInscripto.Checked){
+                txtLocalidadCliente.Text.Length == 0 || txtCuit.Text.Length == 0 || (!rdbInscripto.Checked && !rdbNoInscripto.Checked)){
 
                 System.Windows.Forms.MessageBox.Show("Debe completar todos los campos de la cabecera de la factura");
             }
