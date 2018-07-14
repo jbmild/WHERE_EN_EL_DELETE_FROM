@@ -1,6 +1,6 @@
-﻿namespace FrbaHotel.AbmHotel
+﻿namespace FrbaHotel.Hoteles
 {
-    partial class modificarHotel
+    partial class frmHotelesListado
     {
         /// <summary>
         /// Required designer variable.
@@ -225,7 +225,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "modificarHotel";
             this.Text = "Modificar hotel";
-            this.Load += new System.EventHandler(this.modificarHotel_Load);
+            this.Load += new System.EventHandler(this.frmHotelesListado_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

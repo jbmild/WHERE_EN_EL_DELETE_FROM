@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace FrbaHotel.AbmHotel
+namespace FrbaHotel.Hoteles
 {
-    public partial class modificarHotel : Form
+    public partial class frmHotelesListado : Form
 
         
     {
         AbmHoteles abm = new AbmHoteles();
-        public modificarHotel()
+        public frmHotelesListado()
         {
             InitializeComponent();
             
 
         }
 
-        private void modificarHotel_Load(object sender, EventArgs e)
+        private void frmHotelesListado_Load(object sender, EventArgs e)
         {
             ConexionSQL c = new ConexionSQL();
             DataTable estrellas = c.cargarTablaSQL("select distinct estrellas_cant from WHERE_EN_EL_DELETE_FROM.hoteles");

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.AbmHotel
+namespace FrbaHotel.Hoteles
 {
     public partial class buscadorRegimenes : Form
     {

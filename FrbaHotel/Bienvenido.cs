@@ -210,7 +210,7 @@ namespace FrbaHotel
 
         private void btnHoteles_Click(object sender, EventArgs e)
         {
-            AbmHotel.modificarHotel hotelPantalla = new AbmHotel.modificarHotel();
+            Hoteles.frmHotelesListado hotelPantalla = new Hoteles.frmHotelesListado();
             hotelPantalla.ShowDialog(this);
         }
 

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.AbmHotel
+namespace FrbaHotel.Hoteles
 {
     public partial class motivoBajaHotel : Form
     {
@@ -48,6 +48,11 @@ namespace FrbaHotel.AbmHotel
             fechaIn = dateTime1;
             fechaOut = dateTime2;
             hotelID = Int32.Parse(_hotelID);
+        }
+
+        private void motivoBajaHotel_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

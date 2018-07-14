@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.AbmHotel
+﻿namespace FrbaHotel.Hoteles
 {
     partial class motivoBajaHotel
     {
@@ -38,41 +38,44 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(47, 24);
+            this.label1.Location = new System.Drawing.Point(53, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 17);
+            this.label1.Size = new System.Drawing.Size(51, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Título:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 75);
+            this.label2.Location = new System.Drawing.Point(53, 94);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 17);
+            this.label2.Size = new System.Drawing.Size(63, 20);
             this.label2.TabIndex = 1;
             this.label2.Text = "Detalle:";
             // 
             // textBoxTitulo
             // 
-            this.textBoxTitulo.Location = new System.Drawing.Point(120, 20);
+            this.textBoxTitulo.Location = new System.Drawing.Point(135, 25);
+            this.textBoxTitulo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxTitulo.Name = "textBoxTitulo";
-            this.textBoxTitulo.Size = new System.Drawing.Size(325, 22);
+            this.textBoxTitulo.Size = new System.Drawing.Size(365, 26);
             this.textBoxTitulo.TabIndex = 2;
             // 
             // textBoxDetalle
             // 
-            this.textBoxDetalle.Location = new System.Drawing.Point(120, 72);
+            this.textBoxDetalle.Location = new System.Drawing.Point(135, 90);
+            this.textBoxDetalle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxDetalle.Multiline = true;
             this.textBoxDetalle.Name = "textBoxDetalle";
-            this.textBoxDetalle.Size = new System.Drawing.Size(325, 70);
+            this.textBoxDetalle.Size = new System.Drawing.Size(365, 86);
             this.textBoxDetalle.TabIndex = 3;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(305, 166);
+            this.button1.Location = new System.Drawing.Point(343, 208);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(165, 49);
+            this.button1.Size = new System.Drawing.Size(186, 61);
             this.button1.TabIndex = 4;
             this.button1.Text = "Guardar";
             this.button1.UseVisualStyleBackColor = true;
@@ -80,16 +83,18 @@
             // 
             // motivoBajaHotel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 259);
+            this.ClientSize = new System.Drawing.Size(704, 324);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBoxDetalle);
             this.Controls.Add(this.textBoxTitulo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "motivoBajaHotel";
             this.Text = "Motivo baja hotel";
+            this.Load += new System.EventHandler(this.motivoBajaHotel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

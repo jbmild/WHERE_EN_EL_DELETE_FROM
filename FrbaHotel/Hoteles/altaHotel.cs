@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 
-namespace FrbaHotel.AbmHotel
+namespace FrbaHotel.Hoteles
 {
     public partial class altaHotel : Form
     {

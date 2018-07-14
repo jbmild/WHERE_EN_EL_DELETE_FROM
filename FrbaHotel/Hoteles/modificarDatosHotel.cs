@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FrbaHotel.AbmHotel
+namespace FrbaHotel.Hoteles
 {
     public partial class modificarDatosHotel : Form
     {
@@ -194,7 +194,7 @@ namespace FrbaHotel.AbmHotel
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
-            modificarHotel m = new modificarHotel();
+            frmHotelesListado m = new frmHotelesListado();
             m.Show();
         }
     }

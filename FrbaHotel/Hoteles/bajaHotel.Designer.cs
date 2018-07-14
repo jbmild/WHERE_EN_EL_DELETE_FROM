@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.AbmHotel
+﻿namespace FrbaHotel.Hoteles
 {
     partial class bajaHotel
     {
