@@ -50,6 +50,7 @@
             this.lblRegimenId = new System.Windows.Forms.Label();
             this.lblPrecioRegimen = new System.Windows.Forms.Label();
             this.lblSubTotalReserva = new System.Windows.Forms.Label();
+            this.labelRegimenPendiente = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgRegimenesHoteles)).BeginInit();
             this.SuspendLayout();
@@ -58,9 +59,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(288, 31);
+            this.label1.Location = new System.Drawing.Point(384, 38);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 18);
+            this.label1.Size = new System.Drawing.Size(162, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Buscar Habitacion";
             // 
@@ -68,9 +70,10 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Franklin Gothic Medium", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(12, 0);
+            this.linkLabel1.Location = new System.Drawing.Point(16, 0);
+            this.linkLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(244, 24);
+            this.linkLabel1.Size = new System.Drawing.Size(310, 30);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Sistema de Gestión Hotelera";
@@ -78,44 +81,49 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 70);
+            this.label2.Location = new System.Drawing.Point(21, 86);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 13);
+            this.label2.Size = new System.Drawing.Size(234, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Los campos con (*) son obligatorios";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 117);
+            this.label4.Location = new System.Drawing.Point(12, 144);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 13);
+            this.label4.Size = new System.Drawing.Size(112, 17);
             this.label4.TabIndex = 5;
             this.label4.Text = "* Fecha checkin:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(256, 117);
+            this.label5.Location = new System.Drawing.Point(341, 144);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 13);
+            this.label5.Size = new System.Drawing.Size(121, 17);
             this.label5.TabIndex = 6;
             this.label5.Text = "* Fecha checkout:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(9, 144);
+            this.label7.Location = new System.Drawing.Point(12, 177);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(45, 17);
             this.label7.TabIndex = 8;
             this.label7.Text = "Hotel:";
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(415, 228);
+            this.btnBuscar.Location = new System.Drawing.Point(553, 281);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(97, 31);
+            this.btnBuscar.Size = new System.Drawing.Size(129, 38);
             this.btnBuscar.TabIndex = 12;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -123,9 +131,10 @@
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.Location = new System.Drawing.Point(377, 494);
+            this.btnSeleccionar.Location = new System.Drawing.Point(503, 608);
+            this.btnSeleccionar.Margin = new System.Windows.Forms.Padding(4);
             this.btnSeleccionar.Name = "btnSeleccionar";
-            this.btnSeleccionar.Size = new System.Drawing.Size(97, 31);
+            this.btnSeleccionar.Size = new System.Drawing.Size(129, 38);
             this.btnSeleccionar.TabIndex = 13;
             this.btnSeleccionar.Text = "Seleccionar";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
@@ -133,9 +142,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(528, 494);
+            this.button3.Location = new System.Drawing.Point(704, 608);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(97, 31);
+            this.button3.Size = new System.Drawing.Size(129, 38);
             this.button3.TabIndex = 14;
             this.button3.Text = "Cerrar";
             this.button3.UseVisualStyleBackColor = true;
@@ -143,9 +153,10 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(12, 228);
+            this.button4.Location = new System.Drawing.Point(16, 281);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(97, 31);
+            this.button4.Size = new System.Drawing.Size(129, 38);
             this.button4.TabIndex = 15;
             this.button4.Text = "Limpiar";
             this.button4.UseVisualStyleBackColor = true;
@@ -154,10 +165,11 @@
             // dtpFechaCheckin
             // 
             this.dtpFechaCheckin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaCheckin.Location = new System.Drawing.Point(110, 118);
+            this.dtpFechaCheckin.Location = new System.Drawing.Point(147, 145);
+            this.dtpFechaCheckin.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFechaCheckin.MinDate = new System.DateTime(2018, 6, 25, 0, 0, 0, 0);
             this.dtpFechaCheckin.Name = "dtpFechaCheckin";
-            this.dtpFechaCheckin.Size = new System.Drawing.Size(99, 20);
+            this.dtpFechaCheckin.Size = new System.Drawing.Size(131, 22);
             this.dtpFechaCheckin.TabIndex = 16;
             this.dtpFechaCheckin.Value = new System.DateTime(2018, 7, 1, 0, 0, 0, 0);
             this.dtpFechaCheckin.ValueChanged += new System.EventHandler(this.dtpFechaCheckin_ValueChanged);
@@ -165,9 +177,10 @@
             // dtpFechaCheckout
             // 
             this.dtpFechaCheckout.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaCheckout.Location = new System.Drawing.Point(357, 117);
+            this.dtpFechaCheckout.Location = new System.Drawing.Point(476, 144);
+            this.dtpFechaCheckout.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFechaCheckout.Name = "dtpFechaCheckout";
-            this.dtpFechaCheckout.Size = new System.Drawing.Size(97, 20);
+            this.dtpFechaCheckout.Size = new System.Drawing.Size(128, 22);
             this.dtpFechaCheckout.TabIndex = 17;
             this.dtpFechaCheckout.Value = new System.DateTime(2018, 7, 1, 0, 0, 0, 0);
             this.dtpFechaCheckout.ValueChanged += new System.EventHandler(this.dtpFechaCheckout_ValueChanged);
@@ -175,10 +188,11 @@
             // cmbHotel
             // 
             this.cmbHotel.FormattingEnabled = true;
-            this.cmbHotel.Location = new System.Drawing.Point(66, 144);
+            this.cmbHotel.Location = new System.Drawing.Point(88, 177);
+            this.cmbHotel.Margin = new System.Windows.Forms.Padding(4);
             this.cmbHotel.Name = "cmbHotel";
             this.cmbHotel.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.cmbHotel.Size = new System.Drawing.Size(153, 21);
+            this.cmbHotel.Size = new System.Drawing.Size(203, 24);
             this.cmbHotel.TabIndex = 20;
             this.cmbHotel.SelectedIndexChanged += new System.EventHandler(this.cmbHotel_SelectedIndexChanged);
             // 
@@ -190,9 +204,10 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clnSeleccion});
-            this.dataGridView1.Location = new System.Drawing.Point(12, 265);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 326);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(875, 192);
+            this.dataGridView1.Size = new System.Drawing.Size(1167, 236);
             this.dataGridView1.TabIndex = 11;
             // 
             // clnSeleccion
@@ -201,32 +216,35 @@
             this.clnSeleccion.Name = "clnSeleccion";
             this.clnSeleccion.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.clnSeleccion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.clnSeleccion.Width = 88;
+            this.clnSeleccion.Width = 107;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(240, 144);
+            this.label6.Location = new System.Drawing.Point(320, 177);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 13);
+            this.label6.Size = new System.Drawing.Size(111, 17);
             this.label6.TabIndex = 7;
             this.label6.Text = "Tipo Habitacion:";
             // 
             // cmbTipoHab
             // 
             this.cmbTipoHab.FormattingEnabled = true;
-            this.cmbTipoHab.Location = new System.Drawing.Point(331, 141);
+            this.cmbTipoHab.Location = new System.Drawing.Point(441, 174);
+            this.cmbTipoHab.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTipoHab.Name = "cmbTipoHab";
-            this.cmbTipoHab.Size = new System.Drawing.Size(123, 21);
+            this.cmbTipoHab.Size = new System.Drawing.Size(163, 24);
             this.cmbTipoHab.TabIndex = 18;
             this.cmbTipoHab.SelectedIndexChanged += new System.EventHandler(this.cmbTipoHab_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(486, 118);
+            this.label3.Location = new System.Drawing.Point(648, 145);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.Size = new System.Drawing.Size(124, 17);
             this.label3.TabIndex = 21;
             this.label3.Text = "Tipo de Regimen: ";
             // 
@@ -235,44 +253,59 @@
             this.dtgRegimenesHoteles.AllowUserToAddRows = false;
             this.dtgRegimenesHoteles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dtgRegimenesHoteles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgRegimenesHoteles.Location = new System.Drawing.Point(586, 118);
+            this.dtgRegimenesHoteles.Location = new System.Drawing.Point(781, 145);
+            this.dtgRegimenesHoteles.Margin = new System.Windows.Forms.Padding(4);
             this.dtgRegimenesHoteles.Name = "dtgRegimenesHoteles";
             this.dtgRegimenesHoteles.ReadOnly = true;
             this.dtgRegimenesHoteles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dtgRegimenesHoteles.Size = new System.Drawing.Size(301, 121);
+            this.dtgRegimenesHoteles.Size = new System.Drawing.Size(401, 149);
             this.dtgRegimenesHoteles.TabIndex = 23;
             this.dtgRegimenesHoteles.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgRegimenesHoteles_CellDoubleClick);
             // 
             // lblRegimenId
             // 
             this.lblRegimenId.AutoSize = true;
-            this.lblRegimenId.Location = new System.Drawing.Point(512, 145);
+            this.lblRegimenId.Location = new System.Drawing.Point(683, 178);
+            this.lblRegimenId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRegimenId.Name = "lblRegimenId";
-            this.lblRegimenId.Size = new System.Drawing.Size(0, 13);
+            this.lblRegimenId.Size = new System.Drawing.Size(0, 17);
             this.lblRegimenId.TabIndex = 24;
             // 
             // lblPrecioRegimen
             // 
             this.lblPrecioRegimen.AutoSize = true;
-            this.lblPrecioRegimen.Location = new System.Drawing.Point(503, 178);
+            this.lblPrecioRegimen.Location = new System.Drawing.Point(671, 219);
+            this.lblPrecioRegimen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrecioRegimen.Name = "lblPrecioRegimen";
-            this.lblPrecioRegimen.Size = new System.Drawing.Size(0, 13);
+            this.lblPrecioRegimen.Size = new System.Drawing.Size(0, 17);
             this.lblPrecioRegimen.TabIndex = 26;
             this.lblPrecioRegimen.Visible = false;
             // 
             // lblSubTotalReserva
             // 
             this.lblSubTotalReserva.AutoSize = true;
-            this.lblSubTotalReserva.Location = new System.Drawing.Point(198, 477);
+            this.lblSubTotalReserva.Location = new System.Drawing.Point(264, 587);
+            this.lblSubTotalReserva.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSubTotalReserva.Name = "lblSubTotalReserva";
-            this.lblSubTotalReserva.Size = new System.Drawing.Size(0, 13);
+            this.lblSubTotalReserva.Size = new System.Drawing.Size(0, 17);
             this.lblSubTotalReserva.TabIndex = 28;
+            // 
+            // labelRegimenPendiente
+            // 
+            this.labelRegimenPendiente.AutoSize = true;
+            this.labelRegimenPendiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelRegimenPendiente.Location = new System.Drawing.Point(839, 123);
+            this.labelRegimenPendiente.Name = "labelRegimenPendiente";
+            this.labelRegimenPendiente.Size = new System.Drawing.Size(261, 18);
+            this.labelRegimenPendiente.TabIndex = 29;
+            this.labelRegimenPendiente.Text = "Haga doble click para elegir el régimen";
             // 
             // FormSeleccionarHabitaciones
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(945, 537);
+            this.ClientSize = new System.Drawing.Size(1260, 661);
+            this.Controls.Add(this.labelRegimenPendiente);
             this.Controls.Add(this.lblSubTotalReserva);
             this.Controls.Add(this.lblPrecioRegimen);
             this.Controls.Add(this.lblRegimenId);
@@ -294,6 +327,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormSeleccionarHabitaciones";
             this.Text = "Buscar Habitación";
             this.Load += new System.EventHandler(this.FormGenerarModificarReserva_Load);
@@ -328,5 +362,6 @@
         private System.Windows.Forms.Label lblRegimenId;
         private System.Windows.Forms.Label lblPrecioRegimen;
         private System.Windows.Forms.Label lblSubTotalReserva;
+        private System.Windows.Forms.Label labelRegimenPendiente;
     }
 }

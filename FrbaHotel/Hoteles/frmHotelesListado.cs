@@ -76,7 +76,7 @@ namespace FrbaHotel.Hoteles
                 hotel.SetPais(selectedRow.Cells[8].Value.ToString());
                 hotel.SetEstrellas_Cant(Int32.Parse(selectedRow.Cells[9].Value.ToString()));
                 hotel.SetEstrellas_Recargo(Int32.Parse(selectedRow.Cells[10].Value.ToString()));
-                hotel.SetFechaCreacion(DateTime.Parse(selectedRow.Cells[11].Value.ToString()));
+                hotel.SetFechaCreacion(selectedRow.Cells[11].Value.ToString());
                 hotel.SetID(Int32.Parse(selectedRow.Cells[2].Value.ToString()));
                 modificarDatosHotel datosHotel = new modificarDatosHotel();
                 datosHotel.RecibirHotel(hotel);

@@ -162,8 +162,12 @@ namespace FrbaHotel.Reservas
         {
             if (lblRegimenId.Text == "") {
                 System.Windows.Forms.MessageBox.Show("Debe seleccionar un regimen para continuar con la reserva.");
+                this.labelRegimenPendiente.ForeColor = System.Drawing.Color.Red;
+                
+                
             }
             else{
+                this.labelRegimenPendiente.ForeColor = System.Drawing.Color.Black;
                 List <Habitacion> habs = new List<Habitacion>();
                 decimal precioTotal = 0, maxHuespedes, recargoEstrellas;
                 decimal precioBase =  Convert.ToDecimal(lblPrecioRegimen.Text);
@@ -262,6 +266,7 @@ namespace FrbaHotel.Reservas
             cmbTipoHab.SelectedIndex = 0;
             DataTable dt = (DataTable)dtgRegimenesHoteles.DataSource;
             dt.Rows.Clear();
+            this.dataGridView1.DataSource = null;
             dtpFechaCheckin.Value = _fechaSistema;
             dtpFechaCheckout.Value = _fechaSistema.AddDays(1);
         }
@@ -308,6 +313,8 @@ namespace FrbaHotel.Reservas
                 refrescarListado();
             }
         }
+
+     
         /*
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

@@ -1,4 +1,5 @@
 ﻿using FrbaHotel.AbmHabitacion;
+using FrbaHotel.Tools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace FrbaHotel.RegistrarConsumible
         string fecha = "2018-07-05";
         int hotel_id;
         string nombrehotel;
+        
         public registrarConsumible()
         {
             InitializeComponent();
@@ -29,9 +31,12 @@ namespace FrbaHotel.RegistrarConsumible
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Sesion.obtenerFechaSistema().ToString("MM/dd/yyyy");
             this.labelHotel.Text = this.nombrehotel;
             this.labelPrecioSugerido.Visible = false;
             /* CARGAR HABITACIONES */
+            
+                //convert(Date, @fechaDesde, 110)
 
             ConexionSQL c1 = new ConexionSQL();
             DataTable habitaciones = c1.cargarTablaSQL("select  distinct habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" +hotel_id  + " order by numero asc" );

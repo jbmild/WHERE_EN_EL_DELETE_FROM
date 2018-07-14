@@ -70,14 +70,14 @@ namespace FrbaHotel.Hoteles
             return this.telefono;
         }
 
-        internal void SetFechaCreacion(DateTime p)
+        internal void SetFechaCreacion(string p)
         {
             this.fechaCreacion = p;
         }
-        internal DateTime GetFechaCreacion() {
+        internal string GetFechaCreacion() {
             return this.fechaCreacion;
         }
-        public DateTime fechaCreacion { get; set; }
+        public string fechaCreacion { get; set; }
 
         internal void SetID(int p)
         {

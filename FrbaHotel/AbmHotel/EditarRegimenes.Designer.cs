@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.buttonGuardarCambios = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxRegimenesActuales
@@ -59,9 +61,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(80, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(293, 20);
+            this.label1.Size = new System.Drawing.Size(183, 20);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Los regímenes actuales del hotel son:";
+            this.label1.Text = "Incluir estos regímenes";
             // 
             // button1
             // 
@@ -83,11 +85,33 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(644, 54);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(189, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Excluir estos regímenes";
+            // 
+            // buttonGuardarCambios
+            // 
+            this.buttonGuardarCambios.Location = new System.Drawing.Point(810, 379);
+            this.buttonGuardarCambios.Name = "buttonGuardarCambios";
+            this.buttonGuardarCambios.Size = new System.Drawing.Size(145, 47);
+            this.buttonGuardarCambios.TabIndex = 6;
+            this.buttonGuardarCambios.Text = "Guardar cambios";
+            this.buttonGuardarCambios.UseVisualStyleBackColor = true;
+            this.buttonGuardarCambios.Click += new System.EventHandler(this.buttonGuardarCambios_Click);
+            // 
             // EditarRegimenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1282, 491);
+            this.ClientSize = new System.Drawing.Size(1013, 480);
+            this.Controls.Add(this.buttonGuardarCambios);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
@@ -95,6 +119,7 @@
             this.Controls.Add(this.listBoxRegimenesActuales);
             this.Name = "EditarRegimenes";
             this.Text = "Editar Regimenes";
+            this.Load += new System.EventHandler(this.EditarRegimenes_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,5 +132,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button buttonGuardarCambios;
     }
 }

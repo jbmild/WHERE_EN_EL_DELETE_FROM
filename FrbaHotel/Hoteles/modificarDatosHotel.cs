@@ -14,6 +14,13 @@ namespace FrbaHotel.Hoteles
     public partial class modificarDatosHotel : Form
     {
         int idhotel;
+        string ciudad;
+        string direccion;
+        string hotel;
+        string mail;
+        string pais;
+        string telefono;
+        
         public modificarDatosHotel()
         {
             InitializeComponent();
@@ -21,12 +28,12 @@ namespace FrbaHotel.Hoteles
 
         internal void RecibirHotel(HotelElegido hotel)
         {
-            this.labelCiudad.Text = hotel.GetCiudad();
-            this.labelDireccion.Text = hotel.GetDireccion();
-            this.labelHotel.Text = hotel.GetNombre();
-            this.labelMail.Text = hotel.GetMail();
-            this.labelPais.Text = hotel.GetPais();
-            this.labelTelefono.Text = hotel.GetTelefono().ToString();
+            this.ciudad = hotel.GetCiudad();
+            this.direccion = hotel.GetDireccion();
+            this.hotel = hotel.GetNombre();
+            this.mail = hotel.GetMail();
+            this.pais = hotel.GetPais();
+            this.telefono = hotel.GetTelefono().ToString();
             this.idhotel = hotel.GetID();
             this.CargarRegimenesHotel(this.idhotel);
 
@@ -125,39 +132,44 @@ namespace FrbaHotel.Hoteles
 
         }
 
-        private void checkBoxHotel_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.checkBoxHotel.Checked) { this.textBoxHotel.Enabled = true; } else { this.textBoxHotel.Text = ""; this.textBoxHotel.Enabled = false; } 
-        }
+        //private void checkBoxHotel_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (this.checkBoxHotel.Checked) { this.textBoxHotel.Enabled = true; } else { this.textBoxHotel.Text = ""; this.textBoxHotel.Enabled = false; } 
+        //}
 
-        private void checkBoxDir_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.checkBoxDir.Checked) { this.textBoxDireccion.Enabled = true; } else { this.textBoxDireccion.Text = ""; this.textBoxDireccion.Enabled = false; }
-        }
+        //private void checkBoxDir_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (this.checkBoxDir.Checked) { this.textBoxDireccion.Enabled = true; } else { this.textBoxDireccion.Text = ""; this.textBoxDireccion.Enabled = false; }
+        //}
 
-        private void checkBoxCiudad_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.checkBoxCiudad.Checked) { this.textBoxCiudad.Enabled = true; } else { this.textBoxCiudad.Text = ""; this.textBoxCiudad.Enabled = false; }
-        }
+        //private void checkBoxCiudad_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (this.checkBoxCiudad.Checked) { this.textBoxCiudad.Enabled = true; } else { this.textBoxCiudad.Text = ""; this.textBoxCiudad.Enabled = false; }
+        //}
 
-        private void checkBoxPais_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.checkBoxPais.Checked) { this.textBoxPais.Enabled = true; } else { this.textBoxPais.Text = ""; this.textBoxPais.Enabled = false; }
-        }
+        //private void checkBoxPais_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (this.checkBoxPais.Checked) { this.textBoxPais.Enabled = true; } else { this.textBoxPais.Text = ""; this.textBoxPais.Enabled = false; }
+        //}
 
-        private void checkBoxTelefon_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.checkBoxTelefon.Checked) { this.textBoxTelefono.Enabled = true; } else { this.textBoxTelefono.Text = ""; this.textBoxTelefono.Enabled = false; }
-        }
+        //private void checkBoxTelefon_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (this.checkBoxTelefon.Checked) { this.textBoxTelefono.Enabled = true; } else { this.textBoxTelefono.Text = ""; this.textBoxTelefono.Enabled = false; }
+        //}
 
-        private void checkBoxMail_CheckedChanged(object sender, EventArgs e)
-        {
-            if (this.checkBoxMail.Checked) { this.textBoxMail.Enabled = true; } else { this.textBoxMail.Text = ""; this.textBoxMail.Enabled = false; }
-        }
+        //private void checkBoxMail_CheckedChanged(object sender, EventArgs e)
+        //{
+        //    if (this.checkBoxMail.Checked) { this.textBoxMail.Enabled = true; } else { this.textBoxMail.Text = ""; this.textBoxMail.Enabled = false; }
+        //}
 
         private void modificarDatosHotel_Load(object sender, EventArgs e)
         {
-
+            this.textBoxCiudad.Text = this.ciudad;
+            this.textBoxDireccion.Text = this.direccion;
+            this.textBoxHotel.Text = this.hotel;
+            this.textBoxMail.Text = this.mail;
+            this.textBoxPais.Text = this.pais;
+            this.textBoxTelefono.Text = this.telefono;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -208,8 +220,18 @@ namespace FrbaHotel.Hoteles
         private void button4_Click(object sender, EventArgs e)
         {
             FrbaHotel.AbmHotel.EditarRegimenes ventanaEdicionRegimenes = new FrbaHotel.AbmHotel.EditarRegimenes();
-            ventanaEdicionRegimenes.EnviarRegimenes(this.listBoxRegimenesActuales);
+            ventanaEdicionRegimenes.EnviarRegimenes(this.listBoxRegimenesActuales, this);
             ventanaEdicionRegimenes.Show();
+        }
+
+        internal void RecibirRegimenesActualizados(ListBox listBox)
+        {
+            this.listBoxRegimenesActuales.Items.Clear();
+            foreach (var item in listBox.Items) 
+            {
+                listBoxRegimenesActuales.Items.Add(item);
+            }
+
         }
     }
 }
