@@ -140,6 +140,7 @@
       <DependentUpon>buscadorRegimenes.cs</DependentUpon>
     </Compile>
     <Compile Include="Hoteles\HotelElegido.cs" />
+    <Compile Include="Hoteles\Modelo\Estrellas.cs" />
     <Compile Include="Hoteles\Modelo\Hotel.cs" />
     <Compile Include="Hoteles\Modelo\Hoteles.cs" />
     <Compile Include="Hoteles\modificarDatosHotel.cs">
