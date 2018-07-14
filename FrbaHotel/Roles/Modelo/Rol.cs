@@ -283,6 +283,11 @@ namespace FrbaHotel.Roles.Modelo
                 }
             }
 
+            if (this.permisos_dados.Count == 0)
+            {
+                errores.Add(new KeyValuePair<string, string>("general", "Debe darle al menos un permiso al rol."));
+            }
+
             return errores;
         }
     }
