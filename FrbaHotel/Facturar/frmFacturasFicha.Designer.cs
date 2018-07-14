@@ -33,7 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDomicilioCliente = new System.Windows.Forms.TextBox();
-            this.txtMail = new System.Windows.Forms.TextBox();
+            this.txtCuit = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnCrear = new System.Windows.Forms.Button();
@@ -45,10 +45,14 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblNumeroFactura = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rdbNoInscripto = new System.Windows.Forms.RadioButton();
+            this.rdbInscripto = new System.Windows.Forms.RadioButton();
             this.label10 = new System.Windows.Forms.Label();
             this.dtgItemsFactura = new System.Windows.Forms.DataGridView();
+            this.cmbFormaPago = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lblTotalFactura = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgItemsFactura)).BeginInit();
             this.SuspendLayout();
@@ -100,12 +104,12 @@
             this.txtDomicilioCliente.Size = new System.Drawing.Size(129, 20);
             this.txtDomicilioCliente.TabIndex = 5;
             // 
-            // txtMail
+            // txtCuit
             // 
-            this.txtMail.Location = new System.Drawing.Point(388, 69);
-            this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(129, 20);
-            this.txtMail.TabIndex = 6;
+            this.txtCuit.Location = new System.Drawing.Point(388, 69);
+            this.txtCuit.Name = "txtCuit";
+            this.txtCuit.Size = new System.Drawing.Size(129, 20);
+            this.txtCuit.TabIndex = 6;
             // 
             // label4
             // 
@@ -127,7 +131,7 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(206, 439);
+            this.btnCrear.Location = new System.Drawing.Point(350, 516);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(102, 31);
             this.btnCrear.TabIndex = 14;
@@ -137,7 +141,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(324, 439);
+            this.btnCancelar.Location = new System.Drawing.Point(475, 516);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(102, 31);
             this.btnCancelar.TabIndex = 15;
@@ -197,8 +201,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.radioButton2);
-            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.rdbNoInscripto);
+            this.groupBox1.Controls.Add(this.rdbInscripto);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label2);
@@ -207,7 +211,7 @@
             this.groupBox1.Controls.Add(this.txtNombreCliente);
             this.groupBox1.Controls.Add(this.txtDomicilioCliente);
             this.groupBox1.Controls.Add(this.txtLocalidadCliente);
-            this.groupBox1.Controls.Add(this.txtMail);
+            this.groupBox1.Controls.Add(this.txtCuit);
             this.groupBox1.Location = new System.Drawing.Point(55, 138);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(523, 97);
@@ -216,27 +220,27 @@
             this.groupBox1.Text = "Cabecera";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // radioButton2
+            // rdbNoInscripto
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(181, 70);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(144, 17);
-            this.radioButton2.TabIndex = 33;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Responsable no inscripto";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.rdbNoInscripto.AutoSize = true;
+            this.rdbNoInscripto.Location = new System.Drawing.Point(181, 70);
+            this.rdbNoInscripto.Name = "rdbNoInscripto";
+            this.rdbNoInscripto.Size = new System.Drawing.Size(144, 17);
+            this.rdbNoInscripto.TabIndex = 33;
+            this.rdbNoInscripto.TabStop = true;
+            this.rdbNoInscripto.Text = "Responsable no inscripto";
+            this.rdbNoInscripto.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // rdbInscripto
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(46, 70);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(129, 17);
-            this.radioButton1.TabIndex = 32;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Responsable inscripto";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.rdbInscripto.AutoSize = true;
+            this.rdbInscripto.Location = new System.Drawing.Point(46, 70);
+            this.rdbInscripto.Name = "rdbInscripto";
+            this.rdbInscripto.Size = new System.Drawing.Size(129, 17);
+            this.rdbInscripto.TabIndex = 32;
+            this.rdbInscripto.TabStop = true;
+            this.rdbInscripto.Text = "Responsable inscripto";
+            this.rdbInscripto.UseVisualStyleBackColor = true;
             // 
             // label10
             // 
@@ -254,11 +258,49 @@
             this.dtgItemsFactura.Size = new System.Drawing.Size(519, 162);
             this.dtgItemsFactura.TabIndex = 37;
             // 
+            // cmbFormaPago
+            // 
+            this.cmbFormaPago.FormattingEnabled = true;
+            this.cmbFormaPago.Location = new System.Drawing.Point(475, 462);
+            this.cmbFormaPago.Name = "cmbFormaPago";
+            this.cmbFormaPago.Size = new System.Drawing.Size(102, 21);
+            this.cmbFormaPago.TabIndex = 38;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(385, 465);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "Forma de pago:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(385, 437);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 40;
+            this.label5.Text = "Total Factura: ";
+            // 
+            // lblTotalFactura
+            // 
+            this.lblTotalFactura.AutoSize = true;
+            this.lblTotalFactura.Location = new System.Drawing.Point(472, 437);
+            this.lblTotalFactura.Name = "lblTotalFactura";
+            this.lblTotalFactura.Size = new System.Drawing.Size(0, 13);
+            this.lblTotalFactura.TabIndex = 41;
+            // 
             // frmFacturasFicha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 487);
+            this.ClientSize = new System.Drawing.Size(690, 559);
+            this.Controls.Add(this.lblTotalFactura);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cmbFormaPago);
             this.Controls.Add(this.dtgItemsFactura);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox1);
@@ -287,7 +329,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDomicilioCliente;
-        private System.Windows.Forms.TextBox txtMail;
+        private System.Windows.Forms.TextBox txtCuit;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnCrear;
@@ -299,9 +341,13 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblNumeroFactura;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rdbNoInscripto;
+        private System.Windows.Forms.RadioButton rdbInscripto;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView dtgItemsFactura;
+        private System.Windows.Forms.ComboBox cmbFormaPago;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblTotalFactura;
     }
 }

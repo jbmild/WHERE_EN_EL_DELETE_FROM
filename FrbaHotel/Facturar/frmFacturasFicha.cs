@@ -44,22 +44,52 @@ namespace FrbaHotel.Facturar
             _domicilioCliente = dt.Rows[0].ItemArray[5].ToString();
             _localidadCliente = dt.Rows[0].ItemArray[6].ToString();
             InitializeComponent();
-            
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            DataTable dt = FormasPago.getFormasPago();
+            cmbFormaPago.DisplayMember = "nombre";
+            cmbFormaPago.ValueMember = "formapago_id";
+            dt.Rows.InsertAt(dt.NewRow(), 0); //AGREGA UNA ROW VACIA EN COMBO
+            cmbFormaPago.DataSource = dt;
 
             txtNombreCliente.Text = _nombreCliente;
             txtDomicilioCliente.Text = _domicilioCliente;
             txtLocalidadCliente.Text = _localidadCliente;
 
+            lblTotalFactura.Text = this.loadItemsFactura().ToString();
+
+
+        }
+
+        private decimal loadItemsFactura() {
+            DataTable dt = Facturas.getItemsFacturables(_estadia_id);
+            dtgItemsFactura.DataSource = dt;
+            decimal totalFactura = 0;
+
+            foreach (DataRow dr in dt.Rows) {
+                totalFactura += Convert.ToDecimal(dr["total"]);
+            }
+
+            return totalFactura;
         }
 
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            if(txtNombreCliente.Text.Length == 0 || txtDomicilioCliente.Text.Length == 0 || 
+                txtLocalidadCliente.Text.Length == 0 || txtCuit.Text.Length == 0 || (!rdbInscripto.Checked && !rdbNoInscripto.Checked){
+
+                System.Windows.Forms.MessageBox.Show("Debe completar todos los campos de la cabecera de la factura");
+            }
+            else{
+
+                //Guardar factura
+            
+            }
+            
             /*
             RegexUtilities regexValidator = new RegexUtilities();
             bool isValidEmail = true;

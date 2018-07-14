@@ -62,7 +62,6 @@
             this.dgwRoles.RowTemplate.Height = 28;
             this.dgwRoles.Size = new System.Drawing.Size(566, 229);
             this.dgwRoles.TabIndex = 0;
-            this.dgwRoles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgwRoles_CellContentClick);
             this.dgwRoles.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgwRoles_CellMouseClick);
             // 
             // txtNombre
