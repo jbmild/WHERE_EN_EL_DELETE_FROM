@@ -198,7 +198,9 @@ namespace FrbaHotel
         private void btnClientes_Click(object sender, EventArgs e)
         {
             Clientes.frmFacturasListado listadoClientes = new Clientes.frmFacturasListado();
+            
             listadoClientes.ShowDialog(this);
+            
         }
 
         private void btnHabitaciones_Click(object sender, EventArgs e)
@@ -243,13 +245,13 @@ namespace FrbaHotel
         {
             AbmUsuarios.Usuarios u = new AbmUsuarios.Usuarios();
             u.RecibirHotel(Sesion.hotel.HotelId, Sesion.hotel.Nombre);
-            u.Show();
+            u.ShowDialog();
         }
 
         private void btnFacturacion_Click(object sender, EventArgs e)
         {
             Facturar.frmFacturasListado frm = new Facturar.frmFacturasListado();
-            frm.Show();
+            frm.ShowDialog();
         }
 
         private void Bienvenido_FormClosing(object sender, FormClosingEventArgs e)

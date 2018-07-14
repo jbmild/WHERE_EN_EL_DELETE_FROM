@@ -80,7 +80,7 @@ namespace FrbaHotel.AbmHabitacion
                 ConexionSQL con2 = new ConexionSQL();
                 Consulta consulta = new Consulta();
                 consulta.ConcatToQuery("select ha.numero as 'Numero_Habitacion', ha.piso as 'Piso', ha.descripcion as 'Descripcion'," +
-              "t.descripcion 'Tipo_Habitacion', convert(bit,ha.frente) as 'Tiene_vista_al_exterior', convert(bit,habilitado) as 'Esta_habilitada', ho.direccion as 'Direccion',  ha.habitacion_id as 'ID' from" +
+                "t.descripcion 'Tipo_Habitacion', convert(bit,ha.frente) as 'Tiene_vista_al_exterior', convert(bit,habilitado) as 'Esta_habilitada', ho.direccion as 'Direccion',  ha.habitacion_id as 'ID' from" +
                   " WHERE_EN_EL_DELETE_FROM.habitaciones ha join WHERE_EN_EL_DELETE_FROM.habitaciones_tipos t on ha.tipos_id=t.tipo_id join WHERE_EN_EL_DELETE_FROM.hoteles ho" +
                   " on ho.hotel_id=ha.hotel_id ");
 
@@ -109,6 +109,8 @@ namespace FrbaHotel.AbmHabitacion
                 dataGridView1.Columns[0].Width = 120;
                 dataGridView1.Columns[1].Width = 120;
                 dataGridView1.Columns[4].Width = 130;
+                dataGridView1.Columns[2].Width = 130;
+                dataGridView1.Columns[6].Width = 130;
                 dataGridView1.AllowUserToAddRows = false;
                 dataGridView1.Enabled = true;
                 dataGridView1.Columns[0].ReadOnly = true;

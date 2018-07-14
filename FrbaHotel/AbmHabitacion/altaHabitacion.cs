@@ -29,6 +29,8 @@ namespace FrbaHotel.AbmHabitacion
 
                 comboBoxHotel.SelectedValue = Sesion.hotel.HotelId;
                 comboBoxHotel.Enabled = false;
+                sqlQueryGenerator = new SQLQueryGenerator();
+                sqlQueryGenerator.HotelCambioEnAltaHabitacion(comboBoxPisoEnHotel, comboBoxHotel);
             }
            
 
@@ -40,8 +42,7 @@ namespace FrbaHotel.AbmHabitacion
 
         private void comboBoxHotel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            sqlQueryGenerator = new SQLQueryGenerator();
-            sqlQueryGenerator.HotelCambioEnAltaHabitacion(comboBoxPisoEnHotel, comboBoxHotel);
+            
             
         }
 

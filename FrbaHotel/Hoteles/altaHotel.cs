@@ -213,5 +213,10 @@ namespace FrbaHotel.Hoteles
                 e.Handled = true;
             }
         }
+
+        private void textBoxTelefonoNuevo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

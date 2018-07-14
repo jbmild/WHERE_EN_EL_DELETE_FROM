@@ -24,7 +24,10 @@ namespace FrbaHotel.Clientes
             cmbTipoDoc.Items.Add("Pasaporte");
 
             Cliente cli = new Cliente();
+            this.Cursor = Cursors.WaitCursor;
             this.LoadGrid(cli.getClientes("", "", "", "", ""));
+            this.Cursor = Cursors.Default;
+            
             
         }
 
@@ -189,6 +192,27 @@ namespace FrbaHotel.Clientes
         private void dgwRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void txtNroDoc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtNroDoc_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsNumber(e.KeyChar))//Si es número
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == (char)Keys.Back)//si es tecla borrar
+            {
+                e.Handled = false;
+            }
+            else //Si es otra tecla cancelamos
+            {
+                e.Handled = true;
+            }
         }
     }
 }
