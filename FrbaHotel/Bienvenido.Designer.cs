@@ -44,6 +44,7 @@
             this.btnConsumibles = new System.Windows.Forms.Button();
             this.btnFacturacion = new System.Windows.Forms.Button();
             this.btnEstadisticas = new System.Windows.Forms.Button();
+            this.btnRegimenes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblBienvenido
@@ -120,7 +121,7 @@
             // btnClientes
             // 
             this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClientes.Location = new System.Drawing.Point(189, 182);
+            this.btnClientes.Location = new System.Drawing.Point(87, 182);
             this.btnClientes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(195, 57);
@@ -180,7 +181,7 @@
             // btnEstadias
             // 
             this.btnEstadias.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEstadias.Location = new System.Drawing.Point(798, 182);
+            this.btnEstadias.Location = new System.Drawing.Point(696, 182);
             this.btnEstadias.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEstadias.Name = "btnEstadias";
             this.btnEstadias.Size = new System.Drawing.Size(195, 57);
@@ -192,7 +193,7 @@
             // btnConsumibles
             // 
             this.btnConsumibles.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConsumibles.Location = new System.Drawing.Point(392, 182);
+            this.btnConsumibles.Location = new System.Drawing.Point(290, 182);
             this.btnConsumibles.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConsumibles.Name = "btnConsumibles";
             this.btnConsumibles.Size = new System.Drawing.Size(195, 57);
@@ -204,7 +205,7 @@
             // btnFacturacion
             // 
             this.btnFacturacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFacturacion.Location = new System.Drawing.Point(596, 182);
+            this.btnFacturacion.Location = new System.Drawing.Point(494, 182);
             this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnFacturacion.Name = "btnFacturacion";
             this.btnFacturacion.Size = new System.Drawing.Size(195, 57);
@@ -225,11 +226,24 @@
             this.btnEstadisticas.UseVisualStyleBackColor = true;
             this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
             // 
+            // btnRegimenes
+            // 
+            this.btnRegimenes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegimenes.Location = new System.Drawing.Point(899, 182);
+            this.btnRegimenes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRegimenes.Name = "btnRegimenes";
+            this.btnRegimenes.Size = new System.Drawing.Size(195, 57);
+            this.btnRegimenes.TabIndex = 27;
+            this.btnRegimenes.Text = "Regimenes";
+            this.btnRegimenes.UseVisualStyleBackColor = true;
+            this.btnRegimenes.Click += new System.EventHandler(this.btnRegimenes_Click);
+            // 
             // Bienvenido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1160, 378);
+            this.Controls.Add(this.btnRegimenes);
             this.Controls.Add(this.btnEstadisticas);
             this.Controls.Add(this.btnFacturacion);
             this.Controls.Add(this.btnConsumibles);
@@ -273,5 +287,6 @@
         private System.Windows.Forms.Button btnConsumibles;
         private System.Windows.Forms.Button btnFacturacion;
         private System.Windows.Forms.Button btnEstadisticas;
+        private System.Windows.Forms.Button btnRegimenes;
     }
 }

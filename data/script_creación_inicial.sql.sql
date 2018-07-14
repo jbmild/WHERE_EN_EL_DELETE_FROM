@@ -526,7 +526,8 @@ SET @FechaActual = GETDATE();
 	('Estadias'),
 	('Consumibles'),
 	('Facturacion'),
-	('Estadisticas')
+	('Estadisticas'),
+	('Regimenes')
 
 	/* Roles */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.roles (nombre, habilitado, esDefault) VALUES

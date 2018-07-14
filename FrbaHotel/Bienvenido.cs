@@ -92,6 +92,7 @@ namespace FrbaHotel
             btnRoles.Enabled = false;
             btnGenerarModificarReserva.Enabled = false;
             btnCancelarReserva.Enabled = false;
+            btnRegimenes.Enabled = false;
 
             lblRol.Text = "Rol: " + Sesion.rol.Nombre;
             lblRol.Show();
@@ -137,6 +138,9 @@ namespace FrbaHotel
                                 break;
                             case "Estadisticas":
                                 btnEstadisticas.Enabled = true;
+                                break;
+                            case "Regimenes":
+                                btnRegimenes.Enabled = true;
                                 break;
                         }
                     }
@@ -257,6 +261,11 @@ namespace FrbaHotel
             catch (Exception)
             {
             }
+        }
+
+        private void btnRegimenes_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta funcionalidad no esta disponible desde esta aplicacion. Contactese con su supervisor para obtener acceso a la misma.");
         }
     }
 }
