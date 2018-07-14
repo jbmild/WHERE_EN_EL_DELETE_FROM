@@ -81,18 +81,18 @@ namespace FrbaHotel
             }
 
             lblRol.Hide();
-            btnClientes.Enabled = false;
-            btnConsumibles.Enabled = false;
-            btnFacturacion.Enabled = false;
-            btnEstadias.Enabled = false;
-            btnHoteles.Enabled = false;
-            btnUsuarios.Enabled = false;
-            btnHabitaciones.Enabled = false;
-            btnEstadisticas.Enabled = false;
-            btnRoles.Enabled = false;
-            btnGenerarModificarReserva.Enabled = false;
-            btnCancelarReserva.Enabled = false;
-            btnRegimenes.Enabled = false;
+            btnClientes.Hide();
+            btnConsumibles.Hide();
+            btnFacturacion.Hide();
+            btnEstadias.Hide();
+            btnHoteles.Hide();
+            btnUsuarios.Hide();
+            btnHabitaciones.Hide();
+            btnEstadisticas.Hide();
+            btnRoles.Hide();
+            btnGenerarModificarReserva.Hide();
+            btnCancelarReserva.Hide();
+            btnRegimenes.Hide();
 
             lblRol.Text = "Rol: " + Sesion.rol.Nombre;
             lblRol.Show();
@@ -107,40 +107,40 @@ namespace FrbaHotel
                         switch (permiso.Nombre)
                         {
                             case "Roles":
-                                btnRoles.Enabled = true;
+                                btnRoles.Show();
                                 break;
                             case "Clientes":
-                                btnClientes.Enabled = true;
+                                btnClientes.Show();
                                 break;
                             case "Usuarios":
-                                btnUsuarios.Enabled = true;
+                                btnUsuarios.Show();
                                 break;
                             case "Hoteles":
-                                btnHoteles.Enabled = true;
+                                btnHoteles.Show();
                                 break;
                             case "Habitaciones":
-                                btnHabitaciones.Enabled = true;
+                                btnHabitaciones.Show();
                                 break;
                             case "Generar o Modificar Reserva":
-                                btnGenerarModificarReserva.Enabled = true;
+                                btnGenerarModificarReserva.Show();
                                 break;
                             case "Cancelar Reserva":
-                                btnCancelarReserva.Enabled = true;
+                                btnCancelarReserva.Show();
                                 break;
                             case "Estadias":
-                                btnEstadias.Enabled = true;
+                                btnEstadias.Show();
                                 break;
                             case "Consumibles":
-                                btnConsumibles.Enabled = true;
+                                btnConsumibles.Show();
                                 break;
                             case "Facturacion":
-                                btnFacturacion.Enabled = true;
+                                btnFacturacion.Show();
                                 break;
                             case "Estadisticas":
-                                btnEstadisticas.Enabled = true;
+                                btnEstadisticas.Show();
                                 break;
                             case "Regimenes":
-                                btnRegimenes.Enabled = true;
+                                btnRegimenes.Show();
                                 break;
                         }
                     }
