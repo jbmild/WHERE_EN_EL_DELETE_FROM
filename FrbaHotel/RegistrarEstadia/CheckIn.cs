@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FrbaHotel.Modelo;
+using FrbaHotel.Tools;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Configuration;
@@ -21,7 +22,7 @@ namespace FrbaHotel.RegistrarEstadia
         String numeroDeReserva;
         DateTime fechaDesde;
         Reserva res;
-
+        ConexionSQL conn = new ConexionSQL();
         public CheckIn()
         {
             InitializeComponent();
@@ -68,7 +69,7 @@ namespace FrbaHotel.RegistrarEstadia
                 {
                     if (Convert.ToInt32(row.Cells[0].Value) >= 1)
                     {
-                        
+                        int empleado_user = 1;//se hardcodea el empleado_id
                         Reserva res = new Reserva();
                         res.fecha_desde = Convert.ToDateTime(row.Cells[2].Value);
                         res.fecha_hasta = Convert.ToDateTime(row.Cells[3].Value);
@@ -77,6 +78,11 @@ namespace FrbaHotel.RegistrarEstadia
                         res.regimen_id = Convert.ToInt32(row.Cells[7].Value);
                         res.cliente_id = Convert.ToInt32(row.Cells[9].Value);
                         res.id = Convert.ToInt32(row.Cells[10].Value);
+                        res.usuarioCancelacion = Tools.Sesion.usuario.UsuarioId;
+
+                        //string query = "INSERT INTO [WHERE_EN_EL_DELETE_FROM].[estadias]([reserva_id], [ingreso_empleado_id], [ingreso_fecha])"
+                        //                + "VALUES(" + res.id + "," + empleado_user + ",'" + Sesion.obtenerFechaSistema() + "'";
+                        //conn.ejecutarComandoSQL(query);
 
                         if (DateTime.Compare(res.fecha_desde, Tools.Sesion.obtenerFechaSistema()) == 0)//si estamos en la fecha de hoy.
                         {
@@ -96,6 +102,7 @@ namespace FrbaHotel.RegistrarEstadia
                             try
                             {
                                 int exito = res.cancelarReserva();
+                                System.Windows.Forms.MessageBox.Show("La reserva ha sido cancelada por llegada tarde.");
                             }
                             catch (Exception ex)
                             {

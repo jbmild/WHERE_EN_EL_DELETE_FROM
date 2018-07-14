@@ -49,8 +49,8 @@ namespace FrbaHotel.RegistrarEstadia
                         if((estadia_id).ToString() != null)
                         {
 
-                        string queryUpdate = "UPDATE [WHERE_EN_EL_DELETE_FROM].[estadias] SET egreso_empleado_id = " + Tools.Sesion.usuario.UsuarioId + ", egreso_fecha = "
-                            + Tools.Sesion.obtenerFechaSistema() + " WHERE estadia_id = " + estadia_id;
+                        string queryUpdate = "UPDATE [WHERE_EN_EL_DELETE_FROM].[estadias] SET egreso_empleado_id = " + Tools.Sesion.usuario.UsuarioId + ", egreso_fecha = '"
+                            + Tools.Sesion.obtenerFechaSistema() + "' WHERE estadia_id = " + estadia_id;
                         conn.ejecutarComandoSQL(queryUpdate);
 
                         }
