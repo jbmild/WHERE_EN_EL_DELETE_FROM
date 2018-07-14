@@ -42,7 +42,7 @@ namespace FrbaHotel.AbmHotel
         }
         
 
-        private bool ChequearRegimen(string regimen)
+        private bool ChequearRegimenEstadias(string regimen)
         {
             ConexionSQL c = new ConexionSQL();
             string query = "select e.estadia_id from WHERE_EN_EL_DELETE_FROM.estadias e" +
@@ -53,7 +53,17 @@ namespace FrbaHotel.AbmHotel
             DataTable estadias=c.cargarTablaSQL(query);
             return estadias.Rows.Count.Equals(0);
         }
-
+        private bool ChequearRegimenReservas(string regimen)
+        {
+            ConexionSQL c = new ConexionSQL();
+            string query = "select res.reserva_id from WHERE_EN_EL_DELETE_FROM.reservas res join WHERE_EN_EL_DELETE_FROM.regimenes regi on res.regimen_id=regi.regimen_id "
+                + " where regi.descripcion like '" + regimen + "' and res.fecha_desde>=convert(Date, " + "'" + Sesion.obtenerFechaSistema().ToString("MM/dd/yyyy") + 
+                "', 110)" + " and res.fecha_hasta<=convert(Date, '" + Sesion.obtenerFechaSistema().ToString("MM/dd/yyyy") + "', 110)" +
+                " and res.hotel_id=" + Sesion.hotel.HotelId;
+            DataTable estadias = c.cargarTablaSQL(query);
+            return estadias.Rows.Count.Equals(0);
+            
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (listBoxRegimenesActuales.SelectedIndex == -1)
@@ -62,8 +72,9 @@ namespace FrbaHotel.AbmHotel
             }
             else
             {
-                bool puedeSerQuitado = this.ChequearRegimen(listBoxRegimenesActuales.SelectedItem.ToString());
-                if (puedeSerQuitado)
+                bool puedeSerQuitadoPorEstadias = this.ChequearRegimenEstadias(listBoxRegimenesActuales.SelectedItem.ToString());
+                bool puedeSerQuitadoPorReservas = this.ChequearRegimenReservas(listBoxRegimenesActuales.SelectedItem.ToString());
+                if (puedeSerQuitadoPorEstadias && puedeSerQuitadoPorReservas)
                 {
                     listBoxRegimenesPost.Items.Add(listBoxRegimenesActuales.SelectedItem);
                     listBoxRegimenesActuales.Items.Remove(listBoxRegimenesActuales.SelectedItem);
@@ -75,6 +86,8 @@ namespace FrbaHotel.AbmHotel
                 
             }
         }
+
+        
 
         private void buttonGuardarCambios_Click(object sender, EventArgs e)
         {
