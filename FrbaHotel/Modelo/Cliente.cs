@@ -303,7 +303,7 @@ namespace FrbaHotel.Modelo
             }
 
             DataTable dt = conn.cargarTablaSQL(sqlQuery);
-            dt.Rows.InsertAt(dt.NewRow(), 0);
+            //dt.Rows.InsertAt(dt.NewRow(), 0);
             return dt;
 
         }
