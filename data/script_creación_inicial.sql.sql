@@ -552,7 +552,7 @@ SET @FechaActual = GETDATE();
 	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Administrador General'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos
 
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.roles_permisos (rol_id, permiso_id)
-	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Guest'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE nombre in ('Generar o Modificar Reserva', 'Cancelar Reserva')
+	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Guest'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE nombre in ('Generar o Modificar Reserva')
 
 	/* Usuarios Roles */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios_roles (usuario_id, rol_id) VALUES
