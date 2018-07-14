@@ -243,6 +243,7 @@ SET @FechaActual = GETDATE();
 		direccion_localidad NVARCHAR(255),
 		direccion_pais NVARCHAR(255),
 		nacionalidad NVARCHAR(255),
+		fecha_nacimiento date,
 		consistente bit default 0
 	)
 
@@ -575,6 +576,7 @@ SET @FechaActual = GETDATE();
 		direccion_depto,
 		direccion_localidad,
 		direccion_pais, 
+		fecha_nacimiento,
 		nacionalidad
 	)
 	SELECT DISTINCT
@@ -588,6 +590,7 @@ SET @FechaActual = GETDATE();
 		m.Cliente_Pasaporte_Nro,
 		m.Cliente_Dom_Calle,
 		m.Cliente_Nro_Calle,
+		NULL,
 		NULL,
 		NULL,
 		NULL,
