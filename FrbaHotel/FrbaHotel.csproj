@@ -140,6 +140,8 @@
       <DependentUpon>buscadorRegimenes.cs</DependentUpon>
     </Compile>
     <Compile Include="Hoteles\HotelElegido.cs" />
+    <Compile Include="Hoteles\Modelo\Hotel.cs" />
+    <Compile Include="Hoteles\Modelo\Hoteles.cs" />
     <Compile Include="Hoteles\modificarDatosHotel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -207,8 +209,6 @@
     <Compile Include="Login\Modelo\EmpleadoHotel.cs" />
     <Compile Include="Login\Modelo\Empleados.cs" />
     <Compile Include="Login\Modelo\EmpleadosHoteles.cs" />
-    <Compile Include="Login\Modelo\Hotel.cs" />
-    <Compile Include="Login\Modelo\Hoteles.cs" />
     <Compile Include="Login\Modelo\Usuario.cs" />
     <Compile Include="Login\Modelo\UsuarioRol.cs" />
     <Compile Include="Login\Modelo\Usuarios.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FrbaHotel.Login.Modelo
+namespace FrbaHotel.Hoteles.Modelo
 {
     class Hoteles
     {

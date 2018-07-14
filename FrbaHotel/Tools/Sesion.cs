@@ -15,7 +15,7 @@ namespace FrbaHotel.Tools
     {
         public static FrbaHotel.Login.Modelo.Usuario usuario = null;
         public static Rol rol = null;
-        public static FrbaHotel.Login.Modelo.Hotel hotel = null;
+        public static Hoteles.Modelo.Hotel hotel = null;
 
         public static DateTime obtenerFechaSistema()
         {
