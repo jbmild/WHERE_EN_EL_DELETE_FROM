@@ -156,6 +156,7 @@
     <Compile Include="Hoteles\altaHotel.Designer.cs">
       <DependentUpon>altaHotel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hoteles\AltaHotelObject.cs" />
     <Compile Include="Hoteles\bajaHotel.cs">
       <SubType>Form</SubType>
     </Compile>

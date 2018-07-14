@@ -228,8 +228,7 @@
             this.textBoxTelefonoNuevo.Name = "textBoxTelefonoNuevo";
             this.textBoxTelefonoNuevo.Size = new System.Drawing.Size(155, 22);
             this.textBoxTelefonoNuevo.TabIndex = 19;
-            this.textBoxTelefonoNuevo.TextChanged += new System.EventHandler(this.textBoxTelefonoNuevo_TextChanged);
-            this.textBoxTelefonoNuevo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTelefonoNuevo_KeyPress);
+            
             // 
             // labelNombrePendiente
             // 
