@@ -10,8 +10,11 @@ using System.Windows.Forms;
 namespace FrbaHotel.AbmUsuarios
 {
     class CrearUsuario
+        
     {
-        public void Crear(ConexionSQL c, string ape, string depto, string dir, string mail, string nom, string num, string numdoc, string pais, string piso, string tel, string tipodoc, string usu, DateTime fechanac, string localidad, string pass, ListBox roles, int hID) {
+        private AgregarUsuario pantallita;
+        public void Crear(ConexionSQL c, string ape, string depto, string dir, string mail, string nom, string num, string numdoc, string pais, string piso, string tel, string tipodoc, string usu, DateTime fechanac, string localidad, string pass, ListBox roles, int hID, AgregarUsuario pantalla, Usuarios pInicial) {
+            this.pantallita = pantalla;
             string nacimiento= fechanac.Year.ToString() + fechanac.Month.ToString() + fechanac.Date.ToString(); 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["FrbaHotel.Properties.Settings.Setting"].ConnectionString);
                 con.Open();
@@ -76,6 +79,8 @@ namespace FrbaHotel.AbmUsuarios
                             if (resultadoEmpleHotel.Equals(1))
                             {
                                 MessageBox.Show("¡Usuario agregado con éxito!");
+                                this.pantallita.Hide();
+                                pInicial.Usuarios_Load(new object(), new EventArgs());
                                 
                             }
                             else { MessageBox.Show("Error al agregar usuario"); }

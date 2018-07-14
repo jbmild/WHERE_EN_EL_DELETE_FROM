@@ -49,7 +49,7 @@ namespace FrbaHotel.AbmUsuarios
         private void button2_Click(object sender, EventArgs e)
         {
             AgregarUsuario newUser = new AgregarUsuario();
-            newUser.RecibirHotel(this.hotelnombre, this.hotelid);
+            newUser.RecibirHotel(this.hotelnombre, this.hotelid, this);
             newUser.Show();
         }
 

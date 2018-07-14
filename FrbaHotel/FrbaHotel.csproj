@@ -77,6 +77,12 @@
     <Compile Include="AbmUsuarios\ElegirRoles.Designer.cs">
       <DependentUpon>ElegirRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="AbmUsuarios\ElegirRolesModificarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmUsuarios\ElegirRolesModificarUsuario.Designer.cs">
+      <DependentUpon>ElegirRolesModificarUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="AbmUsuarios\ModificarUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,7 @@
       <DependentUpon>ModificarUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmUsuarios\ModificarUsuarioObject.cs" />
+    <Compile Include="AbmUsuarios\TraerRolesFaltantes.cs" />
     <Compile Include="AbmUsuarios\Usuario.cs" />
     <Compile Include="AbmUsuarios\Usuarios.cs">
       <SubType>Form</SubType>
@@ -382,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuarios\ElegirRoles.resx">
       <DependentUpon>ElegirRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmUsuarios\ElegirRolesModificarUsuario.resx">
+      <DependentUpon>ElegirRolesModificarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuarios\ModificarUsuario.resx">
       <DependentUpon>ModificarUsuario.cs</DependentUpon>

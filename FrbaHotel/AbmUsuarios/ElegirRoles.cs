@@ -64,5 +64,10 @@ namespace FrbaHotel.AbmUsuarios
             this.pantallaActual.EnviarRolesElegidos(this.listBoxRolesSeleccionados);
             this.Hide();
         }
+
+        private void ElegirRoles_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
