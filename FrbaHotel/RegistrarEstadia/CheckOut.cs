@@ -53,8 +53,8 @@ namespace FrbaHotel.RegistrarEstadia
                             DataTable dt = conn.cargarTablaSQL(query2);
                             int empleado_id = Int32.Parse(dt.Rows[0][0].ToString());
 
-                            string queryUpdate = "UPDATE [WHERE_EN_EL_DELETE_FROM].[estadias] SET egreso_empleado_id = " + empleado_id + ", egreso_fecha = '"
-                            + Tools.Sesion.obtenerFechaSistema() + "' WHERE estadia_id = " + estadia_id;
+                            string queryUpdate = "UPDATE [WHERE_EN_EL_DELETE_FROM].[estadias] SET egreso_empleado_id = " + empleado_id + ", egreso_fecha = convert(date, '"
+                            + Tools.Sesion.obtenerFechaSistema() + "', 110) WHERE estadia_id = " + estadia_id;
                         conn.ejecutarComandoSQL(queryUpdate);
 
                         }
@@ -83,7 +83,7 @@ namespace FrbaHotel.RegistrarEstadia
                                                         " JOIN WHERE_EN_EL_DELETE_FROM.reservas_habitaciones RH ON RH.reserva_id = r.reserva_id" +
                                                         " JOIN WHERE_EN_EL_DELETE_FROM.habitaciones H ON RH.habitacion_id = H.habitacion_id" +
                                                         " JOIN WHERE_EN_EL_DELETE_FROM.clientes C ON c.cliente_id = R.cliente_id" +
-                                                        " where H.numero =" + nro_hab.Text + " AND R.fecha_hasta = '" + Tools.Sesion.obtenerFechaSistema() + "' AND R.hotel_id = " + Tools.Sesion.hotel.HotelId;
+                                                        " where H.numero =" + nro_hab.Text + " AND R.fecha_hasta = convert(date, '" + Tools.Sesion.obtenerFechaSistema() + "', 110) AND R.hotel_id = " + Tools.Sesion.hotel.HotelId;
 
                 DataTable dt = conn.cargarTablaSQL(query);
                 dataGridView1.DataSource = dt;

@@ -15,9 +15,6 @@ namespace FrbaHotel.Modelo
         private int _numero;
         private DateTime _fecha;
         private decimal _total;
-        /*private string _documento_tipo;
-        private string _documento_nro;
-        private string _nacionalidad;*/
         string _cuit;
         bool _responsableInscripto;
         private string _domicilio;
@@ -55,12 +52,13 @@ namespace FrbaHotel.Modelo
 
             command.CommandText = @"INSERT INTO WHERE_EN_EL_DELETE_FROM.Facturas 
                                     (estadia_id, cliente_id, numero, fecha, total, cuit, razon_social, direccion, localidad, formapago_id, tipo_iva)
+                                    VALUES (@estadia_id, @cliente_id, @numero, convert(date, @fecha, 110), @total, @cuit, @razon_social, @direccion, @localidad, @formapago_id, @tipo_iva)
                                     SELECT SCOPE_IDENTITY() ";
             
             command.Parameters.Add("@estadia_id", SqlDbType.Int).Value = _estadia_id;
             command.Parameters.Add("@cliente_id", SqlDbType.Int).Value = _cliente_id;
             command.Parameters.Add("@numero", SqlDbType.Int).Value = _numero;
-            command.Parameters.Add("@fecha", SqlDbType.Date).Value = _fecha;
+            command.Parameters.Add("@fecha", SqlDbType.NVarChar).Value = _fecha.ToString("MM/dd/yyyy");
             command.Parameters.Add("@total", SqlDbType.Decimal).Value = _total;
             command.Parameters.Add("@cuit", SqlDbType.NVarChar).Value = _cuit;
             command.Parameters.Add("@razon_social", SqlDbType.NVarChar).Value = _razonSocial;
