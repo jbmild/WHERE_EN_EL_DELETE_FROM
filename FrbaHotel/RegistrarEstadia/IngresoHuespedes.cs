@@ -234,7 +234,7 @@ namespace FrbaHotel.RegistrarEstadia
                 else
                 {
                     //no existia la estadia, se crea una nueva
-                    string create_estadia = "insert into WHERE_EN_EL_DELETE_FROM.estadias(reserva_id, ingreso_empleado_id, ingreso_fecha, egreso_fecha) VALUES("+ codigo_reserva + "," + Tools.Sesion.usuario.UsuarioId + ", GETDATE(), GETDATE())";
+                    string create_estadia = "insert into WHERE_EN_EL_DELETE_FROM.estadias(reserva_id, ingreso_empleado_id, ingreso_fecha) VALUES("+ codigo_reserva + "," + Tools.Sesion.usuario.UsuarioId + ", GETDATE())";
 
                     //el codigo de reserva es el mismo que la RESERVA_ID !!
                     string insert_estadia = "INSERT INTO WHERE_EN_EL_DELETE_FROM.huespedes (estadia_id, cliente_id) VALUES('" + codigo_reserva + "', '" + id_cliente + "')";
