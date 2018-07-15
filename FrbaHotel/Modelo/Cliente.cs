@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.Modelo
 {
@@ -323,8 +324,8 @@ namespace FrbaHotel.Modelo
 
             SqlCommand command;
             
-            int usuario_id = 1; //TODO: Leerlo del usuario logueado.
-
+            int usuario_id = Sesion.usuario.UsuarioId;
+            
             if (cli.idCliente != 0)
             {
                 command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET
