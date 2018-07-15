@@ -115,5 +115,18 @@ namespace FrbaHotel.Hoteles.Modelo
                 this.estrellas_recargo = 0;
             }
         }
+
+        public Hotel()
+        {
+            this.hotel_id = 0;
+            this.nombre = "";
+            this.email = "";
+            this.telefono = "";
+            this.direccion = "";
+            this.ciudad = "";
+            this.pais = "";
+            this.estrellas_cant = 0;
+            this.estrellas_recargo = 0;
+        }
     }
 }

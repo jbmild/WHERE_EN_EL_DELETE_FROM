@@ -47,12 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbmHotel\BuscarRegimenes.cs" />
-    <Compile Include="AbmHotel\CargarRegimenesHotelBuscador.cs" />
-    <Compile Include="AbmHotel\EditarRegimenes.cs">
+    <Compile Include="Hoteles\BuscarRegimenes.cs" />
+    <Compile Include="Hoteles\CargarRegimenesHotelBuscador.cs" />
+    <Compile Include="Hoteles\EditarRegimenes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AbmHotel\EditarRegimenes.Designer.cs">
+    <Compile Include="Hoteles\EditarRegimenes.Designer.cs">
       <DependentUpon>EditarRegimenes.cs</DependentUpon>
     </Compile>
     <Compile Include="AbmUsuarios\AgregarUsuario.cs">
@@ -379,7 +379,7 @@
     <Compile Include="Tools\RegexUtilities.cs" />
     <Compile Include="Tools\Option.cs" />
     <Compile Include="Tools\Sesion.cs" />
-    <EmbeddedResource Include="AbmHotel\EditarRegimenes.resx">
+    <EmbeddedResource Include="Hoteles\EditarRegimenes.resx">
       <DependentUpon>EditarRegimenes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AbmUsuarios\AgregarUsuario.resx">
