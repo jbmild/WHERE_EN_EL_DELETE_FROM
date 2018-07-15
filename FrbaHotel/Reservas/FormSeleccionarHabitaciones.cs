@@ -19,7 +19,7 @@ namespace FrbaHotel.Reservas
     {
         Reserva _res = null;
         int _idTipoHabitacion;
-        DateTime _fechaSistema = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]));
+        
         decimal subTotalReserva = 0;
 
         public FormSeleccionarHabitaciones()
@@ -148,10 +148,9 @@ namespace FrbaHotel.Reservas
 
             }
             else {
-                CultureInfo culture = new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]);
-
+                
                 dtpFechaCheckin.Value = dtpFechaCheckin.MinDate = dtpFechaCheckout.MinDate
-                            = Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], culture);
+                            = Sesion.obtenerFechaSistema();
                 
                 dtpFechaCheckout.Value = dtpFechaCheckin.Value.AddDays(1);
             }
@@ -269,8 +268,8 @@ namespace FrbaHotel.Reservas
             DataTable dt = (DataTable)dtgRegimenesHoteles.DataSource;
             dt.Rows.Clear();
             this.dataGridView1.DataSource = null;
-            dtpFechaCheckin.Value = _fechaSistema;
-            dtpFechaCheckout.Value = _fechaSistema.AddDays(1);
+            dtpFechaCheckin.Value = Sesion.obtenerFechaSistema();
+            dtpFechaCheckout.Value = Sesion.obtenerFechaSistema().AddDays(1);
         }
 
         private void cmbTipoHab_SelectedIndexChanged(object sender, EventArgs e)

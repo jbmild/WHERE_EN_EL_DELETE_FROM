@@ -97,7 +97,7 @@ namespace FrbaHotel.Modelo
                                             UNION
                                             select
                                                 @factura_id,
-                                                NULL
+                                                NULL,
 	                                            '',
                                                 'Hospedaje bajo regimen ' + reg.descripcion AS concepto,
 	                                            1,
