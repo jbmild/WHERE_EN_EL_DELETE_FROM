@@ -85,7 +85,7 @@ namespace FrbaHotel.RegistrarEstadia
                         int empleado_id = Int32.Parse(dt.Rows[0][0].ToString());
 
                         string query = "INSERT INTO [WHERE_EN_EL_DELETE_FROM].[estadias]([reserva_id], [ingreso_empleado_id], [ingreso_fecha], [egreso_fecha])"
-                                        + "VALUES(" + res.id + "," + empleado_id + ",'" + Sesion.obtenerFechaSistema() + "', '" + Tools.Sesion.obtenerFechaSistema() + "')";
+                                        + "VALUES(" + res.id + "," + empleado_id + ", convert(date, '" + Sesion.obtenerFechaSistema() + "', 110), convert(date, '" + Tools.Sesion.obtenerFechaSistema() + "', 110))";
                         conn.ejecutarComandoSQL(query);
 
                         string query3 = "SELECT ESTADIA_ID FROM [WHERE_EN_EL_DELETE_FROM].[estadias] where reserva_id = " + res.id;
