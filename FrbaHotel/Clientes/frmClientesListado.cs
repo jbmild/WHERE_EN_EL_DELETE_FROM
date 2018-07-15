@@ -25,7 +25,7 @@ namespace FrbaHotel.Clientes
 
             Cliente cli = new Cliente();
             this.Cursor = Cursors.WaitCursor;
-            this.LoadGrid(cli.getClientes("", "", "", "", ""));
+            this.LoadGrid(cli.getClientes(cmbTipoDoc.Text, txtNroDoc.Text, txtEmail.Text, txtNombre.Text, txtApellido.Text));
             this.Cursor = Cursors.Default;
             
             
@@ -147,7 +147,7 @@ namespace FrbaHotel.Clientes
                 if (errores.Count == 0)
                 {
                     MessageBox.Show("Se realizó el eliminado lógico exitosamente!");
-                    this.LoadGrid(cli.getClientes("", "", "", "", ""));
+                    this.LoadGrid(cli.getClientes(cmbTipoDoc.Text, txtNroDoc.Text, txtEmail.Text, txtNombre.Text, txtApellido.Text));
                     
                 }
                 else
@@ -181,7 +181,7 @@ namespace FrbaHotel.Clientes
         private void frmClientesFicha_Closed(object sender, FormClosedEventArgs e)
         {
             Cliente cli = new Cliente();
-            this.LoadGrid(cli.getClientes("", "", "", "", ""));
+            this.LoadGrid(cli.getClientes(cmbTipoDoc.Text, txtNroDoc.Text, txtEmail.Text, txtNombre.Text, txtApellido.Text));
         }
 
         private void cmbTipoDoc_SelectedIndexChanged(object sender, EventArgs e)

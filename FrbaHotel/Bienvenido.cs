@@ -190,9 +190,10 @@ namespace FrbaHotel
 
         private void btnConsumibles_Click(object sender, EventArgs e)
         {
-            RegistrarConsumible.registrarConsumible r = new RegistrarConsumible.registrarConsumible();
-            r.RecibirHotel(Sesion.hotel.Nombre, Sesion.hotel.HotelId);
-            r.ShowDialog(this);
+            FrbaHotel.RegistrarConsumible.ElegirHotel elegir = new FrbaHotel.RegistrarConsumible.ElegirHotel();
+            elegir.Show();
+
+            
         }
 
         private void btnClientes_Click(object sender, EventArgs e)

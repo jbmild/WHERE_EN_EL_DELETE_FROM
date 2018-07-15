@@ -38,13 +38,8 @@ namespace FrbaHotel.RegistrarConsumible
             
                 //convert(Date, @fechaDesde, 110)
 
-            ConexionSQL c1 = new ConexionSQL();
-            DataTable habitaciones = c1.cargarTablaSQL("select  distinct habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" +hotel_id  + " order by numero asc" );
-            habitaciones.Rows.InsertAt(habitaciones.NewRow(), 0);
-            comboBoxHabitaciones.DataSource = habitaciones;
-            comboBoxHabitaciones.SelectedIndex = 0;
-            comboBoxHabitaciones.DisplayMember = "numero";
-            comboBoxHabitaciones.ValueMember = "habitacion_id";
+           GeneradorConsumo gen= new GeneradorConsumo();
+            gen.CargarEstadia(this.habi_id, Sesion.hotel.HotelId);
 
             /* CARGAR CONSUMIBLES */
             ConexionSQL c = new ConexionSQL();
@@ -81,15 +76,9 @@ namespace FrbaHotel.RegistrarConsumible
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int completo = 0;
+            int completo = 1;
             if (textBoxCantidad.Text.Equals("")) { this.labelCantidad.Visible = true; } else { this.labelCantidad.Visible = false; completo++; }
-            if (comboBoxHabitaciones.SelectedIndex.Equals(0))
-            {
-                this.labelHabitacion.Visible = true;
-            }
-            else {
-                completo++; this.labelHabitacion.Visible = false;
-            }
+           
 
             if (comboBoxConsumible.SelectedIndex.Equals(0))
             {
@@ -112,7 +101,7 @@ namespace FrbaHotel.RegistrarConsumible
                     Consumo consumo = new Consumo();
                     consumo.SetCantidad(Int32.Parse(this.textBoxCantidad.Text));
                     consumo.SetConsumible(Int32.Parse(comboBoxConsumible.SelectedValue.ToString()));
-                    consumo.SetHabitacion(Int32.Parse(comboBoxHabitaciones.SelectedValue.ToString()));
+                    consumo.SetHabitacion(this.habi_id);
                     if (consumoGenerado.EstadiaAllInclusive(consumo, fecha, hotel_id)) { consumo.SetPrecio("0"); } else { consumo.SetPrecio(textBoxPrecioSugerido.Text.ToString()); }
 
 
@@ -122,8 +111,9 @@ namespace FrbaHotel.RegistrarConsumible
 
 
 
-        internal void RecibirHotel(string hotelnombre, int hotelid)
+        internal void RecibirHotel(string hotelnombre, int hotelid, int habiID)
         {
+            this.habi_id = habiID;
             this.hotel_id = hotelid;
             this.nombrehotel = hotelnombre;
         }
@@ -149,10 +139,34 @@ namespace FrbaHotel.RegistrarConsumible
             this.textBoxCantidad.Text = "";
             this.textBoxPrecioSugerido.Text = "";
             this.comboBoxConsumible.SelectedIndex = 0;
-            this.comboBoxHabitaciones.SelectedIndex = 0;
+           
             this.checkBoxMantenerPrecioSugerido.Checked = false;
         }
 
-       
+        public int habi_id { get; set; }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            this.button1_Click(sender, e);
+        }
+
+        internal void MostrarGrid(int habi, object estad)
+        {
+            ConexionSQL c = new ConexionSQL();
+            string query = "select co.descripcion, c.precio_unitario" +
+                " from WHERE_EN_EL_DELETE_FROM.consumos c " +
+                " join WHERE_EN_EL_DELETE_FROM.estadias e on c.estadia_id=e.estadia_id " +
+                " join WHERE_EN_EL_DELETE_FROM.consumibles co on c.consumible_id=co.consumible_id" +
+                " where e.estadia_id=" + estad +
+                " and c.habitacion_id=" + habi +
+                " order by e.ingreso_fecha desc";
+            DataTable consumos = c.cargarTablaSQL(query);
+            dataGridView1.DataSource = consumos;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
