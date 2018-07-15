@@ -25,14 +25,17 @@ namespace FrbaHotel.AbmUsuarios
             
             CrearUsuario crear = new CrearUsuario();
             ConexionSQL c = new ConexionSQL();
+
+            DataTable data = c.cargarTablaSQL("SELECT * FROM WHERE_EN_EL_DELETE_FROM.usuarios where usuario='"+textBoxUsuario.Text+"'");
+
             string fecha_nacimiento;
             if (this.textBoxUsuario.Text.Equals("") || this.textBoxTipoDOC.Text.Equals("") || this.textBoxTelefono.Text.Equals("") ||
                 this.textBoxPiso.Text.Equals("") || this.textBoxPais.Text.Equals("") || this.textBoxNumeroDOC.Text.Equals("") ||
                 this.textBoxNumero.Text.Equals("") || this.textBoxNombre.Text.Equals("") || this.textBoxMail.Text.Equals("") ||
                 this.textBoxLocalidad.Text.Equals("") || this.textBoxDireccion.Text.Equals("") || this.textBoxDepto.Text.Equals("") ||
-                this.textBoxApellido.Text.Equals("") || this.dateTimePickerFechaNacimiento.Value.Equals(null) || this.listBoxRolesElegidos.Items.Count.Equals(0))
+                this.textBoxApellido.Text.Equals("") || this.dateTimePickerFechaNacimiento.Value.Equals(null) || this.listBoxRolesElegidos.Items.Count.Equals(0) || data.Rows.Count>0)
             {
-                MessageBox.Show("Debe completar todos los campos");
+                MessageBox.Show("Debe completar todos los campos y el usuario debe ser unico");
             }
             else
             {

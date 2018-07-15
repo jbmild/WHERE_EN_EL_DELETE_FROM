@@ -32,13 +32,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxNumeroHabitacion = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxPiso = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.radioButtonExteriorSI = new System.Windows.Forms.RadioButton();
@@ -54,9 +52,13 @@
             this.button3 = new System.Windows.Forms.Button();
             this.labelhotelnombre = new System.Windows.Forms.Label();
             this.labelExteriorError = new System.Windows.Forms.Label();
+            this.numPiso = new System.Windows.Forms.NumericUpDown();
+            this.numNumHabitacion = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPiso)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNumHabitacion)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -76,16 +78,6 @@
             this.label2.Size = new System.Drawing.Size(164, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Número de habitación";
-            // 
-            // comboBoxNumeroHabitacion
-            // 
-            this.comboBoxNumeroHabitacion.Enabled = false;
-            this.comboBoxNumeroHabitacion.FormattingEnabled = true;
-            this.comboBoxNumeroHabitacion.Location = new System.Drawing.Point(285, 122);
-            this.comboBoxNumeroHabitacion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBoxNumeroHabitacion.Name = "comboBoxNumeroHabitacion";
-            this.comboBoxNumeroHabitacion.Size = new System.Drawing.Size(136, 28);
-            this.comboBoxNumeroHabitacion.TabIndex = 3;
             // 
             // button1
             // 
@@ -144,17 +136,6 @@
             this.label3.Size = new System.Drawing.Size(39, 20);
             this.label3.TabIndex = 20;
             this.label3.Text = "Piso";
-            // 
-            // comboBoxPiso
-            // 
-            this.comboBoxPiso.Enabled = false;
-            this.comboBoxPiso.FormattingEnabled = true;
-            this.comboBoxPiso.Location = new System.Drawing.Point(284, 75);
-            this.comboBoxPiso.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBoxPiso.Name = "comboBoxPiso";
-            this.comboBoxPiso.Size = new System.Drawing.Size(136, 28);
-            this.comboBoxPiso.TabIndex = 21;
-            this.comboBoxPiso.SelectionChangeCommitted += new System.EventHandler(this.comboBoxPiso_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -331,12 +312,38 @@
             this.labelExteriorError.Text = "Seleccione una opción";
             this.labelExteriorError.Visible = false;
             // 
+            // numPiso
+            // 
+            this.numPiso.Location = new System.Drawing.Point(259, 76);
+            this.numPiso.Maximum = new decimal(new int[] {
+            1410065408,
+            2,
+            0,
+            0});
+            this.numPiso.Name = "numPiso";
+            this.numPiso.Size = new System.Drawing.Size(120, 26);
+            this.numPiso.TabIndex = 44;
+            // 
+            // numNumHabitacion
+            // 
+            this.numNumHabitacion.Location = new System.Drawing.Point(259, 120);
+            this.numNumHabitacion.Maximum = new decimal(new int[] {
+            276447232,
+            23283,
+            0,
+            0});
+            this.numNumHabitacion.Name = "numNumHabitacion";
+            this.numNumHabitacion.Size = new System.Drawing.Size(120, 26);
+            this.numNumHabitacion.TabIndex = 45;
+            // 
             // modificarHabitacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1542, 642);
+            this.Controls.Add(this.numNumHabitacion);
+            this.Controls.Add(this.numPiso);
             this.Controls.Add(this.labelhotelnombre);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -344,11 +351,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelHabilitadoError);
             this.Controls.Add(this.labelExteriorError);
-            this.Controls.Add(this.comboBoxPiso);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBoxNumeroHabitacion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -360,6 +365,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numPiso)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numNumHabitacion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,11 +378,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBoxNumeroHabitacion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBoxPiso;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.RadioButton radioButtonHabilitadoNA;
@@ -393,5 +398,7 @@
         private System.Windows.Forms.Label labelExteriorError;
         private System.Windows.Forms.DataGridViewButtonColumn Column1;
         private System.Windows.Forms.DataGridViewButtonColumn Column2;
+        private System.Windows.Forms.NumericUpDown numPiso;
+        private System.Windows.Forms.NumericUpDown numNumHabitacion;
     }
 }

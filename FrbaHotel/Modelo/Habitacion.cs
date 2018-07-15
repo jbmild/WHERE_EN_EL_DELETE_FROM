@@ -128,7 +128,7 @@ namespace FrbaHotel.Modelo
 				                )
 		                ) res on res.habitacion_id = hab.habitacion_id
 	                WHERE
-		                (res.reserva_id is null or isNull(res.reserva_id, -1) <> @reserva_id)
+		                (res.reserva_id is null or res.reserva_id = @reserva_id )
                         AND hab.habilitado = 1
                         AND hot.hotel_id not in (SELECT hotel_id FROM [WHERE_EN_EL_DELETE_FROM].cese_actividades WHERE 
                                     @FechaDesde between fecha_inicio and fecha_fin

@@ -35,25 +35,9 @@ namespace FrbaHotel.AbmHabitacion
         private void modificarHabitacion_Load(object sender, EventArgs e)
         {
             //mHoteles.CargarHoteles(hotelid);
-            this.CargarHabitaciones();
-            this.CargarPiso();
-            this.comboBoxPiso.Enabled = true;
-            this.comboBoxNumeroHabitacion.Enabled = true;
+            this.numPiso.Enabled = true;
+            this.numNumHabitacion.Enabled = true;
          }
-
-        private void CargarPiso()
-        {
-            ConexionSQL c = new ConexionSQL();
-            BuscarPiso p = new BuscarPiso();
-            p.Cargar(c, this.comboBoxPiso, hotelid);
-        }
-
-        private void CargarHabitaciones()
-        {
-            ConexionSQL con = new ConexionSQL();
-            BuscarHabitacion b = new BuscarHabitacion();
-            b.Cargar(con, this.comboBoxNumeroHabitacion, hotelid);
-        }
 
         private void CargarHabitacionesParaHotelElegido()
         {
@@ -76,7 +60,7 @@ namespace FrbaHotel.AbmHabitacion
                 labelHabilitadoError.Visible = false;
                 labelExteriorError.Visible = false;
                 /*Guardo el numero de habitacion conocido por el empleado*/
-                habitacion_numero = comboBoxNumeroHabitacion.Text;
+                habitacion_numero = numNumHabitacion.Value.ToString();
                 ConexionSQL con2 = new ConexionSQL();
                 Consulta consulta = new Consulta();
                 consulta.ConcatToQuery("select ha.numero as 'Numero_Habitacion', ha.piso as 'Piso', ha.descripcion as 'Descripcion'," +
@@ -90,13 +74,13 @@ namespace FrbaHotel.AbmHabitacion
                 busqueda = new Busqueda();
 
                 bHotel.ejecutar(consulta, hotelid.ToString(), busqueda);
-                if (this.comboBoxPiso.Enabled)
+                if (this.numPiso.Enabled && this.numPiso.Value !=0)
                 {
-                    bPiso.ejecutar(consulta, this.comboBoxPiso.SelectedValue.ToString(), busqueda);
+                    bPiso.ejecutar(consulta, this.numPiso.Value.ToString(), busqueda);
                 }
-                if (this.comboBoxNumeroHabitacion.Enabled)
+                if (this.numNumHabitacion.Enabled && this.numNumHabitacion.Value!=0)
                 {
-                    bHabi.ejecutar(consulta, this.comboBoxNumeroHabitacion.Text, busqueda);
+                    bHabi.ejecutar(consulta, this.numNumHabitacion.Value.ToString(), busqueda);
                 }
 
                 this.ChequearRadioButtons(consulta, busqueda);
@@ -211,34 +195,6 @@ namespace FrbaHotel.AbmHabitacion
             
         }
 
-
-
-        private void comboBoxHoteles_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-                this.comboBoxPiso.Enabled = true;
-                this.comboBoxNumeroHabitacion.Enabled = true;
-                ConexionSQL c = new ConexionSQL();
-                DataTable dtpisos = c.cargarTablaSQL("select distinct piso from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" + hotelid);
-                comboBoxPiso.DataSource = dtpisos;
-                dtpisos.Rows.InsertAt(dtpisos.NewRow(), 0);
-                comboBoxPiso.DisplayMember = "piso";
-                comboBoxPiso.SelectedIndex = 0;
-                comboBoxPiso.ValueMember = "piso";
-
-                string q = "select habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" + hotelid;
-
-                ConexionSQL c2 = new ConexionSQL();
-                DataTable dthabitaciones = c2.cargarTablaSQL("select habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" + hotelid + " order by numero asc");
-                comboBoxNumeroHabitacion.DataSource = dthabitaciones;
-                dthabitaciones.Rows.InsertAt(dthabitaciones.NewRow(), 0);
-                comboBoxNumeroHabitacion.DisplayMember = "numero";
-                comboBoxNumeroHabitacion.SelectedIndex = 0;
-                comboBoxNumeroHabitacion.ValueMember = "habitacion_id";
-        
-           
-            }
-
        
 
         private void NotificarHabitacionExistente()
@@ -253,23 +209,6 @@ namespace FrbaHotel.AbmHabitacion
         private void labelDescripcionNueva_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void comboBoxPiso_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ConexionSQL c = new ConexionSQL();
-            if(this.comboBoxPiso.SelectedValue.ToString().Equals("")){
-            }else{
-            string q = "select habitacion_id, numero from WHERE_EN_EL_DELETE_FROM.habitaciones where hotel_id=" + hotelid +
-                " and piso=" + comboBoxPiso.SelectedValue + " order by numero asc";
-
-            DataTable dthabitaciones = c.cargarTablaSQL(q);
-            comboBoxNumeroHabitacion.DataSource = dthabitaciones;
-            dthabitaciones.Rows.InsertAt(dthabitaciones.NewRow(), 0);
-            comboBoxNumeroHabitacion.DisplayMember = "numero";
-            comboBoxNumeroHabitacion.SelectedIndex = 0;
-            comboBoxNumeroHabitacion.ValueMember = "habitacion_id";}
-            
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -358,9 +297,9 @@ namespace FrbaHotel.AbmHabitacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            this.comboBoxNumeroHabitacion.SelectedIndex = comboBoxNumeroHabitacion.FindStringExact("");
-            this.comboBoxPiso.SelectedIndex=comboBoxPiso.FindStringExact("");
+
+            this.numNumHabitacion.Value = 0;
+            this.numPiso.Value = 0;
             this.radioButtonExteriorNA.Checked = false;
             this.radioButtonExteriorNO.Checked = false;
             this.radioButtonExteriorSI.Checked = false;

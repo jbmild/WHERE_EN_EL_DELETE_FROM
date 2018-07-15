@@ -332,7 +332,7 @@ SET @FechaActual = GETDATE();
 		ingreso_empleado_id int,
 		ingreso_fecha date NOT NULL,
 		egreso_empleado_id int,
-		egreso_fecha date NOT  NULL,
+		egreso_fecha date,
 
 		CONSTRAINT FK_reserva_id FOREIGN KEY (reserva_id) REFERENCES WHERE_EN_EL_DELETE_FROM.reservas (reserva_id),
 		CONSTRAINT FK_ingreso_empleado_id FOREIGN KEY (ingreso_empleado_id) REFERENCES WHERE_EN_EL_DELETE_FROM.empleados (empleado_id),
