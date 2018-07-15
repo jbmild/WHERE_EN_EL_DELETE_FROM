@@ -83,7 +83,7 @@
             this.Controls.Add(this.comboBoxHabitaciones);
             this.Controls.Add(this.label1);
             this.Name = "ElegirHotel";
-            this.Text = "ElegirHotel";
+            this.Text = "Elegir Habitacion";
             this.Load += new System.EventHandler(this.ElegirHotel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
