@@ -251,6 +251,12 @@
     <Compile Include="Modelo\Item_factura.cs" />
     <Compile Include="Modelo\Usuario.cs" />
     <Compile Include="RegistrarConsumible\Consumo.cs" />
+    <Compile Include="RegistrarConsumible\ElegirHotel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrarConsumible\ElegirHotel.Designer.cs">
+      <DependentUpon>ElegirHotel.cs</DependentUpon>
+    </Compile>
     <Compile Include="RegistrarConsumible\GeneradorConsumo.cs" />
     <Compile Include="RegistrarEstadia\RegistrarEstadiaClass.cs" />
     <Compile Include="RegistrarEstadia\IngresoHuespedes.cs">
@@ -473,6 +479,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RegistrarConsumible\ElegirHotel.resx">
+      <DependentUpon>ElegirHotel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RegistrarConsumible\registrarConsumible.resx">
       <DependentUpon>registrarConsumible.cs</DependentUpon>
     </EmbeddedResource>

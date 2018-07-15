@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FrbaHotel.Tools;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -20,16 +21,19 @@ namespace FrbaHotel.RegistrarConsumible
             SqlCommand command = new SqlCommand(insertConsumo);
             command.Parameters.Add("@habitacion_id", SqlDbType.Int).Value = consumo.GetHabitacion();
             command.Parameters.Add("@consumible_id", SqlDbType.Int).Value = consumo.GetConsumible();
+            
             command.Parameters.Add("@estadia_id", SqlDbType.Int).Value = q.GetEstadia(consumo.GetHabitacion(), fecha, hotel_id);
-            command.Parameters.Add("@cantidad", SqlDbType.Decimal).Value =
+            command.Parameters.Add("@cantidad", SqlDbType.Decimal).Value = consumo.GetCantidad();
 
             command.Parameters.Add("@precio_unitario", SqlDbType.NVarChar).Value = consumo.GetPrecio();
             command.Connection = sql;
             int resultado = command.ExecuteNonQuery();
             if (resultado.Equals(1))
             {
-                MessageBox.Show("¡Consumible registrado correctamente!");
-                pantallita.Hide();
+                this.pantallita.MostrarGrid(consumo.GetHabitacion(), q.GetEstadia(consumo.GetHabitacion(), fecha, hotel_id));
+                //MessageBox.Show("¡Consumible registrado correctamente!");
+                //pantallita.Hide();
+
             }
             else
             {
@@ -56,6 +60,20 @@ namespace FrbaHotel.RegistrarConsumible
             }
             
             
+        }
+
+        internal void CargarEstadia(int hotel, int habi)
+        {
+            ConexionSQL c = new ConexionSQL();
+            string query= " select  consu.descripcion, c.precio_unitario "+
+                     " from WHERE_EN_EL_DELETE_FROM.consumos c join WHERE_EN_EL_DELETE_FROM.consumibles consu on c.consumible_id=consu.consumible_id " + 
+                     " join WHERE_EN_EL_DELETE_FROM.estadias e on c.estadia_id=e.estadia_id " +
+                     " join WHERE_EN_EL_DELETE_FROM.reservas r on e.reserva_id=r.reserva_id " +
+                     " join WHERE_EN_EL_DELETE_FROM.habitaciones h on r.hotel_id=h.hotel_id "+
+                     " where h.hotel_id=" + hotel + " and h.habitacion_id=" + habi + " and e.ingreso_fecha<=CONVERT(DATE, '" + Sesion.obtenerFechaSistema().ToString("MM-dd-yyyy") + "', 110) " +
+                     " order by e.ingreso_fecha desc";
+            DataTable t = c.cargarTablaSQL(query);
+
         }
     }
 }
