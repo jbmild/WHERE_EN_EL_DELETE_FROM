@@ -78,7 +78,7 @@ namespace FrbaHotel.Facturar
             decimal totalFactura = 0;
 
             foreach (DataRow dr in dt.Rows) {
-                totalFactura += Convert.ToDecimal(dr["total"]);
+                totalFactura += Convert.ToDecimal(dr["total"]) * Convert.ToInt32(dr["cantidad"]);
             }
 
             return totalFactura;

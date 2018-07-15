@@ -18,7 +18,7 @@ namespace FrbaHotel.Modelo
                                     con.codigo,
                                     'En concepto de ' + con.descripcion + ' para la habitacion ' + convert(varchar, hab.numero) AS concepto,
 	                                c.cantidad,
-	                                c.precio_unitario
+	                                c.precio_unitario AS total
                                 From 
 	                                WHERE_EN_EL_DELETE_FROM.consumos c
                                 INNER JOIN
@@ -31,6 +31,8 @@ namespace FrbaHotel.Modelo
 	                                estadia_id = {estadia_id}
                                 UNION
                                 select
+                                    0,
+                                    0,
 	                                'Hospedaje bajo regimen ' + reg.descripcion AS concepto,
 	                                1,
 	                                r.total
