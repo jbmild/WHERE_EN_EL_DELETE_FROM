@@ -291,9 +291,9 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(560, 305);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 13);
+            this.label12.Size = new System.Drawing.Size(39, 13);
             this.label12.TabIndex = 31;
-            this.label12.Text = "Depto*:";
+            this.label12.Text = "Depto:";
             this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // txtDireccionPiso
@@ -302,6 +302,7 @@
             this.txtDireccionPiso.Name = "txtDireccionPiso";
             this.txtDireccionPiso.Size = new System.Drawing.Size(54, 20);
             this.txtDireccionPiso.TabIndex = 9;
+            this.txtDireccionPiso.TextChanged += new System.EventHandler(this.txtDireccionPiso_TextChanged);
             this.txtDireccionPiso.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDireccionPiso_KeyPress);
             // 
             // label13
@@ -309,9 +310,9 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(434, 305);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(34, 13);
+            this.label13.Size = new System.Drawing.Size(30, 13);
             this.label13.TabIndex = 33;
-            this.label13.Text = "Piso*:";
+            this.label13.Text = "Piso:";
             this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // txtLocalidad

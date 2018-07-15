@@ -386,13 +386,12 @@ SET @FechaActual = GETDATE();
 		numero int NOT NULL,
 		fecha date NOT NULL,
 		total real NOT NULL,
-		documento_tipo NVARCHAR(255) NOT NULL,
-		documento_nro NVARCHAR(255) NOT NULL,
-		nacionalidad varchar(255) NOT NULL,
+		cuit NVARCHAR(255),
+		razon_social NVARCHAR(255) NOT NULL,
 		direccion NVARCHAR(255) NOT NULL,
-		nombre NVARCHAR(255) NOT NULL,
-		apellido NVARCHAR(255) NOT NULL,
+		localidad NVARCHAR(255),
 		formapago_id int,
+		tipo_iva NVARCHAR(255),
 
 		CONSTRAINT FK_facturas_estadias FOREIGN KEY (estadia_id) REFERENCES WHERE_EN_EL_DELETE_FROM.estadias (estadia_id),
 		CONSTRAINT FK_facturas_clientes FOREIGN KEY (cliente_id) REFERENCES WHERE_EN_EL_DELETE_FROM.clientes (cliente_id),
@@ -407,7 +406,7 @@ SET @FechaActual = GETDATE();
 		codigo NVARCHAR(100),
 		descripcion NVARCHAR(100),
 		cantidad int,
-		precio_unitario NVARCHAR(20),
+		precio_unitario real NOT NULL
 
 		CONSTRAINT FK_facturas FOREIGN KEY (factura_id) REFERENCES WHERE_EN_EL_DELETE_FROM.facturas (factura_id),
 		CONSTRAINT FK_consumos FOREIGN KEY (consumo_id) REFERENCES WHERE_EN_EL_DELETE_FROM.consumos (consumo_id)
@@ -553,7 +552,7 @@ SET @FechaActual = GETDATE();
 	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Administrador General'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos
 
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.roles_permisos (rol_id, permiso_id)
-	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Guest'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE nombre in ('Generar o Modificar Reserva')
+	SELECT (SELECT TOP 1 rol_id FROM WHERE_EN_EL_DELETE_FROM.roles WHERE nombre='Guest'), permiso_id FROM WHERE_EN_EL_DELETE_FROM.permisos WHERE nombre in ('Generar o Modificar Reserva', 'Cancelar Reserva')
 
 	/* Usuarios Roles */
 	INSERT INTO WHERE_EN_EL_DELETE_FROM.usuarios_roles (usuario_id, rol_id) VALUES
@@ -594,7 +593,7 @@ SET @FechaActual = GETDATE();
 		NULL,
 		NULL,
 		NULL,
-		NULL,
+		convert(date, Cliente_Fecha_Nac),
 		m.Cliente_Nacionalidad
 	FROM
 		gd_esquema.Maestra m 
@@ -826,12 +825,8 @@ SET @FechaActual = GETDATE();
 		numero,
 		fecha,
 		total,
-		documento_tipo,
-		documento_nro,
-		nacionalidad,
-		direccion,
-		nombre,
-		apellido
+		razon_social,
+		direccion
 	)
 	SELECT
 		e.estadia_id,
@@ -839,12 +834,8 @@ SET @FechaActual = GETDATE();
 		m.Factura_Nro,
 		m.Factura_Fecha,
 		m.Factura_Total,
-		c.documento_tipo,
-		c.documento_nro,
-		c.nacionalidad,
-		CONCAT(c.direccion_calle, ' ', c.direccion_nro, ' ', c.direccion_piso, c.direccion_depto, ', ', c.direccion_localidad, ', ', c.direccion_pais),
-		c.nombre,
-		c.apellido
+		CONCAT(c.apellido, ' ', c.nombre),
+		CONCAT(c.direccion_calle, ' ', c.direccion_nro, ' ', c.direccion_piso, c.direccion_depto)
 	FROM 
 		(
 			SELECT 

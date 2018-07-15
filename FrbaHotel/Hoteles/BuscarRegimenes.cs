@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace FrbaHotel.AbmHotel
+namespace FrbaHotel.Hoteles
 {
     class BuscarRegimenes
     {

@@ -45,7 +45,7 @@ namespace FrbaHotel.Hoteles
 
         private void CargarRegimenesHotel(int p)
         {
-            FrbaHotel.AbmHotel.CargarRegimenesHotelBuscador b = new FrbaHotel.AbmHotel.CargarRegimenesHotelBuscador();
+            FrbaHotel.Hoteles.CargarRegimenesHotelBuscador b = new FrbaHotel.Hoteles.CargarRegimenesHotelBuscador();
             b.Cargar(p, this.listBoxRegimenesActuales);
         }
 
@@ -243,7 +243,7 @@ namespace FrbaHotel.Hoteles
 
         private void button4_Click(object sender, EventArgs e)
         {
-            FrbaHotel.AbmHotel.EditarRegimenes ventanaEdicionRegimenes = new FrbaHotel.AbmHotel.EditarRegimenes();
+            FrbaHotel.Hoteles.EditarRegimenes ventanaEdicionRegimenes = new FrbaHotel.Hoteles.EditarRegimenes();
             ventanaEdicionRegimenes.EnviarRegimenes(this.listBoxRegimenesActuales, this);
             ventanaEdicionRegimenes.Show();
         }

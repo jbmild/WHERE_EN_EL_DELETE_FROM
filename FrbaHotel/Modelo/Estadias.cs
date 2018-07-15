@@ -19,7 +19,7 @@ namespace FrbaHotel.Modelo
             string sqlQuery = @"select e.estadia_id, r.codigo, r.fecha_desde, r.fecha_hasta, 
                                 cli.nombre + ' ' + cli.apellido As Cliente,
                                 cli.direccion_calle + ' ' + direccion_nro AS domicilio,
-                                direccion_localidad
+                                direccion_localidad, cli.cliente_id
                                 FROM 
                                     WHERE_EN_EL_DELETE_FROM.estadias e
                                     INNER JOIN WHERE_EN_EL_DELETE_FROM.reservas r on

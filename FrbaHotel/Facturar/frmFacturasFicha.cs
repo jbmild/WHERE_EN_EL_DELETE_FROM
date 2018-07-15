@@ -19,6 +19,7 @@ namespace FrbaHotel.Facturar
         private string _nombreCliente;
         private string _domicilioCliente;
         private string _localidadCliente;
+        private int _cliente_id;
         
         private string _nroDocumento;
         private string _email;
@@ -43,6 +44,7 @@ namespace FrbaHotel.Facturar
             _nombreCliente = dt.Rows[0].ItemArray[4].ToString();
             _domicilioCliente = dt.Rows[0].ItemArray[5].ToString();
             _localidadCliente = dt.Rows[0].ItemArray[6].ToString();
+            _cliente_id = Convert.ToInt32(dt.Rows[0].ItemArray[7]);
             InitializeComponent();
         }
 
@@ -61,12 +63,18 @@ namespace FrbaHotel.Facturar
 
             lblTotalFactura.Text = this.loadItemsFactura().ToString();
 
+            cmbTipoIva.Items.Add("Consumidor final");
+            cmbTipoIva.Items.Add("Iva inscripto");
+            cmbTipoIva.Items.Add("Exento");
 
         }
 
         private decimal loadItemsFactura() {
             DataTable dt = Facturas.getItemsFacturables(_estadia_id);
             dtgItemsFactura.DataSource = dt;
+            dtgItemsFactura.Columns["consumo_id"].Visible = false;
+            dtgItemsFactura.Columns["codigo"].Visible = false;
+
             decimal totalFactura = 0;
 
             foreach (DataRow dr in dt.Rows) {
@@ -80,82 +88,36 @@ namespace FrbaHotel.Facturar
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if(txtNombreCliente.Text.Length == 0 || txtDomicilioCliente.Text.Length == 0 || 
-                txtLocalidadCliente.Text.Length == 0 || txtCuit.Text.Length == 0 || (!rdbInscripto.Checked && !rdbNoInscripto.Checked)){
+                txtLocalidadCliente.Text.Length == 0 || txtCuit.Text.Length == 0 || cmbTipoIva.SelectedIndex <= 0){
 
                 System.Windows.Forms.MessageBox.Show("Debe completar todos los campos de la cabecera de la factura");
             }
             else{
 
-                //Guardar factura
-            
-            }
-            
-            /*
-            RegexUtilities regexValidator = new RegexUtilities();
-            bool isValidEmail = true;
-            if(txtMail.Text.Length > 0)
-            {
-                isValidEmail = regexValidator.IsValidEmail(txtMail.Text);
-            }
+                System.Windows.Forms.MessageBox.Show("Debe completar todos los campos de la cabecera de la factura");
 
-            if (txtLocalidadCliente.Text.Length > 0 && txtMail.Text.Length > 0 && txtNombreCliente.Text.Length > 0 && txtDomicilioCliente.Text.Length > 0
-                        && txtDireccionCalle.Text.Length > 0 && txtDireccionNro.Text.Length > 0 
-                        && txtDireccionPiso.Text.Length > 0 && txtDireccionDepto.Text.Length > 0)
-            {
-                if (isValidEmail)
+                List <Item_factura> items = new List<Item_factura>();
+                Factura fact = new Factura(_estadia_id, _cliente_id, Convert.ToInt32(lblNumeroFactura.Text),
+                    Sesion.obtenerFechaSistema(), Convert.ToDecimal(lblTotalFactura.Text), txtCuit.Text,
+                    true, txtNombreCliente.Text, Convert.ToInt32(cmbFormaPago.SelectedValue), items);
+
+                
+                try
                 {
-                    _cli.habilitado = chkHabilitado.Checked;
-                    _cli.tipoDocumento = cmbTiposDocumentos.Text;
-                    _cli.nrodocumento = txtLocalidadCliente.Text;
-                    _cli.nombre = txtNombreCliente.Text;
-                    _cli.apellido = txtDomicilioCliente.Text;
-                    _cli.nacionalidad = txtNacionalidad.Text;
-                    _cli.email = txtMail.Text;
-                    _cli.direccion_calle = txtDireccionCalle.Text;
-                    _cli.direccion_numero = txtDireccionNro.Text;
-                    _cli.direccion_piso = txtDireccionPiso.Text;
-                    _cli.direccion_depto = txtDireccionDepto.Text;
-                    _cli.telefono = txtTelefono.Text;
-                    _cli.direccion_localidad = txtLocalidad.Text;
-                    _cli.direccion_pais = txtPaisVivienda.Text;
-
-                    bool datosDuplicados = _cli.existeClientePorDatosUnicos();
-                    if (!datosDuplicados)
+                    //TODO: Pedir confirmacion
+                    var confirmResult = MessageBox.Show(String.Concat("¿Confirma que desea crear la factura?", MessageBoxButtons.YesNo));
+                    int nroFactura;
+                    if (confirmResult == DialogResult.Yes)
                     {
-                        int idCliente = _cli.guardarCliente(_cli);
-
-                        if (idCliente != 0)
-                        {
-                            System.Windows.Forms.MessageBox.Show("El cliente ha sido guardado exitosamente. ");
-                            this.Close();
-                            if (_returnToCheckInFunctionality) { 
-                                //TODO: @Juanma: volver a pantalla de checkin, devolver variable idCliente
-                            }
-                        }
-                        else
-                        {
-                            //no se pudo grabar
-                            this.UseWaitCursor = false;
-                            System.Windows.Forms.MessageBox.Show("ERROR al intentar guardar datos. Reintente por favor.");
-                            this.Hide();
-                        }
+                        nroFactura = fact.guardarFactura();
+                        System.Windows.Forms.MessageBox.Show("Se ha creado con éxito la factura nro " + nroFactura.ToString());
                     }
-                    else
-                    {
-                        System.Windows.Forms.MessageBox.Show(this, "El mail y/o tipo+nro de documento que ha ingresado ya existen. Corrija los datos para poder continuar. ", "Error!");
-                    }
-                    
-
                 }
-                else {
-                    System.Windows.Forms.MessageBox.Show("El mail tiene un formato incorrecto. Corríjalo para poder continuar. ");
+                catch(Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
                 }
             }
-            else {
-                System.Windows.Forms.MessageBox.Show("Complete los datos obligatorios para poder continuar. ");
-            }
-             * */
-
         }
 
         private void label9_Click(object sender, EventArgs e)

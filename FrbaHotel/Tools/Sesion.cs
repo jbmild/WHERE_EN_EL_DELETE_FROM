@@ -21,9 +21,8 @@ namespace FrbaHotel.Tools
         {
             try
             {
-                CultureInfo culture = new CultureInfo(ConfigurationManager.AppSettings["formatoFechaSistema"]);
-                return Convert.ToDateTime(ConfigurationManager.AppSettings["fechaSistema"], culture);
-            }
+                return DateTime.ParseExact(ConfigurationManager.AppSettings["fechaSistema"], ConfigurationManager.AppSettings["formatoFechaSistema"], CultureInfo.InvariantCulture);
+            }   
             catch (Exception)
             {
                 throw new Exception("La fecha ingresada en la configuracion no corresponde a su formato o esta incompleto.");

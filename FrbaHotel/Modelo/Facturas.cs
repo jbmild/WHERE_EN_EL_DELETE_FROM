@@ -14,7 +14,9 @@ namespace FrbaHotel.Modelo
 
             ConexionSQL conn = new ConexionSQL();
             string sqlQuery = @"select 
-	                                'En concepto de ' + con.descripcion + ' para la habitacion ' + convert(varchar, hab.numero) AS concepto,
+	                                c.consumo_id,
+                                    con.codigo,
+                                    'En concepto de ' + con.descripcion + ' para la habitacion ' + convert(varchar, hab.numero) AS concepto,
 	                                c.cantidad,
 	                                c.precio_unitario
                                 From 
@@ -50,10 +52,5 @@ namespace FrbaHotel.Modelo
 
         }
 
-        public static int guardarFactura(){
-
-
-            return 1;
-        }
     }
 }

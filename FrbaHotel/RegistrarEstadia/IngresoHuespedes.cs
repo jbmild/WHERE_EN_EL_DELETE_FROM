@@ -216,11 +216,20 @@ namespace FrbaHotel.RegistrarEstadia
                     //string update_estadia = "UPDATE WHERE_EN_EL_DELETE_FROM.huespedes set cliente_id = @numero_cliente where estadia_id ='" + estadia +  "')";
                     string insert_estadia = "INSERT INTO WHERE_EN_EL_DELETE_FROM.huespedes (estadia_id, cliente_id) VALUES('" + estadia + "', '" + id_cliente + "')";
 
+                    try
+                    {
                     SqlCommand sql = new SqlCommand(insert_estadia);
                     sql.Parameters.Add("@numero_cliente", SqlDbType.Int).Value = id_cliente;
 
                     conexionSQL.ejecutarComando(sql);
                     System.Windows.Forms.MessageBox.Show("Gracias, cliente " + id_cliente.ToString() + " agregado a estadía:" + codigo_reserva.ToString());
+
+                    }
+                    catch
+                    {
+                        System.Windows.Forms.MessageBox.Show("El cliente ya fue agregado a la reserva");
+                        //throw;
+                    }
                 }
                 else
                 {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using FrbaHotel.Tools;
 
 namespace FrbaHotel.Modelo
 {
@@ -237,11 +238,11 @@ namespace FrbaHotel.Modelo
             }
 
             if(nroDoc.Length > 0){
-                sqlQuery+= " AND documento_nro='" + nroDoc + "' ";
+                sqlQuery+= " AND documento_nro like '" + nroDoc + "%' ";
             }
 
             if(email.Length > 0){
-                sqlQuery += " AND mail='" + email + "' ";
+                sqlQuery += " AND mail like '" + email + "%' ";
             }
 
             if (nombre.Length > 0) {
@@ -272,7 +273,7 @@ namespace FrbaHotel.Modelo
                                                     row[13].ToString(), // direccion_localidad
                                                     row[14].ToString(), // direccion_pais
                                                     row[15].ToString(), // nacionalidad
-                                                    row[16].ToString());
+                                                    row[16].ToString()); // fecha nacimiento
 
             }
             else {
@@ -294,12 +295,12 @@ namespace FrbaHotel.Modelo
 
             if (nroDoc.Length > 0)
             {
-                sqlQuery += " AND documento_nro='" + nroDoc + "' ";
+                sqlQuery += " AND documento_nro like '" + nroDoc + "%' ";
             }
 
             if (email.Length > 0)
             {
-                sqlQuery += " AND mail='" + email + "' ";
+                sqlQuery += " AND mail like '" + email + "%' ";
             }
 
             if (nombre.Length > 0)
@@ -323,8 +324,8 @@ namespace FrbaHotel.Modelo
 
             SqlCommand command;
             
-            int usuario_id = 1; //TODO: Leerlo del usuario logueado.
-
+            int usuario_id = Sesion.usuario.UsuarioId;
+            
             if (cli.idCliente != 0)
             {
                 command = new SqlCommand(@"UPDATE WHERE_EN_EL_DELETE_FROM.Clientes SET
@@ -363,7 +364,7 @@ namespace FrbaHotel.Modelo
             command.Parameters.Add("@direccion_pais", SqlDbType.NVarChar).Value = cli.direccion_pais;
             command.Parameters.Add("@nacionalidad", SqlDbType.NVarChar).Value = cli.nacionalidad;
             command.Parameters.Add("@cliente_id", SqlDbType.NVarChar).Value = cli.idCliente;
-            command.Parameters.Add("@fecha_nacimiento", SqlDbType.Date).Value = cli.fecha_nacimiento;
+            command.Parameters.Add("@fecha_nacimiento", SqlDbType.Date).Value = Convert.ToDateTime(cli.fecha_nacimiento);
             _idCliente = Convert.ToInt32(command.ExecuteScalar());
 
             return _idCliente; 

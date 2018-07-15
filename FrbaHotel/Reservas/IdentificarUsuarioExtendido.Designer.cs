@@ -59,6 +59,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.dtpFechaNac = new System.Windows.Forms.DateTimePicker();
+            this.label14 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // linkLabel1
@@ -325,11 +327,29 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // dtpFechaNac
+            // 
+            this.dtpFechaNac.Location = new System.Drawing.Point(454, 221);
+            this.dtpFechaNac.Name = "dtpFechaNac";
+            this.dtpFechaNac.Size = new System.Drawing.Size(200, 20);
+            this.dtpFechaNac.TabIndex = 39;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(331, 224);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(109, 13);
+            this.label14.TabIndex = 38;
+            this.label14.Text = "Fecha de nacimiento:";
+            // 
             // IdentificarUsuarioExtendido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 496);
+            this.Controls.Add(this.dtpFechaNac);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtLocalidad);
             this.Controls.Add(this.txtDireccionPiso);
@@ -402,5 +422,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtLocalidad;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DateTimePicker dtpFechaNac;
+        private System.Windows.Forms.Label label14;
     }
 }
